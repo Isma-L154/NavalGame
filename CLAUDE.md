@@ -6,7 +6,7 @@ The approved design lives in `docs/superpowers/specs/2026-09-27-naval-game-desig
 
 ## Stack
 
-- **Language:** Python 3.13 (pinned to the version the Cloudflare Workers Pyodide runtime ships; do not raise it past what `pywrangler` supports). Frontend is plain HTML/CSS and minimal vanilla JavaScript: no framework, no build step.
+- **Language:** Python 3.14 (the version the Cloudflare Workers Pyodide runtime ships; it reports 3.14.2 at `compatibility_date` 2026-09-27. Never raise it past what the runtime supports). Frontend is plain HTML/CSS and minimal vanilla JavaScript: no framework, no build step.
 - **Runtime:** Cloudflare Python Workers + Durable Objects (one `GameRoom` Durable Object per room, WebSocket Hibernation API).
 - **Package manager:** `uv` (Python), `npm` only for Wrangler and Playwright.
 - **Database:** none. Room state lives in each Durable Object's own storage.
@@ -266,3 +266,6 @@ QA gate before merge: `code-review` + `differential-review` + Playwright E2E if 
 - Don't force a skill that doesn't fit the task: this file sets default discipline and when to reach for each tool, not a mandatory checklist for every change.
 - Project-specific sections win over the general defaults above when they conflict.
 - Python Workers constraints: only pure-Python or Pyodide-provided packages work; check a new dependency runs under `pywrangler dev` before relying on it. JS interop (`from js import ...`) is confined to `src/naval/worker/`.
+- `workers` and `js` cannot be imported on CPython, so Worker adapters are covered by integration tests (`pytest -m integration` against `pywrangler dev`), not unit tests. Keep them thin.
+- Use the standalone `uv` binary (`winget install astral-sh.uv`), never `python -m uv`: the pip-installed copy forces its parent interpreter and makes `pywrangler sync` install into the wrong Python.
+- Wrangler's `main` directory is the Python import root, which is why `src/entry.py` is a one-line shim over `naval.worker.entry`.

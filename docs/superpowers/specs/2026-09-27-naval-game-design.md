@@ -53,7 +53,7 @@ GameRoom Durable Object (one per room, Python, WebSocket Hibernation API)
 
 Rationale: a Durable Object per room gives a single, strongly consistent owner for each game, which is exactly what a two-seat turn-based room needs. With hibernation the cost at low traffic is effectively zero and there is no server to maintain.
 
-**Python version:** 3.13, pinned to what the Workers Pyodide runtime supports (verified when scaffolding with `pywrangler`). Local tooling uses the same version.
+**Python version:** 3.14, pinned to what the Workers Pyodide runtime supports (verified with `pywrangler dev`: the runtime reports 3.14.2). Local tooling uses the same version.
 
 ## 4. Components
 
@@ -160,7 +160,7 @@ Repository: public, `main` protected by a ruleset (PR only, squash merge, linear
 
 ## 10. Testing
 
-- **Unit (pytest):** `domain`, `protocol` and `rooms` on plain CPython 3.13 with the in-memory `RoomStore` and a fake `Clock`.
+- **Unit (pytest):** `domain`, `protocol` and `rooms` on plain CPython 3.14 with the in-memory `RoomStore` and a fake `Clock`.
 - **Property-based (hypothesis):** random valid fleets always validate; random overlapping or out-of-bounds fleets are always rejected; firing every occupied cell always ends the game; the view for seat A never contains seat B's ship cells before `FINISHED`.
 - **Security tests:** Origin rejection, oversized frame rejection, room-full rejection, token reuse from another room rejected, and rate limits triggered.
 - **E2E (Playwright):** two browser contexts against `pywrangler dev` play a full game; reload and reconnect mid-game; a third browser is refused.
