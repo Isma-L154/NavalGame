@@ -10,7 +10,7 @@
 
 ## Global Constraints
 
-- Python `>=3.14,<3.15` everywhere (verified: the Workers runtime reports `3.14.2` with `compatibility_date = "2026-09-27"`).
+- Python `>=3.14,<3.15` everywhere (verified: the Workers runtime reports `3.14.2`; `compatibility_date = "2026-09-18"`, the newest date the pinned Wrangler's `workerd` supports, still selects 3.14).
 - `uv` must be the standalone binary (`winget install astral-sh.uv`), never `python -m uv`: the pip-installed copy forces a "parent interpreter" and `pywrangler sync` installs into the wrong Python.
 - `workers` and `js` cannot be imported on CPython. Only files under `src/naval/worker/` that are explicitly Worker adapters may import them; everything else must stay importable by plain `pytest`.
 - Every action in a workflow is pinned by full commit SHA with the version in a trailing comment. Workflow token permissions default to `contents: read`.
@@ -216,7 +216,7 @@ from naval.worker.headers import API_HEADERS
 
 
 class Default(WorkerEntrypoint):
-    async def fetch(self, request):  # type: ignore[no-untyped-def]
+    async def fetch(self, request):
         if urlparse(request.url).path == "/api/health":
             return Response.json({"status": "ok"}, headers=dict(API_HEADERS))
         return Response.json({"error": "not_found"}, status=404, headers=dict(API_HEADERS))
@@ -227,7 +227,7 @@ class Default(WorkerEntrypoint):
 ```toml
 name = "naval-game"
 main = "src/entry.py"
-compatibility_date = "2026-09-27"
+compatibility_date = "2026-09-18"
 compatibility_flags = ["python_workers"]
 workers_dev = false
 routes = [{ pattern = "naval.cloudils.com", custom_domain = true }]
@@ -240,7 +240,7 @@ run_worker_first = ["/api/*"]
 enabled = true
 ```
 
-`package.json` pins Wrangler exactly (`"wrangler": "4.142.0"` in `devDependencies`, `"private": true`), and `npm install` generates `package-lock.json`. `pywrangler` resolves `wrangler` from `node_modules`.
+`package.json` pins Wrangler exactly (`"wrangler": "4.135.0"`, the newest release older than the 7-day cooldown in `devDependencies`, `"private": true`), and `npm install` generates `package-lock.json`. `pywrangler` resolves `wrangler` from `node_modules`.
 
 `public/index.html`: a static placeholder with `<title>NavalGame</title>`, an `<h1>NavalGame</h1>`, a "Coming soon" line and `<link rel="stylesheet" href="/styles.css">`. No inline script or style.
 

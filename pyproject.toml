@@ -12,6 +12,8 @@ dev = [
     "mypy",
     "pytest",
     "ruff",
+    "workers-py",
+    "workers-runtime-sdk",
 ]
 
 [tool.uv]
@@ -21,7 +23,8 @@ exclude-newer = "7 days"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-addopts = ["--strict-markers", "--strict-config"]
+addopts = ["--strict-markers", "--strict-config", "-m", "not integration"]
+markers = ["integration: needs a running Worker at NAVAL_BASE_URL"]
 
 [tool.ruff]
 target-version = "py314"
@@ -38,3 +41,5 @@ select = ["E", "W", "F", "I", "B", "UP", "SIM", "S", "N", "RUF", "PL", "PT"]
 python_version = "3.14"
 strict = true
 mypy_path = "src"
+# These modules import the Workers runtime (`workers`, `js`), which does not exist on CPython.
+exclude = ['^src/entry\.py$', '^src/naval/worker/entry\.py$']

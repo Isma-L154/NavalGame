@@ -15,13 +15,16 @@ The approved design lives in `docs/superpowers/specs/2026-09-27-naval-game-desig
 
 ## Commands
 
-- Install: `uv sync`
-- Dev server: `uv run pywrangler dev`
-- Deploy (CI does this; manual only in emergencies): `uv run pywrangler deploy`
+- Install: `uv sync && npm ci`
+- Dev server: `uv run pywrangler dev` (serves on `http://localhost:8787`)
+  - Windows with the repo outside `C:`: Pyodide runs inside Node and only sees the current drive, so the uv cache and uv-managed Pythons must live on the repo's drive. In PowerShell: `$env:UV_CACHE_DIR='D:\.uv\cache'; $env:UV_PYTHON_INSTALL_DIR='D:\.uv\python'; uv run pywrangler dev`
 - Test (unit): `uv run pytest`
+- Test (integration, dev server running): `NAVAL_BASE_URL=http://localhost:8787 uv run pytest -m integration`
+- Bundle check without deploying: `uv run pywrangler deploy --dry-run --outdir .wrangler/dry-run`
 - Test (e2e): `npx playwright test` (requires the dev server running)
 - Lint / format: `uv run ruff check . && uv run ruff format --check .`
 - Type check: `uv run mypy src tests`
+- Deploy: automatic on merge to `main` (`.github/workflows/deploy.yml`). Manual `uv run pywrangler deploy` only in emergencies.
 
 ## Architecture & Conventions
 
