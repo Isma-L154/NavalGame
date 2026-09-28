@@ -21,7 +21,7 @@ The approved design lives in `docs/superpowers/specs/2026-09-27-naval-game-desig
 - Test (unit): `uv run pytest`
 - Test (integration, dev server running): `NAVAL_BASE_URL=http://localhost:8787 uv run pytest -m integration`
 - Bundle check without deploying: `uv run pywrangler deploy --dry-run --outdir .wrangler/dry-run`
-- Test (e2e): `npx playwright test` (requires the dev server running)
+- Test (e2e): `npx playwright install chromium` once, then `npx playwright test` (dev server running; desktop and mobile profiles, fails on console errors and CSP violations)
 - Lint / format: `uv run ruff check . && uv run ruff format --check .`
 - Type check: `uv run mypy src tests`
 - Deploy: automatic on merge to `main` (`.github/workflows/deploy.yml`). Manual `uv run pywrangler deploy` only in emergencies.

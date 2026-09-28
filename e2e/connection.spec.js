@@ -1,0 +1,58 @@
+import { expect, test } from "@playwright/test";
+import { cell, createRoom, joinRoom, openHome, placeRowFleet, watchConsole } from "./helpers.js";
+
+test("a player who reloads mid-game gets their seat and board back", async ({ browser }) => {
+  const ana = await (await browser.newContext()).newPage();
+  const bo = await (await browser.newContext()).newPage();
+  const problems = [ana, bo].map(watchConsole);
+  const code = await createRoom(ana, "Ana");
+  await joinRoom(bo, "Bo", code);
+  await placeRowFleet(ana);
+  await placeRowFleet(bo);
+  await expect(ana.locator("#turn-banner")).toBeVisible();
+
+  const shooter = (await ana.locator("#turn-banner").textContent()).startsWith("Your turn") ? ana : bo;
+  await cell(shooter, "Enemy waters", "A1").click();
+  await expect(cell(shooter, "Enemy waters", "A1")).toHaveAttribute("aria-label", "A1, hit");
+
+  await shooter.reload();
+  await expect(shooter.locator("#turn-banner")).toBeVisible();
+  await expect(cell(shooter, "Enemy waters", "A1")).toHaveAttribute("aria-label", "A1, hit");
+  const other = shooter === ana ? bo : ana;
+  await expect(other.locator("#turn-banner")).toHaveText(/^Your turn/);
+  expect(problems.flat()).toEqual([]);
+});
+
+test("a third player is turned away from a full room", async ({ browser }) => {
+  const [ana, bo, cy] = await Promise.all(
+    [0, 1, 2].map(async () => (await browser.newContext()).newPage()),
+  );
+  const code = await createRoom(ana, "Ana");
+  await joinRoom(bo, "Bo", code);
+  await expect(bo.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
+  await joinRoom(cy, "Cy", code);
+  await expect(cy.getByRole("alert")).toHaveText("This room already has two players.");
+  await expect(cy.getByRole("heading", { name: "Sink the enemy fleet" })).toBeVisible();
+});
+
+test("an unknown room code sends the player back home", async ({ page }) => {
+  await joinRoom(page, "Ana", "ZZZZZZ");
+  await expect(page.getByRole("alert")).toContainText("Could not join room ZZZZZZ");
+});
+
+test("invalid nickname and code are explained before connecting", async ({ page }) => {
+  await openHome(page, " spaced");
+  await page.getByRole("button", { name: "Create a room" }).click();
+  await expect(page.getByRole("alert")).toContainText("Choose a nickname");
+  await page.getByLabel("Your nickname").fill("Ana");
+  await page.getByLabel("Room code").fill("abc0");
+  await page.getByRole("button", { name: "Join room" }).click();
+  await expect(page.getByRole("alert")).toContainText("Room codes have 6 characters");
+});
+
+test("leaving the lobby returns home", async ({ page }) => {
+  await createRoom(page, "Ana");
+  await page.getByRole("button", { name: "Leave room" }).first().click();
+  await expect(page.getByRole("heading", { name: "Sink the enemy fleet" })).toBeVisible();
+  await expect(page).toHaveURL(/\/$/);
+});
