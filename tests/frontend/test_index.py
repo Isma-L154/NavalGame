@@ -7,7 +7,9 @@ PUBLIC = Path(__file__).parents[2] / "public"
 def test_every_module_is_preloaded() -> None:
     html = (PUBLIC / "index.html").read_text(encoding="utf-8")
     preloaded = set(re.findall(r'<link rel="modulepreload" href="/js/([a-z]+\.js)">', html))
-    modules = {path.name for path in (PUBLIC / "js").glob("*.js")} - {"app.js"}
+    # Entry points are loaded by their own <script> tags; only their imports need preloading.
+    entry_points = {"app.js", "theme.js", "theme-init.js"}
+    modules = {path.name for path in (PUBLIC / "js").glob("*.js")} - entry_points
     assert preloaded == modules
 
 

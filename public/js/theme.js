@@ -1,0 +1,48 @@
+const STORAGE_KEY = "naval.theme";
+const THEME_COLORS = { light: "#f7f5f0", dark: "#141414" };
+
+const root = document.documentElement;
+const toggle = document.getElementById("theme-toggle");
+const systemDark = matchMedia("(prefers-color-scheme: dark)");
+
+function apply(theme) {
+  root.dataset.theme = theme;
+  toggle?.setAttribute("aria-pressed", String(theme === "dark"));
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", THEME_COLORS[theme]);
+}
+
+function storedTheme() {
+  try {
+    return localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+// Also kept in memory: if storage is blocked, a choice made on this page must still stick.
+let chosenTheme = storedTheme();
+
+toggle?.addEventListener("click", () => {
+  const next = root.dataset.theme === "dark" ? "light" : "dark";
+  chosenTheme = next;
+  try {
+    localStorage.setItem(STORAGE_KEY, next);
+  } catch {
+    // Not remembered, but still applied for this page.
+  }
+  apply(next);
+});
+
+// A choice made in another tab applies here too.
+window.addEventListener("storage", (event) => {
+  if (event.key !== STORAGE_KEY || (event.newValue !== "dark" && event.newValue !== "light")) return;
+  chosenTheme = event.newValue;
+  apply(event.newValue);
+});
+
+// Follow the system while the player has not picked a theme.
+systemDark.addEventListener("change", (event) => {
+  if (!chosenTheme) apply(event.matches ? "dark" : "light");
+});
+
+apply(root.dataset.theme === "dark" ? "dark" : "light");

@@ -35,12 +35,20 @@
 :root {
   color-scheme: light;
   --paper: #f7f5f0;
-  --white: #ffffff;
+  --surface: #ffffff;
   --ink: #111111;
   --ink-soft: #454545;
   --red: #d6231d;
   --yellow: #f4c20d;
   --blue: #1d4e9e;
+  --link: #1d4e9e;
+  /* Text on signal fills never changes with the theme. */
+  --on-signal: #111111;
+  --flag-white: #ffffff;
+  --flag-blue: #1d4e9e;
+  --on-red: var(--flag-white);
+  --danger-bg: #fdecea;
+  --line-soft: #d9d5cc;
   --rule: 2px solid var(--ink);
   --hairline: 1px solid var(--ink);
   --space-1: 0.25rem;
@@ -62,6 +70,19 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* Night signals: same flags and fills, light ink on a dark hull. Set by js/theme-init.js. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #141414;
+  --surface: #1f1f1f;
+  --ink: #f2efe7;
+  --ink-soft: #b8b3a7;
+  --blue: #3d74d6;
+  --link: #8fb3ff;
+  --danger-bg: #3a1614;
+  --line-soft: #3a3a3a;
 }
 
 /* Screens set their own display; `hidden` must still win. */
@@ -116,7 +137,7 @@ p {
 }
 
 a {
-  color: var(--blue);
+  color: var(--link);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
@@ -126,7 +147,7 @@ kbd {
   font-weight: 600;
   border: var(--hairline);
   padding: 0 0.35em;
-  background: var(--white);
+  background: var(--surface);
 }
 
 .sprite {
@@ -164,7 +185,7 @@ kbd {
   z-index: var(--z-notice);
   padding: var(--space-2) var(--space-4);
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-signal);
   border: var(--rule);
   font-weight: 600;
 }
@@ -227,10 +248,50 @@ kbd {
   margin-left: 0.15em;
 }
 
+.topbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: var(--rule);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--yellow);
+  color: var(--on-signal);
+}
+
+.theme-toggle-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* In dark mode the icon flips, so the control shows the state it is in. */
+.theme-toggle[aria-pressed="true"] .theme-toggle-icon {
+  transform: rotate(180deg);
+}
+
 .connection-status {
   margin: 0;
   padding: var(--space-1) var(--space-3);
   background: var(--yellow);
+  color: var(--on-signal);
   border: var(--hairline);
   font-weight: 600;
 }
@@ -248,7 +309,7 @@ kbd {
 
 /* Panels, fields, buttons */
 .panel {
-  background: var(--white);
+  background: var(--surface);
   border: var(--rule);
   padding: var(--space-6);
 }
@@ -286,14 +347,14 @@ input {
   font: inherit;
   font-size: 1.1rem;
   color: var(--ink);
-  background: var(--white);
+  background: var(--surface);
   border: var(--rule);
   border-radius: 0;
 }
 
 input[aria-invalid="true"] {
   border-color: var(--red);
-  background: #fdecea;
+  background: var(--danger-bg);
 }
 
 .code-input {
@@ -316,7 +377,7 @@ input[aria-invalid="true"] {
   font-size: 1.15rem;
   letter-spacing: 0.03em;
   color: var(--ink);
-  background: var(--white);
+  background: var(--surface);
   border: var(--rule);
   border-radius: 0;
   cursor: pointer;
@@ -325,7 +386,7 @@ input[aria-invalid="true"] {
 
 .button:hover:not(:disabled) {
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-signal);
 }
 
 .button:active:not(:disabled) {
@@ -348,6 +409,7 @@ input[aria-invalid="true"] {
 
 .button-ghost:hover:not(:disabled) {
   background: transparent;
+  color: var(--ink);
   text-decoration-thickness: 3px;
 }
 
@@ -379,14 +441,14 @@ input[aria-invalid="true"] {
   margin-bottom: var(--space-4);
   padding: var(--space-3) var(--space-4);
   background: var(--red);
-  color: var(--white);
+  color: var(--on-red);
   border: var(--rule);
   font-weight: 600;
 }
 
 .notice.notice-info {
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-signal);
 }
 
 /* Home */
@@ -508,7 +570,7 @@ a.button {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.8rem, 8vw, 3.6rem);
-  background: var(--white);
+  background: var(--surface);
   border: var(--rule);
 }
 
@@ -529,7 +591,7 @@ a.button {
   width: 28px;
   height: 28px;
   border: var(--rule);
-  background: var(--white);
+  background: var(--surface);
   animation: blink 1.8s steps(1) infinite;
 }
 
@@ -552,7 +614,7 @@ a.button {
     background: var(--lamp);
   }
   33% {
-    background: var(--white);
+    background: var(--surface);
   }
 }
 
@@ -599,7 +661,8 @@ a.button {
 
 .ship-button[aria-pressed="true"] {
   background: var(--yellow);
-  box-shadow: inset 0 0 0 2px var(--ink);
+  color: var(--on-signal);
+  box-shadow: inset 0 0 0 2px var(--on-signal);
 }
 
 .ship-button.is-placed .ship-name::after {
@@ -617,6 +680,13 @@ a.button {
   height: 12px;
   background: var(--blue);
   border: 1px solid var(--ink);
+}
+
+/* On yellow, the pips use the flag's own dark blue so they keep 3:1 in both themes. */
+.ship-button[aria-pressed="true"] .ship-pips span,
+.ship-button:hover:not(:disabled) .ship-pips span {
+  background: var(--flag-blue);
+  border-color: var(--on-signal);
 }
 
 .placement-actions {
@@ -686,7 +756,7 @@ a.button {
   font-size: calc(var(--cell) * 0.62);
   line-height: 1;
   color: var(--ink);
-  background: var(--white);
+  background: var(--surface);
   border: 0;
   border-radius: 0;
   outline: 1px solid var(--ink);
@@ -699,11 +769,13 @@ a.button {
 
 .board.is-interactive .cell:not([aria-disabled="true"]):hover {
   background: var(--yellow);
+  color: var(--on-signal);
 }
 
 .cell:focus-visible {
   outline: 1px solid var(--ink);
-  box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 6px var(--yellow);
+  /* Fixed ink, not the theme's: the focused cell may sit on a yellow preview. */
+  box-shadow: inset 0 0 0 3px var(--on-signal), inset 0 0 0 6px var(--yellow);
   z-index: 1;
 }
 
@@ -717,7 +789,7 @@ a.button {
 }
 
 .cell.state-preview-bad {
-  background: repeating-linear-gradient(45deg, var(--red) 0 4px, var(--white) 4px 8px);
+  background: repeating-linear-gradient(45deg, var(--red) 0 4px, var(--surface) 4px 8px);
 }
 
 /* Shot markers: a distinct symbol and pattern for each outcome, never colour alone. */
@@ -749,7 +821,7 @@ a.button {
 .cell.state-hit::after,
 .cell-sample.state-hit::after {
   content: "✕";
-  color: var(--white);
+  color: var(--on-red);
 }
 
 /* Sunk borrows flag "O" (Oscar): red and yellow split on the diagonal. */
@@ -761,11 +833,11 @@ a.button {
 .cell.state-sunk::after,
 .cell-sample.state-sunk::after {
   content: "✕";
-  color: var(--ink);
+  color: var(--on-signal);
 }
 
 .cell.state-revealed {
-  background: repeating-linear-gradient(45deg, var(--blue) 0 3px, var(--white) 3px 7px);
+  background: repeating-linear-gradient(45deg, var(--blue) 0 3px, var(--surface) 3px 7px);
 }
 
 .cell.is-new {
@@ -783,7 +855,7 @@ a.button {
   margin-bottom: var(--space-6);
   padding: var(--space-3) var(--space-4);
   border: var(--rule);
-  background: var(--white);
+  background: var(--surface);
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.4rem, 4vw, 2rem);
@@ -792,6 +864,7 @@ a.button {
 
 .turn-banner.is-your-turn {
   background: var(--yellow);
+  color: var(--on-signal);
 }
 
 .result-panel {
@@ -813,15 +886,16 @@ a.button {
 
 .result-panel.is-victory {
   background: var(--yellow);
+  color: var(--on-signal);
 }
 
 .result-panel.is-defeat {
   background: var(--red);
-  color: var(--white);
+  color: var(--on-red);
 }
 
-.result-panel.is-defeat .button:not(.button-primary) {
-  background: var(--white);
+.result-panel.is-defeat .button:not(.button-primary):not(:hover) {
+  background: var(--surface);
 }
 
 .fleet-status {
@@ -838,12 +912,12 @@ a.button {
 .fleet-status li {
   padding: 1px var(--space-2);
   border: var(--hairline);
-  background: var(--white);
+  background: var(--surface);
 }
 
 .fleet-status li.is-sunk {
   background: var(--ink);
-  color: var(--white);
+  color: var(--paper);
   text-decoration: line-through;
 }
 
@@ -872,7 +946,7 @@ a.button {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 15px;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--ink);
 }
 
@@ -886,7 +960,39 @@ a.button {
 
 .shot-log li {
   padding: 2px 0;
-  border-bottom: 1px solid #d9d5cc;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+/* On yellow, borders and dark fills use the fixed signal ink so they keep 3:1 in both themes. */
+.skip-link,
+.connection-status,
+.notice.notice-info,
+.button:not(.button-ghost):hover:not(:disabled),
+.theme-toggle:hover,
+.ship-button[aria-pressed="true"],
+.turn-banner.is-your-turn,
+.result-panel.is-victory,
+.result-panel.is-victory .button {
+  border-color: var(--on-signal);
+}
+
+.result-panel.is-victory .button-primary:not(:disabled) {
+  background: var(--on-signal);
+  color: var(--yellow);
+}
+
+/* The blue focus ring is too faint on signal fills: use their fixed contrasting ink. */
+.result-panel.is-victory :focus-visible {
+  outline-color: var(--on-signal);
+}
+
+.result-panel.is-defeat :focus-visible {
+  outline-color: var(--on-red);
+}
+
+.result-panel.is-victory .button-primary:hover:not(:disabled) {
+  background: var(--flag-white);
+  color: var(--on-signal);
 }
 
 /* Layout */
@@ -898,6 +1004,16 @@ a.button {
 
   .wordmark {
     font-size: 1.3rem;
+  }
+
+  /* The pressed state and the icon carry the meaning; keep the name for assistive tech. */
+  .theme-toggle-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   #lobby-code {

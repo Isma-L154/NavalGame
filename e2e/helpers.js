@@ -32,14 +32,14 @@ export const cell = (page, gridName, label) =>
  * server each player also gets its own client IP, as real players would, so the per-IP
  * room creation limit does not trip across tests. Cloudflare's edge rejects the header.
  */
-export async function newPlayer(browser, testInfo) {
+export async function newPlayer(browser, testInfo, options = {}) {
   const { defaultBrowserType, ...device } = testInfo.project.use;
   const local = /^http:\/\/localhost/.test(testInfo.project.use.baseURL ?? "");
   const octet = () => Math.floor(Math.random() * 250) + 1;
   const extraHTTPHeaders = local
     ? { "CF-Connecting-IP": `10.${octet()}.${octet()}.${octet()}` }
     : {};
-  const context = await browser.newContext({ ...device, extraHTTPHeaders });
+  const context = await browser.newContext({ ...device, extraHTTPHeaders, ...options });
   return context.newPage();
 }
 
