@@ -78,8 +78,11 @@ class GameRoom(DurableObject):
     async def _init(self, body: dict[str, str]) -> Response:
         """Idempotent per nonce: a retried /init whose reply was lost still reports success."""
         if await self._service.exists():
-            same_request = await self.ctx.storage.get(_INIT_NONCE_KEY) == body["nonce"]
-            return _json({"created": same_request}, 201 if same_request else 409)
+            if await self.ctx.storage.get(_INIT_NONCE_KEY) != body["nonce"]:
+                return _json({"created": False}, 409)
+            # The earlier attempt may have failed before scheduling cleanup; this is idempotent.
+            await self._schedule_alarm()
+            return _json({"created": True}, 201)
         await self.ctx.storage.put(_INIT_NONCE_KEY, body["nonce"])
         await self._service.create(body["code"])
         await self._schedule_alarm()
