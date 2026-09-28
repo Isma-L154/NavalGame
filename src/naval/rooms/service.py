@@ -46,6 +46,10 @@ class RoomClosed(GameError):
     code = "room_closed"
 
 
+class InternalError(GameError):
+    code = "internal_error"
+
+
 class InMemoryRoomStore:
     """Keeps the serialised form, so tests exercise the same codec as production."""
 
@@ -99,10 +103,15 @@ class RoomService:
         delivery = Delivery()
         try:
             self._apply(room, seat, message, delivery)
+            await self._store.save(room)
         except GameError as error:
             closing = seat is None and isinstance(message, JoinMessage)
             return Delivery(to_requester=[error_message(error.code)], close_requester=closing)
-        await self._store.save(room)
+        except Exception as error:
+            # A bug or an outage must not leave the player waiting. Log the failure, never the
+            # message: a join carries the seat token.
+            print(f"internal error handling {message.type}: {type(error).__name__}: {error}")
+            return Delivery(to_requester=[error_message(InternalError.code)])
         self._broadcast_state(room, delivery)
         return delivery
 

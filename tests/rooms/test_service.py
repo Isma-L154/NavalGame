@@ -10,7 +10,8 @@ from naval.protocol.messages import (
     RematchMessage,
     ShipSpec,
 )
-from naval.rooms.room import IDLE_TIMEOUT_SECONDS, RECONNECT_GRACE_SECONDS
+from naval.protocol.views import error_message
+from naval.rooms.room import IDLE_TIMEOUT_SECONDS, RECONNECT_GRACE_SECONDS, Room
 from naval.rooms.service import Delivery, InMemoryRoomStore, RoomService
 from tests.domain.fixtures import ROW_FLEET, fleet_cells
 
@@ -198,3 +199,19 @@ async def test_messages_to_a_deleted_room_close_the_connection(
     delivery = await service.handle(None, JoinMessage(type="join", nickname="Ana"))
     assert delivery.close_requester
     assert delivery.to_requester[0]["code"] == "room_closed"
+
+
+class FailingSaveStore(InMemoryRoomStore):
+    async def save(self, room: Room) -> None:
+        if room.players[0] is not None:
+            raise RuntimeError("storage unavailable")
+        await super().save(room)
+
+
+async def test_unexpected_failures_answer_internal_error(clock: FakeClock) -> None:
+    svc = RoomService(FailingSaveStore(), clock, coin_flip=lambda: 0)
+    assert await svc.create("ABCDEF")
+    delivery = await svc.handle(None, JoinMessage(type="join", nickname="Ana"))
+    assert delivery.to_requester == [error_message("internal_error")]
+    assert delivery.to_seats == {}
+    assert delivery.bind_seat is None

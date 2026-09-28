@@ -38,6 +38,7 @@ export class RoomConnection extends EventTarget {
       try {
         message = JSON.parse(event.data);
       } catch {
+        // Only JSON protocol messages matter; anything else is not ours to act on.
         return;
       }
       this.dispatchEvent(new CustomEvent("message", { detail: message }));
