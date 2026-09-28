@@ -151,9 +151,9 @@ function onState(state) {
 
 function onError(error, nickname) {
   if (error.code === "invalid_token") {
-    // The saved seat expired; join again as a new player.
+    // The saved seat expired and the server closes this socket: join again as a new player.
     session.clearToken(game.code);
-    game.connection.send({ type: "join", nickname });
+    enterRoom(game.code, nickname);
     return;
   }
   if (FATAL_ERRORS.has(error.code)) {

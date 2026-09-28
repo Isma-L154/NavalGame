@@ -59,3 +59,16 @@ test("leaving the lobby returns home", async ({ browser }, testInfo) => {
   await expect(page.getByRole("heading", { name: "Sink the enemy fleet" })).toBeVisible();
   await expect(page).toHaveURL(/\/$/);
 });
+
+test("an expired seat token falls back to joining as a new player", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo);
+  const code = await createRoom(ana, "Ana");
+  const bo = await newPlayer(browser, testInfo);
+  await bo.goto("/");
+  await bo.evaluate((room) => {
+    localStorage.setItem("naval.nickname", "Bo");
+    sessionStorage.setItem(`naval.token.${room}`, "x".repeat(43));
+  }, code);
+  await bo.goto(`/?room=${code}`);
+  await expect(bo.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
+});
