@@ -24,7 +24,10 @@ def _get(path: str) -> tuple[int, Message, bytes]:
 def test_health_endpoint() -> None:
     status, headers, body = _get("/api/health")
     assert status == 200
-    assert json.loads(body) == {"status": "ok"}
+    health = json.loads(body)
+    assert health["status"] == "ok"
+    assert isinstance(health["version"], str)
+    assert health["version"]
     assert headers["Cache-Control"] == "no-store"
     assert "Content-Security-Policy" in headers
     assert "Content-Security-Policy-Report-Only" not in headers
