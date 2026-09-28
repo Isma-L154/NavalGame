@@ -429,12 +429,29 @@ input[aria-invalid="true"] {
 .rules summary {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  list-style: none;
   min-height: 44px;
   cursor: pointer;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.3rem;
   text-transform: uppercase;
+}
+
+/* A flex summary loses the native disclosure triangle, so draw an explicit marker. */
+.rules summary::-webkit-details-marker {
+  display: none;
+}
+
+.rules summary::after {
+  content: "+";
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.rules[open] summary::after {
+  content: "−";
 }
 
 .rules ol {
@@ -879,13 +896,16 @@ input[aria-invalid="true"] {
     column-gap: var(--space-12);
   }
 
+  .board-small {
+    --cell: 40px;
+  }
+}
+
+/* Two 40px boards side by side need about 940px; below that they stack. */
+@media (min-width: 1000px) {
   .battle-layout {
     grid-template-columns: auto auto;
     justify-content: start;
-  }
-
-  .board-small {
-    --cell: 40px;
   }
 }
 

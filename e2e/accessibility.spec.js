@@ -55,7 +55,7 @@ test("a whole turn can be played with the keyboard only", async ({ browser }, te
   await expect(target.getByRole("button", { name: /^B2,/ })).not.toHaveAttribute("aria-label", "B2, not fired at");
 });
 
-test("nothing overflows sideways on a 320px screen", async ({ browser }, testInfo) => {
+test("nothing overflows sideways from 320px phones to narrow desktops", async ({ browser }, testInfo) => {
   const page = await newPlayer(browser, testInfo);
   await page.setViewportSize({ width: 320, height: 640 });
   const overflow = () =>
@@ -83,4 +83,10 @@ test("nothing overflows sideways on a 320px screen", async ({ browser }, testInf
   }
   await expect(page.locator("#turn-banner")).toBeVisible();
   expect(await overflow()).toBe(0);
+
+  // Just above the two-column breakpoint the boards sit side by side.
+  for (const width of [900, 940, 980]) {
+    await page.setViewportSize({ width, height: 800 });
+    expect(await overflow()).toBe(0);
+  }
 });
