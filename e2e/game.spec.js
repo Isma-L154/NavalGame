@@ -38,6 +38,9 @@ test("two players play a full game and can ask for a rematch", async ({ browser 
   await expect(winner.locator("#shot-log li").first()).toContainText("sank the destroyer");
 
   await winner.getByRole("button", { name: "Rematch" }).click();
+  // A requested rematch must look disabled, not just be disabled.
+  await expect(winner.getByRole("button", { name: "Rematch" })).toBeDisabled();
+  await expect(winner.getByRole("button", { name: "Rematch" })).toHaveCSS("border-top-style", "dashed");
   await expect(loser.locator("#rematch-status")).toContainText("wants a rematch");
   await loser.getByRole("button", { name: "Rematch" }).click();
   await expect(ana.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();

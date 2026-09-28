@@ -967,7 +967,7 @@ a.button {
   border-color: var(--on-signal);
 }
 
-.result-panel.is-victory .button-primary {
+.result-panel.is-victory .button-primary:not(:disabled) {
   background: var(--on-signal);
   color: var(--yellow);
 }
