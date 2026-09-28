@@ -1,4 +1,4 @@
-import { $ } from "./dom.js";
+import { $, el } from "./dom.js";
 
 export class LobbyView {
   #code = "";
@@ -10,7 +10,9 @@ export class LobbyView {
 
   update(state) {
     this.#code = state.room_code;
-    $("lobby-code").textContent = state.room_code;
+    $("lobby-code").replaceChildren(
+      ...[...state.room_code].map((char) => el("span", { className: "code-char", text: char })),
+    );
   }
 
   #inviteLink() {

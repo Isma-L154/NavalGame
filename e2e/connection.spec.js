@@ -47,7 +47,7 @@ test("invalid nickname and code are explained before connecting", async ({ brows
   await page.getByRole("button", { name: "Create a room" }).click();
   await expect(page.getByRole("alert")).toContainText("Choose a nickname");
   await page.getByLabel("Your nickname").fill("Ana");
-  await page.getByLabel("Room code").fill("abc0");
+  await page.getByLabel("Or join with a code").fill("abc0");
   await page.getByRole("button", { name: "Join room" }).click();
   await expect(page.getByRole("alert")).toContainText("Room codes have 6 characters");
 });

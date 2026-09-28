@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Two-player online naval battle. Create a room, share the code and sink the enemy fleet.">
-    <meta name="theme-color" content="#07131f">
+    <meta name="theme-color" content="#f7f5f0">
     <title>NavalGame</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="/fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css">
     <!-- Fetch the whole module graph in parallel instead of import by import. -->
     <link rel="modulepreload" href="/js/api.js">
@@ -22,16 +24,37 @@
     <script type="module" src="/js/app.js"></script>
   </head>
   <body>
+    <!-- International Code of Signals flags, drawn once and reused. -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <symbol id="flag-n" viewBox="0 0 30 20">
+        <rect width="30" height="20" fill="#fff" />
+        <path fill="#1d4e9e" d="M0 0h7.5v5H0zM15 0h7.5v5H15zM7.5 5H15v5H7.5zM22.5 5H30v5h-7.5zM0 10h7.5v5H0zM15 10h7.5v5H15zM7.5 15H15v5H7.5zM22.5 15H30v5h-7.5z" />
+      </symbol>
+      <symbol id="flag-a" viewBox="0 0 30 20">
+        <rect width="14" height="20" fill="#fff" />
+        <path fill="#1d4e9e" d="M14 0h16l-8 10 8 10H14z" />
+      </symbol>
+      <symbol id="flag-v" viewBox="0 0 30 20">
+        <rect width="30" height="20" fill="#fff" />
+        <path stroke="#d6231d" stroke-width="4" d="M0 0l30 20M30 0L0 20" />
+      </symbol>
+      <symbol id="flag-l" viewBox="0 0 30 20">
+        <path fill="#f4c20d" d="M0 0h15v10H0zM15 10h15v10H15z" />
+        <path fill="#111" d="M15 0h15v10H15zM0 10h15v10H0z" />
+      </symbol>
+    </svg>
+
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="topbar">
       <a class="brand" href="/" aria-label="NavalGame home">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-          <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2" />
-          <circle cx="16" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".6" />
-          <path d="M16 16 L27 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <circle cx="22" cy="20" r="2" fill="currentColor" />
-        </svg>
-        <span>NavalGame</span>
+        <span class="flag-hoist" aria-hidden="true">
+          <svg class="flag"><use href="#flag-n" /></svg>
+          <svg class="flag"><use href="#flag-a" /></svg>
+          <svg class="flag"><use href="#flag-v" /></svg>
+          <svg class="flag"><use href="#flag-a" /></svg>
+          <svg class="flag"><use href="#flag-l" /></svg>
+        </span>
+        <span class="wordmark">Naval<span class="wordmark-light">Game</span></span>
       </a>
       <p id="connection-status" class="connection-status" role="status" hidden></p>
     </header>
@@ -40,10 +63,11 @@
       <div id="notice" class="notice" role="alert" hidden></div>
 
       <!-- Home -->
-      <section id="screen-home" class="screen" aria-labelledby="home-title">
-        <div class="hero">
+      <section id="screen-home" class="screen home" aria-labelledby="home-title">
+        <div class="home-hero">
+          <p class="kicker">2 players · 10 × 10 grid · 5 ships</p>
           <h1 id="home-title">Sink the enemy fleet</h1>
-          <p class="lede">A two-player naval battle. Create a room, share its code, place your ships and take turns firing until one fleet is gone.</p>
+          <p class="lede">Create a room, send the code to a friend, hide your ships and take turns firing. First fleet to go under loses.</p>
         </div>
         <div class="panel home-panel">
           <label class="field">
@@ -53,44 +77,42 @@
                    aria-describedby="nickname-hint">
             <span id="nickname-hint" class="field-hint">1–20 letters, digits, spaces, _ or -</span>
           </label>
-          <div class="home-actions">
-            <button id="create-room" class="button button-primary" type="button">Create a room</button>
-            <div class="divider" aria-hidden="true"><span>or</span></div>
-            <form id="join-form" class="join-form" novalidate>
-              <label class="field">
-                <span class="field-label">Room code</span>
-                <input id="room-code" name="room-code" class="code-input" autocomplete="off" autocapitalize="characters"
-                       spellcheck="false" inputmode="text" maxlength="6" required pattern="[A-HJ-KMNP-Z2-9]{6}"
-                       aria-describedby="room-code-hint">
-                <span id="room-code-hint" class="field-hint">6 characters, shared by your opponent</span>
-              </label>
-              <button class="button" type="submit">Join room</button>
-            </form>
-          </div>
+          <button id="create-room" class="button button-primary button-wide" type="button">Create a room</button>
+          <form id="join-form" class="join-form" novalidate>
+            <label class="field">
+              <span class="field-label">Or join with a code</span>
+              <input id="room-code" name="room-code" class="code-input" autocomplete="off" autocapitalize="characters"
+                     spellcheck="false" inputmode="text" maxlength="6" required pattern="[A-HJ-KMNP-Z2-9]{6}"
+                     aria-describedby="room-code-hint">
+              <span id="room-code-hint" class="field-hint">6 characters, shared by your opponent</span>
+            </label>
+            <button class="button button-wide" type="submit">Join room</button>
+          </form>
         </div>
         <details class="rules">
           <summary>How to play</summary>
-          <ul>
+          <ol>
             <li>Each player hides five ships on a 10 × 10 grid: carrier (5), battleship (4), cruiser (3), submarine (3) and destroyer (2).</li>
             <li>Ships go horizontally or vertically and cannot overlap.</li>
             <li>Players take turns firing one shot at a cell of the enemy grid. You learn whether it was a miss, a hit, or sank a ship.</li>
             <li>The first to sink the whole enemy fleet wins. If a player leaves or stays disconnected for two minutes, the other wins.</li>
-          </ul>
+          </ol>
         </details>
       </section>
 
       <!-- Lobby -->
       <section id="screen-lobby" class="screen" aria-labelledby="lobby-title" hidden>
-        <div class="panel lobby-panel">
+        <div class="lobby">
+          <p class="kicker">Room open</p>
           <h1 id="lobby-title">Waiting for an opponent</h1>
-          <p>Share this code or link. The game starts as soon as someone joins.</p>
-          <p class="room-code"><span class="visually-hidden">Room code: </span><span id="lobby-code" class="mono"></span></p>
+          <p>Share the code or the link. The game starts as soon as someone joins.</p>
+          <p class="room-code"><span class="visually-hidden">Room code: </span><span id="lobby-code"></span></p>
           <div class="lobby-actions">
             <button id="copy-link" class="button button-primary" type="button">Copy invite link</button>
             <button id="copy-code" class="button" type="button">Copy code</button>
           </div>
           <p id="copy-feedback" class="field-hint" role="status"></p>
-          <div class="radar-sweep" aria-hidden="true"></div>
+          <div class="signal-lamp" aria-hidden="true"><span></span><span></span><span></span></div>
           <button class="button button-ghost leave-button" type="button">Leave room</button>
         </div>
       </section>
@@ -98,6 +120,7 @@
       <!-- Placement -->
       <section id="screen-placement" class="screen" aria-labelledby="placement-title" hidden>
         <div class="screen-header">
+          <p class="kicker">Step 1 of 2</p>
           <h1 id="placement-title">Deploy your fleet</h1>
           <p id="placement-opponent" class="muted"></p>
         </div>
@@ -125,12 +148,12 @@
       <section id="screen-battle" class="screen" aria-labelledby="battle-title" hidden>
         <h1 id="battle-title" class="visually-hidden">Battle</h1>
         <div id="turn-banner" class="turn-banner" role="status" aria-live="polite"></div>
-        <div id="result-panel" class="panel result-panel" hidden>
+        <div id="result-panel" class="result-panel" hidden>
           <h2 id="result-title"></h2>
-          <p id="result-detail" class="muted"></p>
+          <p id="result-detail"></p>
           <div class="result-actions">
             <button id="rematch" class="button button-primary" type="button">Rematch</button>
-            <button class="button button-ghost leave-button" type="button">Leave room</button>
+            <button class="button leave-button" type="button">Leave room</button>
           </div>
           <p id="rematch-status" class="status-line" role="status"></p>
         </div>
@@ -146,16 +169,16 @@
             <ul id="own-fleet" class="fleet-status" aria-label="Your fleet"></ul>
           </div>
         </div>
-        <div class="panel log-panel">
-          <h2 class="panel-title">Shot log</h2>
-          <ol id="shot-log" class="shot-log" aria-live="polite"></ol>
-          <button id="battle-leave" class="button button-ghost leave-button" type="button">Leave room</button>
-        </div>
         <div class="legend" aria-label="Legend">
           <span class="legend-item"><span class="cell-sample state-miss" aria-hidden="true"></span>Miss</span>
           <span class="legend-item"><span class="cell-sample state-hit" aria-hidden="true"></span>Hit</span>
           <span class="legend-item"><span class="cell-sample state-sunk" aria-hidden="true"></span>Sunk</span>
           <span class="legend-item"><span class="cell-sample state-ship" aria-hidden="true"></span>Your ship</span>
+        </div>
+        <div class="panel log-panel">
+          <h2 class="panel-title">Shot log</h2>
+          <ol id="shot-log" class="shot-log" aria-live="polite"></ol>
+          <button id="battle-leave" class="button button-ghost leave-button" type="button">Leave room</button>
         </div>
       </section>
     </main>
