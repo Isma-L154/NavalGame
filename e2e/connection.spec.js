@@ -1,9 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { cell, createRoom, joinRoom, openHome, placeRowFleet, watchConsole } from "./helpers.js";
+import { cell, createRoom, joinRoom, openHome, placeRowFleet, watchConsole, newPlayer } from "./helpers.js";
 
-test("a player who reloads mid-game gets their seat and board back", async ({ browser }) => {
-  const ana = await (await browser.newContext()).newPage();
-  const bo = await (await browser.newContext()).newPage();
+test("a player who reloads mid-game gets their seat and board back", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo);
+  const bo = await newPlayer(browser, testInfo);
   const problems = [ana, bo].map(watchConsole);
   const code = await createRoom(ana, "Ana");
   await joinRoom(bo, "Bo", code);
@@ -23,9 +23,9 @@ test("a player who reloads mid-game gets their seat and board back", async ({ br
   expect(problems.flat()).toEqual([]);
 });
 
-test("a third player is turned away from a full room", async ({ browser }) => {
+test("a third player is turned away from a full room", async ({ browser }, testInfo) => {
   const [ana, bo, cy] = await Promise.all(
-    [0, 1, 2].map(async () => (await browser.newContext()).newPage()),
+    [0, 1, 2].map(async () => newPlayer(browser, testInfo)),
   );
   const code = await createRoom(ana, "Ana");
   await joinRoom(bo, "Bo", code);
@@ -35,12 +35,14 @@ test("a third player is turned away from a full room", async ({ browser }) => {
   await expect(cy.getByRole("heading", { name: "Sink the enemy fleet" })).toBeVisible();
 });
 
-test("an unknown room code sends the player back home", async ({ page }) => {
+test("an unknown room code sends the player back home", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
   await joinRoom(page, "Ana", "ZZZZZZ");
   await expect(page.getByRole("alert")).toContainText("Could not join room ZZZZZZ");
 });
 
-test("invalid nickname and code are explained before connecting", async ({ page }) => {
+test("invalid nickname and code are explained before connecting", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
   await openHome(page, " spaced");
   await page.getByRole("button", { name: "Create a room" }).click();
   await expect(page.getByRole("alert")).toContainText("Choose a nickname");
@@ -50,7 +52,8 @@ test("invalid nickname and code are explained before connecting", async ({ page 
   await expect(page.getByRole("alert")).toContainText("Room codes have 6 characters");
 });
 
-test("leaving the lobby returns home", async ({ page }) => {
+test("leaving the lobby returns home", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
   await createRoom(page, "Ana");
   await page.getByRole("button", { name: "Leave room" }).first().click();
   await expect(page.getByRole("heading", { name: "Sink the enemy fleet" })).toBeVisible();

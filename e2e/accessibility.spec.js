@@ -1,15 +1,15 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { createRoom, joinRoom } from "./helpers.js";
+import { createRoom, joinRoom, newPlayer } from "./helpers.js";
 
 async function expectNoViolations(page) {
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(results.violations.map((v) => `${v.id}: ${v.nodes.length}`)).toEqual([]);
 }
 
-test("every screen passes an automated WCAG AA check", async ({ browser }) => {
-  const ana = await (await browser.newContext()).newPage();
-  const bo = await (await browser.newContext()).newPage();
+test("every screen passes an automated WCAG AA check", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo);
+  const bo = await newPlayer(browser, testInfo);
   await ana.goto("/");
   await expectNoViolations(ana);
   const code = await createRoom(ana, "Ana");
@@ -25,9 +25,9 @@ test("every screen passes an automated WCAG AA check", async ({ browser }) => {
   await expectNoViolations(ana);
 });
 
-test("a whole turn can be played with the keyboard only", async ({ browser }) => {
-  const ana = await (await browser.newContext()).newPage();
-  const bo = await (await browser.newContext()).newPage();
+test("a whole turn can be played with the keyboard only", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo);
+  const bo = await newPlayer(browser, testInfo);
   const code = await createRoom(ana, "Ana");
   await joinRoom(bo, "Bo", code);
   await expect(ana.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();

@@ -23,8 +23,25 @@ export function watchConsole(page) {
   return problems;
 }
 
+// Cell labels read "A1, water": matching on "A1," cannot hit "A10,".
 export const cell = (page, gridName, label) =>
-  page.getByRole("grid", { name: gridName }).getByRole("button", { name: new RegExp(`^${label},`) });
+  page.getByRole("grid", { name: gridName }).getByRole("button", { name: `${label},` });
+
+/**
+ * A browser for one player, with the project's device emulation. Against the local dev
+ * server each player also gets its own client IP, as real players would, so the per-IP
+ * room creation limit does not trip across tests. Cloudflare's edge rejects the header.
+ */
+export async function newPlayer(browser, testInfo) {
+  const { defaultBrowserType, ...device } = testInfo.project.use;
+  const local = /^http:\/\/localhost/.test(testInfo.project.use.baseURL ?? "");
+  const octet = () => Math.floor(Math.random() * 250) + 1;
+  const extraHTTPHeaders = local
+    ? { "CF-Connecting-IP": `10.${octet()}.${octet()}.${octet()}` }
+    : {};
+  const context = await browser.newContext({ ...device, extraHTTPHeaders });
+  return context.newPage();
+}
 
 export async function openHome(page, nickname) {
   await page.goto("/");

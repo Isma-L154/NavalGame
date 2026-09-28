@@ -7,11 +7,12 @@ import {
   joinRoom,
   placeRowFleet,
   watchConsole,
+  newPlayer,
 } from "./helpers.js";
 
-test("two players play a full game and can ask for a rematch", async ({ browser }) => {
-  const ana = await (await browser.newContext()).newPage();
-  const bo = await (await browser.newContext()).newPage();
+test("two players play a full game and can ask for a rematch", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo);
+  const bo = await newPlayer(browser, testInfo);
   const problems = [...[ana, bo].map(watchConsole)];
 
   const code = await createRoom(ana, "Ana");
