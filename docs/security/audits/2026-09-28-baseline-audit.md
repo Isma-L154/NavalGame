@@ -11,7 +11,7 @@
 | 2 | CORS | OK | Responses carry no `Access-Control-*` headers for any Origin; a foreign-origin `POST /api/rooms` gets 403, a preflight gets 405. |
 | 3 | Backend validation | OK | Strict Pydantic schemas for every frame (unit plus hypothesis tests); against production, oversized, binary and invalid frames got `invalid_message`, and the fifth closed with 1008 (integration suite run against prod). |
 | 4 | Sanitisation | OK | No SQL; room state is JSON in Durable Object storage. The frontend has no `innerHTML`/`insertAdjacentHTML`/`eval` (guarded by `tests/frontend/test_index.py`). |
-| 5 | Rate limiting | **MISSING (configured, not effective)** | 52 `POST /api/rooms` and 40 WebSocket upgrades from one IP within about 90 s were all accepted in production; the configured limits are 10/min and 30/min. |
+| 5 | Rate limiting | **MISSING (configured, not effective)** → PARTIAL after remediation | 52 `POST /api/rooms` and 40 WebSocket upgrades from one IP within about 90 s were all accepted in production; the configured limits are 10/min and 30/min. |
 | 6 | RLS equivalent (fleet isolation) | OK | Property test `test_a_player_never_sees_unhit_enemy_ships_before_the_end`; E2E confirms the enemy fleet only appears in the finished state. |
 | 7 | CSP and headers | OK | A real response from `/`, `/js/app.js` and `/api/health` carries an enforced CSP (`default-src 'self'`, no `unsafe-*`, `frame-ancestors 'none'`, `object-src 'none'`, `base-uri 'self'`), HSTS, `nosniff`, `Referrer-Policy`, `Permissions-Policy` and COOP. |
 
@@ -42,4 +42,12 @@
 
 ## Remediation follow-up
 
-Tracked in the same PR as this report (see below, appended after the fix was deployed and re-verified).
+**Control 5: fixed and re-verified in production** (PR #17, deployed from `main` at `875fbe4`).
+
+- The Workers Rate Limiting bindings were replaced by a `RateLimiter` Durable Object per `sha256(scope:ip)` with a fixed window persisted in its storage (`src/naval/worker/rate_limiter.py`, `src/naval/limits/window.py`). Rejected checks do not write, and an alarm deletes the window when it ends.
+- Evidence against `https://naval.cloudils.com` from one client IP:
+  - 12 × `POST /api/rooms` → `201 ×10, 429, 429`; a 13th was also rejected until the window reset.
+  - 32 sequential WebSocket upgrades to room `XWFNEJ` → `101 ×30, 429, 429`.
+- Regression tests: `test_room_creation_is_rate_limited_per_ip` and `test_websocket_upgrades_are_rate_limited_per_ip` (local dev, distinct simulated client IPs), plus unit and hypothesis tests of the window.
+
+**Status after remediation:** control 5 is **PARTIAL**. The application layer is OK and verified. The edge layer (a Cloudflare WAF rate-limiting rule on `/api/rooms`) is still missing and needs a token with zone WAF permissions.
