@@ -167,7 +167,10 @@ class RoomService:
 
     @staticmethod
     def _broadcast_state(room: Room, delivery: Delivery) -> None:
-        players = [None if p is None else PlayerView(p.nickname, p.connected) for p in room.players]
+        players = [
+            None if p is None else PlayerView(p.nickname, p.connected, p.wants_rematch)
+            for p in room.players
+        ]
         for seat in room.connected_seats():
             state = state_message(room.code, seat, room.game, players)
             delivery.to_seats.setdefault(seat, []).append(state)

@@ -78,7 +78,11 @@ async def test_join_binds_the_seat_and_broadcasts_state(service: RoomService) ->
 
     second = await service.handle(None, JoinMessage(type="join", nickname="Bo"))
     assert second.bind_seat == 1
-    assert _last_state(second, 0)["players"][1] == {"nickname": "Bo", "connected": True}
+    assert _last_state(second, 0)["players"][1] == {
+        "nickname": "Bo",
+        "connected": True,
+        "wants_rematch": False,
+    }
     assert _last_state(second, 1)["seat"] == 1
 
 
@@ -134,7 +138,8 @@ async def test_full_game_through_the_service(service: RoomService) -> None:
     assert state["winner"] == 0
     assert state["opponent_fleet"] is not None
 
-    await service.handle(0, RematchMessage(type="rematch"))
+    vote = await service.handle(0, RematchMessage(type="rematch"))
+    assert _last_state(vote, 1)["players"][0]["wants_rematch"] is True
     rematch = await service.handle(1, RematchMessage(type="rematch"))
     assert _last_state(rematch, 0)["phase"] == "placing"
 

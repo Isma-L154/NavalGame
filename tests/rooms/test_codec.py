@@ -12,7 +12,10 @@ from tests.strategies import coordinates, valid_fleets
 
 
 def _views(room: Room) -> list[dict[str, object]]:
-    players = [None if p is None else PlayerView(p.nickname, p.connected) for p in room.players]
+    players = [
+        None if p is None else PlayerView(p.nickname, p.connected, p.wants_rematch)
+        for p in room.players
+    ]
     return [state_message(room.code, seat, room.game, players) for seat in (0, 1)]
 
 

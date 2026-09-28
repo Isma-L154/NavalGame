@@ -36,6 +36,7 @@ _UNKNOWN_ERROR_TEXT = "Something went wrong."
 class PlayerView:
     nickname: str
     connected: bool
+    wants_rematch: bool
 
 
 def state_message(
@@ -53,7 +54,13 @@ def state_message(
         "winner": game.winner,
         "finish_reason": game.finish_reason.value if game.finish_reason else None,
         "players": [
-            None if p is None else {"nickname": p.nickname, "connected": p.connected}
+            None
+            if p is None
+            else {
+                "nickname": p.nickname,
+                "connected": p.connected,
+                "wants_rematch": p.wants_rematch,
+            }
             for p in players
         ],
         "fleet_placed": [board is not None for board in game.boards],

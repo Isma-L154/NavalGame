@@ -3,13 +3,154 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Two-player online naval battle. Create a room, share the code and sink the enemy fleet.">
+    <meta name="theme-color" content="#07131f">
     <title>NavalGame</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/js/app.js"></script>
   </head>
   <body>
-    <main>
-      <h1>NavalGame</h1>
-      <p>Two-player naval battle. Coming soon.</p>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="NavalGame home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2" />
+          <circle cx="16" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".6" />
+          <path d="M16 16 L27 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <circle cx="22" cy="20" r="2" fill="currentColor" />
+        </svg>
+        <span>NavalGame</span>
+      </a>
+      <p id="connection-status" class="connection-status" role="status" hidden></p>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <div id="notice" class="notice" role="alert" hidden></div>
+
+      <!-- Home -->
+      <section id="screen-home" class="screen" aria-labelledby="home-title">
+        <div class="hero">
+          <h1 id="home-title">Sink the enemy fleet</h1>
+          <p class="lede">A two-player naval battle. Create a room, share its code, place your ships and take turns firing until one fleet is gone.</p>
+        </div>
+        <div class="panel home-panel">
+          <label class="field">
+            <span class="field-label">Your nickname</span>
+            <input id="nickname" name="nickname" autocomplete="nickname" maxlength="20" required
+                   pattern="[A-Za-z0-9_\-](?:[A-Za-z0-9 _\-]{0,18}[A-Za-z0-9_\-])?"
+                   aria-describedby="nickname-hint">
+            <span id="nickname-hint" class="field-hint">1–20 letters, digits, spaces, _ or -</span>
+          </label>
+          <div class="home-actions">
+            <button id="create-room" class="button button-primary" type="button">Create a room</button>
+            <div class="divider" aria-hidden="true"><span>or</span></div>
+            <form id="join-form" class="join-form" novalidate>
+              <label class="field">
+                <span class="field-label">Room code</span>
+                <input id="room-code" name="room-code" class="code-input" autocomplete="off" autocapitalize="characters"
+                       spellcheck="false" inputmode="text" maxlength="6" required pattern="[A-HJ-KMNP-Z2-9]{6}"
+                       aria-describedby="room-code-hint">
+                <span id="room-code-hint" class="field-hint">6 characters, shared by your opponent</span>
+              </label>
+              <button class="button" type="submit">Join room</button>
+            </form>
+          </div>
+        </div>
+        <details class="rules">
+          <summary>How to play</summary>
+          <ul>
+            <li>Each player hides five ships on a 10 × 10 grid: carrier (5), battleship (4), cruiser (3), submarine (3) and destroyer (2).</li>
+            <li>Ships go horizontally or vertically and cannot overlap.</li>
+            <li>Players take turns firing one shot at a cell of the enemy grid. You learn whether it was a miss, a hit, or sank a ship.</li>
+            <li>The first to sink the whole enemy fleet wins. If a player leaves or stays disconnected for two minutes, the other wins.</li>
+          </ul>
+        </details>
+      </section>
+
+      <!-- Lobby -->
+      <section id="screen-lobby" class="screen" aria-labelledby="lobby-title" hidden>
+        <div class="panel lobby-panel">
+          <h1 id="lobby-title">Waiting for an opponent</h1>
+          <p>Share this code or link. The game starts as soon as someone joins.</p>
+          <p class="room-code"><span class="visually-hidden">Room code: </span><span id="lobby-code" class="mono"></span></p>
+          <div class="lobby-actions">
+            <button id="copy-link" class="button button-primary" type="button">Copy invite link</button>
+            <button id="copy-code" class="button" type="button">Copy code</button>
+          </div>
+          <p id="copy-feedback" class="field-hint" role="status"></p>
+          <div class="radar-sweep" aria-hidden="true"></div>
+          <button class="button button-ghost leave-button" type="button">Leave room</button>
+        </div>
+      </section>
+
+      <!-- Placement -->
+      <section id="screen-placement" class="screen" aria-labelledby="placement-title" hidden>
+        <div class="screen-header">
+          <h1 id="placement-title">Deploy your fleet</h1>
+          <p id="placement-opponent" class="muted"></p>
+        </div>
+        <div class="placement-layout">
+          <div class="board-wrap">
+            <div id="placement-grid"></div>
+          </div>
+          <div class="panel placement-panel">
+            <h2 class="panel-title">Ships</h2>
+            <ul id="ship-list" class="ship-list"></ul>
+            <p class="field-hint" id="placement-help">Select a ship, then choose a cell. Press <kbd>R</kbd> or use Rotate to turn it. Select a placed ship to move it.</p>
+            <div class="placement-actions">
+              <button id="rotate" class="button" type="button">Rotate: <span id="orientation-label">horizontal</span></button>
+              <button id="random-fleet" class="button" type="button">Random</button>
+              <button id="clear-fleet" class="button button-ghost" type="button">Clear</button>
+            </div>
+            <button id="ready" class="button button-primary button-wide" type="button" disabled>Ready</button>
+            <p id="placement-status" class="status-line" role="status"></p>
+            <button class="button button-ghost leave-button" type="button">Leave room</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Battle and result share one screen: the result replaces the turn banner. -->
+      <section id="screen-battle" class="screen" aria-labelledby="battle-title" hidden>
+        <h1 id="battle-title" class="visually-hidden">Battle</h1>
+        <div id="turn-banner" class="turn-banner" role="status" aria-live="polite"></div>
+        <div id="result-panel" class="panel result-panel" hidden>
+          <h2 id="result-title"></h2>
+          <p id="result-detail" class="muted"></p>
+          <div class="result-actions">
+            <button id="rematch" class="button button-primary" type="button">Rematch</button>
+            <button class="button button-ghost leave-button" type="button">Leave room</button>
+          </div>
+          <p id="rematch-status" class="status-line" role="status"></p>
+        </div>
+        <div class="battle-layout">
+          <div class="board-column">
+            <h2 class="board-title"><span id="enemy-title">Enemy waters</span></h2>
+            <div id="target-grid"></div>
+            <ul id="enemy-fleet" class="fleet-status" aria-label="Enemy fleet"></ul>
+          </div>
+          <div class="board-column">
+            <h2 class="board-title">Your fleet</h2>
+            <div id="own-grid"></div>
+            <ul id="own-fleet" class="fleet-status" aria-label="Your fleet"></ul>
+          </div>
+        </div>
+        <div class="panel log-panel">
+          <h2 class="panel-title">Shot log</h2>
+          <ol id="shot-log" class="shot-log" aria-live="polite"></ol>
+          <button id="battle-leave" class="button button-ghost leave-button" type="button">Leave room</button>
+        </div>
+        <div class="legend" aria-label="Legend">
+          <span class="legend-item"><span class="cell-sample state-miss" aria-hidden="true"></span>Miss</span>
+          <span class="legend-item"><span class="cell-sample state-hit" aria-hidden="true"></span>Hit</span>
+          <span class="legend-item"><span class="cell-sample state-sunk" aria-hidden="true"></span>Sunk</span>
+          <span class="legend-item"><span class="cell-sample state-ship" aria-hidden="true"></span>Your ship</span>
+        </div>
+      </section>
     </main>
+
+    <footer class="footer">
+      <p>NavalGame · <a href="https://github.com/Isma-L154/NavalGame" rel="noopener">Source code</a></p>
+    </footer>
   </body>
 </html>

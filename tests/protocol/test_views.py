@@ -18,7 +18,10 @@ from naval.protocol.views import (
 from tests.domain.fixtures import ROW_FLEET, fleet_cells
 from tests.strategies import coordinates, valid_fleets
 
-PLAYERS = (PlayerView("Ana", connected=True), PlayerView("Bo", connected=False))
+PLAYERS = (
+    PlayerView("Ana", connected=True, wants_rematch=False),
+    PlayerView("Bo", connected=False, wants_rematch=True),
+)
 
 
 def _playing_game() -> Game:
@@ -40,8 +43,8 @@ def test_state_while_playing_hides_the_opponent_fleet() -> None:
     assert view["turn"] == 0
     assert view["winner"] is None
     assert view["players"] == [
-        {"nickname": "Ana", "connected": True},
-        {"nickname": "Bo", "connected": False},
+        {"nickname": "Ana", "connected": True, "wants_rematch": False},
+        {"nickname": "Bo", "connected": False, "wants_rematch": True},
     ]
     assert view["fleet_placed"] == [True, True]
     assert view["own_fleet"][0] == {
