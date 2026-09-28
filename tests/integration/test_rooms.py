@@ -44,6 +44,24 @@ def test_room_creation_is_rate_limited_per_ip() -> None:
     assert http("POST", "/api/rooms", ip=fake_ip())[0] == 201
 
 
+@pytest.mark.skipif(not SPOOF_CLIENT_IP, reason="needs distinct client IPs (local dev only)")
+async def test_websocket_upgrades_are_rate_limited_per_ip() -> None:
+    code = create_room()
+    ip = fake_ip()
+
+    async def upgrade() -> int:
+        try:
+            ws = await open_socket(code, client_ip=ip)
+        except InvalidStatus as error:
+            return error.response.status_code
+        await ws.close()
+        return 101
+
+    # Concurrent, so all 31 land inside one 60 s window even on a slow dev machine.
+    statuses = await asyncio.gather(*(upgrade() for _ in range(31)))
+    assert sorted(statuses) == [101] * 30 + [429]
+
+
 def test_websocket_path_without_upgrade_is_426() -> None:
     assert http("GET", f"/api/rooms/{create_room()}/ws")[0] == 426
 

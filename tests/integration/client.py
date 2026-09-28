@@ -37,8 +37,8 @@ SPOOF_CLIENT_IP = "://localhost" in BASE_URL
 USER_AGENT = "NavalGame-integration-tests/1.0"
 
 
-def _ip_headers() -> dict[str, str]:
-    return {"CF-Connecting-IP": fake_ip()} if SPOOF_CLIENT_IP else {}
+def _ip_headers(client_ip: str | None = None) -> dict[str, str]:
+    return {"CF-Connecting-IP": client_ip or fake_ip()} if SPOOF_CLIENT_IP else {}
 
 
 def fake_ip() -> str:
@@ -72,11 +72,13 @@ def ws_url(code: str) -> str:
     return BASE_URL.replace("http", "ws", 1) + f"/api/rooms/{code}/ws"
 
 
-async def open_socket(code: str, *, origin: str = ORIGIN) -> ClientConnection:
+async def open_socket(
+    code: str, *, origin: str = ORIGIN, client_ip: str | None = None
+) -> ClientConnection:
     return await connect(
         ws_url(code),
         origin=Origin(origin),
-        additional_headers=_ip_headers(),
+        additional_headers=_ip_headers(client_ip),
         user_agent_header=USER_AGENT,
     )
 

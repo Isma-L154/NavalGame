@@ -57,4 +57,4 @@ python_version = "3.14"
 strict = true
 mypy_path = "src"
 # These modules import the Workers runtime (`workers`, `js`), which does not exist on CPython.
-exclude = ['^src/entry\.py$', '^src/naval/worker/entry\.py$', '^src/naval/worker/game_room\.py$']
+exclude = ['^src/entry\.py$', '^src/naval/worker/entry\.py$', '^src/naval/worker/game_room\.py$', '^src/naval/worker/rate_limiter\.py$']
