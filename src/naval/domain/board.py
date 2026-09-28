@@ -50,6 +50,10 @@ class Board:
         return MappingProxyType(self._shots)
 
     @property
+    def sunk_ships(self) -> tuple[Placement, ...]:
+        return tuple(p for p in self._placements if all(c in self._shots for c in p.cells()))
+
+    @property
     def all_sunk(self) -> bool:
         return all(cell in self._shots for cell in self._ship_at)
 
