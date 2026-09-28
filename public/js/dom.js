@@ -4,7 +4,7 @@ export const $ = (id) => {
   return node;
 };
 
-/** Creates an element; text always goes through textContent, never innerHTML. */
+/** Creates an element; text always goes through textContent, never parsed as markup. */
 export function el(tag, { className, text, attrs } = {}, children = []) {
   const node = document.createElement(tag);
   if (className) node.className = className;
