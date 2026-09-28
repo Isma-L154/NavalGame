@@ -462,6 +462,30 @@ input[aria-invalid="true"] {
   margin-bottom: var(--space-2);
 }
 
+/* Legal pages: a readable single column. */
+.legal {
+  max-width: 46rem;
+}
+
+.legal h2 {
+  font-size: 1.6rem;
+  margin-top: var(--space-8);
+  padding-top: var(--space-4);
+  border-top: var(--rule);
+}
+
+.legal ul {
+  padding-left: 1.3rem;
+}
+
+.legal li {
+  margin-bottom: var(--space-2);
+}
+
+a.button {
+  text-decoration: none;
+}
+
 /* Lobby */
 .lobby {
   max-width: 44rem;
