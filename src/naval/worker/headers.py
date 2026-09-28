@@ -4,10 +4,11 @@ from types import MappingProxyType
 _CSP = "; ".join(
     (
         "default-src 'self'",
-        "script-src 'self'",
+        # Cloudflare Web Analytics is injected by the zone at the edge (not by this app).
+        "script-src 'self' https://static.cloudflareinsights.com",
         "style-src 'self'",
         "img-src 'self' data:",
-        "connect-src 'self'",
+        "connect-src 'self' https://cloudflareinsights.com",
         "font-src 'self'",
         "frame-ancestors 'none'",
         "object-src 'none'",
@@ -18,8 +19,8 @@ _CSP = "; ".join(
 
 SECURITY_HEADERS: Mapping[str, str] = MappingProxyType(
     {
-        # Report-only until the UI is verified against it (baseline control 7).
-        "Content-Security-Policy-Report-Only": _CSP,
+        # Enforced after E2E runs locally and in production showed no violations.
+        "Content-Security-Policy": _CSP,
         "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
         "X-Content-Type-Options": "nosniff",
         "Referrer-Policy": "strict-origin-when-cross-origin",
