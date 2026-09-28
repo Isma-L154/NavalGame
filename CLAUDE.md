@@ -247,6 +247,9 @@ QA gate before merge: `code-review` + `differential-review` + Playwright E2E if 
 # UI/UX
 
 - Use `ui-ux-pro-max` for anything touching layout, components, color, typography or the design system. Don't invent styling ad hoc.
+- **Design system: maritime signal-flag poster.** Paper `#f7f5f0`, ink `#111111`, signal red `#d6231d`, yellow `#f4c20d`, blue `#1d4e9e`, as flat blocks with 2px ink rules. No gradients (except the flag patterns on cells), no shadows, no glow, no rounded corners, no dark theme. Type: Barlow (body) and Barlow Condensed 600/800 (display), self-hosted in `public/fonts/` under the OFL. Yellow is only ever a fill behind ink text, never text itself.
+- Cell language: ship = blue block; hit = red with white ✕; miss = black dot; sunk = flag "O" (red/yellow diagonal) with ink ✕; revealed enemy ship = blue hatching. Keep a distinct shape per state, never colour alone.
+- Avoid the generic "AI look": no dark navy + neon accent, no glassmorphism, no soft-shadow rounded cards.
 - Accessibility is required: the game must be playable with the keyboard, and hit/miss/sunk must not be distinguishable by color alone.
 
 ---
