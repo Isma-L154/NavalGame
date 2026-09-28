@@ -407,6 +407,7 @@ input[aria-invalid="true"] {
 
 .button-ghost:hover:not(:disabled) {
   background: transparent;
+  color: var(--ink);
   text-decoration-thickness: 3px;
 }
 

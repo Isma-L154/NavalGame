@@ -1,48 +1,6072 @@
-import { expect, test } from "@playwright/test";
-import { newPlayer } from "./helpers.js";
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+@  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+/  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
 
-test("the theme follows the system until the player picks one", async ({ browser }, testInfo) => {
-  const page = await newPlayer(browser, testInfo, { colorScheme: "dark" });
-  await page.goto("/");
-  const html = page.locator("html");
-  const toggle = page.getByRole("button", { name: "Dark mode" });
-  await expect(html).toHaveAttribute("data-theme", "dark");
-  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+P  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+/  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+j  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
 
-  await toggle.click();
-  await expect(html).toHaveAttribute("data-theme", "light");
-  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
 
-  await page.reload();
-  await expect(html).toHaveAttribute("data-theme", "light");
-  await page.goto("/terms");
-  await expect(html).toHaveAttribute("data-theme", "light");
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+>  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
 
-  await page.getByRole("button", { name: "Dark mode" }).click();
-  await page.goto("/");
-  await expect(html).toHaveAttribute("data-theme", "dark");
-});
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+P  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
 
-test("light is the default when the system prefers light", async ({ browser }, testInfo) => {
-  const page = await newPlayer(browser, testInfo, { colorScheme: "light" });
-  await page.goto("/");
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-  await expect(page.getByRole("button", { name: "Dark mode" })).toHaveAttribute("aria-pressed", "false");
-});
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+/  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
 
-test("a picked theme is not overridden by a later system change", async ({ browser }, testInfo) => {
-  const page = await newPlayer(browser, testInfo, { colorScheme: "light" });
-  await page.goto("/");
-  await page.getByRole("button", { name: "Dark mode" }).click();
-  await page.emulateMedia({ colorScheme: "light" });
-  await page.emulateMedia({ colorScheme: "dark" });
-  await page.emulateMedia({ colorScheme: "light" });
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-});
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
 
-test("without a picked theme, a system change is followed live", async ({ browser }, testInfo) => {
-  const page = await newPlayer(browser, testInfo, { colorScheme: "light" });
-  await page.goto("/");
-  await page.emulateMedia({ colorScheme: "dark" });
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-});
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+B  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+R  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+D  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+/  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+B  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+R  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+D  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+/  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+>  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+P  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+/  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+B  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+R  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+D  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+>  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+P  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+/  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+B  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+R  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+D  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+M  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+M  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+M  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+>  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+P  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+/  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+M  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+H  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+-  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+>  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+j  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+P  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+I  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+/  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+B  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+L  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+Y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+A  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+B  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+R  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+C  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+B  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+R  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+:  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+L  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+f  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+h  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+[  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+]  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+w  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+i  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+v  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+>  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+{  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+=  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+C  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+[  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+s  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+C  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+S  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+m  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+y  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+C  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+l  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+]  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+B  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+1  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+7  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+1  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+7  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+1  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+7  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+x  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+p  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+c  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+k  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+u  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+n  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+d  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+.  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+t  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+o  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+B  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+e  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+r  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+g  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+b  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+a  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+(  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+0  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+0  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+0  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+,  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+0  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+"  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+}  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+)  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+;  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+
+  // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
+  await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
