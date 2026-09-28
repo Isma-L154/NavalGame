@@ -8,7 +8,7 @@ Create a room, share its six-character code, place five ships on a 10 × 10 grid
 
 - **Backend:** Python 3.14 on Cloudflare Workers (Pyodide). Each room is a Durable Object that owns the game state, enforces every rule and keeps exactly two seats. Players connect over hibernatable WebSockets.
 - **Frontend:** plain HTML, CSS and ES modules served as static assets, with no build step and no framework. The client is only a view: it never learns where the enemy ships are until the game ends.
-- **Code layout:** `src/naval/domain` (pure game rules) ← `protocol` (message schemas and per-player views) ← `rooms` (room lifecycle and the room service) ← `worker` (thin Cloudflare adapters). Everything except `worker` runs on plain CPython.
+- **Code layout:** `src/naval/domain` (pure game rules) ← `protocol` (message schemas and per-player views) ← `rooms` (room lifecycle and the room service) ← `worker` (thin Cloudflare adapters), plus `limits` (per-client rate-limit windows). Everything except `worker` runs on plain CPython.
 
 Design and decisions: [`docs/superpowers/specs/2026-09-27-naval-game-design.md`](docs/superpowers/specs/2026-09-27-naval-game-design.md).
 

@@ -30,7 +30,9 @@ class Default(WorkerEntrypoint):
     async def fetch(self, request: Any) -> Response:
         path = urlparse(request.url).path
         if path == "/api/health":
-            return _json({"status": "ok"}, HTTPStatus.OK)
+            # The deploy sets BUILD_VERSION to the commit, so CI can wait for this exact build.
+            version = getattr(self.env, "BUILD_VERSION", None) or "dev"
+            return _json({"status": "ok", "version": str(version)}, HTTPStatus.OK)
         try:
             allowed_origins = parse_allowed_origins(getattr(self.env, "ALLOWED_ORIGINS", None))
         except MissingConfig as error:
