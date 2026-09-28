@@ -13,7 +13,3 @@ export function el(tag, { className, text, attrs } = {}, children = []) {
   for (const child of children) node.append(child);
   return node;
 }
-
-export function show(node, visible) {
-  node.hidden = !visible;
-}
