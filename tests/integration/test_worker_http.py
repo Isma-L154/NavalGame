@@ -26,7 +26,8 @@ def test_health_endpoint() -> None:
     assert status == 200
     assert json.loads(body) == {"status": "ok"}
     assert headers["Cache-Control"] == "no-store"
-    assert "Content-Security-Policy-Report-Only" in headers
+    assert "Content-Security-Policy" in headers
+    assert "Content-Security-Policy-Report-Only" not in headers
 
 
 def test_unknown_api_path_is_404() -> None:
@@ -41,4 +42,5 @@ def test_index_page_has_security_headers() -> None:
     assert status == 200
     assert b"NavalGame" in body
     assert headers["X-Content-Type-Options"] == "nosniff"
-    assert "Content-Security-Policy-Report-Only" in headers
+    assert "Content-Security-Policy" in headers
+    assert "Content-Security-Policy-Report-Only" not in headers

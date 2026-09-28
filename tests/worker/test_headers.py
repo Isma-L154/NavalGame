@@ -20,8 +20,22 @@ def test_static_assets_ship_the_same_security_headers() -> None:
     assert _static_headers() == dict(SECURITY_HEADERS)
 
 
+def test_csp_is_enforced() -> None:
+    assert "Content-Security-Policy-Report-Only" not in SECURITY_HEADERS
+
+
+def test_only_cloudflare_web_analytics_is_allowed_beyond_self() -> None:
+    directives = dict(
+        d.strip().split(" ", 1) for d in SECURITY_HEADERS["Content-Security-Policy"].split(";")
+    )
+    assert directives["script-src"] == "'self' https://static.cloudflareinsights.com"
+    assert directives["connect-src"] == "'self' https://cloudflareinsights.com"
+    others = {k: v for k, v in directives.items() if k not in ("script-src", "connect-src")}
+    assert all("https:" not in v for v in others.values())
+
+
 def test_csp_has_no_unsafe_sources() -> None:
-    csp = SECURITY_HEADERS["Content-Security-Policy-Report-Only"]
+    csp = SECURITY_HEADERS["Content-Security-Policy"]
     assert "unsafe-inline" not in csp
     assert "unsafe-eval" not in csp
     for directive in (
