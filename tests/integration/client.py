@@ -28,6 +28,19 @@ FLEET_CELLS = [
 ]
 
 
+# Only the local dev server honours a client-supplied CF-Connecting-IP; Cloudflare's edge
+# rejects it (error 1000), so against a deployed Worker the real client IP is used.
+SPOOF_CLIENT_IP = "://localhost" in BASE_URL
+
+
+# Cloudflare's Browser Integrity Check blocks urllib's default User-Agent.
+USER_AGENT = "NavalGame-integration-tests/1.0"
+
+
+def _ip_headers() -> dict[str, str]:
+    return {"CF-Connecting-IP": fake_ip()} if SPOOF_CLIENT_IP else {}
+
+
 def fake_ip() -> str:
     """Each test gets its own client IP so per-IP limits do not leak between tests."""
     return f"10.{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(1, 254)}"  # noqa: S311
@@ -37,9 +50,11 @@ def http(
     method: str, path: str, *, origin: str | None = ORIGIN, ip: str | None = None
 ) -> tuple[int, dict[str, Any]]:
     request = urllib.request.Request(BASE_URL + path, method=method)  # noqa: S310
+    request.add_header("User-Agent", USER_AGENT)
     if origin is not None:
         request.add_header("Origin", origin)
-    request.add_header("CF-Connecting-IP", ip or fake_ip())
+    if SPOOF_CLIENT_IP:
+        request.add_header("CF-Connecting-IP", ip or fake_ip())
     try:
         with urllib.request.urlopen(request, timeout=30) as response:  # noqa: S310
             return response.status, json.loads(response.read())
@@ -61,7 +76,8 @@ async def open_socket(code: str, *, origin: str = ORIGIN) -> ClientConnection:
     return await connect(
         ws_url(code),
         origin=Origin(origin),
-        additional_headers={"CF-Connecting-IP": fake_ip()},
+        additional_headers=_ip_headers(),
+        user_agent_header=USER_AGENT,
     )
 
 

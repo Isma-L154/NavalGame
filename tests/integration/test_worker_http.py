@@ -6,13 +6,16 @@ from email.message import Message
 
 import pytest
 
+from tests.integration.client import USER_AGENT
+
 pytestmark = pytest.mark.integration
 
 
 def _get(path: str) -> tuple[int, Message, bytes]:
-    base_url = os.environ["NAVAL_BASE_URL"]
+    request = urllib.request.Request(os.environ["NAVAL_BASE_URL"] + path)  # noqa: S310
+    request.add_header("User-Agent", USER_AGENT)
     try:
-        with urllib.request.urlopen(base_url + path, timeout=30) as response:  # noqa: S310
+        with urllib.request.urlopen(request, timeout=30) as response:  # noqa: S310
             return response.status, response.headers, response.read()
     except urllib.error.HTTPError as error:
         return error.code, error.headers, error.read()
