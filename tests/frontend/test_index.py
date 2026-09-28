@@ -12,11 +12,20 @@ def test_every_module_is_preloaded() -> None:
 
 
 def test_no_inline_scripts_styles_or_handlers() -> None:
-    html = (PUBLIC / "index.html").read_text(encoding="utf-8")
-    assert re.search(r"<script(?![^>]*\bsrc=)", html) is None
-    assert "<style" not in html
-    assert re.search(r"\sstyle=", html) is None
-    assert re.search(r"\son[a-z]+=", html) is None
+    for page in PUBLIC.glob("*.html"):
+        html = page.read_text(encoding="utf-8")
+        assert re.search(r"<script(?![^>]*\bsrc=)", html) is None, page.name
+        assert "<style" not in html, page.name
+        assert re.search(r"\sstyle=", html) is None, page.name
+        assert re.search(r"\son[a-z]+=", html) is None, page.name
+
+
+def test_every_page_links_the_terms_and_contact_in_the_footer() -> None:
+    for page in PUBLIC.glob("*.html"):
+        footer = page.read_text(encoding="utf-8").split("<footer", 1)[1]
+        assert 'href="/terms"' in footer, page.name
+        assert 'href="mailto:info@cloudils.com"' in footer, page.name
+        assert "github.com" not in footer, page.name
 
 
 def test_scripts_never_write_html_from_strings() -> None:
