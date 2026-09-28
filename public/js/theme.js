@@ -19,8 +19,12 @@ function storedTheme() {
   }
 }
 
+// Also kept in memory: if storage is blocked, a choice made on this page must still stick.
+let chosenTheme = storedTheme();
+
 toggle?.addEventListener("click", () => {
   const next = root.dataset.theme === "dark" ? "light" : "dark";
+  chosenTheme = next;
   try {
     localStorage.setItem(STORAGE_KEY, next);
   } catch {
@@ -31,7 +35,7 @@ toggle?.addEventListener("click", () => {
 
 // Follow the system while the player has not picked a theme.
 systemDark.addEventListener("change", (event) => {
-  if (!storedTheme()) apply(event.matches ? "dark" : "light");
+  if (!chosenTheme) apply(event.matches ? "dark" : "light");
 });
 
 apply(root.dataset.theme === "dark" ? "dark" : "light");

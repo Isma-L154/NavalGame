@@ -29,3 +29,20 @@ test("light is the default when the system prefers light", async ({ browser }, t
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await expect(page.getByRole("button", { name: "Dark mode" })).toHaveAttribute("aria-pressed", "false");
 });
+
+test("a picked theme is not overridden by a later system change", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo, { colorScheme: "light" });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Dark mode" }).click();
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.emulateMedia({ colorScheme: "light" });
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+});
+
+test("without a picked theme, a system change is followed live", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo, { colorScheme: "light" });
+  await page.goto("/");
+  await page.emulateMedia({ colorScheme: "dark" });
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+});
