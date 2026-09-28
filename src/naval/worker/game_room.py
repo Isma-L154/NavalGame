@@ -1,5 +1,6 @@
 import contextlib
 import json
+import math
 import secrets
 import time
 from dataclasses import dataclass, replace
@@ -155,7 +156,8 @@ class GameRoom(DurableObject):
         if deadline is None:
             await self.ctx.storage.deleteAlarm()
         else:
-            await self.ctx.storage.setAlarm(int(deadline * 1000))
+            # Round up so the alarm never fires just before the deadline it serves.
+            await self.ctx.storage.setAlarm(math.ceil(deadline * 1000))
 
     @staticmethod
     def _send(ws: Any, message: Message) -> None:

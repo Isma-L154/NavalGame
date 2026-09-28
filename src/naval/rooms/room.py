@@ -70,6 +70,8 @@ class Room:
 
     def disconnect(self, seat: int, now: float) -> None:
         player = self._player(seat)
+        if not player.connected:
+            return
         player.connected = False
         player.disconnected_at = now
         self._touch(now)
