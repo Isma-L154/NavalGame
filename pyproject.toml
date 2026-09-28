@@ -9,6 +9,7 @@ dependencies = []
 
 [dependency-groups]
 dev = [
+    "hypothesis>=6.168.0",
     "mypy",
     "pytest",
     "ruff",
@@ -33,6 +34,8 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "W", "F", "I", "B", "UP", "SIM", "S", "N", "RUF", "PL", "PT"]
+# Domain exceptions are named after the protocol error codes they carry (e.g. NotYourTurn).
+ignore = ["N818"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101", "PLR2004"]
