@@ -107,3 +107,11 @@ def test_fleets_with_a_shared_cell_are_rejected(
     fleet[moved_index] = overlapping
     with pytest.raises(InvalidFleet):
         Board.from_placements(fleet)
+
+
+def test_sunk_ships_lists_only_fully_hit_ships() -> None:
+    board = Board.from_placements(ROW_FLEET)
+    board.receive_shot(Coordinate(4, 0))
+    assert len(board.sunk_ships) == 0
+    board.receive_shot(Coordinate(4, 1))
+    assert list(board.sunk_ships) == [ROW_FLEET[4]]
