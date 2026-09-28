@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { newPlayer } from "./helpers.js";
+import { createRoom, joinRoom, newPlayer } from "./helpers.js";
 
 test("the theme follows the system until the player picks one", async ({ browser }, testInfo) => {
   const page = await newPlayer(browser, testInfo, { colorScheme: "dark" });
@@ -57,4 +57,25 @@ test("hovered buttons keep readable text in dark mode", async ({ browser }, test
   await leave.hover();
   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
   await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+});
+
+test("borders on yellow stay dark in dark mode", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo, { colorScheme: "dark" });
+  const bo = await newPlayer(browser, testInfo, { colorScheme: "dark" });
+  const code = await createRoom(ana, "Ana");
+  await joinRoom(bo, "Bo", code);
+  for (const player of [ana, bo]) {
+    await player.getByRole("button", { name: "Random" }).click();
+    await player.getByRole("button", { name: "Ready" }).click();
+  }
+  await expect(ana.locator("#turn-banner")).toBeVisible();
+  const shooter = (await ana.locator("#turn-banner").textContent()).startsWith("Your turn") ? ana : bo;
+  await expect(shooter.locator("#turn-banner")).toHaveCSS("border-top-color", "rgb(17, 17, 17)");
+  const other = shooter === ana ? bo : ana;
+  await other.getByRole("button", { name: "Leave room" }).last().click();
+  await expect(shooter.locator("#result-panel")).toHaveCSS("border-top-color", "rgb(17, 17, 17)");
+  await expect(shooter.getByRole("button", { name: "Leave room" }).first()).toHaveCSS(
+    "border-top-color",
+    "rgb(17, 17, 17)",
+  );
 });

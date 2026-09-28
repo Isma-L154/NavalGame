@@ -954,6 +954,24 @@ a.button {
   border-bottom: 1px solid var(--line-soft);
 }
 
+/* On yellow, borders and dark fills use the fixed signal ink so they keep 3:1 in both themes. */
+.skip-link,
+.connection-status,
+.notice.notice-info,
+.button:hover:not(:disabled),
+.theme-toggle:hover,
+.ship-button[aria-pressed="true"],
+.turn-banner.is-your-turn,
+.result-panel.is-victory,
+.result-panel.is-victory .button {
+  border-color: var(--on-signal);
+}
+
+.result-panel.is-victory .button-primary {
+  background: var(--on-signal);
+  color: var(--yellow);
+}
+
 /* Layout */
 @media (max-width: 420px) {
   .flag {
