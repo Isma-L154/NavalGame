@@ -973,6 +973,15 @@ a.button {
   color: var(--yellow);
 }
 
+/* The blue focus ring is too faint on signal fills: use their fixed contrasting ink. */
+.result-panel.is-victory :focus-visible {
+  outline-color: var(--on-signal);
+}
+
+.result-panel.is-defeat :focus-visible {
+  outline-color: var(--on-red);
+}
+
 .result-panel.is-victory .button-primary:hover:not(:disabled) {
   background: var(--flag-white);
   color: var(--on-signal);

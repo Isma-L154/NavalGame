@@ -76,8 +76,11 @@ test("borders on yellow stay dark in dark mode", async ({ browser }, testInfo) =
   const other = shooter === ana ? bo : ana;
   await other.getByRole("button", { name: "Leave room" }).last().click();
   await expect(shooter.locator("#result-panel")).toHaveCSS("border-top-color", "rgb(17, 17, 17)");
-  await expect(shooter.getByRole("button", { name: "Leave room" }).first()).toHaveCSS(
-    "border-top-color",
-    "rgb(17, 17, 17)",
-  );
+  const leave = shooter.getByRole("button", { name: "Leave room" }).first();
+  await expect(leave).toHaveCSS("border-top-color", "rgb(17, 17, 17)");
+  await leave.focus();
+  await shooter.keyboard.press("Shift+Tab");
+  await shooter.keyboard.press("Tab");
+  await expect(leave).toHaveCSS("outline-color", "rgb(17, 17, 17)");
+  await expect(other.locator("h1, h2").filter({ hasText: "Sink the enemy fleet" })).toBeVisible();
 });
