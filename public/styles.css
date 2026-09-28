@@ -50,7 +50,8 @@
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
-  --cell: clamp(28px, 7.6vw, 40px);
+  /* 10 cells + labels must fit a 320px phone: that caps the minimum at 24px. */
+  --cell: clamp(24px, 8vw, 40px);
   --font-body: "Barlow", "Arial Narrow", Arial, sans-serif;
   --font-display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
   --z-topbar: 10;
@@ -183,6 +184,7 @@ kbd {
   top: 0;
   z-index: var(--z-topbar);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
@@ -460,11 +462,11 @@ input[aria-invalid="true"] {
 .code-char {
   display: inline-grid;
   place-items: center;
-  width: clamp(2.8rem, 12vw, 4.5rem);
-  height: clamp(3.6rem, 15vw, 5.6rem);
+  width: clamp(2rem, 11vw, 4.5rem);
+  height: clamp(2.8rem, 14vw, 5.6rem);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2.2rem, 9vw, 3.6rem);
+  font-size: clamp(1.8rem, 8vw, 3.6rem);
   background: var(--white);
   border: var(--rule);
 }
@@ -578,7 +580,7 @@ input[aria-invalid="true"] {
 
 .placement-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
   gap: var(--space-2);
 }
 
@@ -603,7 +605,7 @@ input[aria-invalid="true"] {
 
 .board {
   display: grid;
-  grid-template-columns: calc(var(--cell) * 0.7) repeat(10, var(--cell));
+  grid-template-columns: calc(var(--cell) * 0.6) repeat(10, var(--cell));
   gap: 1px;
   user-select: none;
   touch-action: manipulation;
@@ -847,6 +849,21 @@ input[aria-invalid="true"] {
 }
 
 /* Layout */
+@media (max-width: 420px) {
+  .flag {
+    width: 18px;
+    height: 12px;
+  }
+
+  .wordmark {
+    font-size: 1.3rem;
+  }
+
+  #lobby-code {
+    gap: var(--space-1);
+  }
+}
+
 @media (min-width: 900px) {
   .home {
     grid-template-columns: 1.3fr 1fr;

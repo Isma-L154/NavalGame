@@ -54,3 +54,33 @@ test("a whole turn can be played with the keyboard only", async ({ browser }, te
   await shooter.keyboard.press("Enter");
   await expect(target.getByRole("button", { name: /^B2,/ })).not.toHaveAttribute("aria-label", "B2, not fired at");
 });
+
+test("nothing overflows sideways on a 320px screen", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
+  await page.setViewportSize({ width: 320, height: 640 });
+  const overflow = () =>
+    page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+
+  await page.goto("/");
+  await page.evaluate(() => {
+    const status = document.getElementById("connection-status");
+    status.textContent = "Connection lost. Reconnecting…";
+    status.hidden = false;
+  });
+  expect(await overflow()).toBe(0);
+
+  const code = await createRoom(page, "Ana");
+  expect(await overflow()).toBe(0);
+
+  const bo = await newPlayer(browser, testInfo);
+  await joinRoom(bo, "Bo", code);
+  await expect(page.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
+  expect(await overflow()).toBe(0);
+
+  for (const player of [page, bo]) {
+    await player.getByRole("button", { name: "Random" }).click();
+    await player.getByRole("button", { name: "Ready" }).click();
+  }
+  await expect(page.locator("#turn-banner")).toBeVisible();
+  expect(await overflow()).toBe(0);
+});
