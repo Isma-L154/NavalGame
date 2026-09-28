@@ -23,6 +23,7 @@ _BUDGET_WINDOW_SECONDS = 10.0
 _CLOSE_NORMAL = 1000
 _CLOSE_POLICY_VIOLATION = 1008
 _CLOSE_REPLACED = 4000
+_INIT_NONCE_KEY = "init_nonce"
 
 
 class _SystemClock:
@@ -63,11 +64,7 @@ class GameRoom(DurableObject):
     async def fetch(self, request: Any) -> Response:
         path = urlparse(request.url).path
         if path == "/init" and request.method == "POST":
-            code = json.loads(await request.text())["code"]
-            created = await self._service.create(code)
-            if created:
-                await self._schedule_alarm()
-            return _json({"created": created}, 201 if created else 409)
+            return await self._init(json.loads(await request.text()))
         # The Worker forwards the original /api/rooms/{code}/ws request after validating it.
         if (request.headers.get("Upgrade") or "").lower() == "websocket":
             if not await self._service.exists():
@@ -77,6 +74,19 @@ class GameRoom(DurableObject):
             _attach(server, _Attachment(conn=uuid4().hex, seat=None))
             return Response(None, status=101, web_socket=client)
         return _json({"error": "not_found"}, 404)
+
+    async def _init(self, body: dict[str, str]) -> Response:
+        """Idempotent per nonce: a retried /init whose reply was lost still reports success."""
+        if await self._service.exists():
+            if await self.ctx.storage.get(_INIT_NONCE_KEY) != body["nonce"]:
+                return _json({"created": False}, 409)
+            # The earlier attempt may have failed before scheduling cleanup; this is idempotent.
+            await self._schedule_alarm()
+            return _json({"created": True}, 201)
+        await self.ctx.storage.put(_INIT_NONCE_KEY, body["nonce"])
+        await self._service.create(body["code"])
+        await self._schedule_alarm()
+        return _json({"created": True}, 201)
 
     async def webSocketMessage(self, ws: Any, message: Any) -> None:  # noqa: N802 - runtime API
         attachment = _attachment(ws)
