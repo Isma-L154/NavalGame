@@ -958,7 +958,7 @@ a.button {
 .skip-link,
 .connection-status,
 .notice.notice-info,
-.button:hover:not(:disabled),
+.button:not(.button-ghost):hover:not(:disabled),
 .theme-toggle:hover,
 .ship-button[aria-pressed="true"],
 .turn-banner.is-your-turn,

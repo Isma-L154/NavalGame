@@ -57,6 +57,8 @@ test("hovered buttons keep readable text in dark mode", async ({ browser }, test
   await leave.hover();
   // The dark theme's ink (#f2efe7), not the near-black used on signal fills.
   await expect(leave).toHaveCSS("color", "rgb(242, 239, 231)");
+  // Ghost buttons never grow a frame on hover.
+  await expect(leave).toHaveCSS("border-top-color", "rgba(0, 0, 0, 0)");
 });
 
 test("borders on yellow stay dark in dark mode", async ({ browser }, testInfo) => {
