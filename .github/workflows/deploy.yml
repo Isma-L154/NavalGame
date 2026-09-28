@@ -39,10 +39,14 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-      - name: Smoke test
+      - name: Wait for the new version
         run: |
           for _ in $(seq 1 12); do
             curl -sf -o /dev/null https://naval.cloudils.com/api/health && exit 0
             sleep 5
           done
           exit 1
+      - name: Smoke test a real game against production
+        run: uv run pytest -m integration -k "health or full_game or third_player" -p no:cacheprovider
+        env:
+          NAVAL_BASE_URL: https://naval.cloudils.com

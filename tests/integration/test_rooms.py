@@ -8,6 +8,7 @@ from naval.rooms.codes import is_valid_room_code
 from tests.integration.client import (
     FLEET_CELLS,
     ROW_FLEET,
+    SPOOF_CLIENT_IP,
     close_code,
     create_room,
     fake_ip,
@@ -35,6 +36,7 @@ def test_room_creation_needs_post() -> None:
     assert http("GET", "/api/rooms")[0] == 405
 
 
+@pytest.mark.skipif(not SPOOF_CLIENT_IP, reason="needs distinct client IPs (local dev only)")
 def test_room_creation_is_rate_limited_per_ip() -> None:
     ip = fake_ip()
     statuses = [http("POST", "/api/rooms", ip=ip)[0] for _ in range(11)]
