@@ -1,0 +1,195 @@
+from typing import Any
+
+import pytest
+
+from naval.protocol.messages import (
+    FireMessage,
+    JoinMessage,
+    LeaveMessage,
+    PlaceFleetMessage,
+    RematchMessage,
+    ShipSpec,
+)
+from naval.rooms.room import IDLE_TIMEOUT_SECONDS, RECONNECT_GRACE_SECONDS
+from naval.rooms.service import Delivery, InMemoryRoomStore, RoomService
+from tests.domain.fixtures import ROW_FLEET, fleet_cells
+
+
+class FakeClock:
+    def __init__(self) -> None:
+        self.current = 1_000.0
+
+    def now(self) -> float:
+        return self.current
+
+
+PLACE = PlaceFleetMessage(
+    type="place_fleet",
+    ships=[
+        ShipSpec(kind=p.kind, row=p.origin.row, col=p.origin.col, orientation=p.orientation)
+        for p in ROW_FLEET
+    ],
+)
+
+
+@pytest.fixture
+def clock() -> FakeClock:
+    return FakeClock()
+
+
+@pytest.fixture
+async def service(clock: FakeClock) -> RoomService:
+    svc = RoomService(InMemoryRoomStore(), clock, coin_flip=lambda: 0)
+    assert await svc.create("ABCDEF")
+    return svc
+
+
+def _types(messages: list[dict[str, Any]]) -> list[str]:
+    return [m["type"] for m in messages]
+
+
+def _last_state(delivery: Delivery, seat: int) -> dict[str, Any]:
+    return [m for m in delivery.to_seats[seat] if m["type"] == "state"][-1]
+
+
+async def _two_players(service: RoomService) -> tuple[str, str]:
+    a = await service.handle(None, JoinMessage(type="join", nickname="Ana"))
+    b = await service.handle(None, JoinMessage(type="join", nickname="Bo"))
+    return a.to_requester[0]["token"], b.to_requester[0]["token"]
+
+
+async def test_create_is_idempotent_and_rejects_duplicates(service: RoomService) -> None:
+    assert await service.exists()
+    assert not await service.create("ABCDEF")
+
+
+async def test_missing_room_does_not_exist(clock: FakeClock) -> None:
+    svc = RoomService(InMemoryRoomStore(), clock, coin_flip=lambda: 0)
+    assert not await svc.exists()
+    assert await svc.deadline() is None
+
+
+async def test_join_binds_the_seat_and_broadcasts_state(service: RoomService) -> None:
+    first = await service.handle(None, JoinMessage(type="join", nickname="Ana"))
+    assert first.bind_seat == 0
+    assert _types(first.to_requester) == ["joined"]
+    assert first.to_requester[0]["token"]
+    assert _last_state(first, 0)["players"][1] is None
+
+    second = await service.handle(None, JoinMessage(type="join", nickname="Bo"))
+    assert second.bind_seat == 1
+    assert _last_state(second, 0)["players"][1] == {"nickname": "Bo", "connected": True}
+    assert _last_state(second, 1)["seat"] == 1
+
+
+async def test_third_player_gets_room_full_and_is_closed(service: RoomService) -> None:
+    await _two_players(service)
+    third = await service.handle(None, JoinMessage(type="join", nickname="Cy"))
+    assert third.bind_seat is None
+    assert third.close_requester
+    assert third.to_requester[0]["code"] == "room_full"
+    assert third.to_seats == {}
+
+
+async def test_actions_before_joining_are_rejected(service: RoomService) -> None:
+    delivery = await service.handle(None, FireMessage(type="fire", row=0, col=0))
+    assert delivery.to_requester[0]["code"] == "not_joined"
+
+
+async def test_joining_twice_is_rejected(service: RoomService) -> None:
+    await _two_players(service)
+    delivery = await service.handle(0, JoinMessage(type="join", nickname="Ana"))
+    assert delivery.to_requester[0]["code"] == "already_joined"
+
+
+async def test_errors_only_reach_the_requester(service: RoomService) -> None:
+    await _two_players(service)
+    await service.handle(0, PLACE)
+    await service.handle(1, PLACE)
+    delivery = await service.handle(1, FireMessage(type="fire", row=0, col=0))
+    assert delivery.to_requester == [
+        {"type": "error", "code": "not_your_turn", "message": "Wait for your turn."}
+    ]
+    assert delivery.to_seats == {}
+
+
+async def test_full_game_through_the_service(service: RoomService) -> None:
+    await _two_players(service)
+    await service.handle(0, PLACE)
+    started = await service.handle(1, PLACE)
+    assert _last_state(started, 0)["phase"] == "playing"
+
+    misses = iter((r, c) for r in range(5, 10) for c in range(10))
+    targets = fleet_cells(ROW_FLEET)
+    for target in targets[:-1]:
+        shot = await service.handle(0, FireMessage(type="fire", row=target.row, col=target.col))
+        assert _types(shot.to_seats[1]) == ["shot", "state"]
+        row, col = next(misses)
+        await service.handle(1, FireMessage(type="fire", row=row, col=col))
+    final = await service.handle(
+        0, FireMessage(type="fire", row=targets[-1].row, col=targets[-1].col)
+    )
+    state = _last_state(final, 1)
+    assert state["phase"] == "finished"
+    assert state["winner"] == 0
+    assert state["opponent_fleet"] is not None
+
+    await service.handle(0, RematchMessage(type="rematch"))
+    rematch = await service.handle(1, RematchMessage(type="rematch"))
+    assert _last_state(rematch, 0)["phase"] == "placing"
+
+
+async def test_reconnect_with_token(service: RoomService, clock: FakeClock) -> None:
+    _, token_b = await _two_players(service)
+    left = await service.disconnected(1)
+    assert _last_state(left, 0)["players"][1]["connected"] is False
+    assert 1 not in left.to_seats
+    clock.current += 30
+    back = await service.handle(None, JoinMessage(type="join", nickname="Bo", token=token_b))
+    assert back.bind_seat == 1
+    assert back.to_requester[0]["token"] is None
+    assert _last_state(back, 0)["players"][1]["connected"] is True
+
+
+async def test_leave_closes_the_requester_and_notifies_the_opponent(service: RoomService) -> None:
+    await _two_players(service)
+    delivery = await service.handle(1, LeaveMessage(type="leave"))
+    assert delivery.close_requester
+    assert _last_state(delivery, 0)["players"][1] is None
+    assert 1 not in delivery.to_seats
+
+
+async def test_alarm_forfeits_after_the_grace_period(
+    service: RoomService, clock: FakeClock
+) -> None:
+    await _two_players(service)
+    await service.handle(0, PLACE)
+    await service.handle(1, PLACE)
+    await service.disconnected(1)
+    assert await service.deadline() == clock.current + RECONNECT_GRACE_SECONDS
+    clock.current += RECONNECT_GRACE_SECONDS
+    delivery = await service.alarm()
+    state = _last_state(delivery, 0)
+    assert state["phase"] == "finished"
+    assert state["finish_reason"] == "forfeit"
+    assert state["players"][1] is None
+
+
+async def test_alarm_deletes_an_idle_room(service: RoomService, clock: FakeClock) -> None:
+    await _two_players(service)
+    clock.current += IDLE_TIMEOUT_SECONDS
+    delivery = await service.alarm()
+    assert delivery.close_all
+    assert delivery.to_seats[0][0]["code"] == "room_closed"
+    assert not await service.exists()
+    assert await service.deadline() is None
+
+
+async def test_messages_to_a_deleted_room_close_the_connection(
+    service: RoomService, clock: FakeClock
+) -> None:
+    clock.current += IDLE_TIMEOUT_SECONDS
+    await service.alarm()
+    delivery = await service.handle(None, JoinMessage(type="join", nickname="Ana"))
+    assert delivery.close_requester
+    assert delivery.to_requester[0]["code"] == "room_closed"

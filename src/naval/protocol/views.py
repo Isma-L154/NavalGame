@@ -27,6 +27,7 @@ _ERROR_TEXT = {
     "not_joined": "Join the room first.",
     "rate_limited": "Slow down: too many messages.",
     "internal_error": "Something went wrong on our side.",
+    "room_closed": "This room has closed.",
 }
 _UNKNOWN_ERROR_TEXT = "Something went wrong."
 

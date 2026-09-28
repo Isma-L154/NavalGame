@@ -14,6 +14,7 @@ dev = [
     "hypothesis>=6.168.0",
     "mypy",
     "pytest",
+    "pytest-asyncio>=1.4.0",
     "ruff",
     "workers-py",
     "workers-runtime-sdk",
@@ -31,6 +32,8 @@ testpaths = ["tests"]
 pythonpath = ["src", "."]
 addopts = ["--strict-markers", "--strict-config", "-m", "not integration"]
 markers = ["integration: needs a running Worker at NAVAL_BASE_URL"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 
 [tool.ruff]
 target-version = "py314"
