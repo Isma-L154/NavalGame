@@ -107,6 +107,12 @@ class RoomService:
         return delivery
 
     async def disconnected(self, seat: int) -> Delivery:
+        """Call only when no open connection is bound to `seat` any more.
+
+        The transport owns connection identity: it must unbind a connection before closing
+        it after a reconnect or a leave, so that a late close event cannot mark the seat's
+        new occupant as disconnected.
+        """
         room = await self._store.load()
         if room is None or room.players[seat] is None:
             return Delivery()
