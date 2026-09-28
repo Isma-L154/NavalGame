@@ -6,6 +6,7 @@ from naval.domain.board import ShotOutcome, ShotResult
 from naval.domain.coordinates import Coordinate
 from naval.domain.fleet import Placement
 from naval.domain.game import Game, Phase, other
+from naval.protocol.ships import ship_to_dict
 
 Message = dict[str, Any]
 
@@ -84,15 +85,7 @@ def error_message(code: str) -> Message:
 
 
 def _ships(placements: Sequence[Placement]) -> list[Message]:
-    return [
-        {
-            "kind": p.kind.value,
-            "row": p.origin.row,
-            "col": p.origin.col,
-            "orientation": p.orientation.value,
-        }
-        for p in placements
-    ]
+    return [ship_to_dict(p) for p in placements]
 
 
 def _shots(shots: Mapping[Coordinate, ShotOutcome]) -> list[Message]:
