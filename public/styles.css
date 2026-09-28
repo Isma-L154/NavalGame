@@ -44,7 +44,8 @@
   --link: #1d4e9e;
   /* Text on signal fills never changes with the theme. */
   --on-signal: #111111;
-  --on-red: #ffffff;
+  --flag-white: #ffffff;
+  --on-red: var(--flag-white);
   --danger-bg: #fdecea;
   --line-soft: #d9d5cc;
   --rule: 2px solid var(--ink);
@@ -970,6 +971,11 @@ a.button {
 .result-panel.is-victory .button-primary:not(:disabled) {
   background: var(--on-signal);
   color: var(--yellow);
+}
+
+.result-panel.is-victory .button-primary:hover:not(:disabled) {
+  background: var(--flag-white);
+  color: var(--on-signal);
 }
 
 /* Layout */
