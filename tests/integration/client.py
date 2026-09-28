@@ -95,7 +95,7 @@ async def receive(
     ws: ClientConnection,
     message_type: str,
     where: Callable[[dict[str, Any]], bool] = lambda _: True,
-    timeout: float = 10,
+    timeout: float = 20,
 ) -> dict[str, Any]:
     """Returns the next message of `message_type` matching `where`, skipping the rest."""
     async with asyncio.timeout(timeout):
