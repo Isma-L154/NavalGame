@@ -121,28 +121,29 @@ JSON text frames, at most 4 KB each; larger frames are rejected and the socket i
 | `type` | Fields |
 |---|---|
 | `joined` | `seat`, `token` (only on first join), `room_code` |
-| `state` | full per-seat view (phase, own board, shots, opponent nickname and connection status, turn, winner) |
-| `shot` | `by`, `row`, `col`, `result`, optional `kind` |
-| `game_over` | `winner`, `reason` (`fleet_sunk` / `forfeit`), `opponent_fleet` |
+| `state` | full per-seat view: phase, own fleet and shots received, own shots at the opponent, both players' nicknames and connection status, whose turn it is, and once finished the winner, the reason (`fleet_sunk` / `forfeit`) and the opponent's fleet |
+| `shot` | `by`, `row`, `col`, `result`, optional `kind` (an event for the shot log; the new `state` follows it) |
 | `error` | `code` (stable string), human-readable `message` |
 
 HTTP:
 
-- `POST /api/rooms` → `201 {"code": "K7QX2M"}`. The Worker picks a random code and asks the Durable Object to initialise; if that code is already taken it retries (up to 5 times, then `503`).
-- `GET /api/rooms/{code}/ws` → `101` on success; `404` for an unknown room; `403` for a bad Origin; `429` when rate limited. A full room is reported over the socket (`error room_full`, then close) so the client gets a clear message.
+- `POST /api/rooms` → `201 {"code": "K7QX2M"}`. The Worker picks a random code and asks the Durable Object to initialise (internal `POST /init`); if that code is already taken it retries (up to 5 times, then `503`). Limited to 10 requests per minute per IP.
+- `GET /api/rooms/{code}/ws` → `101` on success; `404` for an unknown room or a malformed code; `403` for a bad Origin; `426` without a WebSocket upgrade; `429` when rate limited (30 upgrades per minute per IP). A full room is reported over the socket (`error room_full`, then close) so the client gets a clear message.
 
 ## 6. Connection lifecycle and timeouts
 
 - The first join gets a new seat and a token. A later `join` with a valid token reclaims the same seat (a new socket replaces the old one).
 - A third player gets `room_full`.
-- When a seated player's socket closes, they are marked disconnected and the opponent is notified. If they do not reconnect within **120 s** during `PLAYING`, the opponent wins by forfeit. In `PLACING` or `FINISHED`, the seat is simply released.
+- When a seated player's socket closes, they are marked disconnected and the opponent is notified. If they do not reconnect within **120 s**, the seat is released; if the game was `PLAYING`, the opponent first wins by forfeit. `leave` releases the seat immediately with the same forfeit rule.
+- When a player joins a vacant seat, a fresh game starts in `PLACING` (any fleet the remaining player had placed is cleared), so a new opponent never inherits a half-played game.
 - A room with no activity for **60 min** deletes its storage (via a DO alarm).
 - The server auto-responds `ping` → `pong` without waking the Durable Object (keep-alive).
 
 ## 7. Error handling
 
 - Domain and room errors are typed and carry a stable `code`; the Durable Object turns them into `error` messages without closing the socket.
-- Malformed JSON, schema violations and oversized frames get `error invalid_message`. Repeated violations close the socket with code `1008`.
+- Malformed JSON, schema violations and oversized frames get `error invalid_message`. The fifth violation on a connection closes it with code `1008`.
+- Each connection has a message budget of 20 messages per 10 seconds; messages over budget get `error rate_limited` and are dropped.
 - Unexpected exceptions are logged with the room code and seat (never tokens) and answered with `error internal_error`.
 - The client always treats `state` as the source of truth and re-renders from it.
 
@@ -154,8 +155,8 @@ Repository: public, `main` protected by a ruleset (PR only, squash merge, linear
 
 ## 9. CI/CD
 
-- **CI** (`ci.yml`, on every pull request and on push to `main`): `ruff check`, `ruff format --check`, `mypy`, `pytest`, Semgrep. These jobs are required status checks on `main`.
-- **CD** (`deploy.yml`, on push to `main`): re-runs the test job, then deploys with `pywrangler deploy` from the `production` GitHub environment, which holds the Cloudflare API token secret.
+- **CI** (`ci.yml`, on every pull request and called by the deploy workflow): `lint` (ruff, mypy), `test` (pytest), `semgrep`, `worker` (bundle + integration tests against `pywrangler dev`) and `e2e` (Playwright). These jobs are required status checks on `main`.
+- **CD** (`deploy.yml`, on push to `main`): re-runs CI, then deploys with `pywrangler deploy` from the `production` GitHub environment, which holds the Cloudflare API token secret.
 - Dependabot PRs go through the same CI.
 
 ## 10. Testing
