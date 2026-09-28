@@ -2,6 +2,7 @@ import json
 from http import HTTPStatus
 from typing import Any
 from urllib.parse import urlparse
+from uuid import uuid4
 
 from workers import Response, WorkerEntrypoint
 
@@ -58,9 +59,11 @@ class Default(WorkerEntrypoint):
             return rejection
         for _ in range(_CODE_ATTEMPTS):
             code = new_room_code()
+            # The nonce makes a retried /init recognisable, so it cannot orphan a room.
+            body = json.dumps({"code": code, "nonce": uuid4().hex})
             result = await call_with_retry(
-                lambda code=code: self.env.GAME_ROOM.getByName(code).fetch(
-                    "https://room/init", method="POST", body=json.dumps({"code": code})
+                lambda code=code, body=body: self.env.GAME_ROOM.getByName(code).fetch(
+                    "https://room/init", method="POST", body=body
                 )
             )
             if result.status == HTTPStatus.CREATED:
@@ -87,11 +90,13 @@ class Default(WorkerEntrypoint):
             return _error("forbidden_origin", HTTPStatus.FORBIDDEN)
         client_ip = request.headers.get("CF-Connecting-IP") or "unknown"
         name = limiter_name(limit, client_ip)
+        # A retried check carries the same id, so it is not counted twice.
+        rule = json.dumps({"limit": limit.limit, "period": limit.period, "request_id": uuid4().hex})
         result = await call_with_retry(
             lambda: self.env.RATE_LIMITER.getByName(name).fetch(
                 "https://limiter/consume",
                 method="POST",
-                body=json.dumps({"limit": limit.limit, "period": limit.period}),
+                body=rule,
             )
         )
         if not json.loads(await result.text())["allowed"]:
