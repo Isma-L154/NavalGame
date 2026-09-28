@@ -14,6 +14,7 @@ from naval.worker.policy import (
     parse_allowed_origins,
     parse_ws_path,
 )
+from naval.worker.retry import GaveUp, call_with_retry
 
 _CODE_ATTEMPTS = 5
 
@@ -38,11 +39,15 @@ class Default(WorkerEntrypoint):
         except MissingConfig as error:
             print(f"configuration error: {error}")
             return _error("misconfigured", HTTPStatus.INTERNAL_SERVER_ERROR)
-        if path == "/api/rooms":
-            return await self._create_room(request, allowed_origins)
-        code = parse_ws_path(path)
-        if code is not None:
-            return await self._open_room_socket(request, code, allowed_origins)
+        try:
+            if path == "/api/rooms":
+                return await self._create_room(request, allowed_origins)
+            code = parse_ws_path(path)
+            if code is not None:
+                return await self._open_room_socket(request, code, allowed_origins)
+        except GaveUp as error:
+            print(f"durable object call failed: {error}")
+            return _error("try_again", HTTPStatus.SERVICE_UNAVAILABLE)
         return _error("not_found", HTTPStatus.NOT_FOUND)
 
     async def _create_room(self, request: Any, allowed_origins: frozenset[str]) -> Response:
@@ -53,8 +58,10 @@ class Default(WorkerEntrypoint):
             return rejection
         for _ in range(_CODE_ATTEMPTS):
             code = new_room_code()
-            result = await self.env.GAME_ROOM.getByName(code).fetch(
-                "https://room/init", method="POST", body=json.dumps({"code": code})
+            result = await call_with_retry(
+                lambda code=code: self.env.GAME_ROOM.getByName(code).fetch(
+                    "https://room/init", method="POST", body=json.dumps({"code": code})
+                )
             )
             if result.status == HTTPStatus.CREATED:
                 return _json({"code": code}, HTTPStatus.CREATED)
@@ -70,7 +77,7 @@ class Default(WorkerEntrypoint):
         rejection = await self._guard(request, allowed_origins, WS_UPGRADE)
         if rejection is not None:
             return rejection
-        return await self.env.GAME_ROOM.getByName(code).fetch(request)
+        return await call_with_retry(lambda: self.env.GAME_ROOM.getByName(code).fetch(request))
 
     async def _guard(
         self, request: Any, allowed_origins: frozenset[str], limit: Limit
@@ -79,11 +86,13 @@ class Default(WorkerEntrypoint):
         if not is_origin_allowed(request.headers.get("Origin"), allowed_origins):
             return _error("forbidden_origin", HTTPStatus.FORBIDDEN)
         client_ip = request.headers.get("CF-Connecting-IP") or "unknown"
-        limiter = self.env.RATE_LIMITER.getByName(limiter_name(limit, client_ip))
-        result = await limiter.fetch(
-            "https://limiter/consume",
-            method="POST",
-            body=json.dumps({"limit": limit.limit, "period": limit.period}),
+        name = limiter_name(limit, client_ip)
+        result = await call_with_retry(
+            lambda: self.env.RATE_LIMITER.getByName(name).fetch(
+                "https://limiter/consume",
+                method="POST",
+                body=json.dumps({"limit": limit.limit, "period": limit.period}),
+            )
         )
         if not json.loads(await result.text())["allowed"]:
             return _error("rate_limited", HTTPStatus.TOO_MANY_REQUESTS)
