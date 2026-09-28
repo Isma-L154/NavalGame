@@ -15,8 +15,8 @@ The approved design lives in `docs/superpowers/specs/2026-09-27-naval-game-desig
 
 ## Commands
 
-- Install: `uv sync && npm ci`
-- Dev server: `uv run pywrangler dev` (serves on `http://localhost:8787`)
+- Install: `uv sync && npm ci && cp .dev.vars.example .dev.vars`
+- Dev server: `uv run pywrangler dev` (serves on `http://localhost:8787`; `[dev] host` keeps the browser Origin as `http://localhost:8787`, which `.dev.vars` allows)
   - Windows with the repo outside `C:`: Pyodide runs inside Node and only sees the current drive, so the uv cache and uv-managed Pythons must live on the repo's drive. In PowerShell: `$env:UV_CACHE_DIR='D:\.uv\cache'; $env:UV_PYTHON_INSTALL_DIR='D:\.uv\python'; uv run pywrangler dev`
 - Test (unit): `uv run pytest`
 - Test (integration, dev server running): `NAVAL_BASE_URL=http://localhost:8787 uv run pytest -m integration`

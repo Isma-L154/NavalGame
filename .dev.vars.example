@@ -1,0 +1,2 @@
+# Copy to .dev.vars for `pywrangler dev`. Not a secret: the allowed browser origin for local runs.
+ALLOWED_ORIGINS=http://localhost:8787

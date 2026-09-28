@@ -157,3 +157,10 @@ def test_room_becomes_idle_after_an_hour_without_activity() -> None:
     room, _, _ = _room_with_two_players()
     assert not room.is_idle(now=T0 + IDLE_TIMEOUT_SECONDS - 1)
     assert room.is_idle(now=T0 + IDLE_TIMEOUT_SECONDS)
+
+
+def test_a_second_disconnect_does_not_restart_the_grace_period() -> None:
+    room, _, _ = _room_with_two_players()
+    room.disconnect(1, now=T0)
+    room.disconnect(1, now=T0 + 60)
+    assert room.next_deadline() == T0 + RECONNECT_GRACE_SECONDS
