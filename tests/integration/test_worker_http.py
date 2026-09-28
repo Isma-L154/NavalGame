@@ -47,3 +47,14 @@ def test_index_page_has_security_headers() -> None:
     assert headers["X-Content-Type-Options"] == "nosniff"
     assert "Content-Security-Policy" in headers
     assert "Content-Security-Policy-Report-Only" not in headers
+
+
+def test_sitemap_and_robots_are_served() -> None:
+    status, headers, body = _get("/sitemap.xml")
+    assert status == 200
+    assert headers["Content-Type"].startswith("application/xml")
+    assert b"<loc>https://naval.cloudils.com/terms</loc>" in body
+    status, headers, body = _get("/robots.txt")
+    assert status == 200
+    assert headers["Content-Type"].startswith("text/plain")
+    assert b"Sitemap: https://naval.cloudils.com/sitemap.xml" in body
