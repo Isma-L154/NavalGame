@@ -11,7 +11,9 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="/fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/js/theme-init.js"></script>
     <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/js/theme.js"></script>
   </head>
   <body>
     <svg class="sprite" aria-hidden="true" focusable="false">
@@ -45,6 +47,13 @@
         </span>
         <span class="wordmark">Naval<span class="wordmark-light">Game</span></span>
       </a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+        <svg class="theme-toggle-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" />
+          <path d="M2 18 18 2v16z" fill="currentColor" />
+        </svg>
+        <span class="theme-toggle-label">Dark mode</span>
+      </button>
     </header>
 
     <main id="main" tabindex="-1" class="legal">

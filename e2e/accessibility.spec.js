@@ -7,9 +7,12 @@ async function expectNoViolations(page) {
   expect(results.violations.map((v) => `${v.id}: ${v.nodes.length}`)).toEqual([]);
 }
 
-test("every screen passes an automated WCAG AA check", async ({ browser }, testInfo) => {
-  const ana = await newPlayer(browser, testInfo);
-  const bo = await newPlayer(browser, testInfo);
+for (const colorScheme of ["light", "dark"]) {
+test(`every screen passes an automated WCAG AA check (${colorScheme})`, async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo, { colorScheme });
+  const bo = await newPlayer(browser, testInfo, { colorScheme });
+  await ana.goto("/");
+  await expect(ana.locator("html")).toHaveAttribute("data-theme", colorScheme);
   await ana.goto("/");
   await expectNoViolations(ana);
   const code = await createRoom(ana, "Ana");
@@ -24,6 +27,7 @@ test("every screen passes an automated WCAG AA check", async ({ browser }, testI
   await expect(ana.locator("#turn-banner")).toBeVisible();
   await expectNoViolations(ana);
 });
+}
 
 test("a whole turn can be played with the keyboard only", async ({ browser }, testInfo) => {
   const ana = await newPlayer(browser, testInfo);
