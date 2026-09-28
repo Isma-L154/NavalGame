@@ -5,9 +5,36 @@ compatibility_flags = ["python_workers"]
 workers_dev = false
 routes = [{ pattern = "naval.cloudils.com", custom_domain = true }]
 
+[vars]
+# Local development overrides this in .dev.vars.
+ALLOWED_ORIGINS = "https://naval.cloudils.com"
+
 [assets]
 directory = "./public"
 run_worker_first = ["/api/*"]
 
+[[durable_objects.bindings]]
+name = "GAME_ROOM"
+class_name = "GameRoom"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["GameRoom"]
+
+[[ratelimits]]
+name = "ROOM_CREATION_LIMITER"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 }
+
+[[ratelimits]]
+name = "WS_UPGRADE_LIMITER"
+namespace_id = "1002"
+simple = { limit = 30, period = 60 }
+
 [observability]
 enabled = true
+
+[dev]
+port = 8787
+# Keep local requests same-origin; by default dev rewrites them to the production host.
+host = "localhost:8787"

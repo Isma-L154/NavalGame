@@ -16,6 +16,7 @@ dev = [
     "pytest",
     "pytest-asyncio>=1.4.0",
     "ruff",
+    "websockets>=17.1",
     "workers-py",
     "workers-runtime-sdk",
 ]
@@ -56,4 +57,4 @@ python_version = "3.14"
 strict = true
 mypy_path = "src"
 # These modules import the Workers runtime (`workers`, `js`), which does not exist on CPython.
-exclude = ['^src/entry\.py$', '^src/naval/worker/entry\.py$']
+exclude = ['^src/entry\.py$', '^src/naval/worker/entry\.py$', '^src/naval/worker/game_room\.py$']

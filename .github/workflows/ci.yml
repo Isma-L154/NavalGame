@@ -64,7 +64,8 @@ jobs:
         run: uv run pywrangler deploy --dry-run --outdir .wrangler/dry-run
       - name: Start the dev server
         run: |
-          uv run pywrangler dev --port 8787 > wrangler-dev.log 2>&1 &
+          cp .dev.vars.example .dev.vars
+          uv run pywrangler dev > wrangler-dev.log 2>&1 &
           for _ in $(seq 1 60); do
             curl -sf -o /dev/null http://localhost:8787/api/health && exit 0
             sleep 2
@@ -75,3 +76,6 @@ jobs:
         run: uv run pytest -m integration
         env:
           NAVAL_BASE_URL: http://localhost:8787
+      - name: Dev server log
+        if: failure()
+        run: cat wrangler-dev.log
