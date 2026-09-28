@@ -8,6 +8,17 @@
     <title>NavalGame</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/styles.css">
+    <!-- Fetch the whole module graph in parallel instead of import by import. -->
+    <link rel="modulepreload" href="/js/api.js">
+    <link rel="modulepreload" href="/js/battle.js">
+    <link rel="modulepreload" href="/js/connection.js">
+    <link rel="modulepreload" href="/js/dom.js">
+    <link rel="modulepreload" href="/js/fleet.js">
+    <link rel="modulepreload" href="/js/grid.js">
+    <link rel="modulepreload" href="/js/lobby.js">
+    <link rel="modulepreload" href="/js/notice.js">
+    <link rel="modulepreload" href="/js/placement.js">
+    <link rel="modulepreload" href="/js/session.js">
     <script type="module" src="/js/app.js"></script>
   </head>
   <body>

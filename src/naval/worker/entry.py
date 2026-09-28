@@ -3,10 +3,9 @@ from http import HTTPStatus
 from typing import Any
 from urllib.parse import urlparse
 
-from js import Object
-from pyodide.ffi import to_js
 from workers import Response, WorkerEntrypoint
 
+from naval.limits.window import ROOM_CREATION, WS_UPGRADE, Limit, limiter_name
 from naval.rooms.codes import new_room_code
 from naval.worker.headers import API_HEADERS
 from naval.worker.policy import (
@@ -47,7 +46,7 @@ class Default(WorkerEntrypoint):
     async def _create_room(self, request: Any, allowed_origins: frozenset[str]) -> Response:
         if request.method != "POST":
             return _error("method_not_allowed", HTTPStatus.METHOD_NOT_ALLOWED)
-        rejection = await self._guard(request, allowed_origins, self.env.ROOM_CREATION_LIMITER)
+        rejection = await self._guard(request, allowed_origins, ROOM_CREATION)
         if rejection is not None:
             return rejection
         for _ in range(_CODE_ATTEMPTS):
@@ -66,20 +65,24 @@ class Default(WorkerEntrypoint):
             return _error("method_not_allowed", HTTPStatus.METHOD_NOT_ALLOWED)
         if (request.headers.get("Upgrade") or "").lower() != "websocket":
             return _error("upgrade_required", HTTPStatus.UPGRADE_REQUIRED)
-        rejection = await self._guard(request, allowed_origins, self.env.WS_UPGRADE_LIMITER)
+        rejection = await self._guard(request, allowed_origins, WS_UPGRADE)
         if rejection is not None:
             return rejection
         return await self.env.GAME_ROOM.getByName(code).fetch(request)
 
-    @staticmethod
     async def _guard(
-        request: Any, allowed_origins: frozenset[str], limiter: Any
+        self, request: Any, allowed_origins: frozenset[str], limit: Limit
     ) -> Response | None:
         """Origin check (CORS does not protect WebSockets or simple POSTs), then the IP limit."""
         if not is_origin_allowed(request.headers.get("Origin"), allowed_origins):
             return _error("forbidden_origin", HTTPStatus.FORBIDDEN)
-        key = request.headers.get("CF-Connecting-IP") or "unknown"
-        outcome = await limiter.limit(to_js({"key": key}, dict_converter=Object.fromEntries))
-        if not outcome.success:
+        client_ip = request.headers.get("CF-Connecting-IP") or "unknown"
+        limiter = self.env.RATE_LIMITER.getByName(limiter_name(limit, client_ip))
+        result = await limiter.fetch(
+            "https://limiter/consume",
+            method="POST",
+            body=json.dumps({"limit": limit.limit, "period": limit.period}),
+        )
+        if not json.loads(await result.text())["allowed"]:
             return _error("rate_limited", HTTPStatus.TOO_MANY_REQUESTS)
         return None

@@ -149,7 +149,7 @@ HTTP:
 
 ## 8. Security
 
-The seven baseline controls and how they apply are recorded in `CLAUDE.md` (section "How the seven controls apply to NavalGame"). In summary: no app secrets; no CORS headers plus an Origin check on the WebSocket upgrade and on room creation; strict Pydantic validation with size limits; no string-built SQL and `textContent`-only rendering; rate limiting at the edge (WAF rule), per IP (Workers Rate Limiting binding) and per connection (message budget); RLS N/A, replaced by a test that seat A never sees seat B's fleet; a strict CSP without `unsafe-inline`/`unsafe-eval`, rolled out report-only first.
+The seven baseline controls and how they apply are recorded in `CLAUDE.md` (section "How the seven controls apply to NavalGame"). In summary: no app secrets; no CORS headers plus an Origin check on the WebSocket upgrade and on room creation; strict Pydantic validation with size limits; no string-built SQL and `textContent`-only rendering; rate limiting per client IP (a `RateLimiter` Durable Object with a persisted fixed window, keyed by a hash of scope and IP) and per connection (message budget), with an edge WAF rule as a follow-up; RLS N/A, replaced by a test that seat A never sees seat B's fleet; a strict CSP without `unsafe-inline`/`unsafe-eval`, rolled out report-only first.
 
 Repository: public, `main` protected by a ruleset (PR only, squash merge, linear history, required CI checks, no force push or deletion). Secret scanning with push protection, Dependabot alerts, security updates and weekly version updates (`uv`, `github-actions`), CodeQL default setup, private vulnerability reporting, `SECURITY.md`, Actions with read-only default token and SHA-pinned actions.
 
