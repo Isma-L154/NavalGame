@@ -17,7 +17,7 @@
 - WebSocket frames ≤ 4096 bytes; 20 messages / 10 s per connection; 5th invalid message closes with 1008.
 - `POST /api/rooms`: 10 / 60 s per IP. WebSocket upgrades: 30 / 60 s per IP.
 - Room codes: 6 characters from `ABCDEFGHJKMNPQRSTUVWXYZ23456789`.
-- Nickname: the raw value must match `^[A-Za-z0-9 _-]{1,20}$` (no trimming or other normalisation).
+- Nickname: 1–20 letters, digits, spaces, `_` or `-`, no leading or trailing space; the raw value must match (no trimming or other normalisation).
 - Seat token: `secrets.token_urlsafe(32)` (43 chars), stored as SHA-256 hex, compared with `hmac.compare_digest`.
 - The opponent's ship positions never leave the server before the game is `finished`.
 - `workers` / `js` imports only in `src/naval/worker/entry.py` and `src/naval/worker/game_room.py`.
