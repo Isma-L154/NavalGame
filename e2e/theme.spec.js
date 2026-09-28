@@ -84,3 +84,14 @@ test("borders on yellow stay dark in dark mode", async ({ browser }, testInfo) =
   await expect(leave).toHaveCSS("outline-color", "rgb(17, 17, 17)");
   await expect(other.locator("h1, h2").filter({ hasText: "Sink the enemy fleet" })).toBeVisible();
 });
+
+test("a theme picked in one tab applies to the other open tabs", async ({ browser }, testInfo) => {
+  const first = await newPlayer(browser, testInfo, { colorScheme: "light" });
+  const second = await first.context().newPage();
+  await first.goto("/");
+  await second.goto("/terms");
+  await first.getByRole("button", { name: "Dark mode" }).click();
+  await expect(second.locator("html")).toHaveAttribute("data-theme", "dark");
+  await second.emulateMedia({ colorScheme: "light" });
+  await expect(second.locator("html")).toHaveAttribute("data-theme", "dark");
+});

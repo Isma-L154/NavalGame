@@ -33,6 +33,13 @@ toggle?.addEventListener("click", () => {
   apply(next);
 });
 
+// A choice made in another tab applies here too.
+window.addEventListener("storage", (event) => {
+  if (event.key !== STORAGE_KEY || (event.newValue !== "dark" && event.newValue !== "light")) return;
+  chosenTheme = event.newValue;
+  apply(event.newValue);
+});
+
 // Follow the system while the player has not picked a theme.
 systemDark.addEventListener("change", (event) => {
   if (!chosenTheme) apply(event.matches ? "dark" : "light");
