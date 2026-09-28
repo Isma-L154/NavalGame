@@ -95,3 +95,26 @@ test("a theme picked in one tab applies to the other open tabs", async ({ browse
   await second.emulateMedia({ colorScheme: "light" });
   await expect(second.locator("html")).toHaveAttribute("data-theme", "dark");
 });
+
+test("the defeat panel buttons stay readable on hover in dark mode", async ({ browser }, testInfo) => {
+  test.skip(testInfo.project.name === "mobile", "hover does not apply to touch screens");
+  const ana = await newPlayer(browser, testInfo, { colorScheme: "dark" });
+  const bo = await newPlayer(browser, testInfo, { colorScheme: "dark" });
+  const code = await createRoom(ana, "Ana");
+  await joinRoom(bo, "Bo", code);
+  for (const player of [ana, bo]) {
+    await player.getByRole("button", { name: "Random" }).click();
+    await player.getByRole("button", { name: "Ready" }).click();
+  }
+  await expect(ana.locator("#turn-banner")).toBeVisible();
+  // Reaching a defeat takes a whole game; this test only needs the panel's styling.
+  await ana.evaluate(() => {
+    const panel = document.getElementById("result-panel");
+    panel.hidden = false;
+    panel.classList.add("is-defeat");
+  });
+  const leave = ana.locator("#result-panel").getByRole("button", { name: "Leave room" });
+  await leave.hover();
+  await expect(leave).toHaveCSS("background-color", "rgb(244, 194, 13)");
+  await expect(leave).toHaveCSS("color", "rgb(17, 17, 17)");
+});

@@ -45,6 +45,7 @@
   /* Text on signal fills never changes with the theme. */
   --on-signal: #111111;
   --flag-white: #ffffff;
+  --flag-blue: #1d4e9e;
   --on-red: var(--flag-white);
   --danger-bg: #fdecea;
   --line-soft: #d9d5cc;
@@ -681,6 +682,13 @@ a.button {
   border: 1px solid var(--ink);
 }
 
+/* On yellow, the pips use the flag's own dark blue so they keep 3:1 in both themes. */
+.ship-button[aria-pressed="true"] .ship-pips span,
+.ship-button:hover:not(:disabled) .ship-pips span {
+  background: var(--flag-blue);
+  border-color: var(--on-signal);
+}
+
 .placement-actions {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
@@ -886,7 +894,7 @@ a.button {
   color: var(--on-red);
 }
 
-.result-panel.is-defeat .button:not(.button-primary) {
+.result-panel.is-defeat .button:not(.button-primary):not(:hover) {
   background: var(--surface);
 }
 
