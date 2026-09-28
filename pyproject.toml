@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Two-player online naval battle game on Cloudflare Workers"
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.13,<3.14"
+requires-python = ">=3.14,<3.15"
 dependencies = []
 
 [dependency-groups]
@@ -12,6 +12,8 @@ dev = [
     "mypy",
     "pytest",
     "ruff",
+    "workers-py",
+    "workers-runtime-sdk",
 ]
 
 [tool.uv]
@@ -21,10 +23,11 @@ exclude-newer = "7 days"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-addopts = ["--strict-markers", "--strict-config"]
+addopts = ["--strict-markers", "--strict-config", "-m", "not integration"]
+markers = ["integration: needs a running Worker at NAVAL_BASE_URL"]
 
 [tool.ruff]
-target-version = "py313"
+target-version = "py314"
 line-length = 100
 src = ["src", "tests"]
 
@@ -35,6 +38,8 @@ select = ["E", "W", "F", "I", "B", "UP", "SIM", "S", "N", "RUF", "PL", "PT"]
 "tests/**" = ["S101", "PLR2004"]
 
 [tool.mypy]
-python_version = "3.13"
+python_version = "3.14"
 strict = true
 mypy_path = "src"
+# These modules import the Workers runtime (`workers`, `js`), which does not exist on CPython.
+exclude = ['^src/entry\.py$', '^src/naval/worker/entry\.py$']
