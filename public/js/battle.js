@@ -141,7 +141,7 @@ export class BattleView {
 
   /**
    * The cells the latest shot changed on one board, each with its animation step: the shot
-   * cell, or every cell of the ship it sank, bow to stern.
+   * cell, or every cell of the ship it sank, in order along the ship.
    */
   #freshCells(mine, placements) {
     const shot = this.#lastShot;

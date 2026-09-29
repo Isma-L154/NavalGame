@@ -1,3 +1,5 @@
+import { shipByKind } from "./fleet.js";
+
 const SVG_NS = "http://www.w3.org/2000/svg";
 
 // Top-down silhouettes, one cell = 10 units, bow to the right. Flat shapes only.
@@ -25,8 +27,6 @@ const ART = {
   },
 };
 
-const LENGTHS = { carrier: 5, battleship: 4, cruiser: 3, submarine: 3, destroyer: 2 };
-
 function svgEl(tag, attrs) {
   const node = document.createElementNS(SVG_NS, tag);
   for (const [name, value] of Object.entries(attrs)) node.setAttribute(name, value);
@@ -35,7 +35,7 @@ function svgEl(tag, attrs) {
 
 /** A decorative ship silhouette; its cells carry the accessible name. */
 export function shipArt(kind, orientation = "horizontal") {
-  const units = LENGTHS[kind] * 10;
+  const units = shipByKind(kind).length * 10;
   const vertical = orientation === "vertical";
   const svg = svgEl("svg", {
     class: "ship-art",

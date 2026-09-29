@@ -1020,6 +1020,17 @@ a.button {
   background: var(--on-signal);
 }
 
+/* High-contrast modes repaint backgrounds: draw the crosses in the system text colour. */
+@media (forced-colors: active) {
+  .cell.state-hit::after,
+  .cell.state-sunk::after,
+  .cell-sample.state-hit::after,
+  .cell-sample.state-sunk::after {
+    forced-color-adjust: none;
+    background: CanvasText;
+  }
+}
+
 .cell.state-revealed {
   background: repeating-linear-gradient(45deg, var(--blue) 0 3px, var(--surface) 3px 7px);
 }
@@ -1304,6 +1315,7 @@ a.button {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }

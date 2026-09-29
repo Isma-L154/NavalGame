@@ -16,7 +16,9 @@ export class ShipDrag {
     root.addEventListener("pointerdown", (event) => this.#onDown(event));
     root.addEventListener("pointermove", (event) => this.#onMove(event));
     root.addEventListener("pointerup", (event) => this.#onUp(event));
-    root.addEventListener("pointercancel", () => this.#end(null));
+    root.addEventListener("pointercancel", (event) => {
+      if (event.pointerId === this.#press?.id) this.#end(null);
+    });
     // The click that follows a drop must not also select or place.
     root.addEventListener("click", (event) => {
       if (!this.#swallowClick) return;
@@ -26,12 +28,13 @@ export class ShipDrag {
     }, true);
   }
 
-  get active() {
-    return this.#dragging;
-  }
-
   #onDown(event) {
     if (!event.isPrimary || event.button !== 0) return;
+    // A drop that no click followed (a touch drag, a cancelled one) must not eat the next click,
+    // and a press whose release was lost outside the page must not linger.
+    this.#swallowClick = false;
+    this.#press = null;
+    this.#dragging = false;
     const payload = this.callbacks.start(event);
     if (!payload) return;
     this.#press = { payload, x: event.clientX, y: event.clientY, id: event.pointerId, target: event.target };

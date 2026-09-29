@@ -160,6 +160,8 @@ export class PlacementView {
 
   /** Places or moves a ship. A new one hands over to the next ship in the dock. */
   #place(placement) {
+    // A drag can end after Ready was pressed: the fleet on its way must not change.
+    if (this.#frozen) return;
     const moving = this.#draft.has(placement.kind);
     if (!this.#draft.place(placement)) {
       $("placement-status").textContent = "That ship does not fit there.";
@@ -203,6 +205,8 @@ export class PlacementView {
   #dragStart(event) {
     if (this.#frozen) return null;
     const button = event.target.closest?.(".ship-button");
+    // By touch only the drawing is grabbed: a swipe on the name scrolls the page.
+    if (button && event.pointerType === "touch" && !event.target.closest(".ship-dock-art")) return null;
     if (button) {
       const kind = button.dataset.kind;
       const length = shipByKind(kind).length;
@@ -210,9 +214,9 @@ export class PlacementView {
       const held = Math.floor(((event.clientX - art.left) / art.width) * length);
       return { kind, held: clamp(held, length - 1), orientation: this.#orientationOf(kind) };
     }
-    const cell = event.target.closest?.(".cell");
-    if (!cell || !this.grid.root.contains(cell)) return null;
-    const [row, col] = [Number(cell.dataset.row), Number(cell.dataset.col)];
+    const cell = this.grid.cellAt(event.clientX, event.clientY);
+    if (!cell) return null;
+    const [row, col] = cell;
     const kind = this.#draft.kindAt(row, col);
     if (!kind) return null;
     const placed = this.#draft.placementOf(kind);
@@ -275,7 +279,8 @@ export class PlacementView {
       for (let col = 0; col < 10; col += 1) {
         const kind = this.#draft.kindAt(row, col);
         let description = "water";
-        if (kind) description = `${shipByKind(kind).name}${kind === this.#selected ? ", selected" : ""}`;
+        const selected = kind === this.#selected && !this.#frozen;
+        if (kind) description = `${shipByKind(kind).name}${selected ? ", selected" : ""}`;
         this.grid.setCell(row, col, { states: kind ? ["state-ship"] : [], description });
       }
     }
