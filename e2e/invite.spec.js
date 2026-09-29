@@ -111,7 +111,9 @@ test("no second room can be created while the first one is being joined", async 
   await page.getByLabel("Your nickname").press("Enter");
   await opened;
   await page.getByLabel("Your nickname").press("Enter");
-  await page.getByRole("button", { name: "Create a room" }).click();
+  // Marked unavailable while busy; a press anyway (force skips that check) must change nothing.
+  await expect(page.getByRole("button", { name: "Create a room" })).toHaveAttribute("aria-disabled", "true");
+  await page.getByRole("button", { name: "Create a room" }).click({ force: true });
   await page.waitForTimeout(300);
   expect(creations).toBe(1);
 });
@@ -130,7 +132,8 @@ test("a join submitted while a room is being created is ignored", async ({ brows
   await page.getByRole("button", { name: "Create a room" }).click();
   await expect(page.getByRole("button", { name: "Creating…" })).toBeFocused();
   await page.getByLabel("Or join with a code").fill("ABCDEF");
-  await page.getByRole("button", { name: "Join room" }).click();
+  await expect(page.getByRole("button", { name: "Join room" })).toHaveAttribute("aria-disabled", "true");
+  await page.getByRole("button", { name: "Join room" }).click({ force: true });
   await expect(page.getByRole("heading", { name: "Waiting for an opponent" })).toBeVisible();
   expect(sockets.filter((url) => url.includes("/ABCDEF/"))).toEqual([]);
 });
@@ -191,20 +194,38 @@ test("a seated player whose reconnect is never answered is told the connection w
   const page = await newPlayer(browser, testInfo);
   await page.clock.install();
   let first = null;
+  const rejoins = [];
   await page.routeWebSocket(/\/api\/rooms\/[A-Z0-9]+\/ws$/, (ws) => {
     // The first socket really reaches the room; the reconnects are never answered.
     if (first === null) {
       first = ws;
       ws.connectToServer();
+      return;
     }
+    ws.onMessage((message) => rejoins.push(JSON.parse(message).type));
   });
   const code = await createRoom(page, "Ana");
   await first.close({ code: 1011, reason: "network drop" });
   await expect(page.locator("#connection-status")).toHaveText("Connection lost. Reconnecting…");
   await page.clock.runFor(1_000);
+  await expect.poll(() => rejoins).toEqual(["join"]);
   await page.clock.runFor(15_000);
   await expect(page.getByRole("alert")).toHaveText("The connection to the room was lost.");
   await expect(page.getByLabel("Or join with a code")).toHaveValue(code);
+});
+
+test("a room that closes a seated player's socket without a word sends them home", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
+  let first = null;
+  await page.routeWebSocket(/\/api\/rooms\/[A-Z0-9]+\/ws$/, (ws) => {
+    first ??= ws;
+    ws.connectToServer();
+  });
+  const code = await createRoom(page, "Ana");
+  await first.close({ code: 1000, reason: "closed" });
+  await expect(page.getByRole("alert")).toHaveText("The connection to the room was lost.");
+  await expect(page.getByLabel("Or join with a code")).toHaveValue(code);
+  await expect(page.getByRole("button", { name: "Create a room" })).toHaveAttribute("aria-disabled", "false");
 });
 
 test("a room that drops every socket before answering is given up on", async ({ browser }, testInfo) => {

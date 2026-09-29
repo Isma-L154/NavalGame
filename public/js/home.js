@@ -17,11 +17,13 @@ export class HomeView {
     return this.#invitedTo;
   }
 
-  /** The button stays enabled (and focused) while busy: the caller ignores repeated presses. */
-  setCreating(creating) {
-    const button = $("create-room");
-    button.textContent = creating ? "Creating…" : this.#createLabel;
-    button.setAttribute("aria-disabled", String(creating));
+  /**
+   * While a room is being created or joined, Create and Join are marked unavailable. They stay
+   * focusable (aria-disabled, not disabled) so focus does not jump; the caller ignores presses.
+   */
+  setBusy(busy, { creating = false } = {}) {
+    for (const id of ["create-room", "join-submit"]) $(id).setAttribute("aria-disabled", String(busy));
+    $("create-room").textContent = creating ? "Creating…" : this.#createLabel;
   }
 
   /**

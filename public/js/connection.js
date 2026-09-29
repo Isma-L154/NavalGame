@@ -1,14 +1,22 @@
 const KEEPALIVE_MS = 30_000;
 // A handshake that hangs (a stalled proxy, a stuck server) must not leave the player waiting.
 const CONNECT_TIMEOUT_MS = 15_000;
+// A room that accepts the socket but never answers must not keep the player waiting either.
+const ANSWER_TIMEOUT_MS = 15_000;
 const MAX_RECONNECT_ATTEMPTS = 12;
 // Server-side closes that must not trigger a reconnect.
 const FINAL_CLOSE_CODES = new Set([1000, 1008, 4000]);
 
 /**
  * One WebSocket to a room, reconnecting with backoff after network drops.
+ *
+ * After every "open" the owner calls confirm() once the room has answered on that socket. Only
+ * then does the backoff start over, so a room that drops every socket before answering runs out
+ * of retries; and without an answer within ANSWER_TIMEOUT_MS the connection fires "unanswered"
+ * (the socket is still open, for a last message) and stops.
+ *
  * Events: "open", "message" (detail: parsed message), "reconnecting" (detail: attempt),
- * "closed" (detail: { code }).
+ * "unanswered", "closed" (detail: { code }).
  */
 export class RoomConnection extends EventTarget {
   #code;
@@ -18,6 +26,7 @@ export class RoomConnection extends EventTarget {
   #stopped = false;
   #keepalive = null;
   #retryTimer = null;
+  #answerTimer = null;
 
   constructor(code) {
     super();
@@ -40,6 +49,10 @@ export class RoomConnection extends EventTarget {
       clearTimeout(openTimer);
       this.#everOpened = true;
       this.#keepalive = setInterval(() => this.#sendRaw("ping"), KEEPALIVE_MS);
+      this.#answerTimer = setTimeout(() => {
+        this.dispatchEvent(new Event("unanswered"));
+        this.stop();
+      }, ANSWER_TIMEOUT_MS);
       this.dispatchEvent(new Event("open"));
     });
     socket.addEventListener("message", (event) => {
@@ -55,6 +68,7 @@ export class RoomConnection extends EventTarget {
     });
     socket.addEventListener("close", (event) => {
       clearTimeout(openTimer);
+      clearTimeout(this.#answerTimer);
       this.#onClose(event.code);
     });
   }
@@ -63,11 +77,9 @@ export class RoomConnection extends EventTarget {
     return this.#sendRaw(JSON.stringify(message));
   }
 
-  /**
-   * The room answered on this socket. Only then does the backoff start over: a room that drops
-   * every socket before answering must run out of retries, not loop forever.
-   */
-  resetRetries() {
+  /** The room answered on the current socket. */
+  confirm() {
+    clearTimeout(this.#answerTimer);
     this.#attempt = 0;
   }
 
@@ -75,6 +87,7 @@ export class RoomConnection extends EventTarget {
   stop() {
     this.#stopped = true;
     clearTimeout(this.#retryTimer);
+    clearTimeout(this.#answerTimer);
     clearInterval(this.#keepalive);
     this.#socket?.close(1000, "bye");
   }
