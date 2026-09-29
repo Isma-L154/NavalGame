@@ -1,5 +1,6 @@
 import { el } from "./dom.js";
-import { BOARD_SIZE, ROW_LABELS, coordinateLabel } from "./fleet.js";
+import { BOARD_SIZE, ROW_LABELS, coordinateLabel, shipByKind } from "./fleet.js";
+import { shipArt } from "./ships.js";
 
 const STATE_CLASSES = ["state-ship", "state-miss", "state-hit", "state-sunk", "state-revealed",
   "state-preview-ok", "state-preview-bad"];
@@ -20,6 +21,9 @@ export class Grid {
       className: `board${small ? " board-small" : ""}`,
       attrs: { role: "grid", "aria-label": label },
     });
+    // Drawn first so the cells paint over it; the cells carry every accessible description.
+    this.shipLayer = el("div", { className: "ship-layer", attrs: { "aria-hidden": "true" } });
+    this.root.append(this.shipLayer);
     this.#build();
     container.replaceChildren(this.root);
   }
@@ -95,14 +99,45 @@ export class Grid {
     this.#focused = [row, col];
   }
 
-  /** Sets the visual states and the spoken description of one cell. */
-  setCell(row, col, { states = [], description, disabled = false, isNew = false }) {
+  /**
+   * Sets the visual states and the spoken description of one cell. `isNew` marks the latest
+   * shot for its animation; `step` delays it, so a sunk ship's cells turn over one by one.
+   */
+  setCell(row, col, { states = [], description, disabled = false, isNew = false, step = 0 }) {
     const cell = this.#cells[row][col];
     cell.classList.remove(...STATE_CLASSES, "is-new");
     cell.classList.add(...states);
-    if (isNew) cell.classList.add("is-new");
+    if (isNew) {
+      cell.classList.add("is-new");
+      cell.style.setProperty("--i", String(step));
+    } else {
+      cell.style.removeProperty("--i");
+    }
     cell.setAttribute("aria-label", `${coordinateLabel(row, col)}, ${description}`);
     cell.setAttribute("aria-disabled", String(disabled));
+  }
+
+  /** Draws `placements` as ships under the cells; `selected` is the kind drawn as selected. */
+  setShips(placements, { selected = null } = {}) {
+    this.shipLayer.replaceChildren(
+      ...placements.map(({ kind, row, col, orientation }) => {
+        const ship = el("div", { className: "ship" }, [shipArt(kind, orientation)]);
+        ship.classList.toggle("is-vertical", orientation === "vertical");
+        ship.classList.toggle("is-selected", kind === selected);
+        ship.dataset.kind = kind;
+        ship.style.setProperty("--row", String(row));
+        ship.style.setProperty("--col", String(col));
+        ship.style.setProperty("--len", String(shipByKind(kind).length));
+        return ship;
+      }),
+    );
+  }
+
+  /** The [row, col] of the cell under a viewport point, or null outside this grid. */
+  cellAt(x, y) {
+    const cell = document.elementFromPoint(x, y)?.closest(".cell");
+    if (!cell || !this.root.contains(cell)) return null;
+    return [Number(cell.dataset.row), Number(cell.dataset.col)];
   }
 
   setPreview(cells, valid) {

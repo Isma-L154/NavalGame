@@ -3,9 +3,18 @@ import { FlagPicker } from "./flag-picker.js";
 import { flagIcon, flagName } from "./flags.js";
 import { FleetDraft, SHIPS, shipByKind, shipCells } from "./fleet.js";
 import { Grid } from "./grid.js";
+import { ShipDrag } from "./ship-drag.js";
+import { shipArt } from "./ships.js";
 
 const FLAG_SETTLE_MS = 400;
+const flip = (orientation) => (orientation === "horizontal" ? "vertical" : "horizontal");
+const clamp = (value, max) => Math.max(0, Math.min(max, value));
 
+/**
+ * Placing the fleet. A ship is selected from the dock or on the grid (it stays where it is);
+ * a water cell places or moves the selected ship; selecting it again, R or Rotate turns it in
+ * place. Ships can also be dragged from the dock or around the grid.
+ */
 export class PlacementView {
   #draft = new FleetDraft();
   #selected = SHIPS[0].kind;
@@ -37,7 +46,14 @@ export class PlacementView {
       onHover: (row, col) => this.#preview(row, col),
       onLeave: () => this.grid.clearPreview(),
     });
-    this.#buildShipList();
+    this.grid.root.classList.add("board-placement");
+    this.#buildDock();
+    new ShipDrag($("screen-placement"), {
+      start: (event) => this.#dragStart(event),
+      move: (ship, x, y) => this.#dragMove(ship, x, y),
+      drop: (ship, x, y) => this.#dragDrop(ship, x, y),
+      cancel: () => this.grid.clearPreview(),
+    });
     $("rotate").addEventListener("click", () => this.#rotate());
     $("random-fleet").addEventListener("click", () => this.#randomize());
     $("clear-fleet").addEventListener("click", () => this.#clear());
@@ -106,61 +122,122 @@ export class PlacementView {
     this.flagPicker.setTaken(state.players[1 - state.seat]?.flag ?? null);
   }
 
-  #buildShipList() {
+  #buildDock() {
     const list = $("ship-list");
     for (const ship of SHIPS) {
-      const pips = el(
-        "span",
-        { className: "ship-pips", attrs: { "aria-hidden": "true" } },
-        Array.from({ length: ship.length }, () => el("span")),
-      );
+      const art = el("span", { className: "ship-dock-art" }, [shipArt(ship.kind)]);
+      art.style.setProperty("--len", String(ship.length));
       const button = el(
         "button",
         { className: "button ship-button", attrs: { type: "button", "aria-pressed": "false" } },
-        [el("span", { className: "ship-name", text: `${ship.name} (${ship.length})` }), pips],
+        [el("span", { className: "ship-name", text: `${ship.name} (${ship.length})` }), art],
       );
-      button.addEventListener("click", () => {
-        this.#selected = ship.kind;
-        this.#render();
-      });
+      button.dataset.kind = ship.kind;
+      button.addEventListener("click", () => this.#select(ship.kind));
       this.#shipButtons.set(ship.kind, button);
       list.append(el("li", {}, [button]));
     }
   }
 
+  #select(kind) {
+    if (this.#frozen) return;
+    this.#selected = kind;
+    this.#render();
+  }
+
   #activate(row, col) {
     if (this.#frozen) return;
     const occupant = this.#draft.kindAt(row, col);
-    if (occupant && (this.#selected === null || this.#draft.has(this.#selected))) {
-      // Pick an already placed ship up again.
-      this.#draft.remove(occupant);
-      this.#selected = occupant;
-      this.#render();
-      this.#preview(row, col);
+    if (occupant) {
+      if (occupant === this.#selected) this.#rotate();
+      else this.#select(occupant);
       return;
     }
-    if (this.#selected === null) return;
-    const placement = { kind: this.#selected, row, col, orientation: this.#orientation };
-    if (this.#draft.place(placement)) {
-      this.#selected = SHIPS.find((ship) => !this.#draft.has(ship.kind))?.kind ?? null;
-      this.grid.clearPreview();
-      this.#render();
-    } else {
-      $("placement-status").textContent = "That ship does not fit there.";
+    if (this.#selected !== null) {
+      this.#place({ kind: this.#selected, row, col, orientation: this.#orientationOf(this.#selected) });
     }
+  }
+
+  /** Places or moves a ship. A new one hands over to the next ship in the dock. */
+  #place(placement) {
+    const moving = this.#draft.has(placement.kind);
+    if (!this.#draft.place(placement)) {
+      $("placement-status").textContent = "That ship does not fit there.";
+      return;
+    }
+    this.#selected = moving
+      ? placement.kind
+      : (SHIPS.find((ship) => !this.#draft.has(ship.kind))?.kind ?? null);
+    this.grid.clearPreview();
+    this.#render();
+  }
+
+  #orientationOf(kind) {
+    return this.#draft.placementOf(kind)?.orientation ?? this.#orientation;
   }
 
   #preview(row, col) {
-    if (this.#frozen || this.#selected === null) return;
-    const placement = { kind: this.#selected, row, col, orientation: this.#orientation };
+    if (this.#frozen || this.#selected === null || this.#draft.kindAt(row, col)) {
+      this.grid.clearPreview();
+      return;
+    }
+    const placement = { kind: this.#selected, row, col, orientation: this.#orientationOf(this.#selected) };
     this.grid.setPreview(shipCells(placement), this.#draft.canPlace(placement));
   }
 
+  /** Turns the selected ship where it lies, or the orientation for the next ship placed. */
   #rotate() {
     if (this.#frozen) return;
-    this.#orientation = this.#orientation === "horizontal" ? "vertical" : "horizontal";
+    const placed = this.#selected === null ? null : this.#draft.placementOf(this.#selected);
+    if (placed) {
+      if (this.#draft.place({ ...placed, orientation: flip(placed.orientation) })) this.#render();
+      else $("placement-status").textContent = "No room to turn that ship where it lies.";
+      return;
+    }
+    this.#orientation = flip(this.#orientation);
     $("orientation-label").textContent = this.#orientation;
     if (this.grid.root.contains(document.activeElement)) this.#preview(...this.grid.focusedCell);
+  }
+
+  /** A drag lifts a ship from the dock or the grid, remembering which of its cells was held. */
+  #dragStart(event) {
+    if (this.#frozen) return null;
+    const button = event.target.closest?.(".ship-button");
+    if (button) {
+      const kind = button.dataset.kind;
+      const length = shipByKind(kind).length;
+      const art = button.querySelector(".ship-dock-art").getBoundingClientRect();
+      const held = Math.floor(((event.clientX - art.left) / art.width) * length);
+      return { kind, held: clamp(held, length - 1), orientation: this.#orientationOf(kind) };
+    }
+    const cell = event.target.closest?.(".cell");
+    if (!cell || !this.grid.root.contains(cell)) return null;
+    const [row, col] = [Number(cell.dataset.row), Number(cell.dataset.col)];
+    const kind = this.#draft.kindAt(row, col);
+    if (!kind) return null;
+    const placed = this.#draft.placementOf(kind);
+    const held = placed.orientation === "horizontal" ? col - placed.col : row - placed.row;
+    return { kind, held, orientation: placed.orientation };
+  }
+
+  #dragTarget(ship, x, y) {
+    const cell = this.grid.cellAt(x, y);
+    if (!cell) return null;
+    const [row, col] = cell;
+    const [dRow, dCol] = ship.orientation === "horizontal" ? [0, ship.held] : [ship.held, 0];
+    return { kind: ship.kind, row: row - dRow, col: col - dCol, orientation: ship.orientation };
+  }
+
+  #dragMove(ship, x, y) {
+    const placement = this.#dragTarget(ship, x, y);
+    if (placement) this.grid.setPreview(shipCells(placement), this.#draft.canPlace(placement));
+    else this.grid.clearPreview();
+  }
+
+  #dragDrop(ship, x, y) {
+    this.grid.clearPreview();
+    const placement = this.#dragTarget(ship, x, y);
+    if (placement) this.#place(placement);
   }
 
   #randomize() {
@@ -197,12 +274,12 @@ export class PlacementView {
     for (let row = 0; row < 10; row += 1) {
       for (let col = 0; col < 10; col += 1) {
         const kind = this.#draft.kindAt(row, col);
-        this.grid.setCell(row, col, {
-          states: kind ? ["state-ship"] : [],
-          description: kind ? shipByKind(kind).name : "water",
-        });
+        let description = "water";
+        if (kind) description = `${shipByKind(kind).name}${kind === this.#selected ? ", selected" : ""}`;
+        this.grid.setCell(row, col, { states: kind ? ["state-ship"] : [], description });
       }
     }
+    this.grid.setShips(this.#draft.placements, { selected: this.#frozen ? null : this.#selected });
     for (const [kind, button] of this.#shipButtons) {
       button.setAttribute("aria-pressed", String(this.#selected === kind));
       button.classList.toggle("is-placed", this.#draft.has(kind));
