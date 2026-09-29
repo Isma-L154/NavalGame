@@ -6,13 +6,15 @@ HEADERS_FILE = Path(__file__).parents[2] / "public" / "_headers"
 
 
 def _static_headers() -> dict[str, str]:
+    """The headers of the `/*` block, which applies to every static asset."""
     lines = HEADERS_FILE.read_text(encoding="utf-8").splitlines()
     assert lines[0] == "/*"
     parsed: dict[str, str] = {}
     for line in lines[1:]:
-        if line.strip():
-            name, _, value = line.strip().partition(": ")
-            parsed[name] = value
+        if not line.strip():
+            break
+        name, _, value = line.strip().partition(": ")
+        parsed[name] = value
     return parsed
 
 

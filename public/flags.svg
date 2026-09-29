@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-  <!-- The 26 letter flags of the International Code of Signals, 3:2. Referenced as /flags.svg#flag-x. -->
+  <!-- The 26 letter flags of the International Code of Signals, 3:2. Referenced as /flags.svg#flag-x.
+       Signal flags keep their colours in both themes, like the fixed signal tokens in styles.css,
+       so the palette is written out here rather than taken from the theme. -->
   <symbol id="flag-a" viewBox="0 0 30 20">
     <rect width="14" height="20" fill="#fff" />
     <path fill="#1d4e9e" d="M14 0h16l-8 10 8 10H14z" />
