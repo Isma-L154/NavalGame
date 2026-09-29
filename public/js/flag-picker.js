@@ -38,7 +38,7 @@ export class FlagPicker {
     return [...this.#radios.values()].find((radio) => radio.checked)?.value ?? null;
   }
 
-  /** Shows `code` as chosen, without reporting a change; null shows no flag. */
+  /** Shows `code` as chosen, without reporting a change. */
   setValue(code) {
     for (const [value, radio] of this.#radios) radio.checked = value === code;
     this.#show(code);
@@ -50,8 +50,6 @@ export class FlagPicker {
   }
 
   #show(code) {
-    this.#current.replaceChildren(
-      ...(code ? [flagIcon(code), el("span", { text: flagName(code) })] : [el("span", { text: "None yet" })]),
-    );
+    this.#current.replaceChildren(flagIcon(code), el("span", { text: flagName(code) }));
   }
 }

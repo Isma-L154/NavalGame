@@ -222,9 +222,7 @@ function ownSunkKinds(state) {
 
 function renderFlag(slot, player) {
   slot.replaceChildren(
-    ...(player?.flag
-      ? [flagIcon(player.flag, { className: "flag", label: `${player.nickname}'s flag, ${flagName(player.flag)}` })]
-      : []),
+    ...(player ? [flagIcon(player.flag, { label: `${player.nickname}'s flag, ${flagName(player.flag)}` })] : []),
   );
 }
 

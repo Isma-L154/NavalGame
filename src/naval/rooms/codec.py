@@ -62,9 +62,7 @@ def _player_to_dict(player: Player) -> dict[str, Any]:
 
 
 def _player(raw: dict[str, Any]) -> Player:
-    # Rooms stored before flags existed have no "flag" key.
-    flag = raw.get("flag")
-    return Player(**{**raw, "flag": None if flag is None else Flag(flag)})
+    return Player(**{**raw, "flag": Flag(raw["flag"])})
 
 
 def _replay(raw: dict[str, Any]) -> Game:

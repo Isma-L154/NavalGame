@@ -1,5 +1,3 @@
-import json
-
 from hypothesis import given
 from hypothesis import strategies as st
 
@@ -46,18 +44,6 @@ def test_join_ids_round_trip_as_hashes_only() -> None:
     stored = room_to_json(room)
     assert "j" * 43 not in stored
     _assert_same(room, room_from_json(stored))
-
-
-def test_a_room_stored_before_flags_existed_still_loads() -> None:
-    room = Room("ABCDEF", created_at=5.0)
-    room.join("Ana", None, now=6.0, first_shooter=0)
-    stored = json.loads(room_to_json(room))
-    for player in stored["players"]:
-        if player is not None:
-            del player["flag"]
-    restored = room_from_json(json.dumps(stored))
-    assert restored.players[0] is not None
-    assert restored.players[0].flag is None
 
 
 def test_empty_room_round_trips() -> None:

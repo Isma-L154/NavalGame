@@ -37,8 +37,7 @@ class FlagTaken(GameError):
 class Player:
     nickname: str
     token_hash: str
-    # None only for a seat stored before flags existed; it can still choose one.
-    flag: Flag | None = None
+    flag: Flag
     # Hash of the join id that took this seat, until the player proves they got the token.
     join_hash: str | None = None
     connected: bool = True
