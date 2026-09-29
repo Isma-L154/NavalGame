@@ -34,8 +34,10 @@ export class LobbyView {
       await navigator.share({ title: "NavalGame", text: `Join my NavalGame room ${this.#code}.`, url });
       feedback.textContent = "Invite shared.";
     } catch (error) {
-      // Closing the share sheet is a choice, not a failure; anything else still gets the link out.
-      if (error.name !== "AbortError") await this.#copy(url, "Invite link copied.");
+      // Closing the sheet is a choice, and a second tap while it is open changes nothing; any
+      // other failure still gets the link out by copying it.
+      if (error.name === "AbortError" || error.name === "InvalidStateError") return;
+      await this.#copy(url, "Invite link copied.");
     }
   }
 

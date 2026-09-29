@@ -26,7 +26,8 @@ const game = {
 
 const home = new HomeView({
   onLeaveInvite: () => {
-    history.replaceState(null, "", "/");
+    // Also abandons a join that is still connecting.
+    leaveToHome(null);
     $("nickname").focus();
   },
 });
@@ -66,23 +67,34 @@ function readNickname() {
   return nickname;
 }
 
+let creating = false;
+
+/** While a room is being created or joined, a second one would orphan the seat being taken. */
+const busy = () => creating || game.connection !== null;
+
 async function onCreateRoom() {
+  if (busy()) return;
   const nickname = readNickname();
   if (!nickname) return;
-  home.setBusy(true, { creating: true });
-  let code;
+  const button = $("create-room");
+  const label = button.textContent;
+  creating = true;
+  button.disabled = true;
+  button.textContent = "Creating…";
   try {
-    code = await createRoom();
+    enterRoom(await createRoom(), nickname);
   } catch (error) {
-    home.setBusy(false);
     notify(error.message);
-    return;
+  } finally {
+    creating = false;
+    button.disabled = false;
+    button.textContent = label;
   }
-  enterRoom(code, nickname);
 }
 
 function onJoinRoom(event) {
   event.preventDefault();
+  if (busy()) return;
   const nickname = readNickname();
   if (!nickname) return;
   const input = $("room-code");
@@ -101,8 +113,6 @@ function onJoinRoom(event) {
 
 function enterRoom(code, nickname) {
   clearNotice();
-  // Until this room answers, a second create or join would orphan the seat being taken.
-  home.setBusy(true);
   game.connection?.stop();
   game.code = code;
   game.state = null;
@@ -169,9 +179,13 @@ function onError(error, nickname) {
     enterRoom(game.code, nickname);
     return;
   }
-  // Before "joined", the error answers the join itself (the server then closes the socket).
-  if (FATAL_ERRORS.has(error.code) || !game.joined) {
+  if (FATAL_ERRORS.has(error.code)) {
     leaveToHome(error.message);
+    return;
+  }
+  // Before "joined", the error answers the join itself (the server then closes the socket).
+  if (!game.joined) {
+    leaveToHome(error.message, game.code);
     return;
   }
   // Whatever was pending did not happen: let the player act again.
@@ -183,14 +197,16 @@ function onError(error, nickname) {
 function onClosed({ code, everOpened }) {
   setConnectionStatus(null);
   if (game.leaving) return;
-  if (!everOpened) {
+  if (!everOpened || !game.joined) {
+    // Closed before the room answered the join (unknown room, network, or a room that closed).
     leaveToHome(`Could not join room ${game.code}. Check the code or create a new room.`, game.code);
   } else if (code === 4000) {
     leaveToHome("This room was opened in another tab or window.");
   } else if (code === 1008) {
     leaveToHome("The connection was closed after too many invalid messages.");
   } else if (code !== 1000) {
-    leaveToHome("The connection to the room was lost.");
+    // The seat token is still saved: joining with this code again reclaims the seat.
+    leaveToHome("The connection to the room was lost.", game.code);
   }
 }
 
@@ -203,7 +219,7 @@ function leaveRoom() {
   leaveToHome(null);
 }
 
-/** `retryCode` keeps a room's code in the join field when joining it could not connect. */
+/** `retryCode` keeps a room's code in the join field, for when trying again makes sense. */
 function leaveToHome(message, retryCode = null) {
   game.connection?.stop();
   game.connection = null;
@@ -211,9 +227,7 @@ function leaveToHome(message, retryCode = null) {
   game.state = null;
   setConnectionStatus(null);
   history.replaceState(null, "", "/");
-  home.show(null);
-  home.setBusy(false);
-  if (retryCode) home.offerRetry(retryCode);
+  home.show(null, { retryCode });
   showScreen("home");
   if (message) notify(message);
 }
@@ -232,7 +246,6 @@ function init() {
     // keyCode 229: Safari reports the Enter that commits an IME composition this way.
     if (event.key !== "Enter" || event.isComposing || event.keyCode === 229) return;
     event.preventDefault();
-    // Clicking the buttons keeps their guards (a disabled Create button ignores clicks).
     if (event.repeat) return;
     const joining = home.invitedTo || $("room-code").value.trim();
     $(joining ? "join-submit" : "create-room").click();

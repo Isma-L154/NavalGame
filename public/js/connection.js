@@ -1,4 +1,6 @@
 const KEEPALIVE_MS = 30_000;
+// A handshake that hangs (a stalled proxy, a stuck server) must not leave the player waiting.
+const CONNECT_TIMEOUT_MS = 15_000;
 const MAX_RECONNECT_ATTEMPTS = 12;
 // Server-side closes that must not trigger a reconnect.
 const FINAL_CLOSE_CODES = new Set([1000, 1008, 4000]);
@@ -24,9 +26,18 @@ export class RoomConnection extends EventTarget {
 
   connect() {
     const scheme = location.protocol === "https:" ? "wss" : "ws";
-    const socket = new WebSocket(`${scheme}://${location.host}/api/rooms/${this.#code}/ws`);
+    let socket;
+    try {
+      socket = new WebSocket(`${scheme}://${location.host}/api/rooms/${this.#code}/ws`);
+    } catch {
+      // A URL the browser refuses is a connection that never opened.
+      this.#onClose(1006);
+      return;
+    }
     this.#socket = socket;
+    const openTimer = setTimeout(() => socket.close(), CONNECT_TIMEOUT_MS);
     socket.addEventListener("open", () => {
+      clearTimeout(openTimer);
       this.#attempt = 0;
       this.#everOpened = true;
       this.#keepalive = setInterval(() => this.#sendRaw("ping"), KEEPALIVE_MS);
@@ -43,7 +54,10 @@ export class RoomConnection extends EventTarget {
       }
       this.dispatchEvent(new CustomEvent("message", { detail: message }));
     });
-    socket.addEventListener("close", (event) => this.#onClose(event.code));
+    socket.addEventListener("close", (event) => {
+      clearTimeout(openTimer);
+      this.#onClose(event.code);
+    });
   }
 
   send(message) {

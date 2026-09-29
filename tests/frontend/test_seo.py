@@ -65,7 +65,7 @@ class _Head(HTMLParser):
 
 
 def _head(page: str) -> dict[str, str]:
-    """The page's head entries; the ones these tests check must each appear exactly once."""
+    """The page's head entries; the ones these tests check may each appear at most once."""
     values = _Head((PUBLIC / page).read_text(encoding="utf-8")).values
     checked = (
         *SOCIAL_TAGS,

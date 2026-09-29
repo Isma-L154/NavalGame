@@ -101,24 +101,68 @@ test("no second room can be created while the first one is being joined", async 
     if (request.method() === "POST" && request.url().endsWith("/api/rooms")) creations += 1;
   });
   // Hold the room's WebSocket unanswered, so the home screen stays up after the room exists.
-  await page.routeWebSocket(/\/api\/rooms\/[A-Z0-9]+\/ws$/, () => {});
+  let socketOpened;
+  const opened = new Promise((resolve) => {
+    socketOpened = resolve;
+  });
+  await page.routeWebSocket(/\/api\/rooms\/[A-Z0-9]+\/ws$/, () => socketOpened());
   await page.goto("/");
   await page.getByLabel("Your nickname").fill("Ana");
   await page.getByLabel("Your nickname").press("Enter");
-  await expect.poll(() => creations).toBe(1);
-  await expect(page.getByRole("button", { name: "Creating…" })).toBeDisabled();
+  await opened;
   await page.getByLabel("Your nickname").press("Enter");
+  await page.getByRole("button", { name: "Create a room" }).click();
   await page.waitForTimeout(300);
   expect(creations).toBe(1);
 });
 
-test("after leaving a room, Enter starts a new room instead of rejoining", async ({ browser }, testInfo) => {
+test("a room that closes before answering the join sends the player home with the code", async ({ browser }, testInfo) => {
   const page = await newPlayer(browser, testInfo);
-  const first = await createRoom(page, "Ana");
-  await page.getByRole("button", { name: "Leave room" }).first().click();
-  await page.getByLabel("Your nickname").press("Enter");
-  await expect(page.getByRole("heading", { name: "Waiting for an opponent" })).toBeVisible();
-  await expect(page.locator("#lobby-code")).not.toHaveText(first);
+  await page.routeWebSocket(/\/api\/rooms\/[A-Z0-9]+\/ws$/, (ws) => {
+    ws.onMessage(() => ws.close({ code: 1000, reason: "closed" }));
+  });
+  await page.goto("/?room=ABCDEF");
+  await page.getByLabel("Your nickname").fill("Ana");
+  await page.getByRole("button", { name: "Join room" }).click();
+  await expect(page.getByRole("alert")).toContainText("Could not join room ABCDEF");
+  await expect(page.getByLabel("Or join with a code")).toHaveValue("ABCDEF");
+  await expect(page.getByRole("button", { name: "Create a room" })).toBeEnabled();
+});
+
+test("after leaving a joined room, Enter starts a new room instead of rejoining", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo);
+  const bo = await newPlayer(browser, testInfo);
+  const code = await createRoom(ana, "Ana");
+  await bo.goto(`/?room=${code}`);
+  await bo.getByLabel("Your nickname").fill("Bo");
+  await bo.getByRole("button", { name: "Join room" }).click();
+  await expect(bo.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
+  await bo.getByRole("button", { name: "Leave room" }).first().click();
+  await expect(bo.getByLabel("Or join with a code")).toHaveValue("");
+  await bo.getByLabel("Your nickname").press("Enter");
+  await expect(bo.getByRole("heading", { name: "Waiting for an opponent" })).toBeVisible();
+  await expect(bo.locator("#lobby-code")).not.toHaveText(code);
+});
+
+test("a second tap on Share while the sheet is open changes nothing", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo, { permissions: ["clipboard-read", "clipboard-write"] });
+  await ana.addInitScript(() => {
+    navigator.share = () => {
+      window.shareCalls = (window.shareCalls ?? 0) + 1;
+      // The first sheet stays open; browsers reject a second share while one is pending.
+      return window.shareCalls === 1
+        ? new Promise(() => {})
+        : Promise.reject(new DOMException("An earlier share has not yet completed.", "InvalidStateError"));
+    };
+  });
+  const code = await createRoom(ana, "Ana");
+  await ana.getByRole("button", { name: "Copy code" }).click();
+  await expect(ana.getByText("Room code copied.")).toBeVisible();
+  await ana.getByRole("button", { name: "Share invite" }).click();
+  await ana.getByRole("button", { name: "Share invite" }).click();
+  await expect.poll(() => ana.evaluate(() => window.shareCalls)).toBe(2);
+  await ana.waitForTimeout(300);
+  expect(await ana.evaluate(() => navigator.clipboard.readText())).toBe(code);
 });
 
 test("Enter joins when a code is already typed", async ({ browser }, testInfo) => {
