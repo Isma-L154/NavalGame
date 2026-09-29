@@ -13,5 +13,11 @@ export default defineConfig({
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"] } },
     { name: "mobile", use: { ...devices["Pixel 7"] } },
+    // An iPad-sized touch screen on Chromium (CI installs only Chromium), for the visual flows.
+    {
+      name: "tablet",
+      use: { ...devices["iPad Mini"], browserName: "chromium" },
+      testMatch: /(board|flags|game|responsive)\.spec\.js/,
+    },
   ],
 });
