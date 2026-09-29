@@ -32,6 +32,8 @@ npx playwright install chromium && npx playwright test                 # browser
 uv run ruff check . && uv run ruff format --check . && uv run mypy src tests
 ```
 
+The share card (`public/og-image.png`) and the home-screen icon (`public/apple-touch-icon.png`) are rendered from `design/` and committed: after changing either source, run `node scripts/render-og-image.mjs`.
+
 On Windows, with the repository on a drive other than `C:`, see the note in [`CLAUDE.md`](CLAUDE.md#commands) about `UV_CACHE_DIR` and `UV_PYTHON_INSTALL_DIR`.
 
 ## Contributing
