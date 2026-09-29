@@ -44,6 +44,9 @@ test("a flag changed while placing ships reaches the opponent and the battle", a
   }
   await expect(ana.getByRole("img", { name: "Bo's flag, Zulu" })).toBeVisible();
   await expect(ana.getByRole("img", { name: "Ana's flag, Kilo" })).toBeVisible();
+  // The flags sit beside the board headings, which read only their titles.
+  await expect(ana.getByRole("heading", { name: "Enemy waters", exact: true })).toBeVisible();
+  await expect(ana.getByRole("heading", { name: "Your fleet", exact: true })).toBeVisible();
   expect(problems.flat()).toEqual([]);
 });
 

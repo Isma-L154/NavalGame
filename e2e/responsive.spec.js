@@ -36,6 +36,12 @@ for (const viewport of VIEWPORTS) {
     await bo.getByRole("button", { name: "Join room" }).click();
     await expect(bo.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
     expect(await overflow(bo)).toBe(0);
+    // On a phone on its side the ship dock sits beside the board, so ships can be dragged across.
+    if (viewport.height <= 500) {
+      const board = await bo.locator("#placement-grid .board").boundingBox();
+      const dock = await bo.locator("#ship-list").boundingBox();
+      expect(dock.x).toBeGreaterThanOrEqual(board.x + board.width);
+    }
 
     await placeRowFleet(ana);
     await placeRowFleet(bo);
@@ -65,7 +71,7 @@ test("a tap on a touch screen leaves no hover highlight behind", async ({ browse
     isMobile: true,
   });
   await page.goto("/");
-  expect(await page.evaluate(() => matchMedia("(hover: hover)").matches)).toBe(false);
+  expect(await page.evaluate(() => matchMedia("(any-hover: hover)").matches)).toBe(false);
   const toggle = page.getByRole("button", { name: "Dark mode" });
   await toggle.tap();
   await expect(toggle).toHaveAttribute("aria-pressed", "true");
