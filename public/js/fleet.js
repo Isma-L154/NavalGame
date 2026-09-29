@@ -63,8 +63,8 @@ export class FleetDraft {
     return true;
   }
 
-  remove(kind) {
-    this.#placements.delete(kind);
+  placementOf(kind) {
+    return this.#placements.get(kind) ?? null;
   }
 
   clear() {

@@ -57,7 +57,11 @@ export class BattleView {
     const log = $("shot-log");
     log.prepend(el("li", { text: `${shooter} fired at ${where}: ${outcome}.` }));
     while (log.children.length > MAX_LOG_ENTRIES) log.lastElementChild.remove();
-    this.#lastShot = { mine, key: cellKey(message.row, message.col) };
+    this.#lastShot = {
+      mine,
+      key: cellKey(message.row, message.col),
+      sunkKind: message.result === "sunk" ? message.kind : null,
+    };
   }
 
   /** The server refused the last shot or rematch request. */
@@ -80,6 +84,7 @@ export class BattleView {
     const sunk = cellsByName(state.opponent_sunk);
     const revealed = cellsByName(state.opponent_fleet ?? []);
     const myTurn = state.phase === "playing" && state.turn === state.seat;
+    const fresh = this.#freshCells(true, state.opponent_sunk);
     this.targetGrid.setInteractive(myTurn);
     for (let row = 0; row < BOARD_SIZE; row += 1) {
       for (let col = 0; col < BOARD_SIZE; col += 1) {
@@ -97,13 +102,16 @@ export class BattleView {
           states,
           description,
           disabled: !myTurn || Boolean(result),
-          isNew: Boolean(this.#lastShot?.mine) && this.#lastShot.key === key,
+          isNew: fresh.has(key),
+          step: fresh.get(key) ?? 0,
         });
       }
     }
   }
 
   #renderOwn(state) {
+    this.ownGrid.setShips(state.own_fleet ?? []);
+    const fresh = this.#freshCells(false, state.own_fleet ?? []);
     const ships = cellsByName(state.own_fleet ?? []);
     const shots = new Map(state.shots_received.map((s) => [cellKey(s.row, s.col), s.result]));
     const sunkCells = cellsByName(
@@ -124,10 +132,23 @@ export class BattleView {
           states,
           description: parts.join(", "),
           disabled: true,
-          isNew: Boolean(this.#lastShot) && !this.#lastShot.mine && this.#lastShot.key === key,
+          isNew: fresh.has(key),
+          step: fresh.get(key) ?? 0,
         });
       }
     }
+  }
+
+  /**
+   * The cells the latest shot changed on one board, each with its animation step: the shot
+   * cell, or every cell of the ship it sank, in order along the ship.
+   */
+  #freshCells(mine, placements) {
+    const shot = this.#lastShot;
+    if (!shot || shot.mine !== mine) return new Map();
+    const sunk = shot.sunkKind && placements.find((placement) => placement.kind === shot.sunkKind);
+    const keys = sunk ? shipCells(sunk).map(([row, col]) => cellKey(row, col)) : [shot.key];
+    return new Map(keys.map((key, step) => [key, step]));
   }
 
   #renderBanner(state) {
