@@ -58,3 +58,11 @@ def test_sitemap_and_robots_are_served() -> None:
     assert status == 200
     assert headers["Content-Type"].startswith("text/plain")
     assert b"Sitemap: https://naval.cloudils.com/sitemap.xml" in body
+
+
+def test_share_images_are_served() -> None:
+    for path in ("/og-image.png", "/apple-touch-icon.png"):
+        status, headers, body = _get(path)
+        assert status == 200, path
+        assert headers["Content-Type"] == "image/png", path
+        assert body.startswith(bytes.fromhex("89504e470d0a1a0a")), path

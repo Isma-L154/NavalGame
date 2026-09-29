@@ -3,12 +3,25 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Two-player online naval battle. Create a room, share the code and sink the enemy fleet.">
+    <meta name="description" content="Two-player online naval battle. Create a room, share the link and sink the enemy fleet.">
     <meta name="theme-color" content="#f7f5f0">
     <title>NavalGame</title>
     <!-- A canonical link loads nothing, so subresource integrity does not apply. -->
     <link rel="canonical" href="https://naval.cloudils.com/"> <!-- nosemgrep: html.security.audit.missing-integrity.missing-integrity -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- No og:url: invite links carry ?room=CODE, and scrapers would send them to the bare home page. -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="NavalGame">
+    <meta property="og:title" content="NavalGame: sink the enemy fleet">
+    <meta property="og:description" content="Two-player online naval battle. Create a room, share the link and sink the enemy fleet.">
+    <meta property="og:image" content="https://naval.cloudils.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="NavalGame poster: signal flags, the words Sink the enemy fleet, and part of a game grid with a ship, hits, misses and a sunk ship.">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="NavalGame poster: signal flags, the words Sink the enemy fleet, and part of a game grid with a ship, hits, misses and a sunk ship.">
     <link rel="preload" href="/fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
     <script src="/js/theme-init.js"></script>

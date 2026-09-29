@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- Source of public/og-image.png. Render with: node scripts/render-og-image.mjs -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>NavalGame share card</title>
+    <style>
+      @font-face { font-family: "Barlow Condensed"; font-weight: 800; src: url("/fonts/barlow-condensed-800.woff2") format("woff2"); }
+      @font-face { font-family: "Barlow Condensed"; font-weight: 600; src: url("/fonts/barlow-condensed-600.woff2") format("woff2"); }
+
+      :root { --paper: #f7f5f0; --ink: #111; --red: #d6231d; --yellow: #f4c20d; --blue: #1d4e9e; }
+      * { box-sizing: border-box; margin: 0; }
+      html, body { width: 1200px; height: 630px; background: var(--paper); color: var(--ink); }
+      body { position: relative; overflow: hidden; font-family: "Barlow Condensed", sans-serif; }
+
+      .frame { position: absolute; inset: 28px; border: 6px solid var(--ink); }
+      .band { position: absolute; left: 34px; right: 34px; top: 34px; height: 112px; border-bottom: 6px solid var(--ink);
+              display: flex; align-items: center; gap: 28px; padding: 0 34px; }
+      .hoist { display: flex; gap: 8px; }
+      .hoist svg { width: 75px; height: 50px; outline: 3px solid var(--ink); }
+      .wordmark { font-weight: 800; font-size: 64px; letter-spacing: 0.02em; text-transform: uppercase; }
+      .wordmark span { font-weight: 600; margin-left: 0.12em; }
+
+      .headline { position: absolute; left: 68px; top: 178px; width: 600px;
+                  font-weight: 800; font-size: 112px; line-height: 0.9; text-transform: uppercase; }
+      .facts { position: absolute; left: 68px; bottom: 72px; display: flex; border: 4px solid var(--ink);
+               font-weight: 800; font-size: 34px; text-transform: uppercase; }
+      .facts span { padding: 6px 20px; }
+      .facts span + span { border-left: 4px solid var(--ink); }
+      .facts .signal { background: var(--yellow); }
+
+      .board { position: absolute; right: 76px; top: 176px; display: grid; grid-template-columns: repeat(6, 64px); gap: 3px;
+               background: var(--ink); border: 3px solid var(--ink); }
+      .cell { position: relative; width: 64px; height: 64px; background: #fff; }
+      /* Intact ship cells let the hull drawn underneath show through. */
+      .cell.hull { background: transparent; }
+      .cell.hit { background: var(--red); }
+      .cell.sunk { background: linear-gradient(135deg, var(--red) 50%, var(--yellow) 50%); }
+      .cell.miss::after { content: ""; position: absolute; inset: 24px; border-radius: 50%; background: var(--ink); }
+      /* The cross is drawn, not typed: the self-hosted fonts have no U+2715, so a glyph would vary by machine. */
+      .cell.hit::after, .cell.sunk::after { content: ""; position: absolute; inset: 18px; background: var(--ink);
+               mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1 1l8 8M9 1L1 9' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E"); }
+      .cell.hit::after { background: #fff; }
+      .ship { position: absolute; top: 67px; left: 67px; width: 265px; height: 64px; }
+    </style>
+  </head>
+  <body>
+    <div class="frame"></div>
+    <div class="band">
+      <div class="hoist">
+        <svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><path fill="#1d4e9e" d="M0 0h7.5v5H0zM15 0h7.5v5H15zM7.5 5H15v5H7.5zM22.5 5H30v5h-7.5zM0 10h7.5v5H0zM15 10h7.5v5H15zM7.5 15H15v5H7.5zM22.5 15H30v5h-7.5z"/></svg>
+        <svg viewBox="0 0 30 20"><rect width="14" height="20" fill="#fff"/><path fill="#1d4e9e" d="M14 0h16l-8 10 8 10H14z"/></svg>
+        <svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><path stroke="#d6231d" stroke-width="4" d="M0 0l30 20M30 0L0 20"/></svg>
+        <svg viewBox="0 0 30 20"><rect width="14" height="20" fill="#fff"/><path fill="#1d4e9e" d="M14 0h16l-8 10 8 10H14z"/></svg>
+        <svg viewBox="0 0 30 20"><path fill="#f4c20d" d="M0 0h15v10H0zM15 10h15v10H15z"/><path fill="#111" d="M15 0h15v10H15zM0 10h15v10H0z"/></svg>
+      </div>
+      <p class="wordmark">Naval<span>Game</span></p>
+    </div>
+
+    <h1 class="headline">Sink the enemy fleet</h1>
+    <p class="facts"><span class="signal">2 players</span><span>10 × 10</span><span>Free, in the browser</span></p>
+
+    <div class="board" aria-hidden="true">
+      <!-- A battleship across four cells: water, ruled gaps, then the hull. -->
+      <svg class="ship" viewBox="0 0 265 64">
+        <rect width="265" height="64" fill="#fff"/>
+        <path fill="#111" d="M64 0h3v64h-3zM131 0h3v64h-3zM198 0h3v64h-3z"/>
+        <path fill="#1d4e9e" d="M8 16H222L258 32 222 48H8z"/>
+        <path fill="#111" d="M30 24h18v16H30zM64 24h18v16H64zM112 20h34v24h-34zM170 24h18v16h-18z"/>
+        <path fill="#fff" d="M118 26h8v6h-8zM132 26h8v6h-8z"/>
+      </svg>
+      <div class="cell"></div><div class="cell"></div><div class="cell miss"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell hull"></div><div class="cell hull"></div><div class="cell hit"></div><div class="cell hull"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell miss"></div>
+      <div class="cell miss"></div><div class="cell"></div><div class="cell sunk"></div><div class="cell sunk"></div><div class="cell sunk"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell miss"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell hit"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+  </body>
+</html>
