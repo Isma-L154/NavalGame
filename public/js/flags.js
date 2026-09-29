@@ -29,8 +29,13 @@ export function flagIcon(code, { className = "flag", label = null } = {}) {
   } else {
     svg.setAttribute("aria-hidden", "true");
   }
-  const use = document.createElementNS(SVG_NS, "use");
-  use.setAttribute("href", `/flags.svg#flag-${code}`);
-  svg.append(use);
+  // The reference is built from the fixed table, never from the value passed in: only the 26
+  // known flags can ever be referenced.
+  const flag = FLAGS.find((known) => known.code === code);
+  if (flag) {
+    const use = document.createElementNS(SVG_NS, "use");
+    use.setAttribute("href", `/flags.svg#flag-${flag.code}`);
+    svg.append(use);
+  }
   return svg;
 }
