@@ -39,6 +39,8 @@ class Player:
     token_hash: str
     # None only for a seat stored before flags existed; it can still choose one.
     flag: Flag | None = None
+    # Hash of the join id that took this seat, until the player proves they got the token.
+    join_hash: str | None = None
     connected: bool = True
     disconnected_at: float | None = None
     wants_rematch: bool = False
@@ -60,21 +62,32 @@ class Room:
         self.game = game if game is not None else Game(first_shooter=0)
         self.last_activity = created_at if last_activity is None else last_activity
 
-    def join(
+    def join(  # noqa: PLR0913 - the one way in, for new and returning players alike
         self,
         nickname: str,
         token: str | None,
         now: float,
         first_shooter: int,
+        *,
         flag: Flag | None = None,
+        join_id: str | None = None,
     ) -> tuple[int, str | None]:
         """Returns the seat and, for a new seat only, the token that reclaims it later.
 
         A new player gets the flag they asked for, or the first free one when it is taken or
         missing; a returning player keeps theirs.
+
+        A fresh join repeated with the same `join_id` and nickname (its reply, which carried the
+        token, was lost with the connection) gets that seat back with a new token; the lost one
+        stops working. The join id counts until the player shows they have the token: by
+        reconnecting with it, or by any seated message (see `token_delivered`).
         """
         if token is not None:
             return self._reconnect(token, now), None
+        if join_id is not None:
+            reclaimed = self._reclaim(join_id, nickname, now)
+            if reclaimed is not None:
+                return reclaimed
         seat = next((s for s in SEATS if self.players[s] is None), None)
         if seat is None:
             raise RoomFull("this room already has two players")
@@ -83,7 +96,12 @@ class Room:
         if flag is None or flag == taken:
             flag = next(f for f in Flag if f != taken)
         new_token = new_seat_token()
-        self.players[seat] = Player(nickname=nickname, token_hash=hash_token(new_token), flag=flag)
+        self.players[seat] = Player(
+            nickname=nickname,
+            token_hash=hash_token(new_token),
+            flag=flag,
+            join_hash=None if join_id is None else hash_token(join_id),
+        )
         self._start_new_game(first_shooter)
         self._touch(now)
         return seat, new_token
@@ -168,11 +186,40 @@ class Room:
     def _reconnect(self, token: str, now: float) -> int:
         for seat, player in enumerate(self.players):
             if player is not None and token_matches(token, player.token_hash):
-                player.connected = True
-                player.disconnected_at = None
-                self._touch(now)
+                # The token arrived, so the join id has done its job.
+                player.join_hash = None
+                self._resume(player, now)
                 return seat
         raise InvalidToken("this token does not belong to a seat in this room")
+
+    def token_delivered(self, seat: int) -> bool:
+        """The seat's player has their token: the join id no longer reclaims the seat.
+
+        Returns whether that changed anything, so the caller knows to save the room.
+        """
+        player = self._player(seat)
+        cleared = player.join_hash is not None
+        player.join_hash = None
+        return cleared
+
+    def _reclaim(self, join_id: str, nickname: str, now: float) -> tuple[int, str] | None:
+        for seat, player in enumerate(self.players):
+            if (
+                player is not None
+                and player.join_hash is not None
+                and player.nickname == nickname
+                and token_matches(join_id, player.join_hash)
+            ):
+                new_token = new_seat_token()
+                player.token_hash = hash_token(new_token)
+                self._resume(player, now)
+                return seat, new_token
+        return None
+
+    def _resume(self, player: Player, now: float) -> None:
+        player.connected = True
+        player.disconnected_at = None
+        self._touch(now)
 
     def _start_new_game(self, first_shooter: int) -> None:
         self.game = Game(first_shooter)

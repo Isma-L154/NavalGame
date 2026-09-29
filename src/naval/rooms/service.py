@@ -104,6 +104,10 @@ class RoomService:
             room = await self._store.load()
             if room is None:
                 return Delivery(to_requester=[error_message(RoomClosed.code)], close_requester=True)
+            # Messages arrive in order, so a seated message means "joined" (and its token) arrived.
+            # Saved on its own, so it holds even when the action itself is refused.
+            if seat is not None and room.players[seat] is not None and room.token_delivered(seat):
+                await self._store.save(room)
             self._apply(room, seat, message, delivery)
             await self._store.save(room)
         except GameError as error:
@@ -161,7 +165,12 @@ class RoomService:
             if seat is not None:
                 raise AlreadyJoined("this connection already has a seat")
             new_seat, token = room.join(
-                message.nickname, message.token, now, self._coin_flip(), message.flag
+                message.nickname,
+                message.token,
+                now,
+                self._coin_flip(),
+                flag=message.flag,
+                join_id=message.join_id,
             )
             delivery.bind_seat = new_seat
             delivery.to_requester.append(joined_message(new_seat, room.code, token))

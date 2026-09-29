@@ -40,6 +40,14 @@ def test_flags_round_trip() -> None:
     assert [p.flag for p in restored.players if p is not None] == [Flag.Q, Flag.X]
 
 
+def test_join_ids_round_trip_as_hashes_only() -> None:
+    room = Room("ABCDEF", created_at=5.0)
+    room.join("Ana", None, now=6.0, first_shooter=0, join_id="j" * 43)
+    stored = room_to_json(room)
+    assert "j" * 43 not in stored
+    _assert_same(room, room_from_json(stored))
+
+
 def test_a_room_stored_before_flags_existed_still_loads() -> None:
     room = Room("ABCDEF", created_at=5.0)
     room.join("Ana", None, now=6.0, first_shooter=0)

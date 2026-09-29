@@ -29,6 +29,9 @@ const game = {
   requestedFlag: null,
   // A flag chosen while placing ships, remembered as the player's pick once the server agrees.
   chosenFlag: null,
+  // Sent with every join of this visit made without a token: if the reply carrying the token is
+  // lost, the next join gets the same seat back instead of a second one.
+  joinId: null,
   leaving: false,
 };
 
@@ -66,7 +69,8 @@ function showScreen(name) {
 
 function send(message) {
   clearNotice();
-  const sent = game.connection?.send(message) ?? false;
+  // Until the room answers the join, a message would act for a seat the page may not hold yet.
+  const sent = game.joined && (game.connection?.send(message) ?? false);
   if (!sent) notify("Not connected. Trying to reconnect…");
   return sent;
 }
@@ -137,6 +141,7 @@ function enterRoom(code, nickname) {
   game.code = code;
   game.state = null;
   game.seated = false;
+  game.joinId = newJoinId();
   game.leaving = false;
   battle.reset();
   placement.setFlagNote(null);
@@ -154,7 +159,9 @@ function enterRoom(code, nickname) {
     const flag = homeFlag.value;
     // A returning seat keeps its flag, so only a fresh join can be given another one.
     game.requestedFlag = token ? null : flag;
-    connection.send(token ? { type: "join", nickname, token, flag } : { type: "join", nickname, flag });
+    connection.send(
+      token ? { type: "join", nickname, token, flag } : { type: "join", nickname, flag, join_id: game.joinId },
+    );
   });
   connection.addEventListener("message", (event) => {
     if (event.detail.type === "joined") connection.confirm();
@@ -170,6 +177,12 @@ function enterRoom(code, nickname) {
   connection.addEventListener("closed", (event) => onClosed(event.detail));
   setConnectionStatus("Connecting…");
   connection.connect();
+}
+
+/** 32 random bytes, URL-safe base64 without padding: the same shape as a seat token. */
+function newJoinId() {
+  const bytes = crypto.getRandomValues(new Uint8Array(32));
+  return btoa(String.fromCharCode(...bytes)).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/, "");
 }
 
 function onMessage(message, nickname) {
