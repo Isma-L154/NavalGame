@@ -18,14 +18,15 @@ def _flag(error: BaseException, name: str) -> bool:
 async def call_with_retry[T](
     call: Callable[[], Awaitable[T]],
     *,
-    attempts: int = 3,
-    base_delay: float = 0.05,
-    max_delay: float = 1.0,
+    attempts: int = 5,
+    base_delay: float = 0.2,
+    max_delay: float = 2.0,
     sleep: Callable[[float], Awaitable[None]] = asyncio.sleep,
 ) -> T:
     """Retries Durable Object calls whose errors are marked retryable and not overloaded.
 
-    `call` must build a fresh stub each time: a failed stub can stay broken.
+    `call` must build a fresh stub each time: a failed stub can stay broken. The default
+    budget waits up to about three seconds, long enough for objects restarting after a deploy.
     """
     for attempt in range(attempts):
         try:

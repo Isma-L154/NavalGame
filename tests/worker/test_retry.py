@@ -60,6 +60,23 @@ async def test_gives_up_after_the_last_attempt() -> None:
     assert calls.count == 3
 
 
+async def test_the_default_budget_waits_out_a_durable_object_restart(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    # Right after a deploy, objects restart with the new code; a sub-second budget gave up.
+    monkeypatch.setattr("naval.worker.retry.random.random", lambda: 1.0)
+    delays: list[float] = []
+
+    async def record(delay: float) -> None:
+        delays.append(delay)
+
+    calls = Calls(*[InfraError(retryable=True)] * 5)
+    with pytest.raises(GaveUp):
+        await call_with_retry(calls, sleep=record)
+    assert calls.count == 5
+    assert delays == [0.2, 0.4, 0.8, 1.6]
+
+
 async def test_backoff_grows_and_is_capped() -> None:
     delays: list[float] = []
 

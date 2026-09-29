@@ -60,6 +60,22 @@ def test_sitemap_and_robots_are_served() -> None:
     assert b"Sitemap: https://naval.cloudils.com/sitemap.xml" in body
 
 
+def test_fonts_and_the_flag_sprite_are_cached_and_pages_are_revalidated() -> None:
+    for path, cache in (
+        ("/fonts/barlow-400.woff2", "public, max-age=31536000, immutable"),
+        ("/flags.svg", "public, max-age=86400"),
+    ):
+        _, headers, _ = _get(path)
+        assert headers["Cache-Control"] == cache, path
+        # The cache rule adds to the site-wide security headers, it does not replace them.
+        assert headers["X-Content-Type-Options"] == "nosniff", path
+        assert "Content-Security-Policy" in headers, path
+    # Pages, scripts and styles have unversioned URLs, so they must never be served stale.
+    for path in ("/", "/js/app.js", "/styles.css"):
+        _, headers, _ = _get(path)
+        assert "must-revalidate" in headers["Cache-Control"], path
+
+
 def test_share_images_are_served() -> None:
     for path in ("/og-image.png", "/apple-touch-icon.png"):
         status, headers, body = _get(path)

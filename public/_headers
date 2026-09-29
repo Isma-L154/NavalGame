@@ -5,3 +5,11 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Cross-Origin-Opener-Policy: same-origin
+
+# A font file never changes in place: a new font gets a new file name.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The 26 flags are fixed; a redrawn sprite reaching everyone within a day is fine.
+/flags.svg
+  Cache-Control: public, max-age=86400
