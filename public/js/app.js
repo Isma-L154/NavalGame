@@ -69,17 +69,16 @@ function readNickname() {
 async function onCreateRoom() {
   const nickname = readNickname();
   if (!nickname) return;
-  const button = $("create-room");
-  button.disabled = true;
-  button.textContent = "Creating…";
+  home.setBusy(true, { creating: true });
+  let code;
   try {
-    enterRoom(await createRoom(), nickname);
+    code = await createRoom();
   } catch (error) {
+    home.setBusy(false);
     notify(error.message);
-  } finally {
-    button.disabled = false;
-    button.textContent = "Create a room";
+    return;
   }
+  enterRoom(code, nickname);
 }
 
 function onJoinRoom(event) {
@@ -95,8 +94,6 @@ function onJoinRoom(event) {
     input.focus();
     return;
   }
-  // Already connecting to this room: a second submit would orphan the first seat.
-  if (game.connection && game.code === code) return;
   enterRoom(code, nickname);
 }
 
@@ -104,6 +101,8 @@ function onJoinRoom(event) {
 
 function enterRoom(code, nickname) {
   clearNotice();
+  // Until this room answers, a second create or join would orphan the seat being taken.
+  home.setBusy(true);
   game.connection?.stop();
   game.code = code;
   game.state = null;
@@ -185,7 +184,7 @@ function onClosed({ code, everOpened }) {
   setConnectionStatus(null);
   if (game.leaving) return;
   if (!everOpened) {
-    leaveToHome(`Could not join room ${game.code}. Check the code or create a new room.`);
+    leaveToHome(`Could not join room ${game.code}. Check the code or create a new room.`, game.code);
   } else if (code === 4000) {
     leaveToHome("This room was opened in another tab or window.");
   } else if (code === 1008) {
@@ -204,7 +203,8 @@ function leaveRoom() {
   leaveToHome(null);
 }
 
-function leaveToHome(message) {
+/** `retryCode` keeps a room's code in the join field when joining it could not connect. */
+function leaveToHome(message, retryCode = null) {
   game.connection?.stop();
   game.connection = null;
   game.code = null;
@@ -212,6 +212,8 @@ function leaveToHome(message) {
   setConnectionStatus(null);
   history.replaceState(null, "", "/");
   home.show(null);
+  home.setBusy(false);
+  if (retryCode) home.offerRetry(retryCode);
   showScreen("home");
   if (message) notify(message);
 }
@@ -227,7 +229,8 @@ function init() {
   });
   // The nickname sits outside the join form: Enter triggers whichever action is on offer.
   $("nickname").addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" || event.isComposing) return;
+    // keyCode 229: Safari reports the Enter that commits an IME composition this way.
+    if (event.key !== "Enter" || event.isComposing || event.keyCode === 229) return;
     event.preventDefault();
     // Clicking the buttons keeps their guards (a disabled Create button ignores clicks).
     if (event.repeat) return;

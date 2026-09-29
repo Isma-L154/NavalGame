@@ -2,7 +2,6 @@ import { $, el } from "./dom.js";
 
 export class LobbyView {
   #code = "";
-  #sharing = false;
 
   constructor() {
     // Where the browser offers a share sheet (phones, tablets, some desktops), sharing is the
@@ -28,9 +27,6 @@ export class LobbyView {
   }
 
   async #share() {
-    // A second tap while the sheet is open would be rejected; ignore it instead.
-    if (this.#sharing) return;
-    this.#sharing = true;
     const url = this.#inviteLink();
     const feedback = $("copy-feedback");
     feedback.textContent = "";
@@ -38,10 +34,8 @@ export class LobbyView {
       await navigator.share({ title: "NavalGame", text: `Join my NavalGame room ${this.#code}.`, url });
       feedback.textContent = "Invite shared.";
     } catch (error) {
-      // Closing the share sheet is a choice, not a failure.
+      // Closing the share sheet is a choice, not a failure; anything else still gets the link out.
       if (error.name !== "AbortError") await this.#copy(url, "Invite link copied.");
-    } finally {
-      this.#sharing = false;
     }
   }
 

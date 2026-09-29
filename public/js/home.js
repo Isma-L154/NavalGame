@@ -1,6 +1,7 @@
 import { $ } from "./dom.js";
 
 const HERO_IDS = ["home-kicker", "home-title", "home-lede"];
+const ACTION_IDS = ["create-room", "join-submit", "leave-invite"];
 
 /** The home screen: the usual welcome, or a one-step join when opened from an invite link. */
 export class HomeView {
@@ -10,7 +11,6 @@ export class HomeView {
 
   constructor({ onLeaveInvite }) {
     $("leave-invite").addEventListener("click", () => {
-      $("room-code").value = "";
       this.show(null);
       onLeaveInvite();
     });
@@ -24,17 +24,31 @@ export class HomeView {
   show(code) {
     this.#invitedTo = code;
     const invited = code !== null;
-    const invitation = {
-      "home-kicker": "You're invited",
-      "home-title": `Join room ${code}`,
-      "home-lede": "A friend opened this room for you. Choose a nickname and join the battle.",
-    };
-    for (const id of HERO_IDS) $(id).textContent = invited ? invitation[id] : this.#welcome.get(id);
+    const text = invited
+      ? {
+        "home-kicker": "You're invited",
+        "home-title": `Join room ${code}`,
+        "home-lede": "A friend opened this room for you. Choose a nickname and join the battle.",
+      }
+      : Object.fromEntries(this.#welcome);
+    for (const id of HERO_IDS) $(id).textContent = text[id];
     $("create-room").hidden = invited;
     $("room-code-field").hidden = invited;
     $("leave-invite").hidden = !invited;
     $("join-submit").classList.toggle("button-primary", invited);
     $("join-form").classList.toggle("is-invite", invited);
-    if (invited) $("room-code").value = code;
+    $("room-code").value = code ?? "";
+  }
+
+  /** While a room is being created or joined, no second action may start. */
+  setBusy(busy, { creating = false } = {}) {
+    for (const id of ACTION_IDS) $(id).disabled = busy;
+    if (creating) $("create-room").textContent = "Creating…";
+    if (!busy) $("create-room").textContent = "Create a room";
+  }
+
+  /** After a join that could not connect, keep the code ready for another try. */
+  offerRetry(code) {
+    $("room-code").value = code;
   }
 }

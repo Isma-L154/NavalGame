@@ -72,12 +72,20 @@ test("cancelling the share sheet shows nothing, a failing one copies the link", 
   await ana.addInitScript(() => {
     window.shareOutcome = "AbortError";
     navigator.share = async () => {
+      window.shareCalls = (window.shareCalls ?? 0) + 1;
       throw new DOMException("share", window.shareOutcome);
     };
   });
   const code = await createRoom(ana, "Ana");
+  await ana.getByRole("button", { name: "Copy code" }).click();
+  await expect(ana.getByText("Room code copied.")).toBeVisible();
   await ana.getByRole("button", { name: "Share invite" }).click();
+  await expect.poll(() => ana.evaluate(() => window.shareCalls)).toBe(1);
+  // Give a wrong fallback time to run: a cancelled share must neither copy nor report.
+  await ana.waitForTimeout(300);
   await expect(ana.locator("#copy-feedback")).toHaveText("");
+  expect(await ana.evaluate(() => navigator.clipboard.readText())).toBe(code);
+
   await ana.evaluate(() => {
     window.shareOutcome = "NotAllowedError";
   });
@@ -86,18 +94,31 @@ test("cancelling the share sheet shows nothing, a failing one copies the link", 
   expect(await ana.evaluate(() => navigator.clipboard.readText())).toContain(`/?room=${code}`);
 });
 
-test("pressing Enter twice creates a single room", async ({ browser }, testInfo) => {
+test("no second room can be created while the first one is being joined", async ({ browser }, testInfo) => {
   const page = await newPlayer(browser, testInfo);
   let creations = 0;
   page.on("request", (request) => {
     if (request.method() === "POST" && request.url().endsWith("/api/rooms")) creations += 1;
   });
+  // Hold the room's WebSocket unanswered, so the home screen stays up after the room exists.
+  await page.routeWebSocket(/\/api\/rooms\/[A-Z0-9]+\/ws$/, () => {});
   await page.goto("/");
   await page.getByLabel("Your nickname").fill("Ana");
   await page.getByLabel("Your nickname").press("Enter");
+  await expect.poll(() => creations).toBe(1);
+  await expect(page.getByRole("button", { name: "Creating…" })).toBeDisabled();
+  await page.getByLabel("Your nickname").press("Enter");
+  await page.waitForTimeout(300);
+  expect(creations).toBe(1);
+});
+
+test("after leaving a room, Enter starts a new room instead of rejoining", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
+  const first = await createRoom(page, "Ana");
+  await page.getByRole("button", { name: "Leave room" }).first().click();
   await page.getByLabel("Your nickname").press("Enter");
   await expect(page.getByRole("heading", { name: "Waiting for an opponent" })).toBeVisible();
-  expect(creations).toBe(1);
+  await expect(page.locator("#lobby-code")).not.toHaveText(first);
 });
 
 test("Enter joins when a code is already typed", async ({ browser }, testInfo) => {

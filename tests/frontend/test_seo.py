@@ -67,7 +67,14 @@ class _Head(HTMLParser):
 def _head(page: str) -> dict[str, str]:
     """The page's head entries; the ones these tests check must each appear exactly once."""
     values = _Head((PUBLIC / page).read_text(encoding="utf-8")).values
-    checked = (*SOCIAL_TAGS, *TWITTER_TAGS, "og:url", "link:canonical", "link:apple-touch-icon")
+    checked = (
+        *SOCIAL_TAGS,
+        *TWITTER_TAGS,
+        "description",
+        "og:url",
+        "link:canonical",
+        "link:apple-touch-icon",
+    )
     duplicated = sorted(key for key in checked if len(values.get(key, [])) > 1)
     assert not duplicated, f"{page} repeats {duplicated}"
     return {key: found[0] for key, found in values.items()}
