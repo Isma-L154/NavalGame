@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from naval.domain.board import ShotResult
 from naval.domain.coordinates import Coordinate
 from naval.domain.errors import GameError, WrongPhase
+from naval.domain.flags import Flag
 from naval.domain.fleet import Placement
 from naval.domain.game import SEATS, Game, Phase, other
 from naval.rooms.tokens import hash_token, new_seat_token, token_matches
@@ -28,10 +29,16 @@ class NotSeated(GameError):
     code = "not_seated"
 
 
+class FlagTaken(GameError):
+    code = "flag_taken"
+
+
 @dataclass
 class Player:
     nickname: str
     token_hash: str
+    # None only for a seat stored before flags existed; it can still choose one.
+    flag: Flag | None = None
     connected: bool = True
     disconnected_at: float | None = None
     wants_rematch: bool = False
@@ -54,16 +61,29 @@ class Room:
         self.last_activity = created_at if last_activity is None else last_activity
 
     def join(
-        self, nickname: str, token: str | None, now: float, first_shooter: int
+        self,
+        nickname: str,
+        token: str | None,
+        now: float,
+        first_shooter: int,
+        flag: Flag | None = None,
     ) -> tuple[int, str | None]:
-        """Returns the seat and, for a new seat only, the token that reclaims it later."""
+        """Returns the seat and, for a new seat only, the token that reclaims it later.
+
+        A new player gets the flag they asked for, or the first free one when it is taken or
+        missing; a returning player keeps theirs.
+        """
         if token is not None:
             return self._reconnect(token, now), None
         seat = next((s for s in SEATS if self.players[s] is None), None)
         if seat is None:
             raise RoomFull("this room already has two players")
+        taken = self._opponent_flag(seat)
+        # Compared by value: a plain "a" and Flag.A must count as the same flag.
+        if flag is None or flag == taken:
+            flag = next(f for f in Flag if f != taken)
         new_token = new_seat_token()
-        self.players[seat] = Player(nickname=nickname, token_hash=hash_token(new_token))
+        self.players[seat] = Player(nickname=nickname, token_hash=hash_token(new_token), flag=flag)
         self._start_new_game(first_shooter)
         self._touch(now)
         return seat, new_token
@@ -95,6 +115,15 @@ class Room:
         for seat in expired:
             self.leave(seat, now)
         return expired
+
+    def choose_flag(self, seat: int, flag: Flag, now: float) -> None:
+        player = self._player(seat)
+        if self.game.phase is not Phase.PLACING:
+            raise WrongPhase("the flag can only change before the battle")
+        if flag == self._opponent_flag(seat):
+            raise FlagTaken("the opponent already flies this flag")
+        player.flag = flag
+        self._touch(now)
 
     def place_fleet(self, seat: int, placements: Sequence[Placement], now: float) -> None:
         self._player(seat)
@@ -159,6 +188,10 @@ class Room:
         if player is None:
             raise NotSeated("this seat is empty")
         return player
+
+    def _opponent_flag(self, seat: int) -> Flag | None:
+        opponent = self.players[other(seat)]
+        return None if opponent is None else opponent.flag
 
     def _require_opponent(self, seat: int) -> None:
         if self.players[other(seat)] is None:

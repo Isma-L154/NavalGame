@@ -23,6 +23,13 @@ export const session = {
   set nickname(value) {
     write(localStorage, "naval.nickname", value);
   },
+  /** The flag the player picked, or null while they have not picked one. */
+  get flag() {
+    return read(localStorage, "naval.flag");
+  },
+  set flag(value) {
+    write(localStorage, "naval.flag", value);
+  },
   /** Seat tokens live in sessionStorage: per tab, gone when the tab closes. */
   token(code) {
     return read(sessionStorage, `naval.token.${code}`);

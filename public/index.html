@@ -31,6 +31,8 @@
     <link rel="modulepreload" href="/js/battle.js">
     <link rel="modulepreload" href="/js/connection.js">
     <link rel="modulepreload" href="/js/dom.js">
+    <link rel="modulepreload" href="/js/flag-picker.js">
+    <link rel="modulepreload" href="/js/flags.js">
     <link rel="modulepreload" href="/js/fleet.js">
     <link rel="modulepreload" href="/js/grid.js">
     <link rel="modulepreload" href="/js/home.js">
@@ -42,35 +44,15 @@
     <script type="module" src="/js/theme.js"></script>
   </head>
   <body>
-    <!-- International Code of Signals flags, drawn once and reused. -->
-    <svg class="sprite" aria-hidden="true" focusable="false">
-      <symbol id="flag-n" viewBox="0 0 30 20">
-        <rect width="30" height="20" fill="#fff" />
-        <path fill="#1d4e9e" d="M0 0h7.5v5H0zM15 0h7.5v5H15zM7.5 5H15v5H7.5zM22.5 5H30v5h-7.5zM0 10h7.5v5H0zM15 10h7.5v5H15zM7.5 15H15v5H7.5zM22.5 15H30v5h-7.5z" />
-      </symbol>
-      <symbol id="flag-a" viewBox="0 0 30 20">
-        <rect width="14" height="20" fill="#fff" />
-        <path fill="#1d4e9e" d="M14 0h16l-8 10 8 10H14z" />
-      </symbol>
-      <symbol id="flag-v" viewBox="0 0 30 20">
-        <rect width="30" height="20" fill="#fff" />
-        <path stroke="#d6231d" stroke-width="4" d="M0 0l30 20M30 0L0 20" />
-      </symbol>
-      <symbol id="flag-l" viewBox="0 0 30 20">
-        <path fill="#f4c20d" d="M0 0h15v10H0zM15 10h15v10H15z" />
-        <path fill="#111" d="M15 0h15v10H15zM0 10h15v10H0z" />
-      </symbol>
-    </svg>
-
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="topbar">
       <a class="brand" href="/" aria-label="NavalGame home">
         <span class="flag-hoist" aria-hidden="true">
-          <svg class="flag"><use href="#flag-n" /></svg>
-          <svg class="flag"><use href="#flag-a" /></svg>
-          <svg class="flag"><use href="#flag-v" /></svg>
-          <svg class="flag"><use href="#flag-a" /></svg>
-          <svg class="flag"><use href="#flag-l" /></svg>
+          <svg class="flag"><use href="/flags.svg#flag-n" /></svg>
+          <svg class="flag"><use href="/flags.svg#flag-a" /></svg>
+          <svg class="flag"><use href="/flags.svg#flag-v" /></svg>
+          <svg class="flag"><use href="/flags.svg#flag-a" /></svg>
+          <svg class="flag"><use href="/flags.svg#flag-l" /></svg>
         </span>
         <span class="wordmark">Naval<span class="wordmark-light">Game</span></span>
       </a>
@@ -104,6 +86,7 @@
                    aria-describedby="nickname-hint">
             <span id="nickname-hint" class="field-hint">1–20 letters, digits, spaces, _ or -</span>
           </label>
+          <div id="home-flag"></div>
           <button id="create-room" class="button button-primary button-wide" type="button">Create a room</button>
           <form id="join-form" class="join-form" novalidate>
             <label id="room-code-field" class="field">
@@ -158,6 +141,8 @@
             <div id="placement-grid"></div>
           </div>
           <div class="panel placement-panel">
+            <div id="placement-flag"></div>
+            <p id="placement-flag-note" class="field-hint" role="status"></p>
             <h2 class="panel-title">Ships</h2>
             <ul id="ship-list" class="ship-list"></ul>
             <p class="field-hint" id="placement-help">Select a ship, then choose a cell. Press <kbd>R</kbd> or use Rotate to turn it. Select a placed ship to move it.</p>
@@ -188,12 +173,12 @@
         </div>
         <div class="battle-layout">
           <div class="board-column">
-            <h2 class="board-title"><span id="enemy-title">Enemy waters</span></h2>
+            <h2 class="board-title"><span id="enemy-flag" class="board-flag"></span>Enemy waters</h2>
             <div id="target-grid"></div>
             <ul id="enemy-fleet" class="fleet-status" aria-label="Enemy fleet"></ul>
           </div>
           <div class="board-column">
-            <h2 class="board-title">Your fleet</h2>
+            <h2 class="board-title"><span id="own-flag" class="board-flag"></span>Your fleet</h2>
             <div id="own-grid"></div>
             <ul id="own-fleet" class="fleet-status" aria-label="Your fleet"></ul>
           </div>

@@ -150,12 +150,6 @@ kbd {
   background: var(--surface);
 }
 
-.sprite {
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-
 .muted {
   color: var(--ink-soft);
 }
@@ -531,6 +525,114 @@ input[aria-invalid="true"] {
 
 .rules li {
   margin-bottom: var(--space-2);
+}
+
+/* Flag picker: a disclosure over a radio group of the 26 signal flags. */
+.flag-picker {
+  border: var(--rule);
+  background: var(--surface);
+}
+
+.flag-picker-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 48px;
+  padding: var(--space-2) var(--space-3);
+  list-style: none;
+  cursor: pointer;
+}
+
+.flag-picker-summary::-webkit-details-marker {
+  display: none;
+}
+
+.flag-picker-summary::after {
+  content: "Change";
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.flag-picker[open] .flag-picker-summary::after {
+  content: "Done";
+}
+
+.flag-picker-current {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+}
+
+.flag-picker-options {
+  margin: 0;
+  padding: var(--space-3);
+  border: 0;
+  border-top: var(--rule);
+}
+
+.flag-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr));
+  gap: var(--space-2);
+}
+
+.flag-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  border: var(--hairline);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* The radio covers its label: the whole option is the target, the flag is the visible state. */
+.flag-option input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.flag-option:has(input:checked) {
+  background: var(--yellow);
+  color: var(--on-signal);
+  border-color: var(--on-signal);
+  box-shadow: inset 0 0 0 2px var(--on-signal);
+}
+
+.flag-option:has(input:focus-visible) {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.flag-option:has(input:disabled) {
+  cursor: not-allowed;
+  color: var(--ink-soft);
+  text-decoration: line-through;
+}
+
+.flag-option:has(input:disabled) .flag {
+  opacity: 0.4;
+}
+
+.flag-inline {
+  margin-inline: 0.2em 0.35em;
+  vertical-align: -0.15em;
+}
+
+.board-flag:not(:empty) {
+  display: inline-flex;
+  margin-right: var(--space-2);
+  vertical-align: -0.1em;
 }
 
 /* Legal pages: a readable single column. */

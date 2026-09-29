@@ -1,0 +1,41 @@
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+/** The letter flags of the International Code of Signals, by their spoken names. */
+export const FLAGS = [
+  "Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett",
+  "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango",
+  "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu",
+].map((name) => ({ code: name[0].toLowerCase(), name }));
+
+export const flagName = (code) => FLAGS.find((flag) => flag.code === code)?.name ?? "";
+
+/** The flag of the nickname's first letter, so a new player starts with a flag of their own. */
+export function flagForNickname(nickname) {
+  const initial = nickname.trim()[0]?.toLowerCase();
+  return FLAGS.some((flag) => flag.code === initial) ? initial : "a";
+}
+
+/**
+ * A flag drawn from the shared sprite. Without a `label` it is decorative and its name must be
+ * given as text alongside; with one it is announced as an image.
+ */
+export function flagIcon(code, { className = "flag", label = null } = {}) {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("class", className);
+  svg.setAttribute("focusable", "false");
+  if (label) {
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", label);
+  } else {
+    svg.setAttribute("aria-hidden", "true");
+  }
+  // The reference is built from the fixed table, never from the value passed in: only the 26
+  // known flags can ever be referenced.
+  const flag = FLAGS.find((known) => known.code === code);
+  if (flag) {
+    const use = document.createElementNS(SVG_NS, "use");
+    use.setAttribute("href", `/flags.svg#flag-${flag.code}`);
+    svg.append(use);
+  }
+  return svg;
+}

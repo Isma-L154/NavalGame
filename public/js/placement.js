@@ -1,6 +1,10 @@
 import { $, el } from "./dom.js";
+import { FlagPicker } from "./flag-picker.js";
+import { flagIcon, flagName } from "./flags.js";
 import { FleetDraft, SHIPS, shipByKind, shipCells } from "./fleet.js";
 import { Grid } from "./grid.js";
+
+const FLAG_SETTLE_MS = 400;
 
 export class PlacementView {
   #draft = new FleetDraft();
@@ -9,9 +13,24 @@ export class PlacementView {
   #submitted = false;
   #locked = false;
   #shipButtons = new Map();
+  #state = null;
+  #flagTimer = null;
+  #noteAbout = null;
 
-  constructor({ onReady }) {
+  constructor({ onReady, onChooseFlag }) {
     this.onReady = onReady;
+    this.flagPicker = new FlagPicker($("placement-flag"), {
+      name: "placement-flag",
+      onChange: (flag) => {
+        this.setFlagNote(null);
+        // Arrow keys step through every radio: send the flag once the player settles on one.
+        clearTimeout(this.#flagTimer);
+        this.#flagTimer = setTimeout(() => {
+          this.#flagTimer = null;
+          onChooseFlag(flag);
+        }, FLAG_SETTLE_MS);
+      },
+    });
     this.grid = new Grid($("placement-grid"), {
       label: "Your waters. Place your fleet",
       onActivate: (row, col) => this.#activate(row, col),
@@ -34,14 +53,25 @@ export class PlacementView {
 
   /** Called with every server state while the game is in the placing phase. */
   update(state) {
+    this.#state = state;
     const opponent = state.players[1 - state.seat];
     const opponentReady = state.fleet_placed[1 - state.seat];
-    let line = "";
+    const line = [];
     if (opponent) {
-      line = `Opponent: ${opponent.nickname} · ${opponentReady ? "fleet ready" : "placing ships"}`;
-      if (!opponent.connected) line += " · disconnected";
+      line.push("Opponent: ");
+      if (opponent.flag) {
+        line.push(flagIcon(opponent.flag, { className: "flag flag-inline" }));
+        line.push(`${opponent.nickname} (${flagName(opponent.flag)})`);
+      } else {
+        line.push(opponent.nickname);
+      }
+      line.push(` · ${opponentReady ? "fleet ready" : "placing ships"}`);
+      if (!opponent.connected) line.push(" · disconnected");
     }
-    $("placement-opponent").textContent = line;
+    $("placement-opponent").replaceChildren(...line);
+    // The note explains the opponent's flag; once that changes, it no longer holds.
+    if (this.#noteAbout && opponent?.flag !== this.#noteAbout) this.setFlagNote(null);
+    this.#syncFlag();
     this.#locked = state.fleet_placed[state.seat];
     if (!this.#locked && this.#submitted) this.#submitted = false;
     this.#render();
@@ -52,9 +82,28 @@ export class PlacementView {
     }
   }
 
-  rejected() {
-    this.#submitted = false;
+  /** The server refused the last action; a refused flag change leaves a pending fleet alone. */
+  rejected(code) {
+    if (code !== "flag_taken") this.#submitted = false;
+    this.#syncFlag();
     this.#render();
+  }
+
+  /** Explains that the server gave the player another flag than the one asked for; null clears. */
+  setFlagNote(requested, flown) {
+    this.#noteAbout = requested;
+    $("placement-flag-note").textContent = requested
+      ? `Your opponent already flies ${flagName(requested)}, so you fly ${flagName(flown)}. You can change it.`
+      : "";
+  }
+
+  // The picker shows what the server says (also after a refused change), unless the player is
+  // still choosing.
+  #syncFlag() {
+    const state = this.#state;
+    if (!state) return;
+    if (this.#flagTimer === null) this.flagPicker.setValue(state.players[state.seat]?.flag ?? null);
+    this.flagPicker.setTaken(state.players[1 - state.seat]?.flag ?? null);
   }
 
   #buildShipList() {

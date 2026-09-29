@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- The 26 letter flags of the International Code of Signals, 3:2. Referenced as /flags.svg#flag-x. -->
+  <symbol id="flag-a" viewBox="0 0 30 20">
+    <rect width="14" height="20" fill="#fff" />
+    <path fill="#1d4e9e" d="M14 0h16l-8 10 8 10H14z" />
+  </symbol>
+  <symbol id="flag-b" viewBox="0 0 30 20">
+    <path fill="#d6231d" d="M0 0h30l-8 10 8 10H0z" />
+  </symbol>
+  <symbol id="flag-c" viewBox="0 0 30 20">
+    <path fill="#1d4e9e" d="M0 0h30v4H0zM0 16h30v4H0z" />
+    <path fill="#fff" d="M0 4h30v4H0zM0 12h30v4H0z" />
+    <path fill="#d6231d" d="M0 8h30v4H0z" />
+  </symbol>
+  <symbol id="flag-d" viewBox="0 0 30 20">
+    <path fill="#f4c20d" d="M0 0h30v5H0zM0 15h30v5H0z" />
+    <path fill="#1d4e9e" d="M0 5h30v10H0z" />
+  </symbol>
+  <symbol id="flag-e" viewBox="0 0 30 20">
+    <path fill="#1d4e9e" d="M0 0h30v10H0z" />
+    <path fill="#d6231d" d="M0 10h30v10H0z" />
+  </symbol>
+  <symbol id="flag-f" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#fff" />
+    <path fill="#d6231d" d="M15 0l15 10-15 10L0 10z" />
+  </symbol>
+  <symbol id="flag-g" viewBox="0 0 30 20">
+    <path fill="#f4c20d" d="M0 0h5v20H0zM10 0h5v20h-5zM20 0h5v20h-5z" />
+    <path fill="#1d4e9e" d="M5 0h5v20H5zM15 0h5v20h-5zM25 0h5v20h-5z" />
+  </symbol>
+  <symbol id="flag-h" viewBox="0 0 30 20">
+    <path fill="#fff" d="M0 0h15v20H0z" />
+    <path fill="#d6231d" d="M15 0h15v20H15z" />
+  </symbol>
+  <symbol id="flag-i" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#f4c20d" />
+    <circle cx="15" cy="10" r="5" fill="#111" />
+  </symbol>
+  <symbol id="flag-j" viewBox="0 0 30 20">
+    <path fill="#1d4e9e" d="M0 0h30v6.67H0zM0 13.33h30V20H0z" />
+    <path fill="#fff" d="M0 6.67h30v6.66H0z" />
+  </symbol>
+  <symbol id="flag-k" viewBox="0 0 30 20">
+    <path fill="#f4c20d" d="M0 0h15v20H0z" />
+    <path fill="#1d4e9e" d="M15 0h15v20H15z" />
+  </symbol>
+  <symbol id="flag-l" viewBox="0 0 30 20">
+    <path fill="#f4c20d" d="M0 0h15v10H0zM15 10h15v10H15z" />
+    <path fill="#111" d="M15 0h15v10H15zM0 10h15v10H0z" />
+  </symbol>
+  <symbol id="flag-m" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#1d4e9e" />
+    <path stroke="#fff" stroke-width="4" d="M0 0l30 20M30 0L0 20" />
+  </symbol>
+  <symbol id="flag-n" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#fff" />
+    <path fill="#1d4e9e" d="M0 0h7.5v5H0zM15 0h7.5v5H15zM7.5 5H15v5H7.5zM22.5 5H30v5h-7.5zM0 10h7.5v5H0zM15 10h7.5v5H15zM7.5 15H15v5H7.5zM22.5 15H30v5h-7.5z" />
+  </symbol>
+  <symbol id="flag-o" viewBox="0 0 30 20">
+    <path fill="#f4c20d" d="M0 0v20h30z" />
+    <path fill="#d6231d" d="M0 0h30v20z" />
+  </symbol>
+  <symbol id="flag-p" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#1d4e9e" />
+    <rect x="10" y="6.5" width="10" height="7" fill="#fff" />
+  </symbol>
+  <symbol id="flag-q" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#f4c20d" />
+  </symbol>
+  <symbol id="flag-r" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#d6231d" />
+    <path fill="#f4c20d" d="M13 0h4v20h-4zM0 8h30v4H0z" />
+  </symbol>
+  <symbol id="flag-s" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#fff" />
+    <rect x="10" y="6.5" width="10" height="7" fill="#1d4e9e" />
+  </symbol>
+  <symbol id="flag-t" viewBox="0 0 30 20">
+    <path fill="#d6231d" d="M0 0h10v20H0z" />
+    <path fill="#fff" d="M10 0h10v20H10z" />
+    <path fill="#1d4e9e" d="M20 0h10v20H20z" />
+  </symbol>
+  <symbol id="flag-u" viewBox="0 0 30 20">
+    <path fill="#d6231d" d="M0 0h15v10H0zM15 10h15v10H15z" />
+    <path fill="#fff" d="M15 0h15v10H15zM0 10h15v10H0z" />
+  </symbol>
+  <symbol id="flag-v" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#fff" />
+    <path stroke="#d6231d" stroke-width="4" d="M0 0l30 20M30 0L0 20" />
+  </symbol>
+  <symbol id="flag-w" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#1d4e9e" />
+    <rect x="5" y="3.5" width="20" height="13" fill="#fff" />
+    <rect x="10" y="7" width="10" height="6" fill="#d6231d" />
+  </symbol>
+  <symbol id="flag-x" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#fff" />
+    <path fill="#1d4e9e" d="M13 0h4v20h-4zM0 8h30v4H0z" />
+  </symbol>
+  <symbol id="flag-y" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#f4c20d" />
+    <path fill="#d6231d" d="M0 20L20 0h4L4 20zM8 20L28 0h4L12 20zM16 20L36 0h4L20 20zM24 20L44 0h4L28 20zM-8 20L12 0h4L-4 20z" />
+  </symbol>
+  <symbol id="flag-z" viewBox="0 0 30 20">
+    <path fill="#f4c20d" d="M0 0h30L15 10z" />
+    <path fill="#1d4e9e" d="M30 0v20L15 10z" />
+    <path fill="#d6231d" d="M0 20h30L15 10z" />
+    <path fill="#111" d="M0 0v20l15-10z" />
+  </symbol>
+</svg>

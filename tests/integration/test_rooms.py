@@ -113,6 +113,20 @@ async def test_full_game_between_two_players() -> None:
     await bo.close()
 
 
+async def test_players_fly_different_flags_and_can_change_them() -> None:
+    code = create_room()
+    ana, _ = await join(code, "Ana", flag="k")
+    bo, _ = await join(code, "Bo", flag="k")
+    state = await receive(ana, "state", lambda m: m["players"][1] is not None)
+    assert [p["flag"] for p in state["players"]] == ["k", "a"]
+    await send(bo, {"type": "choose_flag", "flag": "z"})
+    await receive(ana, "state", lambda m: m["players"][1]["flag"] == "z")
+    await send(bo, {"type": "choose_flag", "flag": "k"})
+    assert (await receive(bo, "error"))["code"] == "flag_taken"
+    await ana.close()
+    await bo.close()
+
+
 async def test_third_player_gets_room_full() -> None:
     code = create_room()
     await join(code, "Ana")

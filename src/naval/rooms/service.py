@@ -6,6 +6,7 @@ from typing import Protocol
 from naval.domain.coordinates import Coordinate
 from naval.domain.errors import GameError
 from naval.protocol.messages import (
+    ChooseFlagMessage,
     ClientMessage,
     FireMessage,
     JoinMessage,
@@ -159,13 +160,17 @@ class RoomService:
         if isinstance(message, JoinMessage):
             if seat is not None:
                 raise AlreadyJoined("this connection already has a seat")
-            new_seat, token = room.join(message.nickname, message.token, now, self._coin_flip())
+            new_seat, token = room.join(
+                message.nickname, message.token, now, self._coin_flip(), message.flag
+            )
             delivery.bind_seat = new_seat
             delivery.to_requester.append(joined_message(new_seat, room.code, token))
             return
         if seat is None:
             raise NotJoined("send join first")
-        if isinstance(message, PlaceFleetMessage):
+        if isinstance(message, ChooseFlagMessage):
+            room.choose_flag(seat, message.flag, now)
+        elif isinstance(message, PlaceFleetMessage):
             room.place_fleet(seat, [ship.to_placement() for ship in message.ships], now)
         elif isinstance(message, FireMessage):
             target = Coordinate(message.row, message.col)
@@ -187,7 +192,7 @@ class RoomService:
     @staticmethod
     def _broadcast_state(room: Room, delivery: Delivery) -> None:
         players = [
-            None if p is None else PlayerView(p.nickname, p.connected, p.wants_rematch)
+            None if p is None else PlayerView(p.nickname, p.flag, p.connected, p.wants_rematch)
             for p in room.players
         ]
         for seat in room.connected_seats():

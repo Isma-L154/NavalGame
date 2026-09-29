@@ -1,11 +1,15 @@
 import pytest
+from hypothesis import given
+from hypothesis import strategies as st
 
 from naval.domain.coordinates import Coordinate
 from naval.domain.errors import WrongPhase
+from naval.domain.flags import Flag
 from naval.domain.game import FinishReason, Phase
 from naval.rooms.room import (
     IDLE_TIMEOUT_SECONDS,
     RECONNECT_GRACE_SECONDS,
+    FlagTaken,
     InvalidToken,
     OpponentMissing,
     Room,
@@ -164,3 +168,93 @@ def test_a_second_disconnect_does_not_restart_the_grace_period() -> None:
     room.disconnect(1, now=T0)
     room.disconnect(1, now=T0 + 60)
     assert room.next_deadline() == T0 + RECONNECT_GRACE_SECONDS
+
+
+def _flags(room: Room) -> list[Flag | None]:
+    return [None if p is None else p.flag for p in room.players]
+
+
+def test_a_player_flies_the_flag_they_ask_for() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    room.join("Ana", None, now=T0, first_shooter=0, flag=Flag.K)
+    assert _flags(room) == [Flag.K, None]
+
+
+def test_a_taken_or_missing_flag_request_gets_the_first_free_flag() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    room.join("Ana", None, now=T0, first_shooter=0, flag=Flag.A)
+    room.join("Bo", None, now=T0, first_shooter=0, flag=Flag.A)
+    assert _flags(room) == [Flag.A, Flag.B]
+    room = Room("ABCDEF", created_at=T0)
+    room.join("Ana", None, now=T0, first_shooter=0)
+    room.join("Bo", None, now=T0, first_shooter=0)
+    assert _flags(room) == [Flag.A, Flag.B]
+
+
+def test_reconnecting_keeps_the_flag() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    _, token = room.join("Ana", None, now=T0, first_shooter=0, flag=Flag.K)
+    assert token is not None
+    room.disconnect(0, now=T0 + 1)
+    room.join("Ana", token, now=T0 + 2, first_shooter=0, flag=Flag.Z)
+    assert _flags(room) == [Flag.K, None]
+
+
+def test_a_new_opponent_never_takes_the_remaining_players_flag() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    room.join("Ana", None, now=T0, first_shooter=0, flag=Flag.C)
+    room.join("Bo", None, now=T0, first_shooter=0, flag=Flag.D)
+    room.leave(0, now=T0)
+    room.join("Cy", None, now=T0, first_shooter=0, flag=Flag.D)
+    assert _flags(room) == [Flag.A, Flag.D]
+
+
+def test_the_flag_can_change_while_placing_ships_but_not_to_the_opponents() -> None:
+    room, _, _ = _room_with_two_players()
+    room.choose_flag(0, Flag.Q, now=T0 + 1)
+    assert _flags(room) == [Flag.Q, Flag.B]
+    assert room.last_activity == T0 + 1
+    with pytest.raises(FlagTaken):
+        room.choose_flag(0, Flag.B, now=T0)
+    room.choose_flag(1, Flag.B, now=T0)
+    assert _flags(room) == [Flag.Q, Flag.B]
+
+
+def test_the_flag_can_change_while_waiting_for_an_opponent() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    room.join("Ana", None, now=T0, first_shooter=0)
+    room.choose_flag(0, Flag.Z, now=T0)
+    assert _flags(room) == [Flag.Z, None]
+
+
+def test_the_flag_is_fixed_once_the_battle_starts() -> None:
+    room = _playing_room()
+    with pytest.raises(WrongPhase):
+        room.choose_flag(0, Flag.Q, now=T0)
+
+
+@given(st.none() | st.sampled_from(Flag), st.none() | st.sampled_from(Flag))
+def test_the_two_players_always_fly_different_flags(
+    first: Flag | None, second: Flag | None
+) -> None:
+    room = Room("ABCDEF", created_at=T0)
+    room.join("Ana", None, now=T0, first_shooter=0, flag=first)
+    room.join("Bo", None, now=T0, first_shooter=0, flag=second)
+    host, guest = _flags(room)
+    assert host is not None
+    assert guest is not None
+    assert host != guest
+    if first is not None:
+        assert host is first
+    if second is not None and second is not host:
+        assert guest is second
+
+
+def test_flags_are_compared_by_value() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    room.join("Ana", None, now=T0, first_shooter=0, flag=Flag.K)
+    # Plain text, as a careless caller might pass it, still counts as the taken flag.
+    room.join("Bo", None, now=T0, first_shooter=0, flag="k")  # type: ignore[arg-type]
+    assert _flags(room) == [Flag.K, Flag.A]
+    with pytest.raises(FlagTaken):
+        room.choose_flag(1, "k", now=T0)  # type: ignore[arg-type]

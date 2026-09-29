@@ -4,6 +4,7 @@ from typing import Any
 
 from naval.domain.board import ShotOutcome, ShotResult
 from naval.domain.coordinates import Coordinate
+from naval.domain.flags import Flag
 from naval.domain.fleet import Placement
 from naval.domain.game import Game, Phase, other
 from naval.protocol.ships import ship_to_dict
@@ -28,6 +29,7 @@ _ERROR_TEXT = {
     "rate_limited": "Slow down: too many messages.",
     "internal_error": "Something went wrong on our side.",
     "room_closed": "This room has closed.",
+    "flag_taken": "Your opponent already flies that flag.",
 }
 _UNKNOWN_ERROR_TEXT = "Something went wrong."
 
@@ -35,6 +37,7 @@ _UNKNOWN_ERROR_TEXT = "Something went wrong."
 @dataclass(frozen=True, slots=True)
 class PlayerView:
     nickname: str
+    flag: Flag | None
     connected: bool
     wants_rematch: bool
 
@@ -58,6 +61,7 @@ def state_message(
             if p is None
             else {
                 "nickname": p.nickname,
+                "flag": p.flag,
                 "connected": p.connected,
                 "wants_rematch": p.wants_rematch,
             }

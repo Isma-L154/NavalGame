@@ -47,7 +47,7 @@ Protocol (additive, backwards compatible for one deploy):
 UI:
 - The flags move out of the inline sprites into one cached external sprite, `public/flags.svg` (26 symbols). Both pages reference `/flags.svg#flag-x`.
 - The picker is a radio group (`fieldset` with 26 radio inputs whose labels show the flag and its name), inside a disclosure whose summary shows the current flag. It is keyboard-operable natively. The opponent's flag is disabled in the placement picker.
-- Flags appear next to names on the placement header ("Ana vs Bo"), both board titles in battle, and the result panel.
+- Flags appear on the placement screen (the opponent's flag and name in the header, the player's own in the picker) and on both battle board titles, as labelled images.
 - Security: a new message type and a new enum field go through the same strict Pydantic validation. The per-connection message budget bounds `choose_flag` spam. A `sharp-edges` pass on the protocol change goes in the PR.
 
 ## 4. #35: board UI, placement, animations, 3D
