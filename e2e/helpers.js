@@ -12,7 +12,7 @@ export const FLEET_CELLS = [
 export const MISS_CELLS = "FGHIJ".split("").flatMap((row) =>
   Array.from({ length: 10 }, (_, i) => `${row}${i + 1}`));
 
-/** Fails the test on console errors and CSP violations (report-only mode logs them). */
+/** Fails the test on console errors and CSP violations (the browser logs each blocked load). */
 export function watchConsole(page) {
   const problems = [];
   page.on("console", (message) => {
