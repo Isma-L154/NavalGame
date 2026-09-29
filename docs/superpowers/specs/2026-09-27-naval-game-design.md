@@ -110,7 +110,7 @@ JSON text frames, at most 4 KB each; larger frames are rejected and the socket i
 
 | `type` | Fields | Allowed when |
 |---|---|---|
-| `join` | `nickname`, optional `token` | first message on every connection |
+| `join` | `nickname`, optional `token`, optional `flag`, optional `join_id` | first message on every connection |
 | `place_fleet` | `ships: [{kind, row, col, orientation}]` (exactly the standard fleet) | `PLACING`, own fleet not yet placed |
 | `fire` | `row`, `col` | `PLAYING`, own turn |
 | `rematch` | none | `FINISHED` |
@@ -133,6 +133,7 @@ HTTP:
 ## 6. Connection lifecycle and timeouts
 
 - The first join gets a new seat and a token. A later `join` with a valid token reclaims the same seat (a new socket replaces the old one).
+- A fresh join may carry a random `join_id`. If its `joined` reply is lost with the connection, the next fresh join with the same `join_id` and nickname reclaims that seat with a new token (the lost one stops working). The id stops counting once the player shows they have the token: a reconnect with it, or any seated message.
 - A third player gets `room_full`.
 - When a seated player's socket closes, they are marked disconnected and the opponent is notified. If they do not reconnect within **120 s**, the seat is released; if the game was `PLAYING`, the opponent first wins by forfeit. `leave` releases the seat immediately with the same forfeit rule.
 - When a player joins a vacant seat, a fresh game starts in `PLACING` (any fleet the remaining player had placed is cleared), so a new opponent never inherits a half-played game.

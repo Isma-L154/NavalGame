@@ -104,6 +104,10 @@ class RoomService:
             room = await self._store.load()
             if room is None:
                 return Delivery(to_requester=[error_message(RoomClosed.code)], close_requester=True)
+            # Messages arrive in order, so a seated message means "joined" (and its token) arrived.
+            # Saved on its own, so it holds even when the action itself is refused.
+            if seat is not None and room.players[seat] is not None and room.token_delivered(seat):
+                await self._store.save(room)
             self._apply(room, seat, message, delivery)
             await self._store.save(room)
         except GameError as error:
@@ -173,8 +177,6 @@ class RoomService:
             return
         if seat is None:
             raise NotJoined("send join first")
-        # Messages arrive in order, so a seated message means "joined" (and its token) arrived.
-        room.token_delivered(seat)
         if isinstance(message, ChooseFlagMessage):
             room.choose_flag(seat, message.flag, now)
         elif isinstance(message, PlaceFleetMessage):

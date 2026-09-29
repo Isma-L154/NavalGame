@@ -26,7 +26,7 @@ def room_to_json(room: Room) -> str:
             "code": room.code,
             "created_at": room.created_at,
             "last_activity": room.last_activity,
-            "players": [None if p is None else asdict(p) for p in room.players],
+            "players": [None if p is None else _player_to_dict(p) for p in room.players],
             "game": {
                 "first_shooter": game.first_shooter,
                 "fleets": [
@@ -51,6 +51,14 @@ def room_from_json(data: str) -> Room:
         game=_replay(raw["game"]),
         last_activity=raw["last_activity"],
     )
+
+
+def _player_to_dict(player: Player) -> dict[str, Any]:
+    # join_hash is written only while set, so rooms stay readable by the previous version.
+    stored = asdict(player)
+    if stored["join_hash"] is None:
+        del stored["join_hash"]
+    return stored
 
 
 def _player(raw: dict[str, Any]) -> Player:

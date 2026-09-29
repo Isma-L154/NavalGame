@@ -69,7 +69,8 @@ function showScreen(name) {
 
 function send(message) {
   clearNotice();
-  const sent = game.connection?.send(message) ?? false;
+  // Until the room answers the join, a message would act for a seat the page may not hold yet.
+  const sent = game.joined && (game.connection?.send(message) ?? false);
   if (!sent) notify("Not connected. Trying to reconnect…");
   return sent;
 }

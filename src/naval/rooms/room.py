@@ -77,14 +77,15 @@ class Room:
         A new player gets the flag they asked for, or the first free one when it is taken or
         missing; a returning player keeps theirs.
 
-        A fresh join repeated with the same `join_id` (its reply, which carried the token, was
-        lost with the connection) gets that seat back with a new token; the lost one stops
-        working. The join id counts only until the player reconnects with their token.
+        A fresh join repeated with the same `join_id` and nickname (its reply, which carried the
+        token, was lost with the connection) gets that seat back with a new token; the lost one
+        stops working. The join id counts until the player shows they have the token: by
+        reconnecting with it, or by any seated message (see `token_delivered`).
         """
         if token is not None:
             return self._reconnect(token, now), None
         if join_id is not None:
-            reclaimed = self._reclaim(join_id, now)
+            reclaimed = self._reclaim(join_id, nickname, now)
             if reclaimed is not None:
                 return reclaimed
         seat = next((s for s in SEATS if self.players[s] is None), None)
@@ -185,31 +186,40 @@ class Room:
     def _reconnect(self, token: str, now: float) -> int:
         for seat, player in enumerate(self.players):
             if player is not None and token_matches(token, player.token_hash):
-                player.connected = True
-                player.disconnected_at = None
                 # The token arrived, so the join id has done its job.
                 player.join_hash = None
-                self._touch(now)
+                self._resume(player, now)
                 return seat
         raise InvalidToken("this token does not belong to a seat in this room")
 
-    def token_delivered(self, seat: int) -> None:
-        """The seat's player has their token: the join id no longer reclaims the seat."""
-        player = self.players[seat] if seat in SEATS else None
-        if player is not None:
-            player.join_hash = None
+    def token_delivered(self, seat: int) -> bool:
+        """The seat's player has their token: the join id no longer reclaims the seat.
 
-    def _reclaim(self, join_id: str, now: float) -> tuple[int, str] | None:
+        Returns whether that changed anything, so the caller knows to save the room.
+        """
+        player = self._player(seat)
+        cleared = player.join_hash is not None
+        player.join_hash = None
+        return cleared
+
+    def _reclaim(self, join_id: str, nickname: str, now: float) -> tuple[int, str] | None:
         for seat, player in enumerate(self.players):
-            hashed = None if player is None else player.join_hash
-            if player is not None and hashed is not None and token_matches(join_id, hashed):
+            if (
+                player is not None
+                and player.join_hash is not None
+                and player.nickname == nickname
+                and token_matches(join_id, player.join_hash)
+            ):
                 new_token = new_seat_token()
                 player.token_hash = hash_token(new_token)
-                player.connected = True
-                player.disconnected_at = None
-                self._touch(now)
+                self._resume(player, now)
                 return seat, new_token
         return None
+
+    def _resume(self, player: Player, now: float) -> None:
+        player.connected = True
+        player.disconnected_at = None
+        self._touch(now)
 
     def _start_new_game(self, first_shooter: int) -> None:
         self.game = Game(first_shooter)

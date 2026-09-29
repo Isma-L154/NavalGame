@@ -16,6 +16,9 @@ function write(storage, key, value) {
   }
 }
 
+// Seat tokens also live here, in case sessionStorage refuses them: a lost token means a lost seat.
+const tokens = new Map();
+
 export const session = {
   get nickname() {
     return read(localStorage, "naval.nickname") ?? "";
@@ -32,12 +35,14 @@ export const session = {
   },
   /** Seat tokens live in sessionStorage: per tab, gone when the tab closes. */
   token(code) {
-    return read(sessionStorage, `naval.token.${code}`);
+    return read(sessionStorage, `naval.token.${code}`) ?? tokens.get(code) ?? null;
   },
   saveToken(code, token) {
+    tokens.set(code, token);
     write(sessionStorage, `naval.token.${code}`, token);
   },
   clearToken(code) {
+    tokens.delete(code);
     write(sessionStorage, `naval.token.${code}`, null);
   },
 };
