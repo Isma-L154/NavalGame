@@ -78,7 +78,7 @@
         <div class="home-hero">
           <p id="home-kicker" class="kicker">2 players · 10 × 10 grid · 5 ships</p>
           <h1 id="home-title">Sink the enemy fleet</h1>
-          <p id="home-lede" class="lede">Create a room, send the link to a friend, hide your ships and take turns firing. First fleet to go under loses.</p>
+          <p id="home-lede" class="lede">Create a room and send the link to a friend, or play the CPU. Hide your ships and take turns firing. First fleet to go under loses.</p>
         </div>
         <div class="panel home-panel">
           <label class="field">
@@ -90,6 +90,7 @@
           </label>
           <div id="home-flag"></div>
           <button id="create-room" class="button button-primary button-wide" type="button">Create a room</button>
+          <button id="play-cpu" class="button button-wide" type="button">Play vs CPU</button>
           <form id="join-form" class="join-form" novalidate>
             <label id="room-code-field" class="field">
               <span class="field-label">Or join with a code</span>
@@ -109,6 +110,7 @@
             <li>Ships go horizontally or vertically and cannot overlap.</li>
             <li>Players take turns firing one shot at a cell of the enemy grid. You learn whether it was a miss, a hit, or sank a ship.</li>
             <li>The first to sink the whole enemy fleet wins. If a player leaves or stays disconnected for two minutes, the other wins.</li>
+            <li>No one to play with? Play vs CPU: the computer places its own fleet and fires back like a person would.</li>
           </ol>
         </details>
       </section>
@@ -124,6 +126,7 @@
             <button id="share-link" class="button button-primary" type="button" hidden>Share invite</button>
             <button id="copy-link" class="button button-primary" type="button">Copy invite link</button>
             <button id="copy-code" class="button" type="button">Copy code</button>
+            <button id="lobby-cpu" class="button" type="button">Play vs CPU instead</button>
           </div>
           <p id="copy-feedback" class="field-hint" role="status"></p>
           <div class="signal-lamp" aria-hidden="true"><span></span><span></span><span></span></div>

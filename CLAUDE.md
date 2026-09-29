@@ -1,8 +1,8 @@
 # NavalGame
 
-A two-player online naval battle game (the classic "sink the fleet" board game). A player creates a room, shares its six-character code, the opponent joins, both place their fleets on a 10x10 grid and take turns firing at each other's grid until one fleet is sunk. Players are anonymous (nickname only); rooms hold exactly two players. Public at `https://naval.cloudils.com`.
+A two-player online naval battle game (the classic "sink the fleet" board game). A player creates a room, shares its six-character code, the opponent joins, both place their fleets on a 10x10 grid and take turns firing at each other's grid until one fleet is sunk. Players are anonymous (nickname only); rooms hold exactly two players. A player can also play against the CPU, which the server plays as the room's second seat. Public at `https://naval.cloudils.com`.
 
-The approved design lives in `docs/superpowers/specs/2026-09-27-naval-game-design.md`. Read it before changing architecture, the protocol or the game rules.
+The approved design lives in `docs/superpowers/specs/2026-09-27-naval-game-design.md`, and the CPU opponent in `docs/superpowers/specs/2026-09-29-cpu-opponent-design.md`. Read them before changing architecture, the protocol or the game rules.
 
 ## Stack
 

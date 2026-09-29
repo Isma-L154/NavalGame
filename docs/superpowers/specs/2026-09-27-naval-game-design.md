@@ -9,6 +9,8 @@ A browser game for exactly two players based on the classic naval battle board g
 
 Non-goals for the first version: user accounts, match history, spectators, chat, AI opponent, more than two players per room, UI languages other than English.
 
+A computer opponent was added later: see `2026-09-29-cpu-opponent-design.md` (#55).
+
 ## 2. Game rules
 
 - Grid: 10x10. Rows `A`–`J`, columns `1`–`10`. Internally zero-based `(row, col)`, `0 <= row, col <= 9`.
@@ -127,7 +129,7 @@ JSON text frames, at most 4 KB each; larger frames are rejected and the socket i
 
 HTTP:
 
-- `POST /api/rooms` → `201 {"code": "K7QX2M"}`. The Worker picks a random code and asks the Durable Object to initialise (internal `POST /init`); if that code is already taken it retries (up to 5 times, then `503`). Limited to 10 requests per minute per IP.
+- `POST /api/rooms` → `201 {"code": "K7QX2M"}`. An optional JSON body `{"opponent": "friend" | "cpu"}` (at most 256 bytes, strict; anything else gets `400 invalid_request`) creates the room with the CPU in seat 1. The Worker picks a random code and asks the Durable Object to initialise (internal `POST /init`); if that code is already taken it retries (up to 5 times, then `503`). Limited to 10 requests per minute per IP.
 - `GET /api/rooms/{code}/ws` → `101` on success; `404` for an unknown room or a malformed code; `403` for a bad Origin; `426` without a WebSocket upgrade; `429` when rate limited (30 upgrades per minute per IP). A full room is reported over the socket (`error room_full`, then close) so the client gets a clear message.
 
 ## 6. Connection lifecycle and timeouts
