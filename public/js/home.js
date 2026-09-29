@@ -7,6 +7,7 @@ export class HomeView {
   #invitedTo = null;
   // The welcome text lives in the HTML; remember it to restore after an invitation.
   #welcome = new Map(HERO_IDS.map((id) => [id, $(id).textContent]));
+  #createLabel = $("create-room").textContent;
 
   constructor({ onLeaveInvite }) {
     $("leave-invite").addEventListener("click", onLeaveInvite);
@@ -14,6 +15,11 @@ export class HomeView {
 
   get invitedTo() {
     return this.#invitedTo;
+  }
+
+  /** The button stays enabled (and focused) while busy: the caller ignores repeated presses. */
+  setCreating(creating) {
+    $("create-room").textContent = creating ? "Creating…" : this.#createLabel;
   }
 
   /**

@@ -1,3 +1,6 @@
+// A request that never answers must not leave the player on "Creating…" for good.
+const CREATE_TIMEOUT_MS = 15_000;
+
 const CREATE_ERRORS = {
   429: "Too many rooms created from your network. Wait a minute and try again.",
   403: "This page is not allowed to create rooms.",
@@ -6,7 +9,7 @@ const CREATE_ERRORS = {
 export async function createRoom() {
   let response;
   try {
-    response = await fetch("/api/rooms", { method: "POST" });
+    response = await fetch("/api/rooms", { method: "POST", signal: AbortSignal.timeout(CREATE_TIMEOUT_MS) });
   } catch {
     throw new Error("Could not reach the server. Check your connection.");
   }

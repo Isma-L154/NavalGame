@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { createRoom, newPlayer, watchConsole } from "./helpers.js";
+import { createRoom, joinRoom, newPlayer, watchConsole } from "./helpers.js";
 
 test("the host hands the invite link to the share sheet", async ({ browser }, testInfo) => {
   const ana = await newPlayer(browser, testInfo);
@@ -114,6 +114,56 @@ test("no second room can be created while the first one is being joined", async 
   await page.getByRole("button", { name: "Create a room" }).click();
   await page.waitForTimeout(300);
   expect(creations).toBe(1);
+});
+
+test("a join submitted while a room is being created is ignored", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
+  const sockets = [];
+  page.on("websocket", (socket) => sockets.push(socket.url()));
+  // Slow the creation down so the second action lands while it is in flight.
+  await page.route("**/api/rooms", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 1_000));
+    await route.continue();
+  });
+  await page.goto("/");
+  await page.getByLabel("Your nickname").fill("Ana");
+  await page.getByRole("button", { name: "Create a room" }).click();
+  await expect(page.getByRole("button", { name: "Creating…" })).toBeFocused();
+  await page.getByLabel("Or join with a code").fill("ABCDEF");
+  await page.getByRole("button", { name: "Join room" }).click();
+  await expect(page.getByRole("heading", { name: "Waiting for an opponent" })).toBeVisible();
+  expect(sockets.filter((url) => url.includes("/ABCDEF/"))).toEqual([]);
+});
+
+test("abandoning a join that was already sent leaves the seat free", async ({ browser }, testInfo) => {
+  const [ana, bo, cy] = await Promise.all([0, 1, 2].map(() => newPlayer(browser, testInfo)));
+  const code = await createRoom(ana, "Ana");
+  // Hold back the server's answer to Bo, so his join is out but not yet answered.
+  await bo.routeWebSocket(/\/api\/rooms\/[A-Z0-9]+\/ws$/, (ws) => {
+    const server = ws.connectToServer();
+    ws.onMessage((message) => server.send(message));
+    server.onMessage(() => {});
+  });
+  await bo.goto(`/?room=${code}`);
+  await bo.getByLabel("Your nickname").fill("Bo");
+  const joinSent = bo.waitForEvent("websocket").then((socket) =>
+    socket.waitForEvent("framesent", (frame) => frame.payload.includes('"join"')));
+  await bo.getByRole("button", { name: "Join room" }).click();
+  await joinSent;
+  await bo.getByRole("button", { name: "Start a new room instead" }).click();
+  await expect(bo.getByRole("heading", { name: "Sink the enemy fleet" })).toBeVisible();
+  await joinRoom(cy, "Cy", code);
+  await expect(cy.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
+});
+
+test("a join that is never answered gives up and keeps the code", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
+  await page.routeWebSocket(/\/api\/rooms\/[A-Z0-9]+\/ws$/, () => {});
+  await page.goto("/?room=ABCDEF");
+  await page.getByLabel("Your nickname").fill("Ana");
+  await page.getByRole("button", { name: "Join room" }).click();
+  await expect(page.getByRole("alert")).toContainText("Could not join room ABCDEF", { timeout: 30_000 });
+  await expect(page.getByLabel("Or join with a code")).toHaveValue("ABCDEF");
 });
 
 test("a room that closes before answering the join sends the player home with the code", async ({ browser }, testInfo) => {
