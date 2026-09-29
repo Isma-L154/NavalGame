@@ -58,8 +58,14 @@
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
-  /* 10 cells + labels must fit a 320px phone: that caps the minimum at 24px. */
-  --cell: clamp(24px, 8vw, 40px);
+  /*
+   * 10 cells + labels must fit a 320px phone: that caps the minimum at 24px. On a phone held
+   * sideways the height is the limit, so a whole board fits the screen.
+   */
+  --cell: clamp(24px, min(8vw, var(--cell-by-height)), 40px);
+  /* The largest cell that still lets a whole board (11 rows with labels) fit the screen height. */
+  --screen-height: 100vh;
+  --cell-by-height: calc((var(--screen-height) - 5rem) / 11);
   --font-body: "Barlow", "Arial Narrow", Arial, sans-serif;
   --font-display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
   --z-topbar: 10;
@@ -103,6 +109,8 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  /* Mobile browsers' toolbars come and go: size to the viewport left with them shown. */
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -267,9 +275,12 @@ kbd {
   cursor: pointer;
 }
 
-.theme-toggle:hover {
-  background: var(--yellow);
-  color: var(--on-signal);
+/* Touch screens keep a hover state after a tap: hover effects only where a pointer hovers. */
+@media (hover: hover) {
+  .theme-toggle:hover {
+    background: var(--yellow);
+    color: var(--on-signal);
+  }
 }
 
 .theme-toggle-icon {
@@ -379,9 +390,11 @@ input[aria-invalid="true"] {
   transition: background-color 120ms linear, color 120ms linear;
 }
 
-.button:hover:not(:disabled) {
-  background: var(--yellow);
-  color: var(--on-signal);
+@media (hover: hover) {
+  .button:hover:not(:disabled) {
+    background: var(--yellow);
+    color: var(--on-signal);
+  }
 }
 
 .button:active:not(:disabled) {
@@ -402,10 +415,12 @@ input[aria-invalid="true"] {
   text-underline-offset: 4px;
 }
 
-.button-ghost:hover:not(:disabled) {
-  background: transparent;
-  color: var(--ink);
-  text-decoration-thickness: 3px;
+@media (hover: hover) {
+  .button-ghost:hover:not(:disabled) {
+    background: transparent;
+    color: var(--ink);
+    text-decoration-thickness: 3px;
+  }
 }
 
 /* Busy but still focusable (aria-disabled): looks unavailable like a disabled button. */
@@ -791,9 +806,14 @@ a.button {
 }
 
 /* On yellow, the hull uses the flag's own dark blue so it keeps 3:1 in both themes. */
-.ship-button[aria-pressed="true"] .ship-hull,
-.ship-button:hover:not(:disabled) .ship-hull {
+.ship-button[aria-pressed="true"] .ship-hull {
   fill: var(--flag-blue);
+}
+
+@media (hover: hover) {
+  .ship-button:hover:not(:disabled) .ship-hull {
+    fill: var(--flag-blue);
+  }
 }
 
 /* Placed ships can be dragged by touch as well. */
@@ -809,6 +829,13 @@ a.button {
 
 .placement-actions .button {
   padding-inline: var(--space-2);
+}
+
+/* "Rotate: horizontal" is the longest label: in narrow columns it wraps instead of overflowing. */
+.placement-actions .button {
+  flex-wrap: wrap;
+  column-gap: 0.25em;
+  text-align: center;
 }
 
 /* Boards: each cell draws a 1px ink outline, so the grid reads as ruled paper. */
@@ -894,7 +921,7 @@ a.button {
 }
 
 .board-small {
-  --cell: clamp(22px, 5.6vw, 32px);
+  --cell: clamp(22px, min(5.6vw, var(--cell-by-height)), 32px);
 }
 
 .board [role="row"],
@@ -938,9 +965,11 @@ a.button {
   cursor: crosshair;
 }
 
-.board.is-interactive .cell:not([aria-disabled="true"]):hover {
-  background: var(--yellow);
-  color: var(--on-signal);
+@media (hover: hover) {
+  .board.is-interactive .cell:not([aria-disabled="true"]):hover {
+    background: var(--yellow);
+    color: var(--on-signal);
+  }
 }
 
 .cell:focus-visible {
@@ -1228,8 +1257,6 @@ a.button {
 /* On yellow, borders and dark fills use the fixed signal ink so they keep 3:1 in both themes. */
 .skip-link,
 .connection-status,
-.button:not(.button-ghost):hover:not(:disabled),
-.theme-toggle:hover,
 .ship-button[aria-pressed="true"],
 .turn-banner.is-your-turn,
 .result-panel.is-victory,
@@ -1242,6 +1269,13 @@ a.button {
   color: var(--yellow);
 }
 
+@media (hover: hover) {
+  .button:not(.button-ghost):hover:not(:disabled),
+  .theme-toggle:hover {
+    border-color: var(--on-signal);
+  }
+}
+
 /* The blue focus ring is too faint on signal fills: use their fixed contrasting ink. */
 .result-panel.is-victory :focus-visible {
   outline-color: var(--on-signal);
@@ -1251,9 +1285,11 @@ a.button {
   outline-color: var(--on-red);
 }
 
-.result-panel.is-victory .button-primary:hover:not(:disabled) {
-  background: var(--flag-white);
-  color: var(--on-signal);
+@media (hover: hover) {
+  .result-panel.is-victory .button-primary:hover:not(:disabled) {
+    background: var(--flag-white);
+    color: var(--on-signal);
+  }
 }
 
 /* Layout */
@@ -1297,16 +1333,42 @@ a.button {
     column-gap: var(--space-12);
   }
 
-  .board-small {
-    --cell: 40px;
-  }
 }
 
-/* Two 40px boards side by side need about 940px; below that they stack. */
-@media (min-width: 1000px) {
+/*
+ * From tablets up the two battle boards sit side by side, sized from the width (the enemy
+ * board takes the larger share) and the height, so neither needs a scroll to be seen whole.
+ */
+@media (min-width: 720px) {
   .battle-layout {
     grid-template-columns: auto auto;
     justify-content: start;
+  }
+
+  /* 54% and 44% of the width, not 55/45: a visible scrollbar is inside 100vw. */
+  .battle-layout .board {
+    --cell: clamp(24px, min(calc((54vw - 2.2rem - 10px) / 10.6), var(--cell-by-height)), 40px);
+  }
+
+  .battle-layout .board-small {
+    --cell: clamp(22px, min(calc((44vw - 1.8rem - 10px) / 10.6), var(--cell-by-height)), 40px);
+  }
+}
+
+/* On short screens (a phone on its side) a sticky top bar would cover the boards. */
+@media (max-height: 500px) {
+  .topbar {
+    position: static;
+  }
+
+  .notice {
+    top: var(--space-2);
+  }
+}
+
+@supports (height: 100svh) {
+  :root {
+    --screen-height: 100svh;
   }
 }
 

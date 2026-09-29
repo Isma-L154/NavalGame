@@ -88,8 +88,8 @@ test("nothing overflows sideways from 320px phones to narrow desktops", async ({
   await expect(page.locator("#turn-banner")).toBeVisible();
   expect(await overflow()).toBe(0);
 
-  // Just above the two-column breakpoint the boards sit side by side.
-  for (const width of [900, 940, 980]) {
+  // Around the 720px breakpoint, where the boards move side by side with the least room.
+  for (const width of [700, 720, 740, 900]) {
     await page.setViewportSize({ width, height: 800 });
     expect(await overflow()).toBe(0);
   }
