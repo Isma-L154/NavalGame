@@ -2,12 +2,13 @@ import { expect, test } from "@playwright/test";
 import {
   FLEET_CELLS,
   MISS_CELLS,
+  battleOrder,
   cell,
   createRoom,
   joinRoom,
+  newPlayer,
   placeRowFleet,
   watchConsole,
-  newPlayer,
 } from "./helpers.js";
 
 test("two players play a full game and can ask for a rematch", async ({ browser }, testInfo) => {
@@ -20,9 +21,7 @@ test("two players play a full game and can ask for a rematch", async ({ browser 
   await placeRowFleet(ana);
   await placeRowFleet(bo);
 
-  await expect(ana.locator("#turn-banner")).toBeVisible();
-  const anaStarts = (await ana.locator("#turn-banner").textContent()).startsWith("Your turn");
-  const [winner, loser] = anaStarts ? [ana, bo] : [bo, ana];
+  const [winner, loser] = await battleOrder(ana, bo);
   const misses = [...MISS_CELLS];
   for (const [index, target] of FLEET_CELLS.entries()) {
     await expect(winner.locator("#turn-banner")).toHaveText(/^Your turn/);

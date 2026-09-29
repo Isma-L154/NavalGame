@@ -48,17 +48,33 @@ export async function openHome(page, nickname) {
   await page.getByLabel("Your nickname").fill(nickname);
 }
 
-export async function createRoom(page, nickname) {
+/** Picks a flag by name in the picker inside `#pickerId` ("home-flag" or "placement-flag"). */
+export async function pickFlag(page, pickerId, name) {
+  const picker = page.locator(`#${pickerId}`);
+  await picker.getByText("Your flag", { exact: true }).click();
+  await picker.getByRole("radio", { name }).check();
+}
+
+export async function createRoom(page, nickname, { flag } = {}) {
   await openHome(page, nickname);
+  if (flag) await pickFlag(page, "home-flag", flag);
   await page.getByRole("button", { name: "Create a room" }).click();
   await expect(page.getByRole("heading", { name: "Waiting for an opponent" })).toBeVisible();
   return (await page.locator("#lobby-code").textContent()).trim();
 }
 
-export async function joinRoom(page, nickname, code) {
+export async function joinRoom(page, nickname, code, { flag } = {}) {
   await page.goto(`/?room=${code}`);
   await page.getByLabel("Your nickname").fill(nickname);
+  if (flag) await pickFlag(page, "home-flag", flag);
   await page.getByRole("button", { name: "Join room" }).click();
+}
+
+/** Waits for the battle; returns [first shooter, the other player]. */
+export async function battleOrder(ana, bo) {
+  await expect(ana.locator("#turn-banner")).toBeVisible();
+  const anaFirst = (await ana.locator("#turn-banner").textContent()).startsWith("Your turn");
+  return anaFirst ? [ana, bo] : [bo, ana];
 }
 
 export async function placeRowFleet(page) {

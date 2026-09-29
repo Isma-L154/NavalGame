@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
-import { cell, createRoom, joinRoom, newPlayer, placeRowFleet, watchConsole } from "./helpers.js";
+import { battleOrder, cell, createRoom, joinRoom, newPlayer, placeRowFleet, watchConsole } from "./helpers.js";
 
 const PLACEMENT = "Your waters. Place your fleet";
 
-async function placementScreen(browser, testInfo) {
-  const ana = await newPlayer(browser, testInfo);
-  const bo = await newPlayer(browser, testInfo);
+async function placementScreen(browser, testInfo, options = {}) {
+  const ana = await newPlayer(browser, testInfo, options);
+  const bo = await newPlayer(browser, testInfo, options);
   const code = await createRoom(ana, "Ana");
   await joinRoom(bo, "Bo", code);
   await expect(ana.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
@@ -77,10 +77,7 @@ test("the newest shot is marked for its animation on both boards", async ({ brow
   const { ana, bo } = await placementScreen(browser, testInfo);
   await placeRowFleet(ana);
   await placeRowFleet(bo);
-  await expect(ana.locator("#turn-banner")).toBeVisible();
-  const [shooter, target] = (await ana.locator("#turn-banner").textContent()).startsWith("Your turn")
-    ? [ana, bo]
-    : [bo, ana];
+  const [shooter, target] = await battleOrder(ana, bo);
   await cell(shooter, "Enemy waters", "A1").click();
   await expect(cell(shooter, "Enemy waters", "A1")).toHaveClass(/is-new/);
   await expect(cell(shooter, "Enemy waters", "A1")).toHaveClass(/state-hit/);
@@ -90,14 +87,10 @@ test("the newest shot is marked for its animation on both boards", async ({ brow
 });
 
 test("with reduced motion, shots show their final mark at once", async ({ browser }, testInfo) => {
-  const ana = await newPlayer(browser, testInfo, { reducedMotion: "reduce" });
-  const bo = await newPlayer(browser, testInfo, { reducedMotion: "reduce" });
-  const code = await createRoom(ana, "Ana");
-  await joinRoom(bo, "Bo", code);
+  const { ana, bo } = await placementScreen(browser, testInfo, { reducedMotion: "reduce" });
   await placeRowFleet(ana);
   await placeRowFleet(bo);
-  await expect(ana.locator("#turn-banner")).toBeVisible();
-  const shooter = (await ana.locator("#turn-banner").textContent()).startsWith("Your turn") ? ana : bo;
+  const [shooter] = await battleOrder(ana, bo);
   await cell(shooter, "Enemy waters", "J10").click();
   const target = cell(shooter, "Enemy waters", "J10");
   await expect(target).toHaveClass(/state-miss/);
