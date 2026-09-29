@@ -1,3 +1,4 @@
+import traceback
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Protocol
@@ -46,8 +47,7 @@ class RoomClosed(GameError):
     code = "room_closed"
 
 
-class InternalError(GameError):
-    code = "internal_error"
+_INTERNAL_ERROR = "internal_error"
 
 
 class InMemoryRoomStore:
@@ -97,21 +97,35 @@ class RoomService:
         return None if room is None else room.next_deadline()
 
     async def handle(self, seat: int | None, message: ClientMessage) -> Delivery:
-        room = await self._store.load()
-        if room is None:
-            return Delivery(to_requester=[error_message(RoomClosed.code)], close_requester=True)
+        room: Room | None = None
+        try:
+            room = await self._store.load()
+            if room is None:
+                return Delivery(to_requester=[error_message(RoomClosed.code)], close_requester=True)
+            return await self._handle(room, seat, message)
+        except Exception:
+            # A bug or an outage must not leave the player waiting. Log the traceback, never the
+            # message: a join carries the seat token.
+            where = room.code if room is not None else "an unreadable room"
+            print(
+                f"internal error in {where}, seat {seat}, handling {message.type}:\n"
+                f"{traceback.format_exc()}"
+            )
+            return Delivery(
+                to_requester=[error_message(_INTERNAL_ERROR)],
+                close_requester=_is_first_join(seat, message),
+            )
+
+    async def _handle(self, room: Room, seat: int | None, message: ClientMessage) -> Delivery:
         delivery = Delivery()
         try:
             self._apply(room, seat, message, delivery)
             await self._store.save(room)
         except GameError as error:
-            closing = seat is None and isinstance(message, JoinMessage)
-            return Delivery(to_requester=[error_message(error.code)], close_requester=closing)
-        except Exception as error:
-            # A bug or an outage must not leave the player waiting. Log the failure, never the
-            # message: a join carries the seat token.
-            print(f"internal error handling {message.type}: {type(error).__name__}: {error}")
-            return Delivery(to_requester=[error_message(InternalError.code)])
+            return Delivery(
+                to_requester=[error_message(error.code)],
+                close_requester=_is_first_join(seat, message),
+            )
         self._broadcast_state(room, delivery)
         return delivery
 
@@ -183,3 +197,8 @@ class RoomService:
         for seat in room.connected_seats():
             state = state_message(room.code, seat, room.game, players)
             delivery.to_seats.setdefault(seat, []).append(state)
+
+
+def _is_first_join(seat: int | None, message: ClientMessage) -> bool:
+    """A connection whose join failed holds no seat and must not linger."""
+    return seat is None and isinstance(message, JoinMessage)

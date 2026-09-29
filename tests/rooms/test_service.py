@@ -202,16 +202,63 @@ async def test_messages_to_a_deleted_room_close_the_connection(
 
 
 class FailingSaveStore(InMemoryRoomStore):
+    """Accepts saves until `failing` is set."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.failing = False
+
     async def save(self, room: Room) -> None:
-        if room.players[0] is not None:
+        if self.failing:
             raise RuntimeError("storage unavailable")
         await super().save(room)
 
 
-async def test_unexpected_failures_answer_internal_error(clock: FakeClock) -> None:
-    svc = RoomService(FailingSaveStore(), clock, coin_flip=lambda: 0)
+class FailingLoadStore(InMemoryRoomStore):
+    async def load(self) -> Room | None:
+        raise ValueError("unsupported room format")
+
+
+async def test_a_failed_first_join_answers_internal_error_and_closes(clock: FakeClock) -> None:
+    store = FailingSaveStore()
+    svc = RoomService(store, clock, coin_flip=lambda: 0)
     assert await svc.create("ABCDEF")
+    store.failing = True
     delivery = await svc.handle(None, JoinMessage(type="join", nickname="Ana"))
     assert delivery.to_requester == [error_message("internal_error")]
     assert delivery.to_seats == {}
     assert delivery.bind_seat is None
+    assert delivery.close_requester
+
+
+async def test_a_failed_action_answers_internal_error_and_keeps_the_seat(clock: FakeClock) -> None:
+    store = FailingSaveStore()
+    svc = RoomService(store, clock, coin_flip=lambda: 0)
+    assert await svc.create("ABCDEF")
+    await _two_players(svc)
+    store.failing = True
+    delivery = await svc.handle(0, PLACE)
+    assert delivery.to_requester == [error_message("internal_error")]
+    assert not delivery.close_requester
+
+
+async def test_a_room_that_cannot_be_loaded_answers_internal_error(clock: FakeClock) -> None:
+    svc = RoomService(FailingLoadStore(), clock, coin_flip=lambda: 0)
+    delivery = await svc.handle(0, PLACE)
+    assert delivery.to_requester == [error_message("internal_error")]
+
+
+async def test_internal_errors_are_logged_with_room_and_seat_but_never_the_token(
+    clock: FakeClock, capsys: pytest.CaptureFixture[str]
+) -> None:
+    store = FailingSaveStore()
+    svc = RoomService(store, clock, coin_flip=lambda: 0)
+    assert await svc.create("ABCDEF")
+    token, _ = await _two_players(svc)
+    store.failing = True
+    await svc.handle(None, JoinMessage(type="join", nickname="Ana", token=token))
+    log = capsys.readouterr().out
+    assert "ABCDEF" in log
+    assert "storage unavailable" in log
+    assert "Traceback" in log
+    assert token not in log
