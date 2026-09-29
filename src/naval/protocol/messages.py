@@ -28,7 +28,7 @@ class JoinMessage(_Message):
     type: Literal["join"]
     nickname: Annotated[str, Field(pattern=NICKNAME_PATTERN)]
     token: Annotated[str, Field(pattern=TOKEN_PATTERN)] | None = None
-    # Optional so that a page loaded before flags existed can still join.
+    # Without one, the player flies the first free flag (see Room.join).
     flag: Flag | None = None
     # Random per fresh join, repeated if the reply carrying the token was lost (see Room.join).
     join_id: Annotated[str, Field(pattern=TOKEN_PATTERN)] | None = None

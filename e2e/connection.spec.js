@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { cell, createRoom, joinRoom, openHome, placeRowFleet, watchConsole, newPlayer } from "./helpers.js";
+import { battleOrder, cell, createRoom, joinRoom, newPlayer, openHome, placeRowFleet, watchConsole } from "./helpers.js";
 
 test("a player who reloads mid-game gets their seat and board back", async ({ browser }, testInfo) => {
   const ana = await newPlayer(browser, testInfo);
@@ -9,16 +9,14 @@ test("a player who reloads mid-game gets their seat and board back", async ({ br
   await joinRoom(bo, "Bo", code);
   await placeRowFleet(ana);
   await placeRowFleet(bo);
-  await expect(ana.locator("#turn-banner")).toBeVisible();
 
-  const shooter = (await ana.locator("#turn-banner").textContent()).startsWith("Your turn") ? ana : bo;
+  const [shooter, other] = await battleOrder(ana, bo);
   await cell(shooter, "Enemy waters", "A1").click();
   await expect(cell(shooter, "Enemy waters", "A1")).toHaveAttribute("aria-label", "A1, hit");
 
   await shooter.reload();
   await expect(shooter.locator("#turn-banner")).toBeVisible();
   await expect(cell(shooter, "Enemy waters", "A1")).toHaveAttribute("aria-label", "A1, hit");
-  const other = shooter === ana ? bo : ana;
   await expect(other.locator("#turn-banner")).toHaveText(/^Your turn/);
   expect(problems.flat()).toEqual([]);
 });

@@ -1,7 +1,7 @@
 import { $, el } from "./dom.js";
 import { FlagPicker } from "./flag-picker.js";
 import { flagIcon, flagName } from "./flags.js";
-import { FleetDraft, SHIPS, shipByKind, shipCells } from "./fleet.js";
+import { BOARD_SIZE, FleetDraft, SHIPS, shipByKind, shipCells } from "./fleet.js";
 import { Grid } from "./grid.js";
 import { ShipDrag } from "./ship-drag.js";
 import { shipArt } from "./ships.js";
@@ -74,14 +74,11 @@ export class PlacementView {
     const opponentReady = state.fleet_placed[1 - state.seat];
     const line = [];
     if (opponent) {
-      line.push("Opponent: ");
-      if (opponent.flag) {
-        line.push(flagIcon(opponent.flag, { className: "flag flag-inline" }));
-        line.push(`${opponent.nickname} (${flagName(opponent.flag)})`);
-      } else {
-        line.push(opponent.nickname);
-      }
-      line.push(` · ${opponentReady ? "fleet ready" : "placing ships"}`);
+      line.push(
+        "Opponent: ",
+        flagIcon(opponent.flag, { className: "flag flag-inline" }),
+        `${opponent.nickname} (${flagName(opponent.flag)}) · ${opponentReady ? "fleet ready" : "placing ships"}`,
+      );
       if (!opponent.connected) line.push(" · disconnected");
     }
     $("placement-opponent").replaceChildren(...line);
@@ -118,7 +115,7 @@ export class PlacementView {
   #syncFlag() {
     const state = this.#state;
     if (!state) return;
-    if (this.#flagTimer === null) this.flagPicker.setValue(state.players[state.seat]?.flag ?? null);
+    if (this.#flagTimer === null) this.flagPicker.setValue(state.players[state.seat].flag);
     this.flagPicker.setTaken(state.players[1 - state.seat]?.flag ?? null);
   }
 
@@ -275,8 +272,8 @@ export class PlacementView {
   }
 
   #render() {
-    for (let row = 0; row < 10; row += 1) {
-      for (let col = 0; col < 10; col += 1) {
+    for (let row = 0; row < BOARD_SIZE; row += 1) {
+      for (let col = 0; col < BOARD_SIZE; col += 1) {
         const kind = this.#draft.kindAt(row, col);
         let description = "water";
         const selected = kind === this.#selected && !this.#frozen;

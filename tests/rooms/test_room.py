@@ -283,12 +283,12 @@ def test_a_join_id_stops_counting_once_the_token_is_used() -> None:
     _, token = room.join("Ana", None, now=T0, first_shooter=0, join_id=JOIN_ID)
     assert token is not None
     room.join("Ana", token, now=T0 + 1, first_shooter=0)
-    seat, _ = room.join("Bo", None, now=T0 + 2, first_shooter=0, join_id=JOIN_ID)
+    seat, _ = room.join("Ana", None, now=T0 + 2, first_shooter=0, join_id=JOIN_ID)
     assert seat == 1
 
 
 def test_another_join_id_takes_another_seat() -> None:
     room = Room("ABCDEF", created_at=T0)
     room.join("Ana", None, now=T0, first_shooter=0, join_id=JOIN_ID)
-    seat, _ = room.join("Bo", None, now=T0, first_shooter=0, join_id="k" * 43)
+    seat, _ = room.join("Ana", None, now=T0, first_shooter=0, join_id="k" * 43)
     assert seat == 1

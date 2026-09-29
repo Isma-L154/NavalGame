@@ -279,9 +279,7 @@ test("after leaving a joined room, Enter starts a new room instead of rejoining"
   const ana = await newPlayer(browser, testInfo);
   const bo = await newPlayer(browser, testInfo);
   const code = await createRoom(ana, "Ana");
-  await bo.goto(`/?room=${code}`);
-  await bo.getByLabel("Your nickname").fill("Bo");
-  await bo.getByRole("button", { name: "Join room" }).click();
+  await joinRoom(bo, "Bo", code);
   await expect(bo.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
   await bo.getByRole("button", { name: "Leave room" }).first().click();
   await expect(bo.getByLabel("Or join with a code")).toHaveValue("");

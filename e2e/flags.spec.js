@@ -1,39 +1,15 @@
 import { expect, test } from "@playwright/test";
-import { newPlayer, watchConsole } from "./helpers.js";
+import { createRoom, joinRoom, newPlayer, pickFlag, watchConsole } from "./helpers.js";
 
-// Both screens have a picker in the page; each helper talks to the one on screen.
+// Both screens have a picker in the page; each check looks at the one on screen.
 const picker = (page, id) => page.locator(`#${id}`);
-
-async function pickFlag(page, id, name) {
-  await picker(page, id).getByText("Your flag", { exact: true }).click();
-  await picker(page, id).getByRole("radio", { name }).check();
-}
-
-const pickHomeFlag = (page, name) => pickFlag(page, "home-flag", name);
-
-async function openRoom(page, nickname, flag) {
-  await page.goto("/");
-  await page.getByLabel("Your nickname").fill(nickname);
-  if (flag) await pickHomeFlag(page, flag);
-  await page.getByRole("button", { name: "Create a room" }).click();
-  await expect(page.getByRole("heading", { name: "Waiting for an opponent" })).toBeVisible();
-  return (await page.locator("#lobby-code").textContent()).trim();
-}
-
-async function joinWithFlag(page, nickname, code, flag) {
-  await page.goto(`/?room=${code}`);
-  await page.getByLabel("Your nickname").fill(nickname);
-  if (flag) await pickHomeFlag(page, flag);
-  await page.getByRole("button", { name: "Join room" }).click();
-  await expect(page.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
-}
 
 test("each player flies the flag picked at home", async ({ browser }, testInfo) => {
   const ana = await newPlayer(browser, testInfo);
   const bo = await newPlayer(browser, testInfo);
   const problems = [ana, bo].map(watchConsole);
-  const code = await openRoom(ana, "Ana", "Kilo");
-  await joinWithFlag(bo, "Bo", code);
+  const code = await createRoom(ana, "Ana", { flag: "Kilo" });
+  await joinRoom(bo, "Bo", code);
   await expect(bo.locator("#placement-opponent")).toContainText("Ana (Kilo)");
   await expect(ana.locator("#placement-opponent")).toContainText("Bo (Bravo)");
   await expect(bo.locator("#placement-flag-note")).toHaveText("");
@@ -43,8 +19,8 @@ test("each player flies the flag picked at home", async ({ browser }, testInfo) 
 test("asking for the opponent's flag gets another one, and says so", async ({ browser }, testInfo) => {
   const ana = await newPlayer(browser, testInfo);
   const bo = await newPlayer(browser, testInfo);
-  const code = await openRoom(ana, "Ana", "Kilo");
-  await joinWithFlag(bo, "Bo", code, "Kilo");
+  const code = await createRoom(ana, "Ana", { flag: "Kilo" });
+  await joinRoom(bo, "Bo", code, { flag: "Kilo" });
   await expect(bo.locator("#placement-flag-note")).toHaveText(
     "Your opponent already flies Kilo, so you fly Alfa. You can change it.",
   );
@@ -57,8 +33,9 @@ test("a flag changed while placing ships reaches the opponent and the battle", a
   const ana = await newPlayer(browser, testInfo);
   const bo = await newPlayer(browser, testInfo);
   const problems = [ana, bo].map(watchConsole);
-  const code = await openRoom(ana, "Ana", "Kilo");
-  await joinWithFlag(bo, "Bo", code);
+  const code = await createRoom(ana, "Ana", { flag: "Kilo" });
+  await joinRoom(bo, "Bo", code);
+  await expect(bo.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
   await pickFlag(bo, "placement-flag", "Zulu");
   await expect(ana.locator("#placement-opponent")).toContainText("Bo (Zulu)");
   for (const page of [ana, bo]) {
@@ -75,7 +52,7 @@ test("the home flag follows the nickname until the player picks one", async ({ b
   await page.goto("/");
   await page.getByLabel("Your nickname").fill("Mia");
   await expect(picker(page, "home-flag").locator(".flag-picker-current")).toHaveText("Mike");
-  await pickHomeFlag(page, "Tango");
+  await pickFlag(page, "home-flag", "Tango");
   await page.getByLabel("Your nickname").fill("Zed");
   await expect(picker(page, "home-flag").locator(".flag-picker-current")).toHaveText("Tango");
   await page.reload();

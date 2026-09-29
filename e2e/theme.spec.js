@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { createRoom, joinRoom, newPlayer } from "./helpers.js";
+import { battleOrder, createRoom, joinRoom, newPlayer } from "./helpers.js";
 
 test("the theme follows the system until the player picks one", async ({ browser }, testInfo) => {
   const page = await newPlayer(browser, testInfo, { colorScheme: "dark" });
@@ -70,10 +70,8 @@ test("borders on yellow stay dark in dark mode", async ({ browser }, testInfo) =
     await player.getByRole("button", { name: "Random" }).click();
     await player.getByRole("button", { name: "Ready" }).click();
   }
-  await expect(ana.locator("#turn-banner")).toBeVisible();
-  const shooter = (await ana.locator("#turn-banner").textContent()).startsWith("Your turn") ? ana : bo;
+  const [shooter, other] = await battleOrder(ana, bo);
   await expect(shooter.locator("#turn-banner")).toHaveCSS("border-top-color", "rgb(17, 17, 17)");
-  const other = shooter === ana ? bo : ana;
   await other.getByRole("button", { name: "Leave room" }).last().click();
   await expect(shooter.locator("#result-panel")).toHaveCSS("border-top-color", "rgb(17, 17, 17)");
   const leave = shooter.getByRole("button", { name: "Leave room" }).first();

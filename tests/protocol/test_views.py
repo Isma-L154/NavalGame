@@ -21,7 +21,7 @@ from tests.strategies import coordinates, valid_fleets
 
 PLAYERS = (
     PlayerView("Ana", Flag.K, connected=True, wants_rematch=False),
-    PlayerView("Bo", None, connected=False, wants_rematch=True),
+    PlayerView("Bo", Flag.X, connected=False, wants_rematch=True),
 )
 
 
@@ -45,7 +45,7 @@ def test_state_while_playing_hides_the_opponent_fleet() -> None:
     assert view["winner"] is None
     assert view["players"] == [
         {"nickname": "Ana", "flag": "k", "connected": True, "wants_rematch": False},
-        {"nickname": "Bo", "flag": None, "connected": False, "wants_rematch": True},
+        {"nickname": "Bo", "flag": "x", "connected": False, "wants_rematch": True},
     ]
     assert view["fleet_placed"] == [True, True]
     assert view["own_fleet"][0] == {

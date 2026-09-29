@@ -1,6 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { createRoom, joinRoom, newPlayer } from "./helpers.js";
+import { battleOrder, createRoom, joinRoom, newPlayer } from "./helpers.js";
 
 async function expectNoViolations(page) {
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
@@ -49,8 +49,7 @@ test("a whole turn can be played with the keyboard only", async ({ browser }, te
   await bo.getByRole("button", { name: "Random" }).click();
   await bo.getByRole("button", { name: "Ready" }).click();
 
-  await expect(ana.locator("#turn-banner")).toBeVisible();
-  const shooter = (await ana.locator("#turn-banner").textContent()).startsWith("Your turn") ? ana : bo;
+  const [shooter] = await battleOrder(ana, bo);
   const target = shooter.getByRole("grid", { name: "Enemy waters" });
   await target.getByRole("button", { name: /^A1,/ }).focus();
   await shooter.keyboard.press("ArrowRight");

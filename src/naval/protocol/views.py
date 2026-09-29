@@ -37,7 +37,7 @@ _UNKNOWN_ERROR_TEXT = "Something went wrong."
 @dataclass(frozen=True, slots=True)
 class PlayerView:
     nickname: str
-    flag: Flag | None
+    flag: Flag
     connected: bool
     wants_rematch: bool
 

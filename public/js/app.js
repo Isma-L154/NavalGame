@@ -209,12 +209,12 @@ function onMessage(message, nickname) {
 function onState(state) {
   const previous = game.state;
   game.state = state;
-  const flown = state.players[state.seat]?.flag;
-  if (game.requestedFlag && flown && flown !== game.requestedFlag) {
+  const flown = state.players[state.seat].flag;
+  if (game.requestedFlag && flown !== game.requestedFlag) {
     placement.setFlagNote(game.requestedFlag, flown);
   }
   game.requestedFlag = null;
-  if (flown && flown === game.chosenFlag) {
+  if (flown === game.chosenFlag) {
     flagPicked = true;
     session.flag = flown;
     homeFlag.setValue(flown);
