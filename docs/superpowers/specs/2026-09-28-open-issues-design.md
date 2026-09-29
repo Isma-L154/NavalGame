@@ -9,7 +9,8 @@ Five open issues, shipped as five PRs in this order: **#37** (share card), **#38
 
 **Decision:** static Open Graph and Twitter card tags on both public pages, plus a 1200×630 PNG share image in the poster style.
 
-- `index.html` and `terms.html` get `og:type` (`website`), `og:site_name`, `og:title`, `og:description`, `og:url` (equal to the canonical URL), `og:image` (absolute URL), `og:image:width`/`height`/`alt`, `og:locale` (`en_US`), `twitter:card` (`summary_large_image`), plus `twitter:title`/`description`/`image`/`image:alt`.
+- `index.html` and `terms.html` get `og:type` (`website`), `og:site_name`, `og:title`, `og:description` (equal to the meta description), `og:image` (absolute URL), `og:image:width`/`height`/`alt`, `og:locale` (`en_US`), `twitter:card` (`summary_large_image`) and `twitter:image:alt`. X falls back to the `og:` values for title, description and image, so those are not repeated.
+- `og:url` equals the canonical URL on `/terms`, but the game page has **none**: invite links are `/?room=CODE`, and scrapers that honour `og:url` would send them to the bare home page.
 - `public/og-image.png` (1200×630) is rendered from a committed source, `design/og-image.html`, by `scripts/render-og-image.mjs` (Playwright, already a dev dependency). The PNG is committed, so there is no build step at deploy time.
 - `public/apple-touch-icon.png` (180×180): iOS home-screen icon and some share previews.
 - **Search Console verification is not code.** A `google-site-verification` meta tag needs a token from the owner's Google account. The better route is a *Domain* property verified by a DNS TXT record in the Cloudflare zone, which also covers every subdomain. This is recorded as an owner action. No placeholder token is committed.
@@ -58,7 +59,7 @@ UI:
 
 ### 4.2 Placement interface
 - The ship list becomes a **dock**. Each ship button shows its silhouette at its real length, replacing the pips.
-- **Model:** a ship is *selected* either from the dock or by clicking it on the grid. Selecting a placed ship keeps it on the board, outlined. Choosing a water cell places or moves the selected ship. Clicking the selected ship again, or pressing **R** / **Rotate**, rotates it in place when it fits. Otherwise **R** changes the orientation for the next placement. This replaces "pick up", which removed the ship from the board.
+- **Interaction:** a ship is *selected* either from the dock or by clicking it on the grid. Selecting a placed ship keeps it on the board, outlined. Choosing a water cell places or moves the selected ship. Clicking the selected ship again, or pressing **R** / **Rotate**, rotates it in place when it fits. Otherwise **R** changes the orientation for the next placement. This replaces "pick up", which removed the ship from the board.
 - **Drag and drop** (Pointer Events, so mouse, touch and pen all work): drag a ship from the dock or from the grid. The grid previews the drop where the ship will land, keeping the grab offset along the hull. Dropping on a valid spot places it; dropping anywhere else cancels. A drag starts only after 6 px of movement, so taps stay clicks. `touch-action: none` applies only to dock ships and placed ship cells, so the page still scrolls from water cells.
 - The keyboard path stays complete: dock buttons, arrow keys on the grid, Enter to place, select or rotate, and **R**.
 
@@ -86,12 +87,12 @@ Only the newest shot animates (the UX rule is one or two animated elements per v
 
 ## 6. Delivery
 
-| PR | Issue | Model | Why |
-|---|---|---|---|
-| 1 | #37 share card + metadata | Sonnet 5 | Well-specified, static assets and tags |
-| 2 | #38 invite link | Sonnet 5 | Small client flow, E2E-tested |
-| 3 | #39 team flags | Opus 5.5 | Protocol, persistence and UI change across layers |
-| 4 | #35 board UI | Opus 5.5 | Largest UI change: layering, drag and drop, animation |
-| 5 | #36 responsive | Sonnet 5 | Audit-driven CSS fixes with a clear checklist |
+| PR | Issue | Scope |
+|---|---|---|
+| 1 | #37 share card + metadata | Static assets and tags |
+| 2 | #38 invite link | Small client flow, E2E-tested |
+| 3 | #39 team flags | Protocol, persistence and UI across layers |
+| 4 | #35 board UI | Layering, drag and drop, animation |
+| 5 | #36 responsive | Audit-driven CSS fixes |
 
 Each PR: issue → branch → tests first → implementation → local unit, integration and E2E → `code-review` → `differential-review` where the protocol changes (#39) → CI green → squash merge → production smoke.

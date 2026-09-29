@@ -12,21 +12,14 @@ SOCIAL_TAGS = (
     "og:site_name",
     "og:title",
     "og:description",
-    "og:url",
     "og:image",
     "og:image:width",
     "og:image:height",
     "og:image:alt",
     "og:locale",
 )
+TWITTER_TAGS = ("twitter:card", "twitter:image:alt")
 PNG_SIGNATURE = bytes.fromhex("89504e470d0a1a0a")
-TWITTER_TAGS = (
-    "twitter:card",
-    "twitter:title",
-    "twitter:description",
-    "twitter:image",
-    "twitter:image:alt",
-)
 
 
 def _sitemap_urls() -> list[str]:
@@ -52,8 +45,9 @@ def test_robots_allows_the_site_and_points_to_the_sitemap() -> None:
 
 
 def _meta(html: str, attr: str, key: str) -> str | None:
-    match = re.search(rf'<meta {attr}="{re.escape(key)}" content="([^"]*)">', html)
-    return match.group(1) if match else None
+    values = re.findall(rf'<meta {attr}="{re.escape(key)}" content="([^"]*)">', html)
+    assert len(values) <= 1, f"{key} appears {len(values)} times"
+    return values[0] if values else None
 
 
 def _png_size(path: Path) -> tuple[int, int]:
@@ -64,22 +58,27 @@ def _png_size(path: Path) -> tuple[int, int]:
 
 
 def test_every_page_has_a_complete_share_card() -> None:
-    for url, page in PAGES.items():
+    for page in PAGES.values():
         html = (PUBLIC / page).read_text(encoding="utf-8")
         for key in SOCIAL_TAGS:
             assert _meta(html, "property", key), f"{page}: {key}"
         for key in TWITTER_TAGS:
             assert _meta(html, "name", key), f"{page}: {key}"
-        assert _meta(html, "property", "og:url") == url
         assert _meta(html, "name", "twitter:card") == "summary_large_image"
+        assert _meta(html, "property", "og:description") == _meta(html, "name", "description")
+
+
+def test_og_url_is_the_canonical_url_except_on_the_game_page() -> None:
+    # Invite links are /?room=CODE: a fixed og:url would make scrapers link to the bare home.
+    assert _meta((PUBLIC / "index.html").read_text(encoding="utf-8"), "property", "og:url") is None
+    terms = (PUBLIC / "terms.html").read_text(encoding="utf-8")
+    assert _meta(terms, "property", "og:url") == f"{ORIGIN}/terms"
 
 
 def test_the_share_image_is_a_1200_by_630_png_on_this_site() -> None:
     for page in PAGES.values():
         html = (PUBLIC / page).read_text(encoding="utf-8")
-        image = _meta(html, "property", "og:image")
-        assert image == f"{ORIGIN}/og-image.png"
-        assert _meta(html, "name", "twitter:image") == image
+        assert _meta(html, "property", "og:image") == f"{ORIGIN}/og-image.png"
         assert _meta(html, "property", "og:image:width") == "1200"
         assert _meta(html, "property", "og:image:height") == "630"
     assert _png_size(PUBLIC / "og-image.png") == (1200, 630)
