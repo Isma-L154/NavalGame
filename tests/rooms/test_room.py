@@ -258,3 +258,37 @@ def test_flags_are_compared_by_value() -> None:
     assert _flags(room) == [Flag.K, Flag.A]
     with pytest.raises(FlagTaken):
         room.choose_flag(1, "k", now=T0)  # type: ignore[arg-type]
+
+
+JOIN_ID = "j" * 43
+
+
+def test_a_fresh_join_repeated_with_its_join_id_gets_the_same_seat_back() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    seat, lost_token = room.join("Ana", None, now=T0, first_shooter=0, join_id=JOIN_ID)
+    assert lost_token is not None
+    room.disconnect(seat, now=T0 + 1)
+    again, token = room.join("Ana", None, now=T0 + 2, first_shooter=0, join_id=JOIN_ID)
+    assert (again, room.connected_seats()) == (seat, [seat])
+    assert token is not None
+    assert token != lost_token
+    # The token that never arrived is replaced, so it cannot be used later.
+    with pytest.raises(InvalidToken):
+        room.join("Ana", lost_token, now=T0 + 3, first_shooter=0)
+    assert room.join("Ana", token, now=T0 + 3, first_shooter=0) == (seat, None)
+
+
+def test_a_join_id_stops_counting_once_the_token_is_used() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    _, token = room.join("Ana", None, now=T0, first_shooter=0, join_id=JOIN_ID)
+    assert token is not None
+    room.join("Ana", token, now=T0 + 1, first_shooter=0)
+    seat, _ = room.join("Bo", None, now=T0 + 2, first_shooter=0, join_id=JOIN_ID)
+    assert seat == 1
+
+
+def test_another_join_id_takes_another_seat() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    room.join("Ana", None, now=T0, first_shooter=0, join_id=JOIN_ID)
+    seat, _ = room.join("Bo", None, now=T0, first_shooter=0, join_id="k" * 43)
+    assert seat == 1

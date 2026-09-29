@@ -50,6 +50,13 @@ def test_join_without_a_flag_leaves_the_choice_to_the_server() -> None:
     assert message.flag is None
 
 
+def test_join_with_a_join_id() -> None:
+    frame = _frame({"type": "join", "nickname": "Ana", "join_id": TOKEN})
+    message = parse_client_message(frame)
+    assert isinstance(message, JoinMessage)
+    assert message.join_id == TOKEN
+
+
 def test_choose_flag() -> None:
     message = parse_client_message(_frame({"type": "choose_flag", "flag": "z"}))
     assert message == ChooseFlagMessage(type="choose_flag", flag=Flag.Z)
@@ -102,6 +109,8 @@ def test_fire_rematch_and_leave() -> None:
         {"type": "place_fleet", "ships": [{**SHIPS[0], "orientation": "diagonal"}, *SHIPS[1:]]},
         {"type": "rematch", "extra": 1},
         {"type": "join", "nickname": "Ana", "flag": "K"},
+        {"type": "join", "nickname": "Ana", "join_id": "short"},
+        {"type": "join", "nickname": "Ana", "join_id": "!" * 43},
         {"type": "join", "nickname": "Ana", "flag": "kk"},
         {"type": "join", "nickname": "Ana", "flag": 1},
         {"type": "join", "nickname": "Ana", "flag": ""},

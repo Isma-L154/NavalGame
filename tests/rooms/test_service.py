@@ -308,3 +308,12 @@ async def test_choosing_the_opponents_flag_is_refused(service: RoomService) -> N
 async def test_the_join_flag_request_is_honoured(service: RoomService) -> None:
     delivery = await service.handle(None, JoinMessage(type="join", nickname="Ana", flag=Flag.N))
     assert _last_state(delivery, 0)["players"][0]["flag"] == "n"
+
+
+async def test_a_join_id_stops_reclaiming_once_the_seat_acts(service: RoomService) -> None:
+    join_id = "j" * 43
+    first = await service.handle(None, JoinMessage(type="join", nickname="Ana", join_id=join_id))
+    assert first.bind_seat == 0
+    await service.handle(0, ChooseFlagMessage(type="choose_flag", flag=Flag.Q))
+    again = await service.handle(None, JoinMessage(type="join", nickname="Ana", join_id=join_id))
+    assert again.bind_seat == 1

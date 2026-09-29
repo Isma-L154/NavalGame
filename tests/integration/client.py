@@ -108,7 +108,11 @@ async def receive(
 
 
 async def join(
-    code: str, nickname: str, token: str | None = None, flag: str | None = None
+    code: str,
+    nickname: str,
+    token: str | None = None,
+    flag: str | None = None,
+    join_id: str | None = None,
 ) -> tuple[ClientConnection, dict[str, Any]]:
     ws = await open_socket(code)
     payload: dict[str, Any] = {"type": "join", "nickname": nickname}
@@ -116,6 +120,8 @@ async def join(
         payload["token"] = token
     if flag is not None:
         payload["flag"] = flag
+    if join_id is not None:
+        payload["join_id"] = join_id
     await send(ws, payload)
     joined = await receive(ws, "joined")
     await receive(ws, "state")

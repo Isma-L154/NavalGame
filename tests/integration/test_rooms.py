@@ -127,6 +127,22 @@ async def test_players_fly_different_flags_and_can_change_them() -> None:
     await bo.close()
 
 
+async def test_a_join_whose_reply_was_lost_gets_its_seat_back() -> None:
+    code = create_room()
+    join_id = "L" * 43
+    lost = await open_socket(code)
+    await send(lost, {"type": "join", "nickname": "Ana", "join_id": join_id})
+    await receive(lost, "joined")
+    await lost.close()  # as if the reply with the token never arrived
+    ana, joined = await join(code, "Ana", join_id=join_id)
+    assert joined["seat"] == 0
+    assert joined["token"]
+    bo, joined = await join(code, "Bo")
+    assert joined["seat"] == 1
+    await ana.close()
+    await bo.close()
+
+
 async def test_third_player_gets_room_full() -> None:
     code = create_room()
     await join(code, "Ana")

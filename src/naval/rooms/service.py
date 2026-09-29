@@ -161,13 +161,20 @@ class RoomService:
             if seat is not None:
                 raise AlreadyJoined("this connection already has a seat")
             new_seat, token = room.join(
-                message.nickname, message.token, now, self._coin_flip(), message.flag
+                message.nickname,
+                message.token,
+                now,
+                self._coin_flip(),
+                flag=message.flag,
+                join_id=message.join_id,
             )
             delivery.bind_seat = new_seat
             delivery.to_requester.append(joined_message(new_seat, room.code, token))
             return
         if seat is None:
             raise NotJoined("send join first")
+        # Messages arrive in order, so a seated message means "joined" (and its token) arrived.
+        room.token_delivered(seat)
         if isinstance(message, ChooseFlagMessage):
             room.choose_flag(seat, message.flag, now)
         elif isinstance(message, PlaceFleetMessage):
