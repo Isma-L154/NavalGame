@@ -1,4 +1,5 @@
 import { $, el } from "./dom.js";
+import { flagIcon, flagName } from "./flags.js";
 import { BOARD_SIZE, SHIPS, cellKey, coordinateLabel, shipByKind, shipCells } from "./fleet.js";
 import { Grid } from "./grid.js";
 
@@ -36,6 +37,8 @@ export class BattleView {
     this.#renderTarget(state);
     this.#renderOwn(state);
     this.#renderBanner(state);
+    renderFlag($("enemy-flag"), state.players[1 - state.seat]);
+    renderFlag($("own-flag"), state.players[state.seat]);
     renderFleetList($("enemy-fleet"), new Set(state.opponent_sunk.map((ship) => ship.kind)));
     renderFleetList($("own-fleet"), ownSunkKinds(state));
     this.#renderResult(state);
@@ -193,6 +196,14 @@ function ownSunkKinds(state) {
     (state.own_fleet ?? [])
       .filter((p) => shipCells(p).every(([r, c]) => shots.has(cellKey(r, c))))
       .map((p) => p.kind),
+  );
+}
+
+function renderFlag(slot, player) {
+  slot.replaceChildren(
+    ...(player?.flag
+      ? [flagIcon(player.flag, { className: "flag", label: `${player.nickname}'s flag, ${flagName(player.flag)}` })]
+      : []),
   );
 }
 

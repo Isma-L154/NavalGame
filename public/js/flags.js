@@ -15,12 +15,20 @@ export function flagForNickname(nickname) {
   return FLAGS.some((flag) => flag.code === initial) ? initial : "a";
 }
 
-/** A decorative flag drawn from the shared sprite; the name must be given as text alongside. */
-export function flagIcon(code, className = "flag") {
+/**
+ * A flag drawn from the shared sprite. Without a `label` it is decorative and its name must be
+ * given as text alongside; with one it is announced as an image.
+ */
+export function flagIcon(code, { className = "flag", label = null } = {}) {
   const svg = document.createElementNS(SVG_NS, "svg");
   svg.setAttribute("class", className);
-  svg.setAttribute("aria-hidden", "true");
   svg.setAttribute("focusable", "false");
+  if (label) {
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", label);
+  } else {
+    svg.setAttribute("aria-hidden", "true");
+  }
   const use = document.createElementNS(SVG_NS, "use");
   use.setAttribute("href", `/flags.svg#flag-${code}`);
   svg.append(use);

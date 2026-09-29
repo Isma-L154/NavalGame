@@ -624,6 +624,21 @@ input[aria-invalid="true"] {
   opacity: 0.4;
 }
 
+.flag-inline {
+  margin-inline: 0.2em 0.35em;
+  vertical-align: -0.15em;
+}
+
+.board-flag:not(:empty) {
+  display: inline-flex;
+  margin-right: var(--space-2);
+  vertical-align: -0.1em;
+}
+
+#placement-flag-note:empty {
+  display: none;
+}
+
 /* Legal pages: a readable single column. */
 .legal {
   max-width: 46rem;
