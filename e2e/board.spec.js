@@ -55,6 +55,46 @@ test("a placed ship is selected with a click and turned with a second one", asyn
   await expect(cell(ana, PLACEMENT, "A1")).toHaveAttribute("aria-label", "A1, water");
 });
 
+test("ships are not redrawn when an update leaves the fleet as it was", async ({ browser }, testInfo) => {
+  const { ana, bo } = await placementScreen(browser, testInfo);
+  await cell(ana, PLACEMENT, "A1").click();
+  const carrier = await ship(ana, "carrier").elementHandle();
+  // The opponent readying up sends a new state, which re-renders the placement screen.
+  await bo.getByRole("button", { name: "Random" }).click();
+  await bo.getByRole("button", { name: "Ready" }).click();
+  await expect(ana.locator("#placement-opponent")).toContainText("fleet ready");
+  expect(await carrier.evaluate((node) => node.isConnected)).toBe(true);
+});
+
+test("Rotate names the orientation of the ship it would turn", async ({ browser }, testInfo) => {
+  const { ana } = await placementScreen(browser, testInfo);
+  const rotate = ana.locator("#rotate");
+  await cell(ana, PLACEMENT, "A1").click();
+  // The carrier is placed and the battleship, not yet placed, is up next.
+  await expect(rotate).toHaveText("Rotate: horizontal");
+  await cell(ana, PLACEMENT, "A1").click();
+  await cell(ana, PLACEMENT, "A1").click();
+  await expect(ship(ana, "carrier")).toHaveClass(/is-vertical/);
+  await expect(rotate).toHaveText("Rotate: vertical");
+  await ana.getByRole("button", { name: /Battleship/ }).click();
+  await expect(rotate).toHaveText("Rotate: horizontal");
+});
+
+test("Shift and an arrow key move the selected ship one cell", async ({ browser }, testInfo) => {
+  const { ana } = await placementScreen(browser, testInfo);
+  await cell(ana, PLACEMENT, "A1").click();
+  await cell(ana, PLACEMENT, "A3").click();
+  await expect(cell(ana, PLACEMENT, "A3")).toBeFocused();
+  await ana.keyboard.press("Shift+ArrowRight");
+  await expect(cell(ana, PLACEMENT, "A1")).toHaveAttribute("aria-label", "A1, water");
+  await expect(cell(ana, PLACEMENT, "A6")).toHaveAttribute("aria-label", "A6, Carrier, selected");
+  // Focus moves with the ship, so the next key press acts on the same part of it.
+  await expect(cell(ana, PLACEMENT, "A4")).toBeFocused();
+  await ana.keyboard.press("Shift+ArrowUp");
+  await expect(ana.locator("#placement-status")).toHaveText("That ship does not fit there.");
+  await expect(cell(ana, PLACEMENT, "A4")).toBeFocused();
+});
+
 test("ships can be dragged from the dock and around the grid", async ({ browser }, testInfo) => {
   test.skip(testInfo.project.name === "mobile", "mouse dragging; touch uses the same pointer events");
   const { ana } = await placementScreen(browser, testInfo);

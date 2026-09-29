@@ -13,7 +13,8 @@ const clamp = (value, max) => Math.max(0, Math.min(max, value));
 /**
  * Placing the fleet. A ship is selected from the dock or on the grid (it stays where it is);
  * a water cell places or moves the selected ship; selecting it again, R or Rotate turns it in
- * place. Ships can also be dragged from the dock or around the grid.
+ * place, and Shift+arrow keys move it one cell. Ships can also be dragged from the dock or
+ * around the grid.
  */
 export class PlacementView {
   #draft = new FleetDraft();
@@ -25,6 +26,7 @@ export class PlacementView {
   #state = null;
   #flagTimer = null;
   #noteAbout = null;
+  #dragShown = null;
 
   constructor({ onReady, onChooseFlag }) {
     this.onReady = onReady;
@@ -45,6 +47,7 @@ export class PlacementView {
       onActivate: (row, col) => this.#activate(row, col),
       onHover: (row, col) => this.#preview(row, col),
       onLeave: () => this.grid.clearPreview(),
+      onNudge: (dRow, dCol) => this.#nudge(dRow, dCol),
     });
     this.grid.root.classList.add("board-placement");
     this.#buildDock();
@@ -52,7 +55,7 @@ export class PlacementView {
       start: (event) => this.#dragStart(event),
       move: (ship, x, y) => this.#dragMove(ship, x, y),
       drop: (ship, x, y) => this.#dragDrop(ship, x, y),
-      cancel: () => this.grid.clearPreview(),
+      cancel: () => this.#dragEnd(),
     });
     $("rotate").addEventListener("click", () => this.#rotate());
     $("random-fleet").addEventListener("click", () => this.#randomize());
@@ -155,20 +158,28 @@ export class PlacementView {
     }
   }
 
-  /** Places or moves a ship. A new one hands over to the next ship in the dock. */
+  /** Places or moves a ship, and says whether it did. A new one hands over to the next ship. */
   #place(placement) {
     // A drag can end after Ready was pressed: the fleet on its way must not change.
-    if (this.#frozen) return;
+    if (this.#frozen) return false;
     const moving = this.#draft.has(placement.kind);
     if (!this.#draft.place(placement)) {
       $("placement-status").textContent = "That ship does not fit there.";
-      return;
+      return false;
     }
     this.#selected = moving
       ? placement.kind
       : (SHIPS.find((ship) => !this.#draft.has(ship.kind))?.kind ?? null);
     this.grid.clearPreview();
     this.#render();
+    return true;
+  }
+
+  /** Moves the selected ship one cell (Shift+arrow keys), for keyboard users. */
+  #nudge(dRow, dCol) {
+    const placed = this.#selected === null ? null : this.#draft.placementOf(this.#selected);
+    if (!placed) return false;
+    return this.#place({ ...placed, row: placed.row + dRow, col: placed.col + dCol });
   }
 
   #orientationOf(kind) {
@@ -194,7 +205,7 @@ export class PlacementView {
       return;
     }
     this.#orientation = flip(this.#orientation);
-    $("orientation-label").textContent = this.#orientation;
+    this.#render();
     if (this.grid.root.contains(document.activeElement)) this.#preview(...this.grid.focusedCell);
   }
 
@@ -231,12 +242,21 @@ export class PlacementView {
 
   #dragMove(ship, x, y) {
     const placement = this.#dragTarget(ship, x, y);
+    // Pointer moves arrive many times per cell: redraw the preview only when the cell changes.
+    const shown = placement && JSON.stringify(placement);
+    if (shown === this.#dragShown) return;
+    this.#dragShown = shown;
     if (placement) this.grid.setPreview(shipCells(placement), this.#draft.canPlace(placement));
     else this.grid.clearPreview();
   }
 
-  #dragDrop(ship, x, y) {
+  #dragEnd() {
+    this.#dragShown = null;
     this.grid.clearPreview();
+  }
+
+  #dragDrop(ship, x, y) {
+    this.#dragEnd();
     const placement = this.#dragTarget(ship, x, y);
     if (placement) this.#place(placement);
   }
@@ -287,6 +307,8 @@ export class PlacementView {
       button.classList.toggle("is-placed", this.#draft.has(kind));
       button.disabled = this.#frozen;
     }
+    // Rotate turns the selected ship where it lies, or sets the orientation of the next one.
+    $("orientation-label").textContent = this.#orientationOf(this.#selected);
     for (const id of ["rotate", "random-fleet", "clear-fleet"]) $(id).disabled = this.#frozen;
     $("ready").disabled = this.#frozen || !this.#draft.isComplete;
     this.grid.setInteractive(!this.#frozen);
