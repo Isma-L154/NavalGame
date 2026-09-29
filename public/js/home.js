@@ -1,17 +1,16 @@
 import { $ } from "./dom.js";
 
-const WELCOME = {
-  kicker: "2 players · 10 × 10 grid · 5 ships",
-  title: "Sink the enemy fleet",
-  lede: "Create a room, send the link to a friend, hide your ships and take turns firing. First fleet to go under loses.",
-};
+const HERO_IDS = ["home-kicker", "home-title", "home-lede"];
 
 /** The home screen: the usual welcome, or a one-step join when opened from an invite link. */
 export class HomeView {
   #invitedTo = null;
+  // The welcome text lives in the HTML; remember it to restore after an invitation.
+  #welcome = new Map(HERO_IDS.map((id) => [id, $(id).textContent]));
 
   constructor({ onLeaveInvite }) {
     $("leave-invite").addEventListener("click", () => {
+      $("room-code").value = "";
       this.show(null);
       onLeaveInvite();
     });
@@ -25,16 +24,17 @@ export class HomeView {
   show(code) {
     this.#invitedTo = code;
     const invited = code !== null;
-    $("home-kicker").textContent = invited ? "You're invited" : WELCOME.kicker;
-    $("home-title").textContent = invited ? `Join room ${code}` : WELCOME.title;
-    $("home-lede").textContent = invited
-      ? "A friend opened this room for you. Choose a nickname and join the battle."
-      : WELCOME.lede;
+    const invitation = {
+      "home-kicker": "You're invited",
+      "home-title": `Join room ${code}`,
+      "home-lede": "A friend opened this room for you. Choose a nickname and join the battle.",
+    };
+    for (const id of HERO_IDS) $(id).textContent = invited ? invitation[id] : this.#welcome.get(id);
     $("create-room").hidden = invited;
     $("room-code-field").hidden = invited;
     $("leave-invite").hidden = !invited;
     $("join-submit").classList.toggle("button-primary", invited);
     $("join-form").classList.toggle("is-invite", invited);
-    $("room-code").value = code ?? "";
+    if (invited) $("room-code").value = code;
   }
 }

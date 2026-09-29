@@ -95,6 +95,8 @@ function onJoinRoom(event) {
     input.focus();
     return;
   }
+  // Already connecting to this room: a second submit would orphan the first seat.
+  if (game.connection && game.code === code) return;
   enterRoom(code, nickname);
 }
 
@@ -225,26 +227,28 @@ function init() {
   });
   // The nickname sits outside the join form: Enter triggers whichever action is on offer.
   $("nickname").addEventListener("keydown", (event) => {
-    if (event.key !== "Enter") return;
+    if (event.key !== "Enter" || event.isComposing) return;
     event.preventDefault();
-    if (home.invitedTo) $("join-form").requestSubmit();
-    else onCreateRoom();
+    // Clicking the buttons keeps their guards (a disabled Create button ignores clicks).
+    if (event.repeat) return;
+    const joining = home.invitedTo || $("room-code").value.trim();
+    $(joining ? "join-submit" : "create-room").click();
   });
   for (const button of document.querySelectorAll(".leave-button")) {
     button.addEventListener("click", leaveRoom);
   }
 
   const code = new URLSearchParams(location.search).get("room")?.toUpperCase();
-  const invited = code && ROOM_CODE.test(code) ? code : null;
-  home.show(invited);
+  const room = code && ROOM_CODE.test(code) ? code : null;
   showScreen("home");
-  if (!invited) return;
   // Coming back to a room this tab already sits in (a reload): reconnect straight away.
-  if (session.token(invited) && NICKNAME.test(session.nickname)) {
-    enterRoom(invited, session.nickname);
-  } else {
-    $("nickname").focus();
+  if (room && session.token(room) && NICKNAME.test(session.nickname)) {
+    home.show(null);
+    enterRoom(room, session.nickname);
+    return;
   }
+  home.show(room);
+  if (room) $("nickname").focus();
 }
 
 init();

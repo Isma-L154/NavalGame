@@ -2,9 +2,11 @@ import { $, el } from "./dom.js";
 
 export class LobbyView {
   #code = "";
+  #sharing = false;
 
   constructor() {
-    // The share sheet is the natural way to send a link on phones; elsewhere, copying is.
+    // Where the browser offers a share sheet (phones, tablets, some desktops), sharing is the
+    // natural way to send a link; elsewhere, copying is.
     if (typeof navigator.share === "function") {
       $("share-link").hidden = false;
       $("copy-link").classList.remove("button-primary");
@@ -26,13 +28,20 @@ export class LobbyView {
   }
 
   async #share() {
+    // A second tap while the sheet is open would be rejected; ignore it instead.
+    if (this.#sharing) return;
+    this.#sharing = true;
     const url = this.#inviteLink();
+    const feedback = $("copy-feedback");
+    feedback.textContent = "";
     try {
       await navigator.share({ title: "NavalGame", text: `Join my NavalGame room ${this.#code}.`, url });
-      $("copy-feedback").textContent = "Invite shared.";
+      feedback.textContent = "Invite shared.";
     } catch (error) {
       // Closing the share sheet is a choice, not a failure.
       if (error.name !== "AbortError") await this.#copy(url, "Invite link copied.");
+    } finally {
+      this.#sharing = false;
     }
   }
 

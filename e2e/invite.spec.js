@@ -66,3 +66,56 @@ test("pressing Enter in the nickname creates a room from the normal home", async
   await page.getByLabel("Your nickname").press("Enter");
   await expect(page.getByRole("heading", { name: "Waiting for an opponent" })).toBeVisible();
 });
+
+test("cancelling the share sheet shows nothing, a failing one copies the link", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo, { permissions: ["clipboard-read", "clipboard-write"] });
+  await ana.addInitScript(() => {
+    window.shareOutcome = "AbortError";
+    navigator.share = async () => {
+      throw new DOMException("share", window.shareOutcome);
+    };
+  });
+  const code = await createRoom(ana, "Ana");
+  await ana.getByRole("button", { name: "Share invite" }).click();
+  await expect(ana.locator("#copy-feedback")).toHaveText("");
+  await ana.evaluate(() => {
+    window.shareOutcome = "NotAllowedError";
+  });
+  await ana.getByRole("button", { name: "Share invite" }).click();
+  await expect(ana.getByText("Invite link copied.")).toBeVisible();
+  expect(await ana.evaluate(() => navigator.clipboard.readText())).toContain(`/?room=${code}`);
+});
+
+test("pressing Enter twice creates a single room", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
+  let creations = 0;
+  page.on("request", (request) => {
+    if (request.method() === "POST" && request.url().endsWith("/api/rooms")) creations += 1;
+  });
+  await page.goto("/");
+  await page.getByLabel("Your nickname").fill("Ana");
+  await page.getByLabel("Your nickname").press("Enter");
+  await page.getByLabel("Your nickname").press("Enter");
+  await expect(page.getByRole("heading", { name: "Waiting for an opponent" })).toBeVisible();
+  expect(creations).toBe(1);
+});
+
+test("Enter joins when a code is already typed", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo);
+  const bo = await newPlayer(browser, testInfo);
+  const code = await createRoom(ana, "Ana");
+  await bo.goto("/");
+  await bo.getByLabel("Or join with a code").fill(code);
+  await bo.getByLabel("Your nickname").fill("Bo");
+  await bo.getByLabel("Your nickname").press("Enter");
+  await expect(bo.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
+});
+
+test("a failed join keeps the code ready for another try", async ({ browser }, testInfo) => {
+  const page = await newPlayer(browser, testInfo);
+  await page.goto("/?room=ZZZZZZ");
+  await page.getByLabel("Your nickname").fill("Ana");
+  await page.getByRole("button", { name: "Join room" }).click();
+  await expect(page.getByRole("alert")).toContainText("Could not join room ZZZZZZ");
+  await expect(page.getByLabel("Or join with a code")).toHaveValue("ZZZZZZ");
+});
