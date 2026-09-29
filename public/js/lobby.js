@@ -3,7 +3,8 @@ import { $, el } from "./dom.js";
 export class LobbyView {
   #code = "";
 
-  constructor() {
+  constructor({ onPlayCpu }) {
+    $("lobby-cpu").addEventListener("click", onPlayCpu);
     // Where the browser offers a share sheet (phones, tablets, some desktops), sharing is the
     // natural way to send a link; elsewhere, copying is.
     if (typeof navigator.share === "function") {

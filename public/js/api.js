@@ -6,13 +6,19 @@ const CREATE_ERRORS = {
   403: "This page is not allowed to create rooms.",
 };
 
-export async function createRoom() {
+/** Creates a room to play a friend (opponent "friend") or the computer ("cpu"). */
+export async function createRoom({ opponent = "friend" } = {}) {
   // AbortController with a timer, not AbortSignal.timeout: that is missing from older Safari.
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), CREATE_TIMEOUT_MS);
   let response;
   try {
-    response = await fetch("/api/rooms", { method: "POST", signal: controller.signal });
+    response = await fetch("/api/rooms", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ opponent }),
+      signal: controller.signal,
+    });
   } catch {
     throw new Error("Could not reach the server. Check your connection.");
   } finally {

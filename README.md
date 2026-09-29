@@ -2,7 +2,7 @@
 
 A two-player online naval battle, playable at **https://naval.cloudils.com**.
 
-Create a room, share its six-character code, place five ships on a 10 × 10 grid and take turns firing until one fleet is sunk. No accounts: pick a nickname and play. If your connection drops or you reload the page, you get your seat back within two minutes.
+Create a room, share its six-character code, place five ships on a 10 × 10 grid and take turns firing until one fleet is sunk. No friend around? Play vs CPU: the server plays the other seat, placing its own fleet and firing back like a person would. No accounts: pick a nickname and play. If your connection drops or you reload the page, you get your seat back within two minutes.
 
 ## How it works
 

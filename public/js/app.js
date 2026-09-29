@@ -19,6 +19,7 @@ const FATAL_ERRORS = new Set(["room_full", "room_closed"]);
 
 const game = {
   code: null,
+  nickname: null,
   connection: null,
   state: null,
   // False from sending a join until the server confirms it with "joined".
@@ -51,7 +52,7 @@ const homeFlag = new FlagPicker($("home-flag"), {
     session.flag = flag;
   },
 });
-const lobby = new LobbyView();
+const lobby = new LobbyView({ onPlayCpu: () => playCpuInstead() });
 const placement = new PlacementView({
   onReady: (ships) => send({ type: "place_fleet", ships }),
   onChooseFlag: (flag) => {
@@ -96,15 +97,19 @@ let creating = false;
 /** While a room is being created or joined, a second one would orphan the seat being taken. */
 const busy = () => creating || game.connection !== null;
 
-async function onCreateRoom() {
+/** Create a room (opponent "friend") or Play vs CPU (opponent "cpu") on the home screen. */
+function onStartRoom(opponent) {
   if (busy()) return;
   const nickname = readNickname();
-  if (!nickname) return;
+  if (nickname) startRoom(nickname, opponent);
+}
+
+async function startRoom(nickname, opponent) {
   creating = true;
-  home.setBusy(true, { creating: true });
+  home.setBusy(true, { starting: opponent === "cpu" ? "play-cpu" : "create-room" });
   let code;
   try {
-    code = await createRoom();
+    code = await createRoom({ opponent });
   } catch (error) {
     home.setBusy(false);
     notify(error.message);
@@ -113,6 +118,14 @@ async function onCreateRoom() {
     creating = false;
   }
   enterRoom(code, nickname);
+}
+
+/** From the lobby: nobody came, so leave the room (freeing it) and play the CPU instead. */
+function playCpuInstead() {
+  if (creating) return;
+  const nickname = game.nickname;
+  leaveRoom();
+  startRoom(nickname, "cpu");
 }
 
 function onJoinRoom(event) {
@@ -139,6 +152,7 @@ function enterRoom(code, nickname) {
   game.connection?.stop();
   home.setBusy(true);
   game.code = code;
+  game.nickname = nickname;
   game.state = null;
   game.seated = false;
   game.joinId = newJoinId();
@@ -321,7 +335,8 @@ function init() {
   $("nickname").addEventListener("input", (event) => {
     if (!flagPicked) homeFlag.setValue(flagForNickname(event.target.value));
   });
-  $("create-room").addEventListener("click", onCreateRoom);
+  $("create-room").addEventListener("click", () => onStartRoom("friend"));
+  $("play-cpu").addEventListener("click", () => onStartRoom("cpu"));
   $("join-form").addEventListener("submit", onJoinRoom);
   $("room-code").addEventListener("input", (event) => {
     event.target.value = event.target.value.toUpperCase();
