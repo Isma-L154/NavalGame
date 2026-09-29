@@ -36,7 +36,7 @@ test("each player flies the flag picked at home", async ({ browser }, testInfo) 
   await joinWithFlag(bo, "Bo", code);
   await expect(bo.locator("#placement-opponent")).toContainText("Ana (Kilo)");
   await expect(ana.locator("#placement-opponent")).toContainText("Bo (Bravo)");
-  await expect(bo.locator("#placement-flag-note")).toBeHidden();
+  await expect(bo.locator("#placement-flag-note")).toHaveText("");
   expect(problems.flat()).toEqual([]);
 });
 
@@ -56,6 +56,7 @@ test("asking for the opponent's flag gets another one, and says so", async ({ br
 test("a flag changed while placing ships reaches the opponent and the battle", async ({ browser }, testInfo) => {
   const ana = await newPlayer(browser, testInfo);
   const bo = await newPlayer(browser, testInfo);
+  const problems = [ana, bo].map(watchConsole);
   const code = await openRoom(ana, "Ana", "Kilo");
   await joinWithFlag(bo, "Bo", code);
   await pickFlag(bo, "placement-flag", "Zulu");
@@ -66,6 +67,7 @@ test("a flag changed while placing ships reaches the opponent and the battle", a
   }
   await expect(ana.getByRole("img", { name: "Bo's flag, Zulu" })).toBeVisible();
   await expect(ana.getByRole("img", { name: "Ana's flag, Kilo" })).toBeVisible();
+  expect(problems.flat()).toEqual([]);
 });
 
 test("the home flag follows the nickname until the player picks one", async ({ browser }, testInfo) => {

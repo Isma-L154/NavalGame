@@ -4,6 +4,8 @@ import { flagIcon, flagName } from "./flags.js";
 import { FleetDraft, SHIPS, shipByKind, shipCells } from "./fleet.js";
 import { Grid } from "./grid.js";
 
+const FLAG_SETTLE_MS = 400;
+
 export class PlacementView {
   #draft = new FleetDraft();
   #selected = SHIPS[0].kind;
@@ -12,6 +14,8 @@ export class PlacementView {
   #locked = false;
   #shipButtons = new Map();
   #state = null;
+  #flagTimer = null;
+  #noteAbout = null;
 
   constructor({ onReady, onChooseFlag }) {
     this.onReady = onReady;
@@ -19,7 +23,12 @@ export class PlacementView {
       name: "placement-flag",
       onChange: (flag) => {
         this.setFlagNote(null);
-        onChooseFlag(flag);
+        // Arrow keys step through every radio: send the flag once the player settles on one.
+        clearTimeout(this.#flagTimer);
+        this.#flagTimer = setTimeout(() => {
+          this.#flagTimer = null;
+          onChooseFlag(flag);
+        }, FLAG_SETTLE_MS);
       },
     });
     this.grid = new Grid($("placement-grid"), {
@@ -60,6 +69,8 @@ export class PlacementView {
       if (!opponent.connected) line.push(" · disconnected");
     }
     $("placement-opponent").replaceChildren(...line);
+    // The note explains the opponent's flag; once that changes, it no longer holds.
+    if (this.#noteAbout && opponent?.flag !== this.#noteAbout) this.setFlagNote(null);
     this.#syncFlag();
     this.#locked = state.fleet_placed[state.seat];
     if (!this.#locked && this.#submitted) this.#submitted = false;
@@ -71,24 +82,27 @@ export class PlacementView {
     }
   }
 
-  rejected() {
-    this.#submitted = false;
+  /** The server refused the last action; a refused flag change leaves a pending fleet alone. */
+  rejected(code) {
+    if (code !== "flag_taken") this.#submitted = false;
     this.#syncFlag();
     this.#render();
   }
 
   /** Explains that the server gave the player another flag than the one asked for; null clears. */
   setFlagNote(requested, flown) {
+    this.#noteAbout = requested;
     $("placement-flag-note").textContent = requested
       ? `Your opponent already flies ${flagName(requested)}, so you fly ${flagName(flown)}. You can change it.`
       : "";
   }
 
-  // The picker always shows what the server says, also after a refused change.
+  // The picker shows what the server says (also after a refused change), unless the player is
+  // still choosing.
   #syncFlag() {
     const state = this.#state;
     if (!state) return;
-    this.flagPicker.setValue(state.players[state.seat]?.flag ?? null);
+    if (this.#flagTimer === null) this.flagPicker.setValue(state.players[state.seat]?.flag ?? null);
     this.flagPicker.setTaken(state.players[1 - state.seat]?.flag ?? null);
   }
 

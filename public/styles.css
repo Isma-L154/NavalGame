@@ -635,10 +635,6 @@ input[aria-invalid="true"] {
   vertical-align: -0.1em;
 }
 
-#placement-flag-note:empty {
-  display: none;
-}
-
 /* Legal pages: a readable single column. */
 .legal {
   max-width: 46rem;

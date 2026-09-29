@@ -27,6 +27,8 @@ const game = {
   seated: false,
   // The flag asked for by a fresh join, to explain it if the server gave another one.
   requestedFlag: null,
+  // A flag chosen while placing ships, remembered as the player's pick once the server agrees.
+  chosenFlag: null,
   leaving: false,
 };
 
@@ -37,9 +39,12 @@ const home = new HomeView({
     $("nickname").focus();
   },
 });
+// Whether the player picked a flag, kept in memory too: storage can be unavailable.
+let flagPicked = false;
 const homeFlag = new FlagPicker($("home-flag"), {
   name: "home-flag",
   onChange: (flag) => {
+    flagPicked = true;
     session.flag = flag;
   },
 });
@@ -47,8 +52,7 @@ const lobby = new LobbyView();
 const placement = new PlacementView({
   onReady: (ships) => send({ type: "place_fleet", ships }),
   onChooseFlag: (flag) => {
-    session.flag = flag;
-    send({ type: "choose_flag", flag });
+    if (send({ type: "choose_flag", flag })) game.chosenFlag = flag;
   },
 });
 const battle = new BattleView({
@@ -197,6 +201,12 @@ function onState(state) {
     placement.setFlagNote(game.requestedFlag, flown);
   }
   game.requestedFlag = null;
+  if (flown && flown === game.chosenFlag) {
+    flagPicked = true;
+    session.flag = flown;
+    homeFlag.setValue(flown);
+    game.chosenFlag = null;
+  }
   if (previous?.phase === "finished" && state.phase === "placing") battle.reset();
   const opponent = state.players[1 - state.seat];
   if (state.phase === "placing" && !opponent) {
@@ -228,7 +238,7 @@ function onError(error, nickname) {
     return;
   }
   // Whatever was pending did not happen: let the player act again.
-  if (game.state?.phase === "placing") placement.rejected();
+  if (game.state?.phase === "placing") placement.rejected(error.code);
   else battle.rejected();
   notify(error.message);
 }
@@ -292,10 +302,11 @@ function leaveToHome(message, retryCode = null) {
 function init() {
   $("nickname").value = session.nickname;
   const stored = session.flag;
-  homeFlag.setValue(stored && flagName(stored) ? stored : flagForNickname(session.nickname));
+  flagPicked = Boolean(stored && flagName(stored));
+  homeFlag.setValue(flagPicked ? stored : flagForNickname(session.nickname));
   // Until the player picks a flag, it follows the nickname's first letter.
   $("nickname").addEventListener("input", (event) => {
-    if (!flagName(session.flag ?? "")) homeFlag.setValue(flagForNickname(event.target.value));
+    if (!flagPicked) homeFlag.setValue(flagForNickname(event.target.value));
   });
   $("create-room").addEventListener("click", onCreateRoom);
   $("join-form").addEventListener("submit", onJoinRoom);
