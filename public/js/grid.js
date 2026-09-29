@@ -7,16 +7,20 @@ const STATE_CLASSES = ["state-ship", "state-miss", "state-hit", "state-sunk", "s
 
 /**
  * A 10x10 keyboard-navigable grid (ARIA grid pattern with a roving tabindex).
- * Callbacks receive (row, col); the grid itself holds no game rules.
+ * Callbacks receive (row, col); the grid itself holds no game rules. With `onNudge`,
+ * Shift+arrow keys call it with the step (dRow, dCol) instead of only moving focus; focus
+ * follows when it returns true.
  */
 export class Grid {
   #cells = [];
   #focused = [0, 0];
+  #shipsDrawn = null;
 
-  constructor(container, { label, small = false, onActivate, onHover, onLeave } = {}) {
+  constructor(container, { label, small = false, onActivate, onHover, onLeave, onNudge = null } = {}) {
     this.onActivate = onActivate ?? (() => {});
     this.onHover = onHover ?? (() => {});
     this.onLeave = onLeave ?? (() => {});
+    this.onNudge = onNudge;
     this.root = el("div", {
       className: `board${small ? " board-small" : ""}`,
       attrs: { role: "grid", "aria-label": label },
@@ -80,6 +84,10 @@ export class Grid {
     if (moves[event.key]) {
       const [dRow, dCol] = moves[event.key];
       target = [clamp(row + dRow), clamp(col + dCol)];
+      if (event.shiftKey && this.onNudge) {
+        event.preventDefault();
+        if (!this.onNudge(dRow, dCol)) return;
+      }
     } else if (event.key === "Home") {
       target = [event.ctrlKey ? 0 : row, 0];
     } else if (event.key === "End") {
@@ -119,6 +127,10 @@ export class Grid {
 
   /** Draws `placements` as ships under the cells; `selected` is the kind drawn as selected. */
   setShips(placements, { selected = null } = {}) {
+    // Every state and every placement action calls this: only redraw what changed.
+    const drawn = JSON.stringify([placements, selected]);
+    if (drawn === this.#shipsDrawn) return;
+    this.#shipsDrawn = drawn;
     this.shipLayer.replaceChildren(
       ...placements.map(({ kind, row, col, orientation }) => {
         const ship = el("div", { className: "ship" }, [shipArt(kind, orientation)]);
