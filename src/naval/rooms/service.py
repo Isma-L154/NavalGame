@@ -1,10 +1,13 @@
+import random
 import traceback
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Protocol
 
 from naval.domain.coordinates import Coordinate
+from naval.domain.cpu import choose_shot, random_fleet
 from naval.domain.errors import GameError
+from naval.domain.game import Phase, other
 from naval.protocol.messages import (
     ChooseFlagMessage,
     ClientMessage,
@@ -49,6 +52,8 @@ class RoomClosed(GameError):
 
 
 _INTERNAL_ERROR = "internal_error"
+# The CPU's fleet and shots are drawn from here; unpredictable, so a player cannot foresee them.
+_SYSTEM_RANDOM = random.SystemRandom()
 
 
 class InMemoryRoomStore:
@@ -79,15 +84,26 @@ class Delivery:
 
 
 class RoomService:
-    def __init__(self, store: RoomStore, clock: Clock, coin_flip: Callable[[], int]) -> None:
+    def __init__(
+        self,
+        store: RoomStore,
+        clock: Clock,
+        coin_flip: Callable[[], int],
+        *,
+        rng: random.Random = _SYSTEM_RANDOM,
+    ) -> None:
         self._store = store
         self._clock = clock
         self._coin_flip = coin_flip
+        self._rng = rng
 
-    async def create(self, code: str) -> bool:
+    async def create(self, code: str, *, cpu: bool = False) -> bool:
         if await self._store.load() is not None:
             return False
-        await self._store.save(Room(code, created_at=self._clock.now()))
+        room = Room(code, created_at=self._clock.now())
+        if cpu:
+            room.seat_cpu()
+        await self._store.save(room)
         return True
 
     async def exists(self) -> bool:
@@ -109,6 +125,7 @@ class RoomService:
             if seat is not None and room.players[seat] is not None and room.token_delivered(seat):
                 await self._store.save(room)
             self._apply(room, seat, message, delivery)
+            self._play_cpu(room, delivery)
             await self._store.save(room)
         except GameError as error:
             return self._refusal(error.code, seat, message)
@@ -152,7 +169,9 @@ class RoomService:
                 to_seats={s: list(closed) for s in room.connected_seats()}, close_all=True
             )
         delivery = Delivery()
-        if room.expire(now):
+        expired = room.expire(now)
+        played = self._play_cpu(room, delivery)
+        if expired or played:
             await self._store.save(room)
             self._broadcast_state(room, delivery)
         return delivery
@@ -182,15 +201,34 @@ class RoomService:
         elif isinstance(message, PlaceFleetMessage):
             room.place_fleet(seat, [ship.to_placement() for ship in message.ships], now)
         elif isinstance(message, FireMessage):
-            target = Coordinate(message.row, message.col)
-            shot = shot_message(seat, target, room.fire(seat, target, now))
-            for s in room.connected_seats():
-                delivery.to_seats.setdefault(s, []).append(shot)
+            self._fire(room, seat, Coordinate(message.row, message.col), now, delivery)
         elif isinstance(message, RematchMessage):
             room.request_rematch(seat, self._coin_flip(), now)
         elif isinstance(message, LeaveMessage):
             room.leave(seat, now)
             delivery.close_requester = True
+
+    def _play_cpu(self, room: Room, delivery: Delivery) -> bool:
+        """Lets the CPU act if it can: place its fleet, or take a turn that is due."""
+        seat = room.cpu_seat
+        if seat is None or room.players[other(seat)] is None:
+            return False
+        game, now = room.game, self._clock.now()
+        if game.phase is Phase.PLACING and game.boards[seat] is None:
+            room.place_fleet(seat, random_fleet(self._rng), now)
+            return True
+        due, target_board = room.cpu_turn_at(), game.boards[other(seat)]
+        if due is None or now < due or target_board is None:
+            return False
+        target = choose_shot(target_board.shots_received, target_board.sunk_ships, self._rng)
+        self._fire(room, seat, target, now, delivery)
+        return True
+
+    @staticmethod
+    def _fire(room: Room, seat: int, target: Coordinate, now: float, delivery: Delivery) -> None:
+        shot = shot_message(seat, target, room.fire(seat, target, now))
+        for s in room.connected_seats():
+            delivery.to_seats.setdefault(s, []).append(shot)
 
     @staticmethod
     def _refusal(code: str, seat: int | None, message: ClientMessage) -> Delivery:
@@ -201,7 +239,9 @@ class RoomService:
     @staticmethod
     def _broadcast_state(room: Room, delivery: Delivery) -> None:
         players = [
-            None if p is None else PlayerView(p.nickname, p.flag, p.connected, p.wants_rematch)
+            None
+            if p is None
+            else PlayerView(p.nickname, p.flag, p.connected, p.wants_rematch or p.cpu)
             for p in room.players
         ]
         for seat in room.connected_seats():
