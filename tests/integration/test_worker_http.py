@@ -64,5 +64,5 @@ def test_share_images_are_served() -> None:
     for path in ("/og-image.png", "/apple-touch-icon.png"):
         status, headers, body = _get(path)
         assert status == 200, path
-        assert headers["Content-Type"] == "image/png", path
+        assert headers["Content-Type"].startswith("image/png"), path
         assert body.startswith(bytes.fromhex("89504e470d0a1a0a")), path

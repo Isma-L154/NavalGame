@@ -33,6 +33,7 @@
     <link rel="modulepreload" href="/js/dom.js">
     <link rel="modulepreload" href="/js/fleet.js">
     <link rel="modulepreload" href="/js/grid.js">
+    <link rel="modulepreload" href="/js/home.js">
     <link rel="modulepreload" href="/js/lobby.js">
     <link rel="modulepreload" href="/js/notice.js">
     <link rel="modulepreload" href="/js/placement.js">
@@ -91,9 +92,9 @@
       <!-- Home -->
       <section id="screen-home" class="screen home" aria-labelledby="home-title">
         <div class="home-hero">
-          <p class="kicker">2 players · 10 × 10 grid · 5 ships</p>
+          <p id="home-kicker" class="kicker">2 players · 10 × 10 grid · 5 ships</p>
           <h1 id="home-title">Sink the enemy fleet</h1>
-          <p class="lede">Create a room, send the code to a friend, hide your ships and take turns firing. First fleet to go under loses.</p>
+          <p id="home-lede" class="lede">Create a room, send the link to a friend, hide your ships and take turns firing. First fleet to go under loses.</p>
         </div>
         <div class="panel home-panel">
           <label class="field">
@@ -105,15 +106,16 @@
           </label>
           <button id="create-room" class="button button-primary button-wide" type="button">Create a room</button>
           <form id="join-form" class="join-form" novalidate>
-            <label class="field">
+            <label id="room-code-field" class="field">
               <span class="field-label">Or join with a code</span>
               <input id="room-code" name="room-code" class="code-input" autocomplete="off" autocapitalize="characters"
                      spellcheck="false" inputmode="text" maxlength="6" required pattern="[A-HJ-KMNP-Z2-9]{6}"
                      aria-describedby="room-code-hint">
               <span id="room-code-hint" class="field-hint">6 characters, shared by your opponent</span>
             </label>
-            <button class="button button-wide" type="submit">Join room</button>
+            <button id="join-submit" class="button button-wide" type="submit">Join room</button>
           </form>
+          <button id="leave-invite" class="button button-ghost" type="button" hidden>Start a new room instead</button>
         </div>
         <details class="rules">
           <summary>How to play</summary>
@@ -134,6 +136,7 @@
           <p>Share the code or the link. The game starts as soon as someone joins.</p>
           <p class="room-code"><span class="visually-hidden">Room code: </span><span id="lobby-code"></span></p>
           <div class="lobby-actions">
+            <button id="share-link" class="button button-primary" type="button" hidden>Share invite</button>
             <button id="copy-link" class="button button-primary" type="button">Copy invite link</button>
             <button id="copy-code" class="button" type="button">Copy code</button>
           </div>

@@ -413,6 +413,14 @@ input[aria-invalid="true"] {
   text-decoration-thickness: 3px;
 }
 
+/* Busy but still focusable (aria-disabled): looks unavailable like a disabled button. */
+.button[aria-disabled="true"] {
+  cursor: progress;
+  background: var(--paper);
+  color: var(--ink-soft);
+  border-style: dashed;
+}
+
 .button:disabled {
   cursor: not-allowed;
   background: var(--paper);
@@ -475,6 +483,12 @@ input[aria-invalid="true"] {
   display: grid;
   border-top: var(--rule);
   padding-top: var(--space-4);
+}
+
+/* From an invite link, joining is the only action: no divider above it. */
+.join-form.is-invite {
+  border-top: 0;
+  padding-top: 0;
 }
 
 .rules {

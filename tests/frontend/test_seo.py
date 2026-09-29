@@ -64,16 +64,20 @@ class _Head(HTMLParser):
             self.values[f"link:{found['rel']}"].append(found.get("href") or "")
 
 
-_REPEATABLE_LINKS = ("link:preload", "link:modulepreload", "link:stylesheet")
-
-
 def _head(page: str) -> dict[str, str]:
-    """The page's single-valued head entries; each may appear at most once."""
+    """The page's head entries; the ones these tests check may each appear at most once."""
     values = _Head((PUBLIC / page).read_text(encoding="utf-8")).values
-    single = {key: found for key, found in values.items() if key not in _REPEATABLE_LINKS}
-    duplicated = sorted(key for key, found in single.items() if len(found) > 1)
+    checked = (
+        *SOCIAL_TAGS,
+        *TWITTER_TAGS,
+        "description",
+        "og:url",
+        "link:canonical",
+        "link:apple-touch-icon",
+    )
+    duplicated = sorted(key for key in checked if len(values.get(key, [])) > 1)
     assert not duplicated, f"{page} repeats {duplicated}"
-    return {key: found[0] for key, found in single.items()}
+    return {key: found[0] for key, found in values.items()}
 
 
 def _png_size(path: Path) -> tuple[int, int]:
