@@ -827,12 +827,9 @@ a.button {
   gap: var(--space-2);
 }
 
-.placement-actions .button {
-  padding-inline: var(--space-2);
-}
-
 /* "Rotate: horizontal" is the longest label: in narrow columns it wraps instead of overflowing. */
 .placement-actions .button {
+  padding-inline: var(--space-2);
   flex-wrap: wrap;
   column-gap: 0.25em;
   text-align: center;
@@ -948,12 +945,6 @@ a.button {
   width: var(--cell);
   height: var(--cell);
   padding: 0;
-  font: inherit;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: calc(var(--cell) * 0.62);
-  line-height: 1;
-  color: var(--ink);
   background: var(--surface);
   border: 0;
   border-radius: 0;
@@ -968,7 +959,6 @@ a.button {
 @media (hover: hover) {
   .board.is-interactive .cell:not([aria-disabled="true"]):hover {
     background: var(--yellow);
-    color: var(--on-signal);
   }
 }
 
@@ -1003,15 +993,12 @@ a.button {
 .cell-sample.state-miss::after,
 .cell-sample.state-hit::after,
 .cell-sample.state-sunk::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
 }
 
 .cell.state-miss::after,
 .cell-sample.state-miss::after {
-  content: "";
   inset: 36%;
   border-radius: 50%;
   background: var(--ink);
@@ -1027,7 +1014,6 @@ a.button {
 .cell.state-sunk::after,
 .cell-sample.state-hit::after,
 .cell-sample.state-sunk::after {
-  content: "";
   inset: 20%;
   -webkit-mask: var(--cross) center / contain no-repeat;
   mask: var(--cross) center / contain no-repeat;
@@ -1234,9 +1220,6 @@ a.button {
   display: inline-block;
   width: 24px;
   height: 24px;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 15px;
   background: var(--surface);
   border: 1px solid var(--ink);
 }
@@ -1332,7 +1315,6 @@ a.button {
     justify-content: start;
     column-gap: var(--space-12);
   }
-
 }
 
 /*
