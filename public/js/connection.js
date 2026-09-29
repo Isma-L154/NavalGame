@@ -33,6 +33,11 @@ export class RoomConnection extends EventTarget {
     this.#code = code;
   }
 
+  /** Whether any socket of this connection ever reached the room. */
+  get everOpened() {
+    return this.#everOpened;
+  }
+
   connect() {
     const scheme = location.protocol === "https:" ? "wss" : "ws";
     let socket;
@@ -64,6 +69,7 @@ export class RoomConnection extends EventTarget {
         // Only JSON protocol messages matter; anything else is not ours to act on.
         return;
       }
+      if (message === null || typeof message !== "object") return;
       this.dispatchEvent(new CustomEvent("message", { detail: message }));
     });
     socket.addEventListener("close", (event) => {

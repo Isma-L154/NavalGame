@@ -413,6 +413,14 @@ input[aria-invalid="true"] {
   text-decoration-thickness: 3px;
 }
 
+/* Busy but still focusable (aria-disabled): looks unavailable like a disabled button. */
+.button[aria-disabled="true"] {
+  cursor: progress;
+  background: var(--paper);
+  color: var(--ink-soft);
+  border-style: dashed;
+}
+
 .button:disabled {
   cursor: not-allowed;
   background: var(--paper);

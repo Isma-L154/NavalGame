@@ -23,10 +23,6 @@ const game = {
   joined: false,
   // Whether this visit to the room ever got a seat; a reconnect does not reset it.
   seated: false,
-  // Whether this visit ever reached the room at all (a socket opened).
-  opened: false,
-  // Whether the latest join was a fresh one, without a seat token.
-  freshJoin: false,
   leaving: false,
 };
 
@@ -123,19 +119,19 @@ function enterRoom(code, nickname) {
   game.code = code;
   game.state = null;
   game.seated = false;
-  game.opened = false;
   game.leaving = false;
   battle.reset();
   history.replaceState(null, "", `/?room=${code}`);
 
   const connection = new RoomConnection(code);
   game.connection = connection;
+  // Whether the latest join on this connection was a fresh one, without a seat token.
+  let freshJoin = false;
   connection.addEventListener("open", () => {
     setConnectionStatus(null);
     game.joined = false;
-    game.opened = true;
     const token = session.token(code);
-    game.freshJoin = !token;
+    freshJoin = !token;
     connection.send(token ? { type: "join", nickname, token } : { type: "join", nickname });
   });
   connection.addEventListener("message", (event) => {
@@ -145,7 +141,7 @@ function enterRoom(code, nickname) {
   connection.addEventListener("unanswered", () => {
     // A fresh join may still be processed later: leave, so it cannot keep a seat. A returning
     // player keeps theirs (and the token) to try again.
-    if (game.freshJoin) connection.send({ type: "leave" });
+    if (freshJoin) connection.send({ type: "leave" });
     leaveUnreachable();
   });
   connection.addEventListener("reconnecting", () => setConnectionStatus("Connection lost. Reconnecting…"));
@@ -229,16 +225,20 @@ function onClosed({ code }) {
 }
 
 /**
- * Back home after the room could not be reached. A player who holds a seat (this visit, or a
- * saved token for a room the socket did reach) is told the seat is not lost yet: joining with the
- * kept code reclaims it.
+ * Back home after the room could not be reached, with the code kept for another try. The message
+ * depends on what is known: a seat held this visit is not lost yet; a saved token for a room
+ * never reached may still be good (or the room may be gone); without either, check the code.
  */
 function leaveUnreachable() {
-  const holdsSeat = game.seated || (game.opened && Boolean(session.token(game.code)));
-  const message = holdsSeat
-    ? "The connection to the room was lost."
-    : `Could not join room ${game.code}. Check the code or create a new room.`;
-  leaveToHome(message, game.code);
+  const code = game.code;
+  const reached = game.connection?.everOpened ?? false;
+  let message = `Could not join room ${code}. Check the code or create a new room.`;
+  if (game.seated || (reached && session.token(code))) {
+    message = "The connection to the room was lost.";
+  } else if (session.token(code)) {
+    message = `Could not reach room ${code}. Try joining again in a moment.`;
+  }
+  leaveToHome(message, code);
 }
 
 function leaveRoom() {

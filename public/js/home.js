@@ -23,7 +23,8 @@ export class HomeView {
    */
   setBusy(busy, { creating = false } = {}) {
     for (const id of ["create-room", "join-submit"]) $(id).setAttribute("aria-disabled", String(busy));
-    $("create-room").textContent = creating ? "Creating…" : this.#createLabel;
+    if (creating) $("create-room").textContent = "Creating…";
+    if (!busy) $("create-room").textContent = this.#createLabel;
   }
 
   /**

@@ -1,6 +1,15 @@
 import { expect, test } from "@playwright/test";
 import { createRoom, joinRoom, newPlayer, watchConsole } from "./helpers.js";
 
+// The message type of a frame the page sent; keepalive pings are not JSON.
+function frameType(frame) {
+  try {
+    return JSON.parse(frame).type;
+  } catch {
+    return frame;
+  }
+}
+
 test("the host hands the invite link to the share sheet", async ({ browser }, testInfo) => {
   const ana = await newPlayer(browser, testInfo);
   await ana.addInitScript(() => {
@@ -111,9 +120,11 @@ test("no second room can be created while the first one is being joined", async 
   await page.getByLabel("Your nickname").press("Enter");
   await opened;
   await page.getByLabel("Your nickname").press("Enter");
-  // Marked unavailable while busy; a press anyway (force skips that check) must change nothing.
-  await expect(page.getByRole("button", { name: "Create a room" })).toHaveAttribute("aria-disabled", "true");
-  await page.getByRole("button", { name: "Create a room" }).click({ force: true });
+  // Marked unavailable until the room answers; a press anyway (force skips that check) must
+  // change nothing.
+  const create = page.getByRole("button", { name: "Creating…" });
+  await expect(create).toHaveAttribute("aria-disabled", "true");
+  await create.click({ force: true });
   await page.waitForTimeout(300);
   expect(creations).toBe(1);
 });
@@ -164,7 +175,7 @@ test("a join that is never answered gives up and keeps the code", async ({ brows
   const sent = [];
   await page.clock.install();
   await page.routeWebSocket(/\/api\/rooms\/[A-Z0-9]+\/ws$/, (ws) => {
-    ws.onMessage((message) => sent.push(JSON.parse(message).type));
+    ws.onMessage((message) => sent.push(frameType(message)));
   });
   await page.goto("/?room=ABCDEF");
   await page.getByLabel("Your nickname").fill("Ana");
@@ -202,7 +213,7 @@ test("a seated player whose reconnect is never answered is told the connection w
       ws.connectToServer();
       return;
     }
-    ws.onMessage((message) => rejoins.push(JSON.parse(message).type));
+    ws.onMessage((message) => rejoins.push(frameType(message)));
   });
   const code = await createRoom(page, "Ana");
   await first.close({ code: 1011, reason: "network drop" });
