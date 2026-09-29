@@ -36,9 +36,6 @@ class RateLimiter(DurableObject):
         await self.ctx.storage.deleteAll()
 
 
-def _window_from_json(data: str) -> Window | None:
+def _window_from_json(data: str) -> Window:
     raw = json.loads(data)
-    if "request_ids" not in raw:
-        # A window stored by the previous version expires within a minute; start afresh.
-        return None
     return Window(started_at=raw["started_at"], request_ids=tuple(raw["request_ids"]))
