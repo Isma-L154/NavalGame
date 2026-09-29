@@ -35,6 +35,7 @@ function showScreen(name) {
 }
 
 function send(message) {
+  clearNotice();
   const sent = game.connection?.send(message) ?? false;
   if (!sent) notify("Not connected. Trying to reconnect…");
   return sent;
@@ -156,12 +157,14 @@ function onError(error, nickname) {
     enterRoom(game.code, nickname);
     return;
   }
-  if (FATAL_ERRORS.has(error.code)) {
+  // Without a state yet, the error answers the join itself: this visit is over.
+  if (FATAL_ERRORS.has(error.code) || !game.state) {
     leaveToHome(error.message);
     return;
   }
-  if (error.code === "invalid_fleet") placement.rejected();
-  if (error.code === "not_your_turn" || error.code === "already_fired_there") battle.shotRejected();
+  // Whatever was pending did not happen: let the player act again.
+  placement.rejected();
+  battle.rejected();
   notify(error.message);
 }
 

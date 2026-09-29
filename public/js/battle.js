@@ -57,8 +57,10 @@ export class BattleView {
     this.#lastShot = { mine, key: cellKey(message.row, message.col) };
   }
 
-  shotRejected() {
+  /** The last shot or rematch request was refused. */
+  rejected() {
     this.#pendingShot = false;
+    if (this.#state) this.#renderResult(this.#state);
   }
 
   #fire(row, col) {
