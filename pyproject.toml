@@ -56,5 +56,14 @@ known-first-party = ["naval", "tests"]
 python_version = "3.14"
 strict = true
 mypy_path = "src"
-# These modules import the Workers runtime (`workers`, `js`), which does not exist on CPython.
-exclude = ['^src/entry\.py$', '^src/naval/worker/entry\.py$', '^src/naval/worker/game_room\.py$', '^src/naval/worker/rate_limiter\.py$']
+
+# The Workers runtime (`workers`, `js`, `pyodide`) only exists inside Cloudflare: treat it as
+# opaque so the adapters in naval.worker are still type-checked.
+[[tool.mypy.overrides]]
+module = ["workers", "workers.*", "js", "pyodide", "pyodide.*"]
+follow_imports = "skip"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["naval.worker.*", "entry"]
+disallow_subclassing_any = false
