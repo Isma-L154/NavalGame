@@ -2,6 +2,7 @@ import { createRoom } from "./api.js";
 import { BattleView } from "./battle.js";
 import { RoomConnection } from "./connection.js";
 import { $ } from "./dom.js";
+import { HomeView } from "./home.js";
 import { LobbyView } from "./lobby.js";
 import { clearNotice, notify, setConnectionStatus } from "./notice.js";
 import { PlacementView } from "./placement.js";
@@ -23,6 +24,12 @@ const game = {
   leaving: false,
 };
 
+const home = new HomeView({
+  onLeaveInvite: () => {
+    history.replaceState(null, "", "/");
+    $("nickname").focus();
+  },
+});
 const lobby = new LobbyView();
 const placement = new PlacementView({
   onReady: (ships) => send({ type: "place_fleet", ships }),
@@ -202,6 +209,7 @@ function leaveToHome(message) {
   game.state = null;
   setConnectionStatus(null);
   history.replaceState(null, "", "/");
+  home.show(null);
   showScreen("home");
   if (message) notify(message);
 }
@@ -215,17 +223,25 @@ function init() {
   $("room-code").addEventListener("input", (event) => {
     event.target.value = event.target.value.toUpperCase();
   });
+  // The nickname sits outside the join form: Enter triggers whichever action is on offer.
+  $("nickname").addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    if (home.invitedTo) $("join-form").requestSubmit();
+    else onCreateRoom();
+  });
   for (const button of document.querySelectorAll(".leave-button")) {
     button.addEventListener("click", leaveRoom);
   }
 
   const code = new URLSearchParams(location.search).get("room")?.toUpperCase();
+  const invited = code && ROOM_CODE.test(code) ? code : null;
+  home.show(invited);
   showScreen("home");
-  if (!code || !ROOM_CODE.test(code)) return;
-  $("room-code").value = code;
+  if (!invited) return;
   // Coming back to a room this tab already sits in (a reload): reconnect straight away.
-  if (session.token(code) && NICKNAME.test(session.nickname)) {
-    enterRoom(code, session.nickname);
+  if (session.token(invited) && NICKNAME.test(session.nickname)) {
+    enterRoom(invited, session.nickname);
   } else {
     $("nickname").focus();
   }

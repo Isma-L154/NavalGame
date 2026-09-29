@@ -477,6 +477,12 @@ input[aria-invalid="true"] {
   padding-top: var(--space-4);
 }
 
+/* From an invite link, joining is the only action: no divider above it. */
+.join-form.is-invite {
+  border-top: 0;
+  padding-top: 0;
+}
+
 .rules {
   border-top: var(--rule);
   padding-top: var(--space-2);
