@@ -79,8 +79,9 @@ class Room:
         if seat is None:
             raise RoomFull("this room already has two players")
         taken = self._opponent_flag(seat)
-        if flag is None or flag is taken:
-            flag = next(f for f in Flag if f is not taken)
+        # Compared by value: a plain "a" and Flag.A must count as the same flag.
+        if flag is None or flag == taken:
+            flag = next(f for f in Flag if f != taken)
         new_token = new_seat_token()
         self.players[seat] = Player(nickname=nickname, token_hash=hash_token(new_token), flag=flag)
         self._start_new_game(first_shooter)
@@ -119,7 +120,7 @@ class Room:
         player = self._player(seat)
         if self.game.phase is not Phase.PLACING:
             raise WrongPhase("the flag can only change before the battle")
-        if flag is self._opponent_flag(seat):
+        if flag == self._opponent_flag(seat):
             raise FlagTaken("the opponent already flies this flag")
         player.flag = flag
         self._touch(now)

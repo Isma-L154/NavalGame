@@ -248,3 +248,13 @@ def test_the_two_players_always_fly_different_flags(
         assert host is first
     if second is not None and second is not host:
         assert guest is second
+
+
+def test_flags_are_compared_by_value() -> None:
+    room = Room("ABCDEF", created_at=T0)
+    room.join("Ana", None, now=T0, first_shooter=0, flag=Flag.K)
+    # Plain text, as a careless caller might pass it, still counts as the taken flag.
+    room.join("Bo", None, now=T0, first_shooter=0, flag="k")  # type: ignore[arg-type]
+    assert _flags(room) == [Flag.K, Flag.A]
+    with pytest.raises(FlagTaken):
+        room.choose_flag(1, "k", now=T0)  # type: ignore[arg-type]
