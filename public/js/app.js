@@ -18,6 +18,8 @@ const game = {
   code: null,
   connection: null,
   state: null,
+  // False from sending a join until the server confirms it with "joined".
+  joined: false,
   leaving: false,
 };
 
@@ -35,6 +37,7 @@ function showScreen(name) {
 }
 
 function send(message) {
+  clearNotice();
   const sent = game.connection?.send(message) ?? false;
   if (!sent) notify("Not connected. Trying to reconnect…");
   return sent;
@@ -103,6 +106,7 @@ function enterRoom(code, nickname) {
   game.connection = connection;
   connection.addEventListener("open", () => {
     setConnectionStatus(null);
+    game.joined = false;
     const token = session.token(code);
     connection.send(token ? { type: "join", nickname, token } : { type: "join", nickname });
   });
@@ -116,6 +120,7 @@ function enterRoom(code, nickname) {
 function onMessage(message, nickname) {
   switch (message.type) {
     case "joined":
+      game.joined = true;
       if (message.token) session.saveToken(game.code, message.token);
       break;
     case "state":
@@ -156,12 +161,14 @@ function onError(error, nickname) {
     enterRoom(game.code, nickname);
     return;
   }
-  if (FATAL_ERRORS.has(error.code)) {
+  // Before "joined", the error answers the join itself (the server then closes the socket).
+  if (FATAL_ERRORS.has(error.code) || !game.joined) {
     leaveToHome(error.message);
     return;
   }
-  if (error.code === "invalid_fleet") placement.rejected();
-  if (error.code === "not_your_turn" || error.code === "already_fired_there") battle.shotRejected();
+  // Whatever was pending did not happen: let the player act again.
+  if (game.state?.phase === "placing") placement.rejected();
+  else battle.rejected();
   notify(error.message);
 }
 

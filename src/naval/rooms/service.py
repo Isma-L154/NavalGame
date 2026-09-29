@@ -1,3 +1,4 @@
+import traceback
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Protocol
@@ -44,6 +45,9 @@ class NotJoined(GameError):
 
 class RoomClosed(GameError):
     code = "room_closed"
+
+
+_INTERNAL_ERROR = "internal_error"
 
 
 class InMemoryRoomStore:
@@ -93,16 +97,25 @@ class RoomService:
         return None if room is None else room.next_deadline()
 
     async def handle(self, seat: int | None, message: ClientMessage) -> Delivery:
-        room = await self._store.load()
-        if room is None:
-            return Delivery(to_requester=[error_message(RoomClosed.code)], close_requester=True)
+        room: Room | None = None
         delivery = Delivery()
         try:
+            room = await self._store.load()
+            if room is None:
+                return Delivery(to_requester=[error_message(RoomClosed.code)], close_requester=True)
             self._apply(room, seat, message, delivery)
+            await self._store.save(room)
         except GameError as error:
-            closing = seat is None and isinstance(message, JoinMessage)
-            return Delivery(to_requester=[error_message(error.code)], close_requester=closing)
-        await self._store.save(room)
+            return self._refusal(error.code, seat, message)
+        except Exception:
+            # The save did not complete, so the action did not happen: say so rather than leave the
+            # player waiting. Log the traceback, never the message: a join carries the seat token.
+            where = room.code if room is not None else "a room that failed to load"
+            print(
+                f"internal error in {where}, seat {seat}, handling {message.type}:\n"
+                f"{traceback.format_exc()}"
+            )
+            return self._refusal(_INTERNAL_ERROR, seat, message)
         self._broadcast_state(room, delivery)
         return delivery
 
@@ -164,6 +177,12 @@ class RoomService:
         elif isinstance(message, LeaveMessage):
             room.leave(seat, now)
             delivery.close_requester = True
+
+    @staticmethod
+    def _refusal(code: str, seat: int | None, message: ClientMessage) -> Delivery:
+        # A connection whose join failed holds no seat and must not linger.
+        failed_join = seat is None and isinstance(message, JoinMessage)
+        return Delivery(to_requester=[error_message(code)], close_requester=failed_join)
 
     @staticmethod
     def _broadcast_state(room: Room, delivery: Delivery) -> None:

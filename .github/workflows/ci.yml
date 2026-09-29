@@ -63,15 +63,7 @@ jobs:
       - name: Bundle the Worker
         run: uv run pywrangler deploy --dry-run --outdir .wrangler/dry-run
       - name: Start the dev server
-        run: |
-          cp .dev.vars.example .dev.vars
-          uv run pywrangler dev > wrangler-dev.log 2>&1 &
-          for _ in $(seq 1 60); do
-            curl -sf -o /dev/null http://localhost:8787/api/health && exit 0
-            sleep 2
-          done
-          cat wrangler-dev.log
-          exit 1
+        uses: ./.github/actions/start-dev-server
       - name: Integration tests
         run: uv run pytest -m integration
         env:
@@ -96,15 +88,7 @@ jobs:
       - run: uv sync --locked
       - run: npx playwright install --with-deps chromium
       - name: Start the dev server
-        run: |
-          cp .dev.vars.example .dev.vars
-          uv run pywrangler dev > wrangler-dev.log 2>&1 &
-          for _ in $(seq 1 60); do
-            curl -sf -o /dev/null http://localhost:8787/api/health && exit 0
-            sleep 2
-          done
-          cat wrangler-dev.log
-          exit 1
+        uses: ./.github/actions/start-dev-server
       - name: Browser tests
         run: npx playwright test
       - name: Dev server log

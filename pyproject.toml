@@ -56,5 +56,15 @@ known-first-party = ["naval", "tests"]
 python_version = "3.14"
 strict = true
 mypy_path = "src"
-# These modules import the Workers runtime (`workers`, `js`), which does not exist on CPython.
-exclude = ['^src/entry\.py$', '^src/naval/worker/entry\.py$', '^src/naval/worker/game_room\.py$', '^src/naval/worker/rate_limiter\.py$']
+
+# `js` exists only inside the Workers runtime, and the `workers` stubs do not match how the
+# adapters use it: treat both as opaque so the adapters in naval.worker are still type-checked.
+[[tool.mypy.overrides]]
+module = ["workers", "workers.*", "js"]
+follow_imports = "skip"
+ignore_missing_imports = true
+
+# These subclass the runtime's DurableObject and WorkerEntrypoint, which are opaque above.
+[[tool.mypy.overrides]]
+module = ["naval.worker.entry", "naval.worker.game_room", "naval.worker.rate_limiter"]
+disallow_subclassing_any = false

@@ -4,6 +4,7 @@ import math
 import secrets
 import time
 from dataclasses import dataclass, replace
+from http import HTTPStatus
 from typing import Any
 from urllib.parse import urlparse
 from uuid import uuid4
@@ -16,7 +17,7 @@ from naval.protocol.views import Message, error_message
 from naval.rooms.budget import MessageBudget
 from naval.rooms.service import Delivery, RoomService
 from naval.worker.do_store import DurableObjectRoomStore
-from naval.worker.headers import API_HEADERS
+from naval.worker.responses import error_response, json_response
 
 _BUDGET_CAPACITY = 20
 _BUDGET_WINDOW_SECONDS = 10.0
@@ -47,10 +48,6 @@ def _attach(ws: Any, attachment: _Attachment) -> None:
     ws.serializeAttachment(json.dumps({"conn": attachment.conn, "seat": attachment.seat}))
 
 
-def _json(body: dict[str, Any], status: int) -> Response:
-    return Response.json(body, status=status, headers=dict(API_HEADERS))
-
-
 class GameRoom(DurableObject):
     def __init__(self, ctx: Any, env: Any) -> None:
         super().__init__(ctx, env)
@@ -68,25 +65,25 @@ class GameRoom(DurableObject):
         # The Worker forwards the original /api/rooms/{code}/ws request after validating it.
         if (request.headers.get("Upgrade") or "").lower() == "websocket":
             if not await self._service.exists():
-                return _json({"error": "room_not_found"}, 404)
+                return error_response("room_not_found", HTTPStatus.NOT_FOUND)
             client, server = WebSocketPair.new().object_values()
             self.ctx.acceptWebSocket(server)
             _attach(server, _Attachment(conn=uuid4().hex, seat=None))
             return Response(None, status=101, web_socket=client)
-        return _json({"error": "not_found"}, 404)
+        return error_response("not_found", HTTPStatus.NOT_FOUND)
 
     async def _init(self, body: dict[str, str]) -> Response:
         """Idempotent per nonce: a retried /init whose reply was lost still reports success."""
         if await self._service.exists():
             if await self.ctx.storage.get(_INIT_NONCE_KEY) != body["nonce"]:
-                return _json({"created": False}, 409)
+                return json_response({"created": False}, HTTPStatus.CONFLICT)
             # The earlier attempt may have failed before scheduling cleanup; this is idempotent.
             await self._schedule_alarm()
-            return _json({"created": True}, 201)
+            return json_response({"created": True}, HTTPStatus.CREATED)
         await self.ctx.storage.put(_INIT_NONCE_KEY, body["nonce"])
         await self._service.create(body["code"])
         await self._schedule_alarm()
-        return _json({"created": True}, 201)
+        return json_response({"created": True}, HTTPStatus.CREATED)
 
     async def webSocketMessage(self, ws: Any, message: Any) -> None:  # noqa: N802 - runtime API
         attachment = _attachment(ws)

@@ -446,11 +446,6 @@ input[aria-invalid="true"] {
   font-weight: 600;
 }
 
-.notice.notice-info {
-  background: var(--yellow);
-  color: var(--on-signal);
-}
-
 /* Home */
 .home {
   display: grid;
@@ -966,7 +961,6 @@ a.button {
 /* On yellow, borders and dark fills use the fixed signal ink so they keep 3:1 in both themes. */
 .skip-link,
 .connection-status,
-.notice.notice-info,
 .button:not(.button-ghost):hover:not(:disabled),
 .theme-toggle:hover,
 .ship-button[aria-pressed="true"],

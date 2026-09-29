@@ -9,5 +9,10 @@
   "allowScripts": {
     "esbuild@0.28.1": true,
     "workerd@1.20260918.1": true
+  },
+  "overrides": {
+    "miniflare": {
+      "undici": "7.29.1"
+    }
   }
 }
