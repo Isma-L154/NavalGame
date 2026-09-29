@@ -275,8 +275,11 @@ kbd {
   cursor: pointer;
 }
 
-/* Touch screens keep a hover state after a tap: hover effects only where a pointer hovers. */
-@media (hover: hover) {
+/*
+ * Touch screens keep a hover state after a tap: hover effects only where some pointer can hover
+ * (a mouse, or a trackpad on a tablet, which `hover: hover` would miss).
+ */
+@media (any-hover: hover) {
   .theme-toggle:hover {
     background: var(--yellow);
     color: var(--on-signal);
@@ -390,7 +393,7 @@ input[aria-invalid="true"] {
   transition: background-color 120ms linear, color 120ms linear;
 }
 
-@media (hover: hover) {
+@media (any-hover: hover) {
   .button:hover:not(:disabled) {
     background: var(--yellow);
     color: var(--on-signal);
@@ -415,7 +418,7 @@ input[aria-invalid="true"] {
   text-underline-offset: 4px;
 }
 
-@media (hover: hover) {
+@media (any-hover: hover) {
   .button-ghost:hover:not(:disabled) {
     background: transparent;
     color: var(--ink);
@@ -645,10 +648,15 @@ input[aria-invalid="true"] {
   vertical-align: -0.15em;
 }
 
+/* The flag sits beside the board title, outside the heading, so the heading reads only its title. */
+.board-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 .board-flag:not(:empty) {
   display: inline-flex;
-  margin-right: var(--space-2);
-  vertical-align: -0.1em;
 }
 
 /* Legal pages: a readable single column. */
@@ -810,7 +818,7 @@ a.button {
   fill: var(--flag-blue);
 }
 
-@media (hover: hover) {
+@media (any-hover: hover) {
   .ship-button:hover:not(:disabled) .ship-hull {
     fill: var(--flag-blue);
   }
@@ -956,7 +964,7 @@ a.button {
   cursor: crosshair;
 }
 
-@media (hover: hover) {
+@media (any-hover: hover) {
   .board.is-interactive .cell:not([aria-disabled="true"]):hover {
     background: var(--yellow);
   }
@@ -1252,7 +1260,7 @@ a.button {
   color: var(--yellow);
 }
 
-@media (hover: hover) {
+@media (any-hover: hover) {
   .button:not(.button-ghost):hover:not(:disabled),
   .theme-toggle:hover {
     border-color: var(--on-signal);
@@ -1268,7 +1276,7 @@ a.button {
   outline-color: var(--on-red);
 }
 
-@media (hover: hover) {
+@media (any-hover: hover) {
   .result-panel.is-victory .button-primary:hover:not(:disabled) {
     background: var(--flag-white);
     color: var(--on-signal);
@@ -1345,6 +1353,21 @@ a.button {
 
   .notice {
     top: var(--space-2);
+  }
+}
+
+/*
+ * A phone on its side: the ship dock sits beside the board instead of below it, so a ship can
+ * be dragged from one to the other without scrolling (the page cannot scroll during a drag).
+ */
+@media (max-height: 500px) and (min-width: 600px) {
+  .placement-layout {
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: var(--space-6);
+  }
+
+  .placement-panel {
+    padding: var(--space-4);
   }
 }
 
