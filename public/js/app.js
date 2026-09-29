@@ -2,6 +2,8 @@ import { createRoom } from "./api.js";
 import { BattleView } from "./battle.js";
 import { RoomConnection } from "./connection.js";
 import { $ } from "./dom.js";
+import { FlagPicker } from "./flag-picker.js";
+import { flagForNickname, flagName } from "./flags.js";
 import { HomeView } from "./home.js";
 import { LobbyView } from "./lobby.js";
 import { clearNotice, notify, setConnectionStatus } from "./notice.js";
@@ -23,6 +25,8 @@ const game = {
   joined: false,
   // Whether this visit to the room ever got a seat; a reconnect does not reset it.
   seated: false,
+  // The flag asked for by a fresh join, to explain it if the server gave another one.
+  requestedFlag: null,
   leaving: false,
 };
 
@@ -33,9 +37,19 @@ const home = new HomeView({
     $("nickname").focus();
   },
 });
+const homeFlag = new FlagPicker($("home-flag"), {
+  name: "home-flag",
+  onChange: (flag) => {
+    session.flag = flag;
+  },
+});
 const lobby = new LobbyView();
 const placement = new PlacementView({
   onReady: (ships) => send({ type: "place_fleet", ships }),
+  onChooseFlag: (flag) => {
+    session.flag = flag;
+    send({ type: "choose_flag", flag });
+  },
 });
 const battle = new BattleView({
   onFire: (row, col) => send({ type: "fire", row, col }),
@@ -121,6 +135,7 @@ function enterRoom(code, nickname) {
   game.seated = false;
   game.leaving = false;
   battle.reset();
+  placement.setFlagNote(null);
   history.replaceState(null, "", `/?room=${code}`);
 
   const connection = new RoomConnection(code);
@@ -132,7 +147,10 @@ function enterRoom(code, nickname) {
     game.joined = false;
     const token = session.token(code);
     freshJoin = !token;
-    connection.send(token ? { type: "join", nickname, token } : { type: "join", nickname });
+    const flag = homeFlag.value;
+    // A returning seat keeps its flag, so only a fresh join can be given another one.
+    game.requestedFlag = token ? null : flag;
+    connection.send(token ? { type: "join", nickname, token, flag } : { type: "join", nickname, flag });
   });
   connection.addEventListener("message", (event) => {
     if (event.detail.type === "joined") connection.confirm();
@@ -174,6 +192,11 @@ function onMessage(message, nickname) {
 function onState(state) {
   const previous = game.state;
   game.state = state;
+  const flown = state.players[state.seat]?.flag;
+  if (game.requestedFlag && flown && flown !== game.requestedFlag) {
+    placement.setFlagNote(game.requestedFlag, flown);
+  }
+  game.requestedFlag = null;
   if (previous?.phase === "finished" && state.phase === "placing") battle.reset();
   const opponent = state.players[1 - state.seat];
   if (state.phase === "placing" && !opponent) {
@@ -268,6 +291,12 @@ function leaveToHome(message, retryCode = null) {
 
 function init() {
   $("nickname").value = session.nickname;
+  const stored = session.flag;
+  homeFlag.setValue(stored && flagName(stored) ? stored : flagForNickname(session.nickname));
+  // Until the player picks a flag, it follows the nickname's first letter.
+  $("nickname").addEventListener("input", (event) => {
+    if (!flagName(session.flag ?? "")) homeFlag.setValue(flagForNickname(event.target.value));
+  });
   $("create-room").addEventListener("click", onCreateRoom);
   $("join-form").addEventListener("submit", onJoinRoom);
   $("room-code").addEventListener("input", (event) => {

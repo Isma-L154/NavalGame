@@ -1,10 +1,15 @@
 import { expect, test } from "@playwright/test";
 import { newPlayer, watchConsole } from "./helpers.js";
 
-async function pickHomeFlag(page, name) {
-  await page.getByText("Your flag").click();
-  await page.getByRole("radio", { name }).check();
+// Both screens have a picker in the page; each helper talks to the one on screen.
+const picker = (page, id) => page.locator(`#${id}`);
+
+async function pickFlag(page, id, name) {
+  await picker(page, id).getByText("Your flag", { exact: true }).click();
+  await picker(page, id).getByRole("radio", { name }).check();
 }
+
+const pickHomeFlag = (page, name) => pickFlag(page, "home-flag", name);
 
 async function openRoom(page, nickname, flag) {
   await page.goto("/");
@@ -44,8 +49,8 @@ test("asking for the opponent's flag gets another one, and says so", async ({ br
     "Your opponent already flies Kilo, so you fly Alfa. You can change it.",
   );
   await expect(ana.locator("#placement-opponent")).toContainText("Bo (Alfa)");
-  await bo.getByText("Your flag").click();
-  await expect(bo.getByRole("radio", { name: "Kilo" })).toBeDisabled();
+  await picker(bo, "placement-flag").getByText("Your flag", { exact: true }).click();
+  await expect(picker(bo, "placement-flag").getByRole("radio", { name: "Kilo" })).toBeDisabled();
 });
 
 test("a flag changed while placing ships reaches the opponent and the battle", async ({ browser }, testInfo) => {
@@ -53,8 +58,7 @@ test("a flag changed while placing ships reaches the opponent and the battle", a
   const bo = await newPlayer(browser, testInfo);
   const code = await openRoom(ana, "Ana", "Kilo");
   await joinWithFlag(bo, "Bo", code);
-  await bo.getByText("Your flag").click();
-  await bo.getByRole("radio", { name: "Zulu" }).check();
+  await pickFlag(bo, "placement-flag", "Zulu");
   await expect(ana.locator("#placement-opponent")).toContainText("Bo (Zulu)");
   for (const page of [ana, bo]) {
     await page.getByRole("button", { name: "Random" }).click();
@@ -68,10 +72,10 @@ test("the home flag follows the nickname until the player picks one", async ({ b
   const page = await newPlayer(browser, testInfo);
   await page.goto("/");
   await page.getByLabel("Your nickname").fill("Mia");
-  await expect(page.locator(".flag-picker-current")).toHaveText("Mike");
+  await expect(picker(page, "home-flag").locator(".flag-picker-current")).toHaveText("Mike");
   await pickHomeFlag(page, "Tango");
   await page.getByLabel("Your nickname").fill("Zed");
-  await expect(page.locator(".flag-picker-current")).toHaveText("Tango");
+  await expect(picker(page, "home-flag").locator(".flag-picker-current")).toHaveText("Tango");
   await page.reload();
-  await expect(page.locator(".flag-picker-current")).toHaveText("Tango");
+  await expect(picker(page, "home-flag").locator(".flag-picker-current")).toHaveText("Tango");
 });
