@@ -7,15 +7,21 @@ const CREATE_ERRORS = {
 };
 
 export async function createRoom() {
+  // AbortController with a timer, not AbortSignal.timeout: that is missing from older Safari.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), CREATE_TIMEOUT_MS);
   let response;
+  let body = null;
   try {
-    response = await fetch("/api/rooms", { method: "POST", signal: AbortSignal.timeout(CREATE_TIMEOUT_MS) });
+    response = await fetch("/api/rooms", { method: "POST", signal: controller.signal });
+    if (response.status === 201) body = await response.json();
   } catch {
     throw new Error("Could not reach the server. Check your connection.");
+  } finally {
+    clearTimeout(timer);
   }
-  if (response.status !== 201) {
+  if (!body) {
     throw new Error(CREATE_ERRORS[response.status] ?? "Could not create a room. Try again.");
   }
-  const { code } = await response.json();
-  return code;
+  return body.code;
 }

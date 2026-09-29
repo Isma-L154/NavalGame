@@ -117,6 +117,7 @@ function onJoinRoom(event) {
 
 function enterRoom(code, nickname) {
   clearNotice();
+  clearTimeout(game.joinTimer);
   game.connection?.stop();
   game.code = code;
   game.state = null;
@@ -132,16 +133,19 @@ function enterRoom(code, nickname) {
     game.joined = false;
     const token = session.token(code);
     connection.send(token ? { type: "join", nickname, token } : { type: "join", nickname });
-    clearTimeout(game.joinTimer);
     game.joinTimer = setTimeout(() => {
-      const message = game.seated
-        ? "The connection to the room was lost."
-        : `Could not join room ${game.code}. Check the code or create a new room.`;
-      leaveToHome(message, game.code);
+      // A fresh join may still be processed later: leave, so it cannot keep a seat. A returning
+      // player keeps theirs (and the token) to try again.
+      if (!token) connection.send({ type: "leave" });
+      leaveUnreachable();
     }, JOIN_TIMEOUT_MS);
   });
   connection.addEventListener("message", (event) => onMessage(event.detail, nickname));
-  connection.addEventListener("reconnecting", () => setConnectionStatus("Connection lost. Reconnecting…"));
+  connection.addEventListener("reconnecting", () => {
+    // The socket that was waiting for an answer is gone; the next one starts its own wait.
+    clearTimeout(game.joinTimer);
+    setConnectionStatus("Connection lost. Reconnecting…");
+  });
   connection.addEventListener("closed", (event) => onClosed(event.detail));
   setConnectionStatus("Connecting…");
   connection.connect();
@@ -151,6 +155,7 @@ function onMessage(message, nickname) {
   switch (message.type) {
     case "joined":
       clearTimeout(game.joinTimer);
+      game.connection.resetRetries();
       game.joined = true;
       game.seated = true;
       if (message.token) session.saveToken(game.code, message.token);
@@ -187,7 +192,6 @@ function onState(state) {
 }
 
 function onError(error, nickname) {
-  if (!game.joined) clearTimeout(game.joinTimer);
   if (error.code === "invalid_token") {
     // The saved seat expired and the server closes this socket: join again as a new player.
     session.clearToken(game.code);
@@ -200,6 +204,7 @@ function onError(error, nickname) {
   }
   // Before "joined", the error answers the join itself (the server then closes the socket).
   if (!game.joined) {
+    clearTimeout(game.joinTimer);
     leaveToHome(error.message, game.code);
     return;
   }
@@ -212,17 +217,26 @@ function onError(error, nickname) {
 function onClosed({ code }) {
   setConnectionStatus(null);
   if (game.leaving) return;
-  if (!game.seated) {
-    // Closed before the room ever answered the join (unknown room, network, a room that closed).
-    leaveToHome(`Could not join room ${game.code}. Check the code or create a new room.`, game.code);
-  } else if (code === 4000) {
+  if (code === 4000) {
     leaveToHome("This room was opened in another tab or window.");
   } else if (code === 1008) {
     leaveToHome("The connection was closed after too many invalid messages.");
   } else if (code !== 1000 || !game.joined) {
-    // The seat token is still saved: joining with this code again reclaims the seat.
-    leaveToHome("The connection to the room was lost.", game.code);
+    leaveUnreachable();
   }
+}
+
+/**
+ * Back home after the room could not be reached. A player who holds a seat (this visit, or a
+ * saved token from before a reload) is told the seat is not lost yet: joining with the kept code
+ * reclaims it.
+ */
+function leaveUnreachable() {
+  const holdsSeat = game.seated || session.token(game.code) !== null;
+  const message = holdsSeat
+    ? "The connection to the room was lost."
+    : `Could not join room ${game.code}. Check the code or create a new room.`;
+  leaveToHome(message, game.code);
 }
 
 function leaveRoom() {

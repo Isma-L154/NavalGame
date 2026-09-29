@@ -19,7 +19,9 @@ export class HomeView {
 
   /** The button stays enabled (and focused) while busy: the caller ignores repeated presses. */
   setCreating(creating) {
-    $("create-room").textContent = creating ? "Creating…" : this.#createLabel;
+    const button = $("create-room");
+    button.textContent = creating ? "Creating…" : this.#createLabel;
+    button.setAttribute("aria-disabled", String(creating));
   }
 
   /**

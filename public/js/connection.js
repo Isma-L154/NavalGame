@@ -8,7 +8,7 @@ const FINAL_CLOSE_CODES = new Set([1000, 1008, 4000]);
 /**
  * One WebSocket to a room, reconnecting with backoff after network drops.
  * Events: "open", "message" (detail: parsed message), "reconnecting" (detail: attempt),
- * "closed" (detail: { code, everOpened }).
+ * "closed" (detail: { code }).
  */
 export class RoomConnection extends EventTarget {
   #code;
@@ -38,7 +38,6 @@ export class RoomConnection extends EventTarget {
     const openTimer = setTimeout(() => socket.close(), CONNECT_TIMEOUT_MS);
     socket.addEventListener("open", () => {
       clearTimeout(openTimer);
-      this.#attempt = 0;
       this.#everOpened = true;
       this.#keepalive = setInterval(() => this.#sendRaw("ping"), KEEPALIVE_MS);
       this.dispatchEvent(new Event("open"));
@@ -64,6 +63,14 @@ export class RoomConnection extends EventTarget {
     return this.#sendRaw(JSON.stringify(message));
   }
 
+  /**
+   * The room answered on this socket. Only then does the backoff start over: a room that drops
+   * every socket before answering must run out of retries, not loop forever.
+   */
+  resetRetries() {
+    this.#attempt = 0;
+  }
+
   /** Closes for good: no reconnection. */
   stop() {
     this.#stopped = true;
@@ -85,7 +92,7 @@ export class RoomConnection extends EventTarget {
       && this.#attempt < MAX_RECONNECT_ATTEMPTS;
     if (!retry) {
       this.#stopped = true;
-      this.dispatchEvent(new CustomEvent("closed", { detail: { code, everOpened: this.#everOpened } }));
+      this.dispatchEvent(new CustomEvent("closed", { detail: { code } }));
       return;
     }
     this.#attempt += 1;
