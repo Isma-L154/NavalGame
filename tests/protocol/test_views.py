@@ -6,6 +6,7 @@ from hypothesis import strategies as st
 from naval.domain.board import ShotOutcome, ShotResult
 from naval.domain.coordinates import Coordinate
 from naval.domain.errors import GameError
+from naval.domain.flags import Flag
 from naval.domain.fleet import Orientation, Placement, ShipKind
 from naval.domain.game import Game
 from naval.protocol.views import (
@@ -19,8 +20,8 @@ from tests.domain.fixtures import ROW_FLEET, fleet_cells
 from tests.strategies import coordinates, valid_fleets
 
 PLAYERS = (
-    PlayerView("Ana", connected=True, wants_rematch=False),
-    PlayerView("Bo", connected=False, wants_rematch=True),
+    PlayerView("Ana", Flag.K, connected=True, wants_rematch=False),
+    PlayerView("Bo", None, connected=False, wants_rematch=True),
 )
 
 
@@ -43,8 +44,8 @@ def test_state_while_playing_hides_the_opponent_fleet() -> None:
     assert view["turn"] == 0
     assert view["winner"] is None
     assert view["players"] == [
-        {"nickname": "Ana", "connected": True, "wants_rematch": False},
-        {"nickname": "Bo", "connected": False, "wants_rematch": True},
+        {"nickname": "Ana", "flag": "k", "connected": True, "wants_rematch": False},
+        {"nickname": "Bo", "flag": None, "connected": False, "wants_rematch": True},
     ]
     assert view["fleet_placed"] == [True, True]
     assert view["own_fleet"][0] == {

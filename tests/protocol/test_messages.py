@@ -6,9 +6,11 @@ from hypothesis import given
 from hypothesis import strategies as st
 
 from naval.domain.coordinates import Coordinate
+from naval.domain.flags import Flag
 from naval.domain.fleet import Orientation, Placement, ShipKind
 from naval.protocol.messages import (
     MAX_FRAME_BYTES,
+    ChooseFlagMessage,
     FireMessage,
     InvalidMessage,
     JoinMessage,
@@ -35,6 +37,22 @@ def _frame(payload: object) -> str:
 def test_join_without_token() -> None:
     message = parse_client_message(_frame({"type": "join", "nickname": "Ana_01"}))
     assert message == JoinMessage(type="join", nickname="Ana_01", token=None)
+
+
+def test_join_with_a_flag() -> None:
+    message = parse_client_message(_frame({"type": "join", "nickname": "Ana", "flag": "k"}))
+    assert message == JoinMessage(type="join", nickname="Ana", flag=Flag.K)
+
+
+def test_join_without_a_flag_leaves_the_choice_to_the_server() -> None:
+    message = parse_client_message(_frame({"type": "join", "nickname": "Ana"}))
+    assert isinstance(message, JoinMessage)
+    assert message.flag is None
+
+
+def test_choose_flag() -> None:
+    message = parse_client_message(_frame({"type": "choose_flag", "flag": "z"}))
+    assert message == ChooseFlagMessage(type="choose_flag", flag=Flag.Z)
 
 
 def test_join_with_token() -> None:
@@ -83,6 +101,14 @@ def test_fire_rematch_and_leave() -> None:
         {"type": "place_fleet", "ships": [{**SHIPS[0], "kind": "yacht"}, *SHIPS[1:]]},
         {"type": "place_fleet", "ships": [{**SHIPS[0], "orientation": "diagonal"}, *SHIPS[1:]]},
         {"type": "rematch", "extra": 1},
+        {"type": "join", "nickname": "Ana", "flag": "K"},
+        {"type": "join", "nickname": "Ana", "flag": "kk"},
+        {"type": "join", "nickname": "Ana", "flag": 1},
+        {"type": "join", "nickname": "Ana", "flag": ""},
+        {"type": "choose_flag"},
+        {"type": "choose_flag", "flag": None},
+        {"type": "choose_flag", "flag": "ä"},
+        {"type": "choose_flag", "flag": "a", "extra": 1},
         ["join"],
         "join",
         None,

@@ -5,6 +5,7 @@ from dataclasses import asdict
 from typing import Any
 
 from naval.domain.coordinates import Coordinate
+from naval.domain.flags import Flag
 from naval.domain.game import FinishReason, Game, other
 from naval.protocol.ships import ship_from_dict, ship_to_dict
 from naval.rooms.room import Player, Room
@@ -46,10 +47,16 @@ def room_from_json(data: str) -> Room:
     return Room(
         raw["code"],
         created_at=raw["created_at"],
-        players=[None if p is None else Player(**p) for p in raw["players"]],
+        players=[None if p is None else _player(p) for p in raw["players"]],
         game=_replay(raw["game"]),
         last_activity=raw["last_activity"],
     )
+
+
+def _player(raw: dict[str, Any]) -> Player:
+    # Rooms stored before flags existed have no "flag" key.
+    flag = raw.get("flag")
+    return Player(**{**raw, "flag": None if flag is None else Flag(flag)})
 
 
 def _replay(raw: dict[str, Any]) -> Game:

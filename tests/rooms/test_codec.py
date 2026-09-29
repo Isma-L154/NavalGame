@@ -1,8 +1,11 @@
+import json
+
 from hypothesis import given
 from hypothesis import strategies as st
 
 from naval.domain.coordinates import Coordinate
 from naval.domain.errors import GameError
+from naval.domain.flags import Flag
 from naval.domain.fleet import Placement
 from naval.protocol.views import PlayerView, state_message
 from naval.rooms.codec import room_from_json, room_to_json
@@ -13,7 +16,7 @@ from tests.strategies import coordinates, valid_fleets
 
 def _views(room: Room) -> list[dict[str, object]]:
     players = [
-        None if p is None else PlayerView(p.nickname, p.connected, p.wants_rematch)
+        None if p is None else PlayerView(p.nickname, p.flag, p.connected, p.wants_rematch)
         for p in room.players
     ]
     return [state_message(room.code, seat, room.game, players) for seat in (0, 1)]
@@ -26,6 +29,27 @@ def _assert_same(room: Room, restored: Room) -> None:
     assert restored.players == room.players
     assert restored.game.shot_log == room.game.shot_log
     assert _views(restored) == _views(room)
+
+
+def test_flags_round_trip() -> None:
+    room = Room("ABCDEF", created_at=5.0)
+    room.join("Ana", None, now=6.0, first_shooter=0, flag=Flag.Q)
+    room.join("Bo", None, now=7.0, first_shooter=0, flag=Flag.X)
+    restored = room_from_json(room_to_json(room))
+    _assert_same(room, restored)
+    assert [p.flag for p in restored.players if p is not None] == [Flag.Q, Flag.X]
+
+
+def test_a_room_stored_before_flags_existed_still_loads() -> None:
+    room = Room("ABCDEF", created_at=5.0)
+    room.join("Ana", None, now=6.0, first_shooter=0)
+    stored = json.loads(room_to_json(room))
+    for player in stored["players"]:
+        if player is not None:
+            del player["flag"]
+    restored = room_from_json(json.dumps(stored))
+    assert restored.players[0] is not None
+    assert restored.players[0].flag is None
 
 
 def test_empty_room_round_trips() -> None:

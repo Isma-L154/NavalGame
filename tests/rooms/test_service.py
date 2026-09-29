@@ -2,7 +2,9 @@ from typing import Any
 
 import pytest
 
+from naval.domain.flags import Flag
 from naval.protocol.messages import (
+    ChooseFlagMessage,
     FireMessage,
     JoinMessage,
     LeaveMessage,
@@ -81,6 +83,7 @@ async def test_join_binds_the_seat_and_broadcasts_state(service: RoomService) ->
     assert second.bind_seat == 1
     assert _last_state(second, 0)["players"][1] == {
         "nickname": "Bo",
+        "flag": "b",
         "connected": True,
         "wants_rematch": False,
     }
@@ -286,3 +289,22 @@ async def test_internal_error_logs_never_contain_the_seat_token(
     log = capsys.readouterr().out
     assert "handling join" in log
     assert token not in log
+
+
+async def test_a_new_flag_reaches_both_players(service: RoomService) -> None:
+    await _two_players(service)
+    delivery = await service.handle(1, ChooseFlagMessage(type="choose_flag", flag=Flag.T))
+    for seat in (0, 1):
+        assert [p["flag"] for p in _last_state(delivery, seat)["players"]] == ["a", "t"]
+
+
+async def test_choosing_the_opponents_flag_is_refused(service: RoomService) -> None:
+    await _two_players(service)
+    delivery = await service.handle(1, ChooseFlagMessage(type="choose_flag", flag=Flag.A))
+    assert delivery.to_requester == [error_message("flag_taken")]
+    assert not delivery.close_requester
+
+
+async def test_the_join_flag_request_is_honoured(service: RoomService) -> None:
+    delivery = await service.handle(None, JoinMessage(type="join", nickname="Ana", flag=Flag.N))
+    assert _last_state(delivery, 0)["players"][0]["flag"] == "n"
