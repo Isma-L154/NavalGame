@@ -43,7 +43,7 @@ def _ip_headers(client_ip: str | None = None) -> dict[str, str]:
 
 def fake_ip() -> str:
     """Each test gets its own client IP so per-IP limits do not leak between tests."""
-    return f"10.{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(1, 254)}"  # noqa: S311 - test data
+    return f"10.{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(1, 254)}"
 
 
 def http(

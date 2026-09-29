@@ -50,7 +50,8 @@ ignore = ["N818"]
 known-first-party = ["naval", "tests"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S101", "PLR2004"]
+# Tests use seeded `random` for reproducible data, never for anything secret.
+"tests/**" = ["S101", "PLR2004", "S311"]
 
 [tool.mypy]
 python_version = "3.14"
