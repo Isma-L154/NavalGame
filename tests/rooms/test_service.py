@@ -1,3 +1,4 @@
+import random
 from typing import Any
 
 import pytest
@@ -13,7 +14,12 @@ from naval.protocol.messages import (
     ShipSpec,
 )
 from naval.protocol.views import error_message
-from naval.rooms.room import IDLE_TIMEOUT_SECONDS, RECONNECT_GRACE_SECONDS, Room
+from naval.rooms.room import (
+    CPU_THINK_SECONDS,
+    IDLE_TIMEOUT_SECONDS,
+    RECONNECT_GRACE_SECONDS,
+    Room,
+)
 from naval.rooms.service import Delivery, InMemoryRoomStore, RoomService
 from tests.domain.fixtures import ROW_FLEET, fleet_cells
 
@@ -326,3 +332,79 @@ async def test_a_join_id_only_reclaims_for_the_same_nickname(service: RoomServic
     await service.handle(None, JoinMessage(type="join", nickname="Ana", join_id=join_id))
     other = await service.handle(None, JoinMessage(type="join", nickname="Eve", join_id=join_id))
     assert other.bind_seat == 1
+
+
+async def _cpu_service(
+    clock: FakeClock, *, first_shooter: int = 0
+) -> tuple[RoomService, InMemoryRoomStore]:
+    store = InMemoryRoomStore()
+    svc = RoomService(store, clock, coin_flip=lambda: first_shooter, rng=random.Random(7))
+    assert await svc.create("ABCDEF", cpu=True)
+    return svc, store
+
+
+async def test_joining_a_cpu_room_finds_the_cpu_ready(clock: FakeClock) -> None:
+    svc, _ = await _cpu_service(clock)
+    joined = await svc.handle(None, JoinMessage(type="join", nickname="Ana"))
+    state = _last_state(joined, 0)
+    assert state["players"][1] == {
+        "nickname": "CPU",
+        "flag": "c",
+        "connected": True,
+        "wants_rematch": True,
+    }
+    assert state["fleet_placed"] == [False, True]
+    assert 1 not in joined.to_seats
+
+
+async def test_the_cpu_fires_back_once_its_pause_is_over(clock: FakeClock) -> None:
+    svc, _ = await _cpu_service(clock)
+    await svc.handle(None, JoinMessage(type="join", nickname="Ana"))
+    await svc.handle(0, PLACE)
+    await svc.handle(0, FireMessage(type="fire", row=9, col=9))
+    assert (await svc.alarm()).to_seats == {}  # still thinking
+    due = await svc.deadline()
+    assert due == clock.current + CPU_THINK_SECONDS
+    clock.current = due
+    delivery = await svc.alarm()
+    assert _types(delivery.to_seats[0]) == ["shot", "state"]
+    assert delivery.to_seats[0][0]["by"] == 1
+    assert _last_state(delivery, 0)["turn"] == 0
+
+
+async def test_the_cpu_fires_first_when_the_coin_says_so(clock: FakeClock) -> None:
+    svc, _ = await _cpu_service(clock, first_shooter=1)
+    await svc.handle(None, JoinMessage(type="join", nickname="Ana"))
+    placed = await svc.handle(0, PLACE)
+    assert _last_state(placed, 0)["turn"] == 1
+    clock.current += CPU_THINK_SECONDS
+    assert _types((await svc.alarm()).to_seats[0]) == ["shot", "state"]
+
+
+async def test_a_rematch_against_the_cpu_starts_at_once_with_a_new_cpu_fleet(
+    clock: FakeClock,
+) -> None:
+    svc, store = await _cpu_service(clock)
+    await svc.handle(None, JoinMessage(type="join", nickname="Ana"))
+    await svc.handle(0, PLACE)
+    room = await store.load()
+    assert room is not None
+    cpu_board = room.game.boards[1]
+    assert cpu_board is not None
+    # Sink the CPU's fleet, letting it answer each shot.
+    for cell in [c for ship in cpu_board.placements for c in ship.cells()]:
+        fired = await svc.handle(0, FireMessage(type="fire", row=cell.row, col=cell.col))
+        if _last_state(fired, 0)["phase"] == "finished":
+            break
+        clock.current = await svc.deadline() or clock.current
+        await svc.alarm()
+    rematch = await svc.handle(0, RematchMessage(type="rematch"))
+    state = _last_state(rematch, 0)
+    assert state["phase"] == "placing"
+    assert state["fleet_placed"] == [False, True]
+
+
+async def test_a_room_created_without_the_cpu_has_none(service: RoomService) -> None:
+    joined = await service.handle(None, JoinMessage(type="join", nickname="Ana"))
+    assert _last_state(joined, 0)["players"][1] is None
+    assert _last_state(joined, 0)["fleet_placed"] == [False, False]

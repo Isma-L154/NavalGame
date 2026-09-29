@@ -113,6 +113,40 @@ async def test_full_game_between_two_players() -> None:
     await bo.close()
 
 
+@pytest.mark.parametrize(
+    "body", ['{"opponent": "robot"}', '{"opponent": "cpu", "x": 1}', "{" + " " * 300 + "}"]
+)
+def test_room_creation_refuses_a_malformed_request(body: str) -> None:
+    assert http("POST", "/api/rooms", body=body) == (400, {"error": "invalid_request"})
+
+
+def test_room_creation_without_a_body_is_a_game_with_a_friend() -> None:
+    status, body = http("POST", "/api/rooms")
+    assert status == 201
+    assert is_valid_room_code(body["code"])
+
+
+async def test_the_cpu_plays_back_and_its_seat_cannot_be_taken() -> None:
+    code = create_room(opponent="cpu")
+    ws, joined = await join(code, "Ana")
+    assert joined["seat"] == 0
+    await send(ws, {"type": "place_fleet", "ships": ROW_FLEET})
+    state = await receive(ws, "state", lambda m: m["phase"] == "playing")
+    assert state["players"][1]["nickname"] == "CPU"
+    assert state["opponent_fleet"] is None
+    if state["turn"] == 0:
+        await send(ws, {"type": "fire", "row": 9, "col": 9})
+    # The CPU answers after its short pause, woken by the room alarm.
+    cpu_shot = await receive(ws, "shot", lambda m: m["by"] == 1, timeout=10)
+    assert 0 <= cpu_shot["row"] < 10
+    assert 0 <= cpu_shot["col"] < 10
+    intruder = await open_socket(code)
+    await send(intruder, {"type": "join", "nickname": "Cy"})
+    assert (await receive(intruder, "error"))["code"] == "room_full"
+    assert await close_code(intruder) == 1000
+    await ws.close()
+
+
 async def test_players_fly_different_flags_and_can_change_them() -> None:
     code = create_room()
     ana, _ = await join(code, "Ana", flag="k")

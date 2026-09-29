@@ -12,6 +12,11 @@ from naval.rooms.tokens import hash_token, new_seat_token, token_matches
 RECONNECT_GRACE_SECONDS = 120.0
 IDLE_TIMEOUT_SECONDS = 3600.0
 
+CPU_NICKNAME = "CPU"
+CPU_FLAG = Flag.C  # C for CPU
+CPU_THINK_SECONDS = 0.9
+_CPU_SEAT = 1
+
 
 class RoomFull(GameError):
     code = "room_full"
@@ -43,6 +48,7 @@ class Player:
     connected: bool = True
     disconnected_at: float | None = None
     wants_rematch: bool = False
+    cpu: bool = False
 
 
 class Room:
@@ -90,7 +96,7 @@ class Room:
         seat = next((s for s in SEATS if self.players[s] is None), None)
         if seat is None:
             raise RoomFull("this room already has two players")
-        taken = self._opponent_flag(seat)
+        taken = self._flag_to_avoid(seat)
         # Compared by value: a plain "a" and Flag.A must count as the same flag.
         if flag is None or flag == taken:
             flag = next(f for f in Flag if f != taken)
@@ -101,6 +107,7 @@ class Room:
             flag=flag,
             join_hash=None if join_id is None else hash_token(join_id),
         )
+        self._cpu_yield_flag()
         self._start_new_game(first_shooter)
         self._touch(now)
         return seat, new_token
@@ -137,9 +144,10 @@ class Room:
         player = self._player(seat)
         if self.game.phase is not Phase.PLACING:
             raise WrongPhase("the flag can only change before the battle")
-        if flag == self._opponent_flag(seat):
+        if flag == self._flag_to_avoid(seat):
             raise FlagTaken("the opponent already flies this flag")
         player.flag = flag
+        self._cpu_yield_flag()
         self._touch(now)
 
     def place_fleet(self, seat: int, placements: Sequence[Placement], now: float) -> None:
@@ -162,13 +170,38 @@ class Room:
         self._require_opponent(seat)
         player.wants_rematch = True
         self._touch(now)
-        if all(p is not None and p.wants_rematch for p in self.players):
+        # The CPU is always up for another game.
+        if all(p is not None and (p.wants_rematch or p.cpu) for p in self.players):
             self._start_new_game(first_shooter)
             return True
         return False
 
+    def seat_cpu(self) -> None:
+        """Seats the computer opponent; a CPU room is created with it in seat 1."""
+        self.players[_CPU_SEAT] = Player(
+            nickname=CPU_NICKNAME,
+            # A token nobody is ever given: no client can take the CPU's seat.
+            token_hash=hash_token(new_seat_token()),
+            flag=CPU_FLAG,
+            cpu=True,
+        )
+
+    @property
+    def cpu_seat(self) -> int | None:
+        return next((s for s, p in enumerate(self.players) if p is not None and p.cpu), None)
+
+    def cpu_turn_at(self) -> float | None:
+        """When the CPU fires next: a short pause after the move that gave it the turn."""
+        seat = self.cpu_seat
+        if seat is None or self.game.phase is not Phase.PLAYING or self.game.turn != seat:
+            return None
+        return self.last_activity + CPU_THINK_SECONDS
+
     def connected_seats(self) -> list[int]:
-        return [s for s, p in enumerate(self.players) if p is not None and p.connected]
+        """Seats with a connection to deliver to; the CPU has none."""
+        return [
+            s for s, p in enumerate(self.players) if p is not None and p.connected and not p.cpu
+        ]
 
     def next_deadline(self) -> float:
         deadlines = [self.last_activity + IDLE_TIMEOUT_SECONDS]
@@ -177,6 +210,9 @@ class Room:
             for p in self.players
             if p is not None and p.disconnected_at is not None
         ]
+        cpu_turn = self.cpu_turn_at()
+        if cpu_turn is not None:
+            deadlines.append(cpu_turn)
         return min(deadlines)
 
     def is_idle(self, now: float) -> bool:
@@ -235,9 +271,18 @@ class Room:
             raise NotSeated("this seat is empty")
         return player
 
-    def _opponent_flag(self, seat: int) -> Flag | None:
+    def _flag_to_avoid(self, seat: int) -> Flag | None:
+        """The opponent's flag, unless the opponent is the CPU, which gives way instead."""
         opponent = self.players[other(seat)]
-        return None if opponent is None else opponent.flag
+        return None if opponent is None or opponent.cpu else opponent.flag
+
+    def _cpu_yield_flag(self) -> None:
+        seat = self.cpu_seat
+        person = None if seat is None else self.players[other(seat)]
+        if seat is not None and person is not None:
+            cpu = self._player(seat)
+            if cpu.flag == person.flag:
+                cpu.flag = next(f for f in Flag if f != person.flag)
 
     def _require_opponent(self, seat: int) -> None:
         if self.players[other(seat)] is None:

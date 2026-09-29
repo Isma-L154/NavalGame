@@ -47,10 +47,18 @@ def fake_ip() -> str:
 
 
 def http(
-    method: str, path: str, *, origin: str | None = ORIGIN, ip: str | None = None
+    method: str,
+    path: str,
+    *,
+    origin: str | None = ORIGIN,
+    ip: str | None = None,
+    body: str | None = None,
 ) -> tuple[int, dict[str, Any]]:
-    request = urllib.request.Request(BASE_URL + path, method=method)  # noqa: S310
+    data = None if body is None else body.encode()
+    request = urllib.request.Request(BASE_URL + path, method=method, data=data)  # noqa: S310
     request.add_header("User-Agent", USER_AGENT)
+    if body is not None:
+        request.add_header("Content-Type", "application/json")
     if origin is not None:
         request.add_header("Origin", origin)
     if SPOOF_CLIENT_IP:
@@ -62,8 +70,9 @@ def http(
         return error.code, json.loads(error.read())
 
 
-def create_room(ip: str | None = None) -> str:
-    status, body = http("POST", "/api/rooms", ip=ip)
+def create_room(ip: str | None = None, *, opponent: str | None = None) -> str:
+    request = None if opponent is None else json.dumps({"opponent": opponent})
+    status, body = http("POST", "/api/rooms", ip=ip, body=request)
     assert status == 201, body
     return str(body["code"])
 

@@ -54,10 +54,12 @@ def room_from_json(data: str) -> Room:
 
 
 def _player_to_dict(player: Player) -> dict[str, Any]:
-    # join_hash is written only while set, so rooms stay readable by the previous version.
+    # join_hash and cpu are written only while set, so rooms stay readable by older versions.
     stored = asdict(player)
     if stored["join_hash"] is None:
         del stored["join_hash"]
+    if not stored["cpu"]:
+        del stored["cpu"]
     return stored
 
 

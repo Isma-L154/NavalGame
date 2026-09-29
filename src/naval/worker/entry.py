@@ -8,6 +8,12 @@ from uuid import uuid4
 from workers import Response, WorkerEntrypoint
 
 from naval.limits.window import ROOM_CREATION, WS_UPGRADE, Limit, limiter_name
+from naval.protocol.requests import (
+    MAX_REQUEST_BYTES,
+    CreateRoomRequest,
+    InvalidRequest,
+    parse_create_room,
+)
 from naval.rooms.codes import new_room_code
 from naval.worker.policy import (
     MissingConfig,
@@ -50,14 +56,38 @@ class Default(WorkerEntrypoint):
         rejection = await self._guard(request, allowed_origins, ROOM_CREATION)
         if rejection is not None:
             return rejection
+        creation = await self._read_creation(request)
+        if creation is None:
+            return error_response("invalid_request", HTTPStatus.BAD_REQUEST)
         for _ in range(_CODE_ATTEMPTS):
             code = new_room_code()
             # The nonce makes a retried /init recognisable, so it cannot orphan a room.
-            body = json.dumps({"code": code, "nonce": uuid4().hex})
+            body = json.dumps(
+                {"code": code, "nonce": uuid4().hex, "opponent": creation.opponent.value}
+            )
             result = await call_with_retry(partial(self._init_room, code, body))
             if result.status == HTTPStatus.CREATED:
                 return json_response({"code": code}, HTTPStatus.CREATED)
         return error_response("try_again", HTTPStatus.SERVICE_UNAVAILABLE)
+
+    @staticmethod
+    async def _read_creation(request: Any) -> CreateRoomRequest | None:
+        """The validated request body, or None when it is not one.
+
+        Only a body that declares a small enough length is read, so a large or unannounced
+        (chunked) one is never buffered: without a Content-Length, the request has no body.
+        """
+        declared = request.headers.get("Content-Length")
+        if declared is None:
+            body = ""
+        elif not declared.isdigit() or int(declared) > MAX_REQUEST_BYTES:
+            return None
+        else:
+            body = await request.text()
+        try:
+            return parse_create_room(body)
+        except InvalidRequest:
+            return None
 
     async def _init_room(self, code: str, body: str) -> Any:
         # A fresh stub per call: a stub that failed can stay broken.

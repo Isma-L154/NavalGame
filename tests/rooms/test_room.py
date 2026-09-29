@@ -7,6 +7,7 @@ from naval.domain.errors import WrongPhase
 from naval.domain.flags import Flag
 from naval.domain.game import FinishReason, Phase
 from naval.rooms.room import (
+    CPU_THINK_SECONDS,
     IDLE_TIMEOUT_SECONDS,
     RECONNECT_GRACE_SECONDS,
     FlagTaken,
@@ -292,3 +293,69 @@ def test_another_join_id_takes_another_seat() -> None:
     room.join("Ana", None, now=T0, first_shooter=0, join_id=JOIN_ID)
     seat, _ = room.join("Ana", None, now=T0, first_shooter=0, join_id="k" * 43)
     assert seat == 1
+
+
+def _cpu_room() -> Room:
+    room = Room("ABCDEF", created_at=T0)
+    room.seat_cpu()
+    return room
+
+
+def test_a_cpu_room_has_the_cpu_in_seat_one() -> None:
+    room = _cpu_room()
+    cpu = room.players[1]
+    assert cpu is not None
+    assert (cpu.nickname, cpu.flag, cpu.cpu) == ("CPU", Flag.C, True)
+    assert room.cpu_seat == 1
+    # Nothing is ever delivered to the CPU: it has no connection.
+    assert room.connected_seats() == []
+
+
+def test_a_person_takes_the_free_seat_and_a_third_is_refused() -> None:
+    room = _cpu_room()
+    assert room.join("Ana", None, now=T0, first_shooter=0)[0] == 0
+    assert room.connected_seats() == [0]
+    with pytest.raises(RoomFull):
+        room.join("Cy", None, now=T0, first_shooter=0)
+
+
+def test_the_cpu_gives_up_its_flag_to_the_person() -> None:
+    room = _cpu_room()
+    room.join("Ana", None, now=T0, first_shooter=0, flag=Flag.C)
+    assert _flags(room) == [Flag.C, Flag.A]
+    room.choose_flag(0, Flag.A, now=T0)
+    assert _flags(room) == [Flag.A, Flag.B]
+
+
+def test_the_cpu_always_accepts_a_rematch() -> None:
+    room = _cpu_room()
+    room.join("Ana", None, now=T0, first_shooter=0)
+    room.place_fleet(0, ROW_FLEET, now=T0)
+    room.place_fleet(1, ROW_FLEET, now=T0)
+    misses = iter([Coordinate(row, col) for row in range(5, 10) for col in range(10)])
+    for target in fleet_cells(ROW_FLEET):
+        room.fire(0, target, now=T0)
+        if room.game.phase is Phase.PLAYING:
+            room.fire(1, next(misses), now=T0)
+    assert room.game.phase is Phase.FINISHED
+    assert room.request_rematch(0, first_shooter=0, now=T0)
+    new_game = room.game
+    assert new_game.phase is Phase.PLACING
+
+
+def test_the_cpu_fires_a_short_pause_after_it_gets_the_turn() -> None:
+    room = _cpu_room()
+    room.join("Ana", None, now=T0, first_shooter=0)
+    room.place_fleet(0, ROW_FLEET, now=T0)
+    room.place_fleet(1, ROW_FLEET, now=T0)
+    assert room.cpu_turn_at() is None  # the person fires first
+    room.fire(0, Coordinate(9, 9), now=T0 + 5)
+    assert room.cpu_turn_at() == T0 + 5 + CPU_THINK_SECONDS
+    assert room.next_deadline() == T0 + 5 + CPU_THINK_SECONDS
+
+
+def test_rooms_without_a_cpu_have_no_cpu_turn() -> None:
+    room = _playing_room()
+    room.fire(0, Coordinate(9, 9), now=T0)
+    assert room.cpu_seat is None
+    assert room.cpu_turn_at() is None

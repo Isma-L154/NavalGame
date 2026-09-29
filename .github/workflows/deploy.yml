@@ -50,6 +50,6 @@ jobs:
           echo "production still serves version $version, expected $GITHUB_SHA"
           exit 1
       - name: Smoke test a real game against production
-        run: uv run pytest -m integration -k "health or full_game or third_player or sitemap or share_images" -p no:cacheprovider
+        run: uv run pytest -m integration -k "health or full_game or cpu_plays_back or third_player or sitemap or share_images" -p no:cacheprovider
         env:
           NAVAL_BASE_URL: https://naval.cloudils.com
