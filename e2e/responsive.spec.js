@@ -6,6 +6,7 @@ const VIEWPORTS = [
   { name: "small phone", width: 320, height: 568 },
   { name: "phone", width: 390, height: 844 },
   { name: "phone on its side", width: 844, height: 390 },
+  { name: "small phone on its side", width: 667, height: 375 },
   { name: "tablet upright", width: 768, height: 1024 },
   { name: "tablet on its side", width: 1024, height: 768 },
   { name: "laptop", width: 1366, height: 768 },

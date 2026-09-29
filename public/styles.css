@@ -62,7 +62,10 @@
    * 10 cells + labels must fit a 320px phone: that caps the minimum at 24px. On a phone held
    * sideways the height is the limit, so a whole board fits the screen.
    */
-  --cell: clamp(24px, min(8vw, calc((100vh - 5rem) / 11)), 40px);
+  --cell: clamp(24px, min(8vw, var(--cell-by-height)), 40px);
+  /* The largest cell that still lets a whole board (11 rows with labels) fit the screen height. */
+  --screen-height: 100vh;
+  --cell-by-height: calc((var(--screen-height) - 5rem) / 11);
   --font-body: "Barlow", "Arial Narrow", Arial, sans-serif;
   --font-display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
   --z-topbar: 10;
@@ -106,8 +109,8 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  /* Mobile browsers' toolbars come and go: size to the visible viewport where supported. */
-  min-height: 100dvh;
+  /* Mobile browsers' toolbars come and go: size to the viewport left with them shown. */
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -828,9 +831,11 @@ a.button {
   padding-inline: var(--space-2);
 }
 
-/* "Rotate: horizontal" is the longest label: it gets the whole row, so it never overflows. */
-#rotate {
-  grid-column: 1 / -1;
+/* "Rotate: horizontal" is the longest label: in narrow columns it wraps instead of overflowing. */
+.placement-actions .button {
+  flex-wrap: wrap;
+  column-gap: 0.25em;
+  text-align: center;
 }
 
 /* Boards: each cell draws a 1px ink outline, so the grid reads as ruled paper. */
@@ -916,7 +921,7 @@ a.button {
 }
 
 .board-small {
-  --cell: clamp(22px, 5.6vw, 32px);
+  --cell: clamp(22px, min(5.6vw, var(--cell-by-height)), 32px);
 }
 
 .board [role="row"],
@@ -1338,15 +1343,15 @@ a.button {
   .battle-layout {
     grid-template-columns: auto auto;
     justify-content: start;
-    column-gap: var(--space-8);
   }
 
+  /* 54% and 44% of the width, not 55/45: a visible scrollbar is inside 100vw. */
   .battle-layout .board {
-    --cell: clamp(24px, min(calc((55vw - 2.2rem - 10px) / 10.6), calc((100vh - 5rem) / 11)), 40px);
+    --cell: clamp(24px, min(calc((54vw - 2.2rem - 10px) / 10.6), var(--cell-by-height)), 40px);
   }
 
   .battle-layout .board-small {
-    --cell: clamp(22px, min(calc((45vw - 1.8rem - 10px) / 10.6), calc((100vh - 5rem) / 11)), 40px);
+    --cell: clamp(22px, min(calc((44vw - 1.8rem - 10px) / 10.6), var(--cell-by-height)), 40px);
   }
 }
 
@@ -1358,6 +1363,12 @@ a.button {
 
   .notice {
     top: var(--space-2);
+  }
+}
+
+@supports (height: 100svh) {
+  :root {
+    --screen-height: 100svh;
   }
 }
 

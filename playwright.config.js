@@ -17,7 +17,7 @@ export default defineConfig({
     {
       name: "tablet",
       use: { ...devices["iPad Mini"], browserName: "chromium" },
-      testMatch: /(board|flags|game|responsive)\.spec\.js/,
+      testMatch: /(board|flags|game)\.spec\.js/,
     },
   ],
 });
