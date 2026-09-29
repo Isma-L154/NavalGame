@@ -1,5 +1,5 @@
 name: Start the dev server
-description: Runs `pywrangler dev` in the background and waits until /api/health answers.
+description: Runs `pywrangler dev` in the background, logging to wrangler-dev.log, and waits until /api/health answers.
 runs:
   using: composite
   steps:
@@ -11,5 +11,4 @@ runs:
           curl -sf -o /dev/null http://localhost:8787/api/health && exit 0
           sleep 2
         done
-        cat wrangler-dev.log
         exit 1

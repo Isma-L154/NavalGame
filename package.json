@@ -11,6 +11,8 @@
     "workerd@1.20260918.1": true
   },
   "overrides": {
-    "undici": "7.29.1"
+    "miniflare": {
+      "undici": "7.29.1"
+    }
   }
 }
