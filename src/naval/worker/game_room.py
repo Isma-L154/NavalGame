@@ -13,6 +13,7 @@ from js import WebSocketPair, WebSocketRequestResponsePair
 from workers import DurableObject, Response
 
 from naval.protocol.messages import InvalidMessage, parse_client_message
+from naval.protocol.requests import Opponent
 from naval.protocol.views import Message, error_message
 from naval.rooms.budget import MessageBudget
 from naval.rooms.service import Delivery, RoomService
@@ -81,7 +82,7 @@ class GameRoom(DurableObject):
             await self._schedule_alarm()
             return json_response({"created": True}, HTTPStatus.CREATED)
         await self.ctx.storage.put(_INIT_NONCE_KEY, body["nonce"])
-        await self._service.create(body["code"])
+        await self._service.create(body["code"], cpu=body.get("opponent") == Opponent.CPU)
         await self._schedule_alarm()
         return json_response({"created": True}, HTTPStatus.CREATED)
 
