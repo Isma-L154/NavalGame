@@ -248,7 +248,33 @@ async def test_a_room_that_cannot_be_loaded_answers_internal_error(clock: FakeCl
     assert delivery.to_requester == [error_message("internal_error")]
 
 
-async def test_internal_errors_are_logged_with_room_and_seat_but_never_the_token(
+async def test_a_failed_first_join_leaves_the_seat_free(clock: FakeClock) -> None:
+    store = FailingSaveStore()
+    svc = RoomService(store, clock, coin_flip=lambda: 0)
+    assert await svc.create("ABCDEF")
+    store.failing = True
+    await svc.handle(None, JoinMessage(type="join", nickname="Ana"))
+    store.failing = False
+    delivery = await svc.handle(None, JoinMessage(type="join", nickname="Bo"))
+    assert delivery.bind_seat == 0
+
+
+async def test_internal_errors_are_logged_with_room_and_seat(
+    clock: FakeClock, capsys: pytest.CaptureFixture[str]
+) -> None:
+    store = FailingSaveStore()
+    svc = RoomService(store, clock, coin_flip=lambda: 0)
+    assert await svc.create("ABCDEF")
+    await _two_players(svc)
+    store.failing = True
+    await svc.handle(1, PLACE)
+    log = capsys.readouterr().out
+    assert "ABCDEF, seat 1, handling place_fleet" in log
+    assert "Traceback" in log
+    assert "storage unavailable" in log
+
+
+async def test_internal_error_logs_never_contain_the_seat_token(
     clock: FakeClock, capsys: pytest.CaptureFixture[str]
 ) -> None:
     store = FailingSaveStore()
@@ -258,7 +284,5 @@ async def test_internal_errors_are_logged_with_room_and_seat_but_never_the_token
     store.failing = True
     await svc.handle(None, JoinMessage(type="join", nickname="Ana", token=token))
     log = capsys.readouterr().out
-    assert "ABCDEF" in log
-    assert "storage unavailable" in log
-    assert "Traceback" in log
+    assert "handling join" in log
     assert token not in log

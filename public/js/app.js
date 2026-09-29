@@ -18,6 +18,8 @@ const game = {
   code: null,
   connection: null,
   state: null,
+  // False from sending a join until the server confirms it with "joined".
+  joined: false,
   leaving: false,
 };
 
@@ -104,6 +106,7 @@ function enterRoom(code, nickname) {
   game.connection = connection;
   connection.addEventListener("open", () => {
     setConnectionStatus(null);
+    game.joined = false;
     const token = session.token(code);
     connection.send(token ? { type: "join", nickname, token } : { type: "join", nickname });
   });
@@ -117,6 +120,7 @@ function enterRoom(code, nickname) {
 function onMessage(message, nickname) {
   switch (message.type) {
     case "joined":
+      game.joined = true;
       if (message.token) session.saveToken(game.code, message.token);
       break;
     case "state":
@@ -157,14 +161,14 @@ function onError(error, nickname) {
     enterRoom(game.code, nickname);
     return;
   }
-  // Without a state yet, the error answers the join itself: this visit is over.
-  if (FATAL_ERRORS.has(error.code) || !game.state) {
+  // Before "joined", the error answers the join itself (the server then closes the socket).
+  if (FATAL_ERRORS.has(error.code) || !game.joined) {
     leaveToHome(error.message);
     return;
   }
   // Whatever was pending did not happen: let the player act again.
-  placement.rejected();
-  battle.rejected();
+  if (game.state?.phase === "placing") placement.rejected();
+  else battle.rejected();
   notify(error.message);
 }
 

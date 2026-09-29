@@ -11,4 +11,5 @@ runs:
           curl -sf -o /dev/null http://localhost:8787/api/health && exit 0
           sleep 2
         done
+        cat wrangler-dev.log
         exit 1

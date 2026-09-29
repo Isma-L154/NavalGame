@@ -98,34 +98,24 @@ class RoomService:
 
     async def handle(self, seat: int | None, message: ClientMessage) -> Delivery:
         room: Room | None = None
+        delivery = Delivery()
         try:
             room = await self._store.load()
             if room is None:
                 return Delivery(to_requester=[error_message(RoomClosed.code)], close_requester=True)
-            return await self._handle(room, seat, message)
+            self._apply(room, seat, message, delivery)
+            await self._store.save(room)
+        except GameError as error:
+            return self._refusal(error.code, seat, message)
         except Exception:
-            # A bug or an outage must not leave the player waiting. Log the traceback, never the
-            # message: a join carries the seat token.
-            where = room.code if room is not None else "an unreadable room"
+            # The save did not complete, so the action did not happen: say so rather than leave the
+            # player waiting. Log the traceback, never the message: a join carries the seat token.
+            where = room.code if room is not None else "a room that failed to load"
             print(
                 f"internal error in {where}, seat {seat}, handling {message.type}:\n"
                 f"{traceback.format_exc()}"
             )
-            return Delivery(
-                to_requester=[error_message(_INTERNAL_ERROR)],
-                close_requester=_is_first_join(seat, message),
-            )
-
-    async def _handle(self, room: Room, seat: int | None, message: ClientMessage) -> Delivery:
-        delivery = Delivery()
-        try:
-            self._apply(room, seat, message, delivery)
-            await self._store.save(room)
-        except GameError as error:
-            return Delivery(
-                to_requester=[error_message(error.code)],
-                close_requester=_is_first_join(seat, message),
-            )
+            return self._refusal(_INTERNAL_ERROR, seat, message)
         self._broadcast_state(room, delivery)
         return delivery
 
@@ -189,6 +179,12 @@ class RoomService:
             delivery.close_requester = True
 
     @staticmethod
+    def _refusal(code: str, seat: int | None, message: ClientMessage) -> Delivery:
+        # A connection whose join failed holds no seat and must not linger.
+        failed_join = seat is None and isinstance(message, JoinMessage)
+        return Delivery(to_requester=[error_message(code)], close_requester=failed_join)
+
+    @staticmethod
     def _broadcast_state(room: Room, delivery: Delivery) -> None:
         players = [
             None if p is None else PlayerView(p.nickname, p.connected, p.wants_rematch)
@@ -197,8 +193,3 @@ class RoomService:
         for seat in room.connected_seats():
             state = state_message(room.code, seat, room.game, players)
             delivery.to_seats.setdefault(seat, []).append(state)
-
-
-def _is_first_join(seat: int | None, message: ClientMessage) -> bool:
-    """A connection whose join failed holds no seat and must not linger."""
-    return seat is None and isinstance(message, JoinMessage)

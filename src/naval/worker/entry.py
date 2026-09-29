@@ -60,6 +60,7 @@ class Default(WorkerEntrypoint):
         return error_response("try_again", HTTPStatus.SERVICE_UNAVAILABLE)
 
     async def _init_room(self, code: str, body: str) -> Any:
+        # A fresh stub per call: a stub that failed can stay broken.
         return await self.env.GAME_ROOM.getByName(code).fetch(
             "https://room/init", method="POST", body=body
         )
