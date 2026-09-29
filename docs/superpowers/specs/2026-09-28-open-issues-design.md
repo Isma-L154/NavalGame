@@ -15,7 +15,8 @@ Five open issues, shipped as five PRs in this order: **#37** (share card), **#38
 - `public/apple-touch-icon.png` (180×180): iOS home-screen icon and some share previews.
 - **Search Console verification is not code.** A `google-site-verification` meta tag needs a token from the owner's Google account. The better route is a *Domain* property verified by a DNS TXT record in the Cloudflare zone, which also covers every subdomain. This is recorded as an owner action. No placeholder token is committed.
 - JSON-LD structured data is **out**: a browser game is not eligible for any rich result, and it would be the only inline `<script>`.
-- Tests (`tests/frontend/test_seo.py`): every page carries the full tag set; `og:url` equals the canonical; the image exists, is a PNG and is exactly 1200×630 (read from the IHDR header).
+- The game page keeps `<link rel="canonical" href="/">` so search engines never index a URL per room. Messaging apps (WhatsApp, Messenger, iMessage, Slack, Discord) keep the shared `?room=` URL in the message, so invites work there. A crawler that falls back to the canonical link (a Facebook feed post) may link its card to the home page. That is accepted, and the invite text always carries the full link as well.
+- Tests (`tests/frontend/test_seo.py`): every page carries each tag exactly once; `og:url` matches the page's canonical link where present and is absent on the game page; the image exists, is a PNG and is exactly 1200×630 (read from the IHDR header).
 
 ## 2. #38: invitation link
 

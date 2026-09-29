@@ -1,6 +1,8 @@
 import re
 import struct
 import xml.etree.ElementTree as ET
+from collections import defaultdict
+from html.parser import HTMLParser
 from pathlib import Path
 
 PUBLIC = Path(__file__).parents[2] / "public"
@@ -44,10 +46,34 @@ def test_robots_allows_the_site_and_points_to_the_sitemap() -> None:
     assert f"Sitemap: {ORIGIN}/sitemap.xml" in robots
 
 
-def _meta(html: str, attr: str, key: str) -> str | None:
-    values = re.findall(rf'<meta {attr}="{re.escape(key)}" content="([^"]*)">', html)
-    assert len(values) <= 1, f"{key} appears {len(values)} times"
-    return values[0] if values else None
+class _Head(HTMLParser):
+    """Collects every <meta> value by its property or name, and every <link> href by its rel."""
+
+    def __init__(self, html: str) -> None:
+        super().__init__()
+        self.values: defaultdict[str, list[str]] = defaultdict(list)
+        self.feed(html)
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        found = dict(attrs)
+        if tag == "meta":
+            key = found.get("property") or found.get("name")
+            if key:
+                self.values[key].append(found.get("content") or "")
+        elif tag == "link" and found.get("rel"):
+            self.values[f"link:{found['rel']}"].append(found.get("href") or "")
+
+
+_REPEATABLE_LINKS = ("link:preload", "link:modulepreload", "link:stylesheet")
+
+
+def _head(page: str) -> dict[str, str]:
+    """The page's single-valued head entries; each may appear at most once."""
+    values = _Head((PUBLIC / page).read_text(encoding="utf-8")).values
+    single = {key: found for key, found in values.items() if key not in _REPEATABLE_LINKS}
+    duplicated = sorted(key for key, found in single.items() if len(found) > 1)
+    assert not duplicated, f"{page} repeats {duplicated}"
+    return {key: found[0] for key, found in single.items()}
 
 
 def _png_size(path: Path) -> tuple[int, int]:
@@ -59,33 +85,30 @@ def _png_size(path: Path) -> tuple[int, int]:
 
 def test_every_page_has_a_complete_share_card() -> None:
     for page in PAGES.values():
-        html = (PUBLIC / page).read_text(encoding="utf-8")
-        for key in SOCIAL_TAGS:
-            assert _meta(html, "property", key), f"{page}: {key}"
-        for key in TWITTER_TAGS:
-            assert _meta(html, "name", key), f"{page}: {key}"
-        assert _meta(html, "name", "twitter:card") == "summary_large_image"
-        assert _meta(html, "property", "og:description") == _meta(html, "name", "description")
+        head = _head(page)
+        for key in (*SOCIAL_TAGS, *TWITTER_TAGS):
+            assert head.get(key), f"{page}: {key}"
+        assert head["twitter:card"] == "summary_large_image"
+        assert head["og:description"] == head["description"]
 
 
-def test_og_url_is_the_canonical_url_except_on_the_game_page() -> None:
+def test_og_url_matches_the_canonical_link_except_on_the_game_page() -> None:
     # Invite links are /?room=CODE: a fixed og:url would make scrapers link to the bare home.
-    assert _meta((PUBLIC / "index.html").read_text(encoding="utf-8"), "property", "og:url") is None
-    terms = (PUBLIC / "terms.html").read_text(encoding="utf-8")
-    assert _meta(terms, "property", "og:url") == f"{ORIGIN}/terms"
+    assert "og:url" not in _head("index.html")
+    terms = _head("terms.html")
+    assert terms["og:url"] == terms["link:canonical"]
 
 
 def test_the_share_image_is_a_1200_by_630_png_on_this_site() -> None:
     for page in PAGES.values():
-        html = (PUBLIC / page).read_text(encoding="utf-8")
-        assert _meta(html, "property", "og:image") == f"{ORIGIN}/og-image.png"
-        assert _meta(html, "property", "og:image:width") == "1200"
-        assert _meta(html, "property", "og:image:height") == "630"
+        head = _head(page)
+        assert head["og:image"] == f"{ORIGIN}/og-image.png"
+        assert head["og:image:width"] == "1200"
+        assert head["og:image:height"] == "630"
     assert _png_size(PUBLIC / "og-image.png") == (1200, 630)
 
 
 def test_the_apple_touch_icon_is_linked_and_180_pixels() -> None:
     for page in PAGES.values():
-        html = (PUBLIC / page).read_text(encoding="utf-8")
-        assert '<link rel="apple-touch-icon" href="/apple-touch-icon.png">' in html
+        assert _head(page)["link:apple-touch-icon"] == "/apple-touch-icon.png"
     assert _png_size(PUBLIC / "apple-touch-icon.png") == (180, 180)
