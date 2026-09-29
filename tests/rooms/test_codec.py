@@ -46,6 +46,17 @@ def test_join_ids_round_trip_as_hashes_only() -> None:
     _assert_same(room, room_from_json(stored))
 
 
+def test_cpu_rooms_round_trip_and_people_store_no_cpu_key() -> None:
+    room = Room("ABCDEF", created_at=5.0)
+    room.seat_cpu()
+    room.join("Ana", None, now=6.0, first_shooter=0)
+    stored = room_to_json(room)
+    assert stored.count('"cpu"') == 1
+    restored = room_from_json(stored)
+    _assert_same(room, restored)
+    assert restored.cpu_seat == 1
+
+
 def test_empty_room_round_trips() -> None:
     room = Room("ABCDEF", created_at=5.0)
     _assert_same(room, room_from_json(room_to_json(room)))
