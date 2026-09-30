@@ -1090,6 +1090,40 @@ a.button {
   mask: var(--cross) center / contain no-repeat;
 }
 
+/* A hit's peg drops onto its cell. */
+.peg.is-new .peg-body {
+  animation: peg-drop 260ms ease-in both;
+}
+
+@keyframes peg-drop {
+  from {
+    transform: translateZ(1.6em);
+  }
+
+  to {
+    transform: translateZ(0);
+  }
+}
+
+/*
+ * A sunk ship goes down; the table top hides it as it sinks. Visibility, not opacity: opacity
+ * would flatten the model. A ship already sunk when the board is drawn is simply hidden.
+ */
+.ship.is-sinking .ship-model {
+  animation: sink 900ms ease-in forwards;
+}
+
+@keyframes sink {
+  to {
+    transform: translateZ(-0.9em) rotateX(10deg);
+    visibility: hidden;
+  }
+}
+
+.ship.is-sunk:not(.is-sinking) {
+  visibility: hidden;
+}
+
 .board {
   position: relative;
   isolation: isolate;
@@ -1189,7 +1223,6 @@ a.button {
 
 /* Shot markers: a distinct symbol and pattern for each outcome, never colour alone. */
 .cell.state-miss::after,
-.cell.state-hit::after,
 .cell.state-sunk::after,
 .cell-sample.state-miss::after,
 .cell-sample.state-hit::after,
@@ -1205,13 +1238,12 @@ a.button {
   background: var(--ink);
 }
 
-.cell.state-hit,
+/* On the table a hit is its peg (js/board-pieces.js), red with a white cross, on the sea. */
 .cell-sample.state-hit {
   background: var(--red);
 }
 
 /* The cross is drawn, not typed: the self-hosted fonts have no U+2715, so a glyph would vary. */
-.cell.state-hit::after,
 .cell.state-sunk::after,
 .cell-sample.state-hit::after,
 .cell-sample.state-sunk::after {
@@ -1220,7 +1252,6 @@ a.button {
   mask: var(--cross) center / contain no-repeat;
 }
 
-.cell.state-hit::after,
 .cell-sample.state-hit::after {
   background: var(--on-red);
 }
@@ -1238,7 +1269,6 @@ a.button {
 
 /* High-contrast modes repaint backgrounds: draw the crosses in the system text colour. */
 @media (forced-colors: active) {
-  .cell.state-hit::after,
   .cell.state-sunk::after,
   .cell-sample.state-hit::after,
   .cell-sample.state-sunk::after {

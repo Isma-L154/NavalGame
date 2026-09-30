@@ -73,7 +73,7 @@ Every state keeps a distinct shape, never colour alone.
 | State | On the table |
 |---|---|
 | Miss | Ink dot on the water, with today's splash ring. |
-| Hit | The cell stays red with its white cross, and (second PR) a **red peg** with a cross stands on it: on top of the ship on your board, on the water on the enemy board. The peg drops in. |
+| Hit | A **red peg** with a white cross stands on the cell: on top of the ship on your board, on the water on the enemy board. The peg drops in. The cell itself keeps the sea: a red cell hid a red peg and showed red slivers around a ship's hull. The legend's red square with a white cross matches the peg's top. Until the second PR the cell is red, as today. |
 | Sunk | Flag O cells as today. On your board (second PR) the ship **sinks below the surface** first; the table top hides it as it goes down. |
 | Revealed enemy ship (game over) | Blue hatching, as today. |
 | Placement preview, hover, keyboard focus | As today, on the table surface. Where a preview lies under another ship, that ship hides part of it; the red stripes on the free cells and the status line still explain the invalid spot. |
