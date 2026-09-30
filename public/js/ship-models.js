@@ -122,8 +122,9 @@ const MODELS = {
       [0.27, SHIP_BEAM - margin],
     ];
     return [
-      { points: body, height: 0.04, part: "waterline", top: null },
-      { points: body, height: 0.09, z: 0.04, part: "sub" },
+      // At least MIN_WALL tall, or the band would have no walls and the hull would float.
+      { points: body, height: 0.06, part: "waterline", top: null },
+      { points: body, height: 0.07, z: 0.06, part: "sub" },
       { points: rect(length * 0.36, MID - 0.08, length * 0.52, MID + 0.08), height: 0.29, z: 0.13, part: "sub" },
       { points: rect(length * 0.39, MID - 0.16, length * 0.44, MID + 0.16), height: 0.04, z: 0.31, part: "sub" },
       pole(length * 0.47, 0.42, 0.16),
