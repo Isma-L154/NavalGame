@@ -21,15 +21,22 @@ export class Grid {
     this.onHover = onHover ?? (() => {});
     this.onLeave = onLeave ?? (() => {});
     this.onNudge = onNudge;
-    this.root = el("div", {
-      className: `board${small ? " board-small" : ""}`,
-      attrs: { role: "grid", "aria-label": label },
-    });
+    this.root = el("div", { className: "board", attrs: { role: "grid", "aria-label": label } });
     // Drawn first so the cells paint over it; the cells carry every accessible description.
     this.shipLayer = el("div", { className: "ship-layer", attrs: { "aria-hidden": "true" } });
     this.root.append(this.shipLayer);
     this.#build();
-    container.replaceChildren(this.root);
+    // The grid lies on a table seen in perspective. The surface holding it stays one flat layer.
+    const wall = (side) =>
+      el("div", { className: `board-slab board-slab-${side}`, attrs: { "aria-hidden": "true" } });
+    this.table = el("div", { className: "board-table" }, [
+      wall("south"),
+      wall("east"),
+      wall("west"),
+      el("div", { className: "board-surface" }, [this.root]),
+    ]);
+    this.stage = el("div", { className: `board-stage${small ? " board-small" : ""}` }, [this.table]);
+    container.replaceChildren(this.stage);
   }
 
   #build() {

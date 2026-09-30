@@ -38,14 +38,16 @@ The cost of CSS 3D is that **every face of a 3D shape becomes its own compositor
 
 ### 3.2 Sizes
 
-The tilted board is about 0.82 of its flat height, so the height limit (`--cell-by-height`) allows bigger cells.
+A tilted table takes less height than the flat board, so cells can grow. The rule:
 
-| Board | Today | New |
-|---|---|---|
-| Placement | up to 40px | up to **56px** |
-| Battle, enemy waters | up to 40px | up to **56px** |
-| Battle, your fleet | up to 40px | up to 40px |
-| Phones | fit the width | fit the width (unchanged) |
+- A cell is **never smaller than today's 40px** wherever today's board fitted the screen.
+- It **grows while the whole table still fits under its screen's header**, so the board is seen whole without a scroll. The cap is **56px** for the placement board and enemy waters, and 40px for your fleet in battle.
+- On the placement screen below 900px wide, the ship dock sits under the board, so the table also leaves room for the dock's first ships: they must be dragged up without a scroll.
+- Phones keep fitting the width, as today.
+
+At 1280×720 this gives about 48px cells when placing and 55px in battle. Screens about 730px tall or more get the full 56px.
+
+The stage (the table's box) is exactly as tall as the table looks at rest. With `sin()` and `cos()`, CSS computes how far the perspective projects the table above its centre (`--far`) and below it (`--near`, the bottom of its edge). The table's centre, which is also the perspective origin, sits `--far` below the top of the box. A symmetric box around a centred table was tried first: the near half, enlarged by the perspective, overflowed onto the content below, and the far half left a gap under the heading.
 
 ### 3.3 Ships (second PR)
 
