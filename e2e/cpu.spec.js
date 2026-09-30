@@ -68,9 +68,12 @@ test("the battle opens at the top of the page, with its turn banner in view", as
   await page.getByRole("button", { name: "Play vs CPU" }).click();
   await expect(page.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
   await page.getByRole("button", { name: "Random" }).click();
-  // On a laptop screen Ready sits below the fold: reaching it scrolls the page down.
-  await page.getByRole("button", { name: "Ready" }).click();
+  // On a laptop screen Ready sits below the fold: reaching it scrolls the page down. Checked
+  // before the click, since the battle (and its scroll to the top) can start right after it.
+  const ready = page.getByRole("button", { name: "Ready" });
+  await ready.scrollIntoViewIfNeeded();
   expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+  await ready.click();
   await expect(page.locator("#turn-banner")).toBeVisible();
   expect(await page.evaluate(() => window.scrollY)).toBe(0);
   // Later updates of the same screen leave the scroll where the player put it.
