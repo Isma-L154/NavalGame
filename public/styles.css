@@ -1349,6 +1349,25 @@ a.button {
   gap: var(--space-2);
 }
 
+/* Only a mouse turns a board, so only mouse users are told about it. */
+.board-hint {
+  display: none;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .board-hint {
+    display: block;
+  }
+
+  .legend .board-hint {
+    display: inline-flex;
+  }
+}
+
 .cell-sample {
   position: relative;
   display: inline-block;

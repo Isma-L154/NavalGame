@@ -48,6 +48,8 @@ export class PlacementView {
       onHover: (row, col) => this.#preview(row, col),
       onLeave: () => this.grid.clearPreview(),
       onNudge: (dRow, dCol) => this.#nudge(dRow, dCol),
+      // A press that lifts a ship drags the ship; any other press may turn the board.
+      canTurn: (event) => !this.#dragStart(event),
     });
     this.grid.root.classList.add("board-placement");
     this.#buildDock();

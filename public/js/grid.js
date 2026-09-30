@@ -1,6 +1,7 @@
 import { el } from "./dom.js";
 import { BOARD_SIZE, ROW_LABELS, coordinateLabel, shipByKind } from "./fleet.js";
 import { shipArt } from "./ships.js";
+import { TableCamera } from "./table-camera.js";
 
 const STATE_CLASSES = ["state-ship", "state-miss", "state-hit", "state-sunk", "state-revealed",
   "state-preview-ok", "state-preview-bad"];
@@ -9,14 +10,15 @@ const STATE_CLASSES = ["state-ship", "state-miss", "state-hit", "state-sunk", "s
  * A 10x10 keyboard-navigable grid (ARIA grid pattern with a roving tabindex).
  * Callbacks receive (row, col); the grid itself holds no game rules. With `onNudge`,
  * Shift+arrow keys call it with the step (dRow, dCol) instead of only moving focus; focus
- * follows when it returns true.
+ * follows when it returns true. With a mouse the table can be turned (js/table-camera.js);
+ * `canTurn(event)` may refuse a press.
  */
 export class Grid {
   #cells = [];
   #focused = [0, 0];
   #shipsDrawn = null;
 
-  constructor(container, { label, small = false, onActivate, onHover, onLeave, onNudge = null } = {}) {
+  constructor(container, { label, small = false, onActivate, onHover, onLeave, onNudge = null, canTurn } = {}) {
     this.onActivate = onActivate ?? (() => {});
     this.onHover = onHover ?? (() => {});
     this.onLeave = onLeave ?? (() => {});
@@ -36,6 +38,7 @@ export class Grid {
       el("div", { className: "board-surface" }, [this.root]),
     ]);
     this.stage = el("div", { className: `board-stage${small ? " board-small" : ""}` }, [this.table]);
+    new TableCamera(this.stage, this.table, { canTurn });
     container.replaceChildren(this.stage);
   }
 

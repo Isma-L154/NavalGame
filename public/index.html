@@ -42,6 +42,7 @@
     <link rel="modulepreload" href="/js/placement.js">
     <link rel="modulepreload" href="/js/session.js">
     <link rel="modulepreload" href="/js/ships.js">
+    <link rel="modulepreload" href="/js/table-camera.js">
     <script type="module" src="/js/app.js"></script>
     <script type="module" src="/js/theme.js"></script>
   </head>
@@ -144,6 +145,7 @@
         <div class="placement-layout">
           <div class="board-wrap">
             <div id="placement-grid"></div>
+            <p class="board-hint">Drag the board to turn it · double-click off the grid to reset</p>
           </div>
           <div class="panel placement-panel">
             <div id="placement-flag"></div>
@@ -193,6 +195,7 @@
           <span class="legend-item"><span class="cell-sample state-hit" aria-hidden="true"></span>Hit</span>
           <span class="legend-item"><span class="cell-sample state-sunk" aria-hidden="true"></span>Sunk</span>
           <span class="legend-item"><span class="cell-sample state-ship" aria-hidden="true"></span>Your ship</span>
+          <span class="legend-item board-hint">Drag a board to turn it · double-click off the grid to reset</span>
         </div>
         <div class="panel log-panel">
           <h2 class="panel-title">Shot log</h2>

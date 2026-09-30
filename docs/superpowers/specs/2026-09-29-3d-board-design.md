@@ -11,7 +11,7 @@ The board reads as flat ruled paper. It should look like a real naval-battle gam
 Decisions taken with the owner, from working mockups:
 
 - **A tilted table:** the board leans back like a board on a table, with a thick ink edge. The owner rejected an isometric diamond view (it wastes width and makes the arrow keys disagree with the screen) and raised tiles in a straight view (not 3D enough).
-- **Turn it with the mouse:** dragging a board turns it. It **stays where it is left**, within **limits** (up to 40° each way, tilt between 10° and 60°), so the grid is never upside down. A double-click resets it.
+- **Turn it with the mouse:** dragging a board turns it. It **stays where it is left**, within **limits** (up to 40° each way, tilt between 10° and 60°), so the grid is never upside down. A double-click off the grid resets it.
 - **Low-poly ship models:** real hulls with a pointed bow, a bridge, a funnel and gun turrets, flat-shaded in the poster colours. The owner rejected thick silhouette tokens (still flat) and grey toy ships.
 - **Pale sea with printed wave marks** as the water, instead of white paper.
 - **Bigger boards.**
@@ -89,10 +89,12 @@ Every state keeps a distinct shape, never colour alone.
 ### 4.1 Turning with the mouse
 
 - Only for `pointerType === "mouse"`. A press becomes a turn after **6px** of movement, the same threshold as ship dragging. Left and right turn the board; up and down change the tilt.
-- **Limits:** turn −40° to +40°, tilt 10° to 60°. The board stays where it is released. A **double-click** on the board returns it to the default view with an animation.
+- **Limits:** turn −40° to +40°, tilt 10° to 60°. The board stays where it is released. A **double-click off the grid** (on the table rim, the labels or around the board) returns it to the default view with an animation. A double-click on a cell would also fire or place a ship, so it does not reset.
 - The click that ends a turn is swallowed, so turning never fires a shot or selects a cell.
 - Each board has its own view. Views are not kept across page loads.
-- A hint under the placement board and in the battle legend reads **"Drag to turn · double-click to reset"**. It is shown only when the primary pointer is a mouse (`@media (hover: hover) and (pointer: fine)`).
+- A hint is shown only when the primary pointer is a mouse (`@media (hover: hover) and (pointer: fine)`):
+  - under the placement board: **"Drag the board to turn it · double-click off the grid to reset"**;
+  - in the battle legend: **"Drag a board to turn it · double-click off the grid to reset"**.
 
 ### 4.2 Living with the other gestures
 
@@ -107,20 +109,25 @@ No turning: two-finger turning would take over pinch-to-zoom. Coarse pointers ge
 
 ### 4.4 Auto-framing
 
-A square turned by an angle θ covers `cos θ + sin θ` of its width (1.41 at 40°), and a lower tilt makes it taller. Each board therefore scales itself while turned so its projection never leaves its default box:
+A square turned by an angle θ covers `cos θ + sin θ` of its width (1.41 at 40°). A lower tilt makes it deeper, and the perspective enlarges its near edge.
 
-```
-fit = min(1, 1 / (cos|turn| + sin|turn|), cos(defaultTilt) / ((cos|turn| + sin|turn|) · cos(tilt)))
-```
+While a board is turned, the camera computes the largest scale at which the table still projects inside its box, as follows:
 
-At rest in the default view the board fills its whole box, so boards are as big as the layout allows, and two boards side by side never overlap.
+1. It projects the corners of the table top and of the edge's bottom exactly as the CSS does: scale, rotateZ, rotateX, then the perspective, seen from the perspective origin.
+2. It binary-searches the scale.
+
+At rest, CSS scales the table by `--fit` (0.91, or 0.935 on coarse pointers), so its enlarged near edge exactly fills its box.
+
+A formula without the perspective was tried and overshot the box by up to 8% at a 60° tilt.
+
+As a result, two boards side by side never overlap, and the page never scrolls sideways.
 
 ## 5. Structure
 
 ```
 .board-stage          perspective, receives the camera drag
   .board-table        rotateX(tilt) rotateZ(turn) scale(fit); the 3D context
-    .board-slab       four ink walls under the table top
+    .board-slab       three ink walls under the table top (the far one never faces the camera)
     .board-surface    FLAT: today's .board (role=grid, labels, 100 cell buttons)
     .board-pieces     3D: ships and pegs over the 10×10 area, aria-hidden, no pointer events
 ```
@@ -182,10 +189,11 @@ Every existing Playwright spec must pass unchanged, on the desktop, mobile and t
 New specs:
 
 1. **Turn without firing:** dragging the enemy board changes its transform and fires nothing; a plain click on a cell fires.
-2. **Limits and reset:** a long drag stops at 40° and 10°/60°; a double-click restores the default view.
+2. **Limits and reset:** a long drag stops at 40° and 10°/60°; a double-click off the grid restores the default view.
 3. **Placement:** dragging a placed ship moves it on a turnable board; dragging empty water turns the board and moves no ship.
 4. **Touch:** on the mobile profile a drag does not turn the board.
 5. **Pegs and sinking** (second PR): a hit shows a peg on the right cell; a sunk ship's model is gone and its cells show flag O.
+6. **Auto-framing:** at the narrowest side-by-side layout, both boards fully turned leave no horizontal overflow and do not overlap.
 
 ## 9. Delivery
 
