@@ -924,6 +924,8 @@ a.button {
   height: calc(var(--table-depth) * var(--cell) + 12px);
   perspective: calc(var(--cell) * 34);
   perspective-origin: 50% var(--center-y);
+  /* A turn may start on the rim: it must not select the text around the board. */
+  user-select: none;
 }
 
 .board-table {

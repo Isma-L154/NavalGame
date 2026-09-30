@@ -92,6 +92,14 @@ test("dragging the enemy board turns it without firing, and a click still fires"
 test("a turn stops at its limits and a double-click off the grid resets it", async ({ browser }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "turning needs a mouse");
   const { page } = await battleVsCpu(browser, testInfo);
+  // A turned table may shrink to stay in its box but never grows past its size at rest, so
+  // starting to turn it never makes it jump bigger.
+  await dragBy(page, cell(page, "Enemy waters", "E5"), 0, -10);
+  const [turned, rest] = await page.locator("#target-grid .board-table").evaluate((node) => [
+    Number.parseFloat(node.style.getPropertyValue("--fit")),
+    Number.parseFloat(getComputedStyle(node.parentElement).getPropertyValue("--fit")),
+  ]);
+  expect(turned).toBeLessThanOrEqual(rest);
   await dragBy(page, cell(page, "Enemy waters", "E5"), 400, -300);
   expect(await viewOf(page, "target-grid")).toEqual({ turn: "40deg", tilt: "60deg" });
   await dragBy(page, cell(page, "Enemy waters", "E5"), -250, 250);

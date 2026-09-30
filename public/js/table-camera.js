@@ -80,6 +80,8 @@ export class TableCamera {
       height: this.#table.offsetHeight,
       slab: this.#table.querySelector(".board-slab-south").offsetHeight,
       perspective: Number.parseFloat(stage.perspective),
+      // The scale at rest: a turned table never grows past it, so a turn starts without a jump.
+      restFit: Number.parseFloat(stage.getPropertyValue("--fit")),
       // The box is not centred on the table: the perspective shows more of the near half.
       originY: Number.parseFloat(stage.perspectiveOrigin.split(" ")[1]),
       boxWidth: this.#stage.clientWidth,
@@ -89,12 +91,12 @@ export class TableCamera {
 }
 
 /**
- * The largest scale, up to 1, at which the table, turned by `turn` degrees and leaning back by
- * `tilt`, still projects inside its box. It projects the corners of the table top and of its
+ * The largest scale, up to the one at rest, at which the table, turned by `turn` degrees and
+ * leaning back by `tilt`, still projects inside its box. It projects the corners of the table top and of its
  * edge's bottom exactly as the CSS does: scale, rotateZ, rotateX, then the stage's perspective,
  * seen from the perspective origin, where the table's centre is too.
  */
-function fitScale(turn, tilt, { width, height, slab, perspective, originY, boxWidth, boxHeight }) {
+function fitScale(turn, tilt, { width, height, slab, perspective, restFit, originY, boxWidth, boxHeight }) {
   const [cosT, sinT] = [Math.cos(radians(turn)), Math.sin(radians(turn))];
   const [cosA, sinA] = [Math.cos(radians(tilt)), Math.sin(radians(tilt))];
   const corners = [];
@@ -111,12 +113,12 @@ function fitScale(turn, tilt, { width, height, slab, perspective, originY, boxWi
       const top = y2 * k;
       return Math.abs(x1 * k) <= boxWidth / 2 && top >= -originY && top <= boxHeight - originY;
     });
-  if (fits(1)) return 1;
-  let [low, high] = [0, 1];
+  if (fits(restFit)) return restFit;
+  let [low, high] = [0, restFit];
   for (let step = 0; step < 12; step += 1) {
     const middle = (low + high) / 2;
     if (fits(middle)) low = middle;
     else high = middle;
   }
-  return round(low * 100) / 100;
+  return Math.round(low * 1000) / 1000;
 }
