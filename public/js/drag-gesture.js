@@ -2,11 +2,12 @@
 const DRAG_THRESHOLD_PX = 6;
 
 /**
- * Drags ships with Pointer Events, so mouse, touch and pen behave the same. `start(event)`
- * decides whether a press can start a drag and returns its payload (or null); `move` and
- * `drop` receive the payload and the pointer position; `cancel` ends a drag without a drop.
+ * A press that turns into a drag, with Pointer Events, so mouse, touch and pen behave the same.
+ * `start(event)` decides whether a press can start a drag and returns its payload (or null);
+ * `move` and `drop` receive the payload and the pointer position; `cancel` ends a drag without
+ * a drop. Ships and the board view both drag this way.
  */
-export class ShipDrag {
+export class DragGesture {
   #press = null;
   #dragging = false;
   #swallowClick = false;

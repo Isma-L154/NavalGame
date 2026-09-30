@@ -58,14 +58,24 @@
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
-  /*
-   * 10 cells + labels must fit a 320px phone: that caps the minimum at 24px. On a phone held
-   * sideways the height is the limit, so a whole board fits the screen.
-   */
-  --cell: clamp(24px, min(8vw, var(--cell-by-height)), 40px);
-  /* The largest cell that still lets a whole board (11 rows with labels) fit the screen height. */
   --screen-height: 100vh;
-  --cell-by-height: calc((var(--screen-height) - 5rem) / 11);
+  /* The table leans back by --tilt. At rest --fit scales it so its near edge, which the perspective enlarges, still fits its box. */
+  --tilt: 35deg;
+  --fit: 0.91;
+  /*
+   * At rest a table 11.1 cells deep (5.55 each side of its centre) with a 0.4-cell edge, scaled
+   * by --fit and leaning back by --tilt under a perspective of 34 cells, reaches --far cells
+   * above its centre and --near cells below it (the bottom of its edge). --table-depth is the
+   * height it takes on screen, with a little air.
+   */
+  --far: calc(var(--fit) * 5.55 * cos(var(--tilt)) * 34 / (34 + var(--fit) * 5.55 * sin(var(--tilt))));
+  --near: calc(
+    var(--fit) * (5.55 * cos(var(--tilt)) + 0.4 * sin(var(--tilt))) * 34 /
+      (34 - var(--fit) * (5.55 * sin(var(--tilt)) - 0.4 * cos(var(--tilt))))
+  );
+  --table-depth: calc(var(--far) + var(--near) + 0.3);
+  --sea: #dce7f2;
+  --waves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M5 13q3.5-3.5 7 0t7 0M21 29q3.5-3.5 7 0t7 0' fill='none' stroke='%239fb9d6' stroke-width='1.5'/%3E%3C/svg%3E");
   --font-body: "Barlow", "Arial Narrow", Arial, sans-serif;
   --font-display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
   --z-topbar: 10;
@@ -90,6 +100,16 @@
   --link: #8fb3ff;
   --danger-bg: #3a1614;
   --line-soft: #3a3a3a;
+  --sea: #10233b;
+  --waves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M5 13q3.5-3.5 7 0t7 0M21 29q3.5-3.5 7 0t7 0' fill='none' stroke='%232b4d7a' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+/* Touch screens never turn a table, so it leans less and its far rows stay easy to tap. */
+@media (pointer: coarse) {
+  :root {
+    --tilt: 25deg;
+    --fit: 0.935;
+  }
 }
 
 /* Screens set their own display; `hidden` must still win. */
@@ -775,6 +795,22 @@ a.button {
   align-items: start;
 }
 
+/* How far down its screen a board starts on a laptop, header included (see .board-stage). */
+#screen-placement {
+  --above-board: 18rem;
+}
+
+#screen-battle {
+  --above-board: 14rem;
+}
+
+/* The ship dock sits under the board: leave room for its first ships, which must be dragged up without a scroll. */
+@media (max-width: 899px) {
+  #screen-placement {
+    --above-board: 32rem;
+  }
+}
+
 .placement-panel {
   display: grid;
   gap: var(--space-3);
@@ -843,7 +879,7 @@ a.button {
   text-align: center;
 }
 
-/* Boards: each cell draws a 1px ink outline, so the grid reads as ruled paper. */
+/* Boards: each cell draws a 1px ink outline over the sea, so the grid reads as a ruled chart. */
 .board-wrap,
 .board-column {
   display: grid;
@@ -856,6 +892,93 @@ a.button {
   font-size: 1.3rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+/*
+ * Each board is a game table seen in perspective. The stage is the camera and keeps the
+ * table's place in the layout; the table leans back by --tilt and turns by --turn
+ * (js/table-camera.js); the surface on it stays one flat layer, so the cells cost a single
+ * compositor layer.
+ */
+.board-stage {
+  /* A table is 11 cells wide (labels, 10 cells and its rim) plus 14px of rules. Layouts narrow this. */
+  --cell-by-width: calc((100vw - 2rem - 14px) / 11);
+  /* The largest cell at which the whole table fits the screen under the top bar... */
+  --cell-whole: calc((var(--screen-height) - 5rem - 12px) / var(--table-depth));
+  /* ...and at which it also fits under its screen's header, so it is seen whole without a scroll. */
+  --cell-unscrolled: calc((var(--screen-height) - var(--above-board, 5rem) - 12px) / var(--table-depth));
+  --cell-min: 24px;
+  --cell-max: 56px;
+  /* Never smaller than the 40px of the flat board wherever that fitted; bigger while it needs no scroll. */
+  --cell: clamp(
+    var(--cell-min),
+    min(var(--cell-by-width), max(min(40px, var(--cell-whole)), var(--cell-unscrolled))),
+    var(--cell-max)
+  );
+  --board-w: calc(var(--cell) * 11 + 14px);
+  --board-h: calc(var(--cell) * 11.1 + 14px);
+  /* Where the table's centre sits, and the camera looks from: its far edge then meets the top of the box. */
+  --center-y: calc((var(--far) + 0.15) * var(--cell) + 6px);
+  position: relative;
+  width: var(--board-w);
+  height: calc(var(--table-depth) * var(--cell) + 12px);
+  perspective: calc(var(--cell) * 34);
+  perspective-origin: 50% var(--center-y);
+  /* A turn may start on the rim: it must not select the text around the board. */
+  user-select: none;
+}
+
+.board-table {
+  position: absolute;
+  left: 0;
+  top: calc(var(--center-y) - var(--board-h) / 2);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt)) rotateZ(var(--turn, 0deg)) scale(var(--fit));
+}
+
+/* A double-click brings a turned table back to its default view. */
+.board-table.is-resetting {
+  transition: transform 500ms ease-out;
+}
+
+.board-surface {
+  padding: calc(var(--cell) * 0.2);
+  border: var(--rule);
+  background: var(--paper);
+}
+
+/* The table's edge: ink walls hanging under its top. The far wall never faces the camera. */
+.board-slab {
+  position: absolute;
+  background: var(--ink);
+}
+
+.board-slab-south {
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: calc(var(--cell) * 0.4);
+  transform-origin: top;
+  transform: rotateX(-90deg);
+}
+
+.board-slab-east,
+.board-slab-west {
+  top: 0;
+  width: calc(var(--cell) * 0.4);
+  height: 100%;
+}
+
+.board-slab-east {
+  left: 100%;
+  transform-origin: left;
+  transform: rotateY(90deg);
+}
+
+.board-slab-west {
+  right: 100%;
+  transform-origin: right;
+  transform: rotateY(-90deg);
 }
 
 .board {
@@ -883,12 +1006,15 @@ a.button {
   top: calc(var(--row) * 10%);
   width: calc(var(--len) * 10%);
   height: 10%;
-  background: var(--surface);
+  /* Under see-through ship cells: the same sea, one wave tile per cell. */
+  background: var(--waves) 0 0 / calc(100% / var(--len)) 100% repeat-x var(--sea);
 }
 
 .ship.is-vertical {
   width: 10%;
   height: calc(var(--len) * 10%);
+  background-size: 100% calc(100% / var(--len));
+  background-repeat: repeat-y;
 }
 
 .ship-art {
@@ -926,7 +1052,9 @@ a.button {
 }
 
 .board-small {
-  --cell: clamp(22px, min(5.6vw, var(--cell-by-height)), 32px);
+  --cell-by-width: 5.6vw;
+  --cell-min: 22px;
+  --cell-max: 32px;
 }
 
 .board [role="row"],
@@ -953,7 +1081,7 @@ a.button {
   width: var(--cell);
   height: var(--cell);
   padding: 0;
-  background: var(--surface);
+  background: var(--waves) center / 100% 100% no-repeat var(--sea);
   border: 0;
   border-radius: 0;
   outline: 1px solid var(--ink);
@@ -1223,12 +1351,31 @@ a.button {
   gap: var(--space-2);
 }
 
+/* Only a mouse turns a board, so only mouse users are told about it. */
+.board-hint {
+  display: none;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .board-hint {
+    display: block;
+  }
+
+  .legend .board-hint {
+    display: inline-flex;
+  }
+}
+
 .cell-sample {
   position: relative;
   display: inline-block;
   width: 24px;
   height: 24px;
-  background: var(--surface);
+  background: var(--sea);
   border: 1px solid var(--ink);
 }
 
@@ -1323,6 +1470,11 @@ a.button {
     justify-content: start;
     column-gap: var(--space-12);
   }
+
+  /* Beside the panel, the board takes the width the panel leaves. */
+  .placement-layout .board-stage {
+    --cell-by-width: calc((100vw - 2rem - 3rem - 18rem - 14px) / 11);
+  }
 }
 
 /*
@@ -1336,12 +1488,13 @@ a.button {
   }
 
   /* 54% and 44% of the width, not 55/45: a visible scrollbar is inside 100vw. */
-  .battle-layout .board {
-    --cell: clamp(24px, min(calc((54vw - 2.2rem - 10px) / 10.6), var(--cell-by-height)), 40px);
+  .battle-layout .board-stage {
+    --cell-by-width: calc((54vw - 2.2rem - 14px) / 11);
   }
 
-  .battle-layout .board-small {
-    --cell: clamp(22px, min(calc((44vw - 1.8rem - 10px) / 10.6), var(--cell-by-height)), 40px);
+  .battle-layout .board-stage.board-small {
+    --cell-by-width: calc((44vw - 1.8rem - 14px) / 11);
+    --cell-max: 40px;
   }
 }
 
