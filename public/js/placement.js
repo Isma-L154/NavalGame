@@ -1,9 +1,9 @@
 import { $, el } from "./dom.js";
+import { DragGesture } from "./drag-gesture.js";
 import { FlagPicker } from "./flag-picker.js";
 import { flagIcon, flagName } from "./flags.js";
 import { BOARD_SIZE, FleetDraft, SHIPS, shipByKind, shipCells } from "./fleet.js";
 import { Grid } from "./grid.js";
-import { ShipDrag } from "./ship-drag.js";
 import { shipArt } from "./ships.js";
 
 const FLAG_SETTLE_MS = 400;
@@ -51,7 +51,7 @@ export class PlacementView {
     });
     this.grid.root.classList.add("board-placement");
     this.#buildDock();
-    new ShipDrag($("screen-placement"), {
+    new DragGesture($("screen-placement"), {
       start: (event) => this.#dragStart(event),
       move: (ship, x, y) => this.#dragMove(ship, x, y),
       drop: (ship, x, y) => this.#dragDrop(ship, x, y),
