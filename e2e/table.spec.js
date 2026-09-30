@@ -66,9 +66,6 @@ async function battleVsCpu(browser, testInfo, options = {}) {
   await page.getByRole("button", { name: "Random" }).click();
   await page.getByRole("button", { name: "Ready" }).click();
   await expect(page.locator("#turn-banner")).toHaveText(/^Your turn/);
-  // Reaching Ready scrolled the page, and the battle keeps that scroll: the drags below use
-  // raw mouse positions, so start from the top, where the whole battle is in view.
-  await page.evaluate(() => window.scrollTo(0, 0));
   return { page, problems };
 }
 
