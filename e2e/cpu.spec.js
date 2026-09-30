@@ -60,3 +60,26 @@ test("Play vs CPU is marked busy while the room is created", async ({ browser },
   await expect(page.getByRole("button", { name: "Create a room" })).toHaveAttribute("aria-disabled", "true");
   await expect(page.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
 });
+
+test("the battle opens at the top of the page, with its turn banner in view", async ({ browser }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "sets its own viewport");
+  const page = await newPlayer(browser, testInfo, { viewport: { width: 1280, height: 720 } });
+  await openHome(page, "Ana");
+  await page.getByRole("button", { name: "Play vs CPU" }).click();
+  await expect(page.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
+  await page.getByRole("button", { name: "Random" }).click();
+  // On a laptop screen Ready sits below the fold: reaching it scrolls the page down. Checked
+  // before the click, since the battle (and its scroll to the top) can start right after it.
+  const ready = page.getByRole("button", { name: "Ready" });
+  await ready.scrollIntoViewIfNeeded();
+  expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+  await ready.click();
+  await expect(page.locator("#turn-banner")).toBeVisible();
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  // Later updates of the same screen leave the scroll where the player put it.
+  await expect(page.locator("#turn-banner")).toHaveText(/^Your turn/);
+  await page.evaluate(() => window.scrollTo(0, 200));
+  await cell(page, "Enemy waters", "J10").click();
+  await expect(page.locator("#shot-log")).toContainText("You fired at J10");
+  expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+});

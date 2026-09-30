@@ -65,7 +65,12 @@ const battle = new BattleView({
 });
 
 function showScreen(name) {
+  const changed = $(`screen-${name}`).hidden;
   for (const screen of SCREENS) $(`screen-${screen}`).hidden = screen !== name;
+  // A new screen starts at the top, with its heading or turn banner in view; the page would
+  // otherwise keep the scroll of the screen before. Every state update calls this, so only a
+  // real change of screen may move the page.
+  if (changed) window.scrollTo(0, 0);
 }
 
 function send(message) {
