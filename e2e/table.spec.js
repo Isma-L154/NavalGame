@@ -28,6 +28,19 @@ test("the board is a table leaning back over a pale sea", async ({ browser }, te
   expect(problems).toEqual([]);
 });
 
+test("ships are 3D models on the table, within the face budget", async ({ browser }, testInfo) => {
+  const { page, problems } = await placementVsCpu(browser, testInfo);
+  await page.getByRole("button", { name: "Random" }).click();
+  const ships = page.locator("#placement-grid .board-pieces .ship");
+  await expect(ships).toHaveCount(5);
+  for (const kind of ["carrier", "battleship", "cruiser", "submarine", "destroyer"]) {
+    await expect(page.locator(`#placement-grid .ship[data-kind="${kind}"] .face-top`).first()).toBeAttached();
+  }
+  // Every face is a compositor layer: the whole fleet must stay cheap to turn.
+  expect(await page.locator("#placement-grid .face").count()).toBeLessThanOrEqual(180);
+  expect(problems).toEqual([]);
+});
+
 /** The table's view as written by the camera; empty strings mean the default view. */
 const viewOf = (page, gridId) =>
   page.locator(`#${gridId} .board-table`).evaluate((node) => ({
