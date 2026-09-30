@@ -1,5 +1,14 @@
 import { expect, test } from "@playwright/test";
-import { cell, newPlayer, openHome, watchConsole } from "./helpers.js";
+import {
+  battleOrder,
+  cell,
+  createRoom,
+  joinRoom,
+  newPlayer,
+  openHome,
+  placeRowFleet,
+  watchConsole,
+} from "./helpers.js";
 
 const PLACEMENT = "Your waters. Place your fleet";
 
@@ -26,6 +35,41 @@ test("the board is a table leaning back over a pale sea", async ({ browser }, te
   await page.locator("#theme-toggle").click();
   await expect(cell(page, PLACEMENT, "J10")).toHaveCSS("background-color", "rgb(16, 35, 59)");
   expect(problems).toEqual([]);
+});
+
+test("ships are 3D models on the table, within the face budget", async ({ browser }, testInfo) => {
+  const { page, problems } = await placementVsCpu(browser, testInfo);
+  await page.getByRole("button", { name: "Random" }).click();
+  const ships = page.locator("#placement-grid .board-pieces .ship");
+  await expect(ships).toHaveCount(5);
+  for (const kind of ["carrier", "battleship", "cruiser", "submarine", "destroyer"]) {
+    await expect(page.locator(`#placement-grid .ship[data-kind="${kind}"] .face-top`).first()).toBeAttached();
+  }
+  // Every face is a compositor layer: the whole fleet must stay cheap to turn.
+  expect(await page.locator("#placement-grid .face").count()).toBeLessThanOrEqual(180);
+  expect(problems).toEqual([]);
+});
+
+test("a hit stands a peg on its cell, and a sunk ship goes down", async ({ browser }, testInfo) => {
+  const ana = await newPlayer(browser, testInfo);
+  const bo = await newPlayer(browser, testInfo);
+  const code = await createRoom(ana, "Ana");
+  await joinRoom(bo, "Bo", code);
+  // Both fleets lie in rows A-E from column 1: the destroyer is E1-E2.
+  await placeRowFleet(ana);
+  await placeRowFleet(bo);
+  const [shooter, target] = await battleOrder(ana, bo);
+  await cell(shooter, "Enemy waters", "E1").click();
+  await expect(shooter.locator("#target-grid .peg")).toHaveCount(1);
+  await expect(target.locator('#own-grid .ship[data-kind="destroyer"] .peg')).toHaveCount(1);
+  await expect(target.locator("#turn-banner")).toHaveText(/^Your turn/);
+  await cell(target, "Enemy waters", "J10").click();
+  await expect(shooter.locator("#turn-banner")).toHaveText(/^Your turn/);
+  await cell(shooter, "Enemy waters", "E2").click();
+  // Sunk: flag O cells without pegs on the enemy board; on its owner's board the ship goes down.
+  await expect(cell(shooter, "Enemy waters", "E2")).toHaveClass(/state-sunk/);
+  await expect(shooter.locator("#target-grid .peg")).toHaveCount(0);
+  await expect(target.locator('#own-grid .ship[data-kind="destroyer"]')).toHaveClass(/is-sinking/);
 });
 
 /** The table's view as written by the camera; empty strings mean the default view. */

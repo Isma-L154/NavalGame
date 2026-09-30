@@ -1,6 +1,6 @@
+import { BoardPieces } from "./board-pieces.js";
 import { el } from "./dom.js";
-import { BOARD_SIZE, ROW_LABELS, coordinateLabel, shipByKind } from "./fleet.js";
-import { shipArt } from "./ships.js";
+import { BOARD_SIZE, ROW_LABELS, coordinateLabel } from "./fleet.js";
 import { TableCamera } from "./table-camera.js";
 
 const STATE_CLASSES = ["state-ship", "state-miss", "state-hit", "state-sunk", "state-revealed",
@@ -16,7 +16,6 @@ const STATE_CLASSES = ["state-ship", "state-miss", "state-hit", "state-sunk", "s
 export class Grid {
   #cells = [];
   #focused = [0, 0];
-  #shipsDrawn = null;
 
   constructor(container, { label, small = false, onActivate, onHover, onLeave, onNudge = null, canTurn } = {}) {
     this.onActivate = onActivate ?? (() => {});
@@ -24,18 +23,19 @@ export class Grid {
     this.onLeave = onLeave ?? (() => {});
     this.onNudge = onNudge;
     this.root = el("div", { className: "board", attrs: { role: "grid", "aria-label": label } });
-    // Drawn first so the cells paint over it; the cells carry every accessible description.
-    this.shipLayer = el("div", { className: "ship-layer", attrs: { "aria-hidden": "true" } });
-    this.root.append(this.shipLayer);
     this.#build();
     // The grid lies on a table seen in perspective. The surface holding it stays one flat layer.
     const wall = (side) =>
       el("div", { className: `board-slab board-slab-${side}`, attrs: { "aria-hidden": "true" } });
+    const layer = el("div", { className: "board-pieces", attrs: { "aria-hidden": "true" } });
+    this.pieces = new BoardPieces(layer);
     this.table = el("div", { className: "board-table" }, [
       wall("south"),
       wall("east"),
       wall("west"),
       el("div", { className: "board-surface" }, [this.root]),
+      // Ships and pegs stand on the grid; the cells carry every accessible description.
+      layer,
     ]);
     this.stage = el("div", { className: `board-stage${small ? " board-small" : ""}` }, [this.table]);
     new TableCamera(this.stage, this.table, { canTurn });
@@ -133,26 +133,16 @@ export class Grid {
     }
     cell.setAttribute("aria-label", `${coordinateLabel(row, col)}, ${description}`);
     cell.setAttribute("aria-disabled", String(disabled));
+    this.pieces.markCell(row, col, {
+      hit: states.includes("state-hit"),
+      sunk: states.includes("state-sunk"),
+      isNew,
+    });
   }
 
-  /** Draws `placements` as ships under the cells; `selected` is the kind drawn as selected. */
+  /** Draws `placements` as ships on the table; `selected` is the kind drawn as selected. */
   setShips(placements, { selected = null } = {}) {
-    // Every state and every placement action calls this: only redraw what changed.
-    const drawn = JSON.stringify([placements, selected]);
-    if (drawn === this.#shipsDrawn) return;
-    this.#shipsDrawn = drawn;
-    this.shipLayer.replaceChildren(
-      ...placements.map(({ kind, row, col, orientation }) => {
-        const ship = el("div", { className: "ship" }, [shipArt(kind, orientation)]);
-        ship.classList.toggle("is-vertical", orientation === "vertical");
-        ship.classList.toggle("is-selected", kind === selected);
-        ship.dataset.kind = kind;
-        ship.style.setProperty("--row", String(row));
-        ship.style.setProperty("--col", String(col));
-        ship.style.setProperty("--len", String(shipByKind(kind).length));
-        return ship;
-      }),
-    );
+    this.pieces.setShips(placements, { selected });
   }
 
   /** The [row, col] of the cell under a viewport point, or null outside this grid. */
