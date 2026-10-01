@@ -2,19 +2,18 @@ import { $, el } from "./dom.js";
 import { DragGesture } from "./drag-gesture.js";
 import { FlagPicker } from "./flag-picker.js";
 import { flagIcon, flagName } from "./flags.js";
-import { BOARD_SIZE, FleetDraft, SHIPS, shipByKind, shipCells } from "./fleet.js";
+import { BOARD_SIZE, FleetDraft, SHIPS, flip, shipByKind, shipCells } from "./fleet.js";
 import { Grid } from "./grid.js";
 import { shipArt } from "./ships.js";
 
 const FLAG_SETTLE_MS = 400;
-const flip = (orientation) => (orientation === "horizontal" ? "vertical" : "horizontal");
 const clamp = (value, max) => Math.max(0, Math.min(max, value));
 
 /**
  * Placing the fleet. A ship is selected from the dock or on the grid (it stays where it is);
- * a water cell places or moves the selected ship; selecting it again, R or Rotate turns it in
- * place, and Shift+arrow keys move it one cell. Ships can also be dragged from the dock or
- * around the grid.
+ * a water cell places or moves the selected ship; selecting it again, R or Rotate turns it
+ * about that cell, and Shift+arrow keys move it one cell. Ships can also be dragged from the
+ * dock or around the grid.
  */
 export class PlacementView {
   #draft = new FleetDraft();
@@ -151,7 +150,7 @@ export class PlacementView {
     if (this.#frozen) return;
     const occupant = this.#draft.kindAt(row, col);
     if (occupant) {
-      if (occupant === this.#selected) this.#rotate();
+      if (occupant === this.#selected) this.#rotate([row, col]);
       else this.#select(occupant);
       return;
     }
@@ -197,13 +196,15 @@ export class PlacementView {
     this.grid.setPreview(shipCells(placement), this.#draft.canPlace(placement));
   }
 
-  /** Turns the selected ship where it lies, or the orientation for the next ship placed. */
-  #rotate() {
+  /** Turns the selected ship about `pivot`, or the orientation for the next ship placed. */
+  #rotate(pivot = this.grid.focusedCell) {
     if (this.#frozen) return;
-    const placed = this.#selected === null ? null : this.#draft.placementOf(this.#selected);
-    if (placed) {
-      if (this.#draft.place({ ...placed, orientation: flip(placed.orientation) })) this.#render();
-      else $("placement-status").textContent = "No room to turn that ship where it lies.";
+    const turned = this.#selected === null ? null : this.#draft.rotate(this.#selected, pivot);
+    if (turned) {
+      this.#render();
+      if (turned.moved) {
+        $("placement-status").textContent = `${shipByKind(this.#selected).name} turned and moved to fit.`;
+      }
       return;
     }
     this.#orientation = flip(this.#orientation);
@@ -309,7 +310,7 @@ export class PlacementView {
       button.classList.toggle("is-placed", this.#draft.has(kind));
       button.disabled = this.#frozen;
     }
-    // Rotate turns the selected ship where it lies, or sets the orientation of the next one.
+    // Rotate turns the selected ship, or sets the orientation of the next one.
     $("orientation-label").textContent = this.#orientationOf(this.#selected);
     for (const id of ["rotate", "random-fleet", "clear-fleet"]) $(id).disabled = this.#frozen;
     $("ready").disabled = this.#frozen || !this.#draft.isComplete;

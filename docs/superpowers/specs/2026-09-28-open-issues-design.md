@@ -60,7 +60,7 @@ UI:
 
 ### 4.2 Placement interface
 - The ship list becomes a **dock**. Each ship button shows its silhouette at its real length, replacing the pips.
-- **Interaction:** a ship is *selected* either from the dock or by clicking it on the grid. Selecting a placed ship keeps it on the board, outlined. Choosing a water cell places or moves the selected ship. Clicking the selected ship again, or pressing **R** / **Rotate**, rotates it in place when it fits. Otherwise **R** changes the orientation for the next placement. This replaces "pick up", which removed the ship from the board.
+- **Interaction:** a ship is *selected* either from the dock or by clicking it on the grid. Selecting a placed ship keeps it on the board, outlined. Choosing a water cell places or moves the selected ship. Clicking the selected ship again, or pressing **R** / **Rotate**, rotates it in place when it fits. (Since #65 it turns about the cell selected and always fits: see `2026-09-30-ship-rotation-design.md`.) Otherwise **R** changes the orientation for the next placement. This replaces "pick up", which removed the ship from the board.
 - **Drag and drop** (Pointer Events, so mouse, touch and pen all work): drag a ship from the dock or from the grid. The grid previews the drop where the ship will land, keeping the grab offset along the hull. Dropping on a valid spot places it; dropping anywhere else cancels. A drag starts only after 6 px of movement, so taps stay clicks. `touch-action: none` applies only to dock ships and placed ship cells, so the page still scrolls from water cells.
 - The keyboard path stays complete: dock buttons, arrow keys on the grid, Enter to place, select or rotate, and **R**.
 

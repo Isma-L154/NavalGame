@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { battleOrder, cell, createRoom, joinRoom, newPlayer, placeRowFleet, watchConsole } from "./helpers.js";
+import { FLEET_ROWS, battleOrder, cell, createRoom, joinRoom, newPlayer, placeRowFleet, watchConsole } from "./helpers.js";
 
 const PLACEMENT = "Your waters. Place your fleet";
 
@@ -38,21 +38,63 @@ test("placed ships are drawn as ships on the grid", async ({ browser }, testInfo
   expect(problems).toEqual([]);
 });
 
-test("a placed ship is selected with a click and turned with a second one", async ({ browser }, testInfo) => {
+test("a placed ship is selected with a click and turned about that cell with a second one", async ({ browser }, testInfo) => {
   const { ana } = await placementScreen(browser, testInfo);
-  await cell(ana, PLACEMENT, "A1").click();
-  await expect(cell(ana, PLACEMENT, "A5")).toHaveAttribute("aria-label", "A5, Carrier");
-  await cell(ana, PLACEMENT, "A3").click();
-  await expect(cell(ana, PLACEMENT, "A3")).toHaveAttribute("aria-label", "A3, Carrier, selected");
+  await cell(ana, PLACEMENT, "C1").click();
+  await expect(cell(ana, PLACEMENT, "C5")).toHaveAttribute("aria-label", "C5, Carrier");
+  await cell(ana, PLACEMENT, "C3").click();
+  await expect(cell(ana, PLACEMENT, "C3")).toHaveAttribute("aria-label", "C3, Carrier, selected");
   await expect(ship(ana, "carrier")).toHaveClass(/is-selected/);
-  await cell(ana, PLACEMENT, "A3").click();
+  await cell(ana, PLACEMENT, "C3").click();
   await expect(ship(ana, "carrier")).toHaveClass(/is-vertical/);
-  await expect(cell(ana, PLACEMENT, "E1")).toHaveAttribute("aria-label", "E1, Carrier, selected");
-  await expect(cell(ana, PLACEMENT, "A5")).toHaveAttribute("aria-label", "A5, water");
+  await expect(cell(ana, PLACEMENT, "A3")).toHaveAttribute("aria-label", "A3, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "E3")).toHaveAttribute("aria-label", "E3, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "C1")).toHaveAttribute("aria-label", "C1, water");
+  await expect(ana.locator("#placement-status")).toHaveText("4 ships left to place.");
   // A selected ship moves to the water cell chosen next, keeping its orientation.
-  await cell(ana, PLACEMENT, "B4").click();
-  await expect(cell(ana, PLACEMENT, "F4")).toHaveAttribute("aria-label", "F4, Carrier, selected");
+  await cell(ana, PLACEMENT, "B5").click();
+  await expect(cell(ana, PLACEMENT, "F5")).toHaveAttribute("aria-label", "F5, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "A3")).toHaveAttribute("aria-label", "A3, water");
+});
+
+test("a ship with no room to turn where it lies slides to the nearest free place", async ({ browser }, testInfo) => {
+  const { ana } = await placementScreen(browser, testInfo);
+  // The whole fleet in rows A-E from column 1: the carrier cannot turn down about A1.
+  for (const row of FLEET_ROWS) await cell(ana, PLACEMENT, `${row}1`).click();
+  await cell(ana, PLACEMENT, "A1").click();
+  await cell(ana, PLACEMENT, "A1").click();
+  await expect(ship(ana, "carrier")).toHaveClass(/is-vertical/);
+  await expect(cell(ana, PLACEMENT, "A5")).toHaveAttribute("aria-label", "A5, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "E5")).toHaveAttribute("aria-label", "E5, Carrier, selected");
   await expect(cell(ana, PLACEMENT, "A1")).toHaveAttribute("aria-label", "A1, water");
+  await expect(ana.locator("#placement-status")).toHaveText("Carrier turned and moved to fit.");
+  await expect(ana.getByRole("button", { name: "Ready" })).toBeEnabled();
+});
+
+test("R and Rotate turn the selected ship about the focused cell", async ({ browser }, testInfo) => {
+  const { ana } = await placementScreen(browser, testInfo);
+  await cell(ana, PLACEMENT, "E1").click();
+  await cell(ana, PLACEMENT, "E2").click();
+  await ana.keyboard.press("r");
+  await expect(cell(ana, PLACEMENT, "D2")).toHaveAttribute("aria-label", "D2, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "H2")).toHaveAttribute("aria-label", "H2, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "E1")).toHaveAttribute("aria-label", "E1, water");
+  await ana.locator("#rotate").click();
+  await expect(cell(ana, PLACEMENT, "E1")).toHaveAttribute("aria-label", "E1, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "E5")).toHaveAttribute("aria-label", "E5, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "D2")).toHaveAttribute("aria-label", "D2, water");
+});
+
+test("Rotate turns about the cell last chosen even when the browser did not focus it", async ({ browser }, testInfo) => {
+  const { ana } = await placementScreen(browser, testInfo);
+  await cell(ana, PLACEMENT, "E1").click();
+  // Safari does not focus a button on click: a click event alone stands in for it.
+  await cell(ana, PLACEMENT, "E3").dispatchEvent("click");
+  await expect(cell(ana, PLACEMENT, "E3")).toHaveAttribute("aria-label", "E3, Carrier, selected");
+  await ana.locator("#rotate").click();
+  await expect(cell(ana, PLACEMENT, "C3")).toHaveAttribute("aria-label", "C3, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "G3")).toHaveAttribute("aria-label", "G3, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "E1")).toHaveAttribute("aria-label", "E1, water");
 });
 
 test("ships are not redrawn when an update leaves the fleet as it was", async ({ browser }, testInfo) => {

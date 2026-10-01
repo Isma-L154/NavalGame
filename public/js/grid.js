@@ -68,7 +68,11 @@ export class Grid {
       this.#cells.push(cells);
       this.root.append(rowNode);
     }
-    this.root.addEventListener("click", (event) => this.#fromEvent(event, this.onActivate));
+    this.root.addEventListener("click", (event) => this.#fromEvent(event, (row, col) => {
+      // Safari does not focus a button on click: the tab stop follows the click itself.
+      this.#moveTabStop(row, col);
+      this.onActivate(row, col);
+    }));
     this.root.addEventListener("pointerover", (event) => this.#fromEvent(event, this.onHover));
     this.root.addEventListener("focusin", (event) => this.#fromEvent(event, (row, col) => {
       this.#moveTabStop(row, col);
