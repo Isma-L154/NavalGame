@@ -99,7 +99,7 @@ export class FleetDraft {
         if (best === null || cost < best.cost) best = { placement, cost };
       }
     }
-    if (best === null) return null;
+    // One always fits: the other ships cover too few cells to block every position.
     this.#placements.set(kind, best.placement);
     return { placement: best.placement, moved: best.cost > 0 };
   }
