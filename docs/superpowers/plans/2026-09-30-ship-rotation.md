@@ -27,7 +27,7 @@
 | File | Responsibility |
 |---|---|
 | `public/js/fleet.js` | Adds `flip(orientation)` and `FleetDraft.rotate(kind, pivot)`. |
-| `tests/js/fleet.test.mjs` (new) | Unit and seeded property tests of `FleetDraft.rotate`. |
+| `tests/frontend/fleet.test.mjs` (new) | Unit and seeded property tests of `FleetDraft.rotate`. |
 | `.github/workflows/ci.yml` | The `test` job also runs the frontend unit tests. |
 | `public/js/placement.js` | Passes the pivot to `rotate`; status line when the ship slid. |
 | `public/index.html` | Placement hint. |
@@ -40,7 +40,7 @@
 ### Task 1: `FleetDraft.rotate`
 
 **Files:**
-- Create: `tests/js/fleet.test.mjs`
+- Create: `tests/frontend/fleet.test.mjs`
 - Modify: `public/js/fleet.js`
 - Modify: `.github/workflows/ci.yml` (job `test`)
 - Modify: `CLAUDE.md` (Commands), `README.md` (test commands)
@@ -50,7 +50,7 @@
 
 - [ ] **Step 1: Write the failing tests**
 
-`tests/js/fleet.test.mjs`:
+`tests/frontend/fleet.test.mjs`:
 
 ```js
 import assert from "node:assert/strict";
@@ -195,7 +195,7 @@ test("any ship of any fleet turns about any of its cells into a valid position",
 
 - [ ] **Step 2: Run the tests to verify they fail**
 
-Run: `node --test "tests/js/*.test.mjs"`
+Run: `node --test "tests/frontend/*.test.mjs"`
 Expected: FAIL with `draft.rotate is not a function` (the last test included).
 
 - [ ] **Step 3: Implement**
@@ -247,7 +247,7 @@ In `FleetDraft`, after `placementOf`:
 
 - [ ] **Step 4: Run the tests to verify they pass**
 
-Run: `node --test "tests/js/*.test.mjs"`
+Run: `node --test "tests/frontend/*.test.mjs"`
 Expected: 7 tests pass.
 
 - [ ] **Step 5: Run them in CI and document the command**
@@ -259,25 +259,25 @@ In `.github/workflows/ci.yml`, job `test`, after `uv run pytest`:
         with:
           node-version: 24
       - name: Frontend unit tests
-        run: node --test "tests/js/*.test.mjs"
+        run: node --test "tests/frontend/*.test.mjs"
 ```
 
 In `CLAUDE.md`, under Commands, after the unit test line:
 
 ```markdown
-- Test (frontend unit): `node --test "tests/js/*.test.mjs"` (pure modules of `public/js/`, no dependencies)
+- Test (frontend unit): `node --test "tests/frontend/*.test.mjs"` (pure modules of `public/js/`, no dependencies)
 ```
 
 In `README.md`, after the `uv run pytest` line of the test commands:
 
 ```
-node --test "tests/js/*.test.mjs"                                      # frontend unit tests (pure modules)
+node --test "tests/frontend/*.test.mjs"                                      # frontend unit tests (pure modules)
 ```
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add public/js/fleet.js tests/js/fleet.test.mjs .github/workflows/ci.yml CLAUDE.md README.md docs/superpowers
+git add public/js/fleet.js tests/frontend/fleet.test.mjs .github/workflows/ci.yml CLAUDE.md README.md docs/superpowers
 git commit -m "fix: a ship turns about a cell and slides to the nearest free position"
 ```
 
@@ -391,7 +391,7 @@ Expected: the three tests fail: the carrier turns about its first cell (`A3` sta
 
 - [ ] **Step 4: Run the checks**
 
-Run: `node --test "tests/js/*.test.mjs"` — 7 pass.
+Run: `node --test "tests/frontend/*.test.mjs"` — 7 pass.
 Run (dev server running): `npx playwright test` — every project passes.
 Run: `uv run ruff check . && uv run ruff format --check . && uv run mypy src tests && uv run pytest` — clean.
 

@@ -19,7 +19,7 @@ The approved design lives in `docs/superpowers/specs/2026-09-27-naval-game-desig
 - Dev server: `uv run pywrangler dev` (serves on `http://localhost:8787`; `[dev] host` keeps the browser Origin as `http://localhost:8787`, which `.dev.vars` allows)
   - Windows with the repo outside `C:`: Pyodide runs inside Node and only sees the current drive, so the uv cache and uv-managed Pythons must live on the repo's drive. In PowerShell: `$env:UV_CACHE_DIR='D:\.uv\cache'; $env:UV_PYTHON_INSTALL_DIR='D:\.uv\python'; uv run pywrangler dev`
 - Test (unit): `uv run pytest`
-- Test (frontend unit): `node --test "tests/js/*.test.mjs"` (the pure modules of `public/js/`, no dependencies)
+- Test (frontend unit): `node --test "tests/frontend/*.test.mjs"` (the pure modules of `public/js/`, no dependencies)
 - Test (integration, dev server running): `NAVAL_BASE_URL=http://localhost:8787 uv run pytest -m integration`
 - Bundle check without deploying: `uv run pywrangler deploy --dry-run --outdir .wrangler/dry-run`
 - Test (e2e): `npx playwright install chromium` once, then `npx playwright test` (dev server running; desktop and mobile profiles, plus an iPad-sized tablet profile for the board, flags and game specs; fails on console errors and CSP violations)

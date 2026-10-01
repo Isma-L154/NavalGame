@@ -27,7 +27,7 @@ Tests:
 
 ```sh
 uv run pytest                                                          # unit and property tests
-node --test "tests/js/*.test.mjs"                                      # frontend unit tests (pure modules)
+node --test "tests/frontend/*.test.mjs"                                # frontend unit tests (pure modules)
 NAVAL_BASE_URL=http://localhost:8787 uv run pytest -m integration      # HTTP and WebSocket, against the dev server
 npx playwright install chromium && npx playwright test                 # browser end-to-end, desktop, mobile and tablet
 uv run ruff check . && uv run ruff format --check . && uv run mypy src tests

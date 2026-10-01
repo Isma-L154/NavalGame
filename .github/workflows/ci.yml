@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: 24
       - name: Frontend unit tests
-        run: node --test "tests/js/*.test.mjs"
+        run: node --test "tests/frontend/*.test.mjs"
 
   semgrep:
     name: semgrep
