@@ -1,0 +1,107 @@
+<!doctype html>
+<!-- Source of docs/brand/readme-banner.png. Render with: node scripts/render-og-image.mjs -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>NavalGame README banner</title>
+    <!-- The site's own stylesheet and board code draw the table, so the banner cannot drift from the game. -->
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+      /* A steeper lean than in the game: the ships show their sides. */
+      :root { --tilt: 44deg; --fit: 1; }
+      html, body { width: 1280px; height: 640px; margin: 0; overflow: hidden; background: var(--paper); }
+      body { position: relative; display: block; min-height: 0; }
+
+      .frame { position: absolute; inset: 24px; border: 6px solid var(--ink); }
+      .panel { position: absolute; left: 636px; top: 30px; right: 30px; bottom: 30px;
+               background: var(--yellow); border-left: 6px solid var(--ink); }
+      /* The game's own legend, as the caption of the picture. */
+      .key { position: absolute; left: 0; right: 0; bottom: 0; height: 72px; margin: 0; display: flex; align-items: center;
+             justify-content: center; gap: 36px; background: var(--paper); border-top: 6px solid var(--ink);
+             font-family: var(--font-display); font-weight: 800; font-size: 26px; text-transform: uppercase; }
+      .key span { display: inline-flex; align-items: center; gap: 12px; }
+      .key .cell-sample { width: 32px; height: 32px; border-width: 2px; }
+
+      .mast { position: absolute; left: 68px; top: 64px; display: flex; align-items: center; gap: 20px; }
+      .mast .flag-hoist { gap: 6px; }
+      .mast .flag { width: 54px; height: 36px; outline: 2px solid var(--ink); }
+      .mast .wordmark { font-size: 46px; }
+
+      .headline { position: absolute; left: 68px; top: 150px; width: 540px; margin: 0;
+                  font-family: var(--font-display); font-weight: 800; font-size: 100px; line-height: 0.9;
+                  text-transform: uppercase; }
+      .pitch { position: absolute; left: 68px; top: 358px; width: 540px; margin: 0;
+               font-size: 30px; line-height: 1.25; }
+      .facts { position: absolute; left: 68px; bottom: 68px; display: flex; margin: 0; border: 4px solid var(--ink);
+               font-family: var(--font-display); font-weight: 800; font-size: 30px; text-transform: uppercase;
+               background: var(--surface); }
+      .facts span { padding: 6px 18px; }
+      .facts span + span { border-left: 4px solid var(--ink); }
+      .facts .signal { background: var(--yellow); }
+
+      #table { position: absolute; left: 694px; top: 93px; }
+      #table .board-stage { --cell: 40px; }
+      #table .board-table { --turn: -12deg; }
+    </style>
+  </head>
+  <body>
+    <div class="frame"></div>
+    <div class="panel">
+      <p class="key">
+        <span><span class="cell-sample state-ship"></span>Ship</span>
+        <span><span class="cell-sample state-hit"></span>Hit</span>
+        <span><span class="cell-sample state-miss"></span>Miss</span>
+        <span><span class="cell-sample state-sunk"></span>Sunk</span>
+      </p>
+    </div>
+
+    <div class="mast">
+      <span class="flag-hoist">
+        <svg class="flag"><use href="/flags.svg#flag-n" /></svg>
+        <svg class="flag"><use href="/flags.svg#flag-a" /></svg>
+        <svg class="flag"><use href="/flags.svg#flag-v" /></svg>
+        <svg class="flag"><use href="/flags.svg#flag-a" /></svg>
+        <svg class="flag"><use href="/flags.svg#flag-l" /></svg>
+      </span>
+      <span class="wordmark">Naval<span class="wordmark-light">Game</span></span>
+    </div>
+
+    <h1 class="headline">Sink the enemy fleet</h1>
+    <p class="pitch">A two-player naval battle in the browser.<br>Share a room code, or play the CPU.</p>
+    <p class="facts"><span class="signal">2 players</span><span>10 × 10</span><span>No account</span></p>
+
+    <div id="table"></div>
+
+    <script type="module">
+      import { BOARD_SIZE, shipCells } from "/js/fleet.js";
+      import { Grid } from "/js/grid.js";
+
+      // A game in progress, as a player sees their own board.
+      const FLEET = [
+        { kind: "carrier", row: 1, col: 1, orientation: "horizontal" },
+        { kind: "battleship", row: 3, col: 8, orientation: "vertical" },
+        { kind: "cruiser", row: 5, col: 2, orientation: "horizontal" },
+        { kind: "submarine", row: 8, col: 4, orientation: "horizontal" },
+        { kind: "destroyer", row: 3, col: 1, orientation: "vertical" },
+      ];
+      const SHOTS = ["0,7", "1,3", "2,5", "4,4", "4,8", "5,8", "6,0", "6,6", "7,9", "8,4", "8,5", "8,6", "9,1"];
+
+      const key = (row, col) => `${row},${col}`;
+      const ships = new Map(FLEET.flatMap((ship) => shipCells(ship).map(([row, col]) => [key(row, col), ship])));
+      const isSunk = (ship) => shipCells(ship).every(([row, col]) => SHOTS.includes(key(row, col)));
+
+      const grid = new Grid(document.getElementById("table"), { label: "A game in progress" });
+      grid.setShips(FLEET);
+      for (let row = 0; row < BOARD_SIZE; row += 1) {
+        for (let col = 0; col < BOARD_SIZE; col += 1) {
+          const ship = ships.get(key(row, col));
+          const states = ship ? ["state-ship"] : [];
+          if (SHOTS.includes(key(row, col))) {
+            states.push(!ship ? "state-miss" : isSunk(ship) ? "state-sunk" : "state-hit");
+          }
+          grid.setCell(row, col, { states, description: "", disabled: true });
+        }
+      }
+    </script>
+  </body>
+</html>

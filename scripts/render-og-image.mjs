@@ -1,6 +1,6 @@
-// Renders the committed share images from design/: node scripts/render-og-image.mjs
-import { writeFile } from "node:fs/promises";
-import { join } from "node:path";
+// Renders the committed images from design/: node scripts/render-og-image.mjs
+import { mkdir, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 
@@ -8,6 +8,7 @@ const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const TARGETS = [
   { source: "/design/og-image.html", output: "public/og-image.png", width: 1200, height: 630 },
   { source: "/design/apple-touch-icon.html", output: "public/apple-touch-icon.png", width: 180, height: 180 },
+  { source: "/design/readme-banner.html", output: "docs/brand/readme-banner.png", width: 1280, height: 640 },
 ];
 
 async function render(browser, { source, width, height }) {
@@ -37,4 +38,9 @@ try {
 } finally {
   await browser.close();
 }
-await Promise.all(TARGETS.map(({ output }, i) => writeFile(join(ROOT, output), images[i])));
+await Promise.all(
+  TARGETS.map(async ({ output }, i) => {
+    await mkdir(dirname(join(ROOT, output)), { recursive: true });
+    await writeFile(join(ROOT, output), images[i]);
+  }),
+);
