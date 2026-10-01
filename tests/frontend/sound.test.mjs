@@ -11,8 +11,15 @@ class FakeParam {
 class FakeNode {
   frequency = new FakeParam();
   gain = new FakeParam();
+  target = null;
 
-  connect() {}
+  connect(target) {
+    this.target = target;
+  }
+
+  disconnect() {
+    this.target = null;
+  }
 }
 
 /** Records when sources start and stop; `resumed` is the promise `resume()` returns. */
@@ -22,6 +29,7 @@ class FakeContext {
   destination = new FakeNode();
   started = [];
   stopped = [];
+  gains = [];
   resumes = 0;
 
   constructor({ state = "running", resumed = Promise.resolve() } = {}) {
@@ -49,7 +57,15 @@ class FakeContext {
   }
 
   createGain() {
-    return new FakeNode();
+    const node = new FakeNode();
+    this.gains.push(node);
+    return node;
+  }
+
+  /** The gain nodes whose output reaches the speakers. */
+  get audible() {
+    const reaches = (node) => node === this.destination || (node !== null && reaches(node.target));
+    return this.gains.filter(reaches);
   }
 
   createBuffer(_channels, length) {
@@ -95,6 +111,19 @@ test("a muted board creates no audio context", () => {
   board.muted = false;
   board.play("hit");
   assert.equal(context.started.length, CUES.get("hit").length);
+});
+
+test("switching sound off silences the cues already playing, and later ones play again", () => {
+  const context = new FakeContext();
+  const { board } = boardOn(context);
+  board.play("sunk");
+  assert.ok(context.audible.length > 0);
+  board.muted = true;
+  assert.equal(context.audible.length, 0);
+  board.muted = false;
+  board.play("place");
+  // The place cue's one voice and the output it goes through.
+  assert.equal(context.audible.length, CUES.get("place").length + 1);
 });
 
 test("an unknown cue creates no audio context", () => {

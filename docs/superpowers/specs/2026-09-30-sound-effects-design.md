@@ -42,7 +42,7 @@ Six cues, each under 1.5 seconds:
 - `schedule(context, voices)`: builds the Web Audio nodes of one cue on a context, starting now.
 - `SoundBoard`: what the game talks to.
   - `new SoundBoard({ muted, createContext })`. `createContext` defaults to `() => new AudioContext()` and is injected in tests.
-  - `muted`: a plain boolean the owner of the board sets.
+  - `muted`: a boolean the owner of the board sets. Switching sound off also cuts the cues still playing: they play into one output node, which is disconnected.
   - `play(name)`: plays a cue. It never throws and never blocks the game:
     - muted, or an unknown name: nothing happens;
     - the audio context is created on the first cue or gesture, not at page load;
@@ -83,6 +83,7 @@ No exposed surface changes. Web Audio synthesis makes no request, so the CSP nee
 - **Unit (`node --test`), with a fake audio context:**
   - a cue starts one source per voice, none in the past;
   - muted and unknown cues create no context and start nothing;
+  - switching sound off silences the cues already playing;
   - a suspended context is asked to resume; the cue plays when that is quick and is dropped when it is late;
   - a browser without Web Audio does not throw and is asked only once;
   - waking resumes a suspended context, does nothing while muted, and ignores a refusal;

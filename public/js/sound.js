@@ -49,8 +49,8 @@ function noiseBuffer(context) {
   return buffer;
 }
 
-/** Builds the voices of one cue on `context`, starting now. */
-export function schedule(context, voices) {
+/** Builds the voices of one cue on `context`, starting now, playing into `output`. */
+export function schedule(context, voices, output = context.destination) {
   for (const voice of voices) {
     const start = context.currentTime + voice.at;
     const end = start + voice.lasts;
@@ -71,7 +71,7 @@ export function schedule(context, voices) {
     envelope.gain.setValueAtTime(voice.gain, start);
     envelope.gain.exponentialRampToValueAtTime(SILENCE, end);
     swept.connect(envelope);
-    envelope.connect(context.destination);
+    envelope.connect(output);
     source.start(start);
     source.stop(end);
   }
@@ -79,14 +79,28 @@ export function schedule(context, voices) {
 
 /** Plays the game's cues. Sound is decoration: nothing here throws or makes the game wait. */
 export class SoundBoard {
-  muted;
+  #muted;
   #createContext;
   // null until the first cue is played; false in a browser without Web Audio.
   #context = null;
+  // What the cues play into, so that switching sound off can cut the ones still playing.
+  #output = null;
 
   constructor({ muted = false, createContext = () => new AudioContext() } = {}) {
-    this.muted = muted;
+    this.#muted = muted;
     this.#createContext = createContext;
+  }
+
+  get muted() {
+    return this.#muted;
+  }
+
+  set muted(value) {
+    this.#muted = value;
+    if (value) {
+      this.#output?.disconnect();
+      this.#output = null;
+    }
   }
 
   play(name) {
@@ -95,7 +109,7 @@ export class SoundBoard {
     const context = this.#open();
     if (!context) return;
     if (context.state === "running") {
-      schedule(context, voices);
+      this.#schedule(context, voices);
       return;
     }
     // Browsers keep audio suspended until the page is used. A cue that waited long is dropped:
@@ -103,10 +117,18 @@ export class SoundBoard {
     const asked = Date.now();
     context.resume().then(
       () => {
-        if (!this.muted && Date.now() - asked < STALE_MS) schedule(context, voices);
+        if (!this.muted && Date.now() - asked < STALE_MS) this.#schedule(context, voices);
       },
       () => {},
     );
+  }
+
+  #schedule(context, voices) {
+    if (this.#output === null) {
+      this.#output = context.createGain();
+      this.#output.connect(context.destination);
+    }
+    schedule(context, voices, this.#output);
   }
 
   /**
