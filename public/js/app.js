@@ -9,6 +9,7 @@ import { LobbyView } from "./lobby.js";
 import { clearNotice, notify, setConnectionStatus } from "./notice.js";
 import { PlacementView } from "./placement.js";
 import { session } from "./session.js";
+import { SoundBoard } from "./sound.js";
 
 const NICKNAME = /^[A-Za-z0-9_-](?:[A-Za-z0-9 _-]{0,18}[A-Za-z0-9_-])?$/;
 const ROOM_CODE = /^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$/;
@@ -52,12 +53,14 @@ const homeFlag = new FlagPicker($("home-flag"), {
     session.flag = flag;
   },
 });
+const sound = new SoundBoard({ muted: session.muted });
 const lobby = new LobbyView({ onPlayCpu: () => playCpuInstead() });
 const placement = new PlacementView({
   onReady: (ships) => send({ type: "place_fleet", ships }),
   onChooseFlag: (flag) => {
     if (send({ type: "choose_flag", flag })) game.chosenFlag = flag;
   },
+  onPlace: () => sound.play("place"),
 });
 const battle = new BattleView({
   onFire: (row, col) => send({ type: "fire", row, col }),
@@ -216,6 +219,7 @@ function onMessage(message, nickname) {
       break;
     case "shot":
       battle.recordShot(message, game.state);
+      sound.play(message.result);
       break;
     case "error":
       onError(message, nickname);
@@ -240,6 +244,9 @@ function onState(state) {
     game.chosenFlag = null;
   }
   if (previous?.phase === "finished" && state.phase === "placing") battle.reset();
+  if (previous?.phase === "playing" && state.phase === "finished") {
+    sound.play(state.winner === state.seat ? "victory" : "defeat");
+  }
   const opponent = state.players[1 - state.seat];
   if (state.phase === "placing" && !opponent) {
     lobby.update(state);
@@ -358,6 +365,17 @@ function init() {
   for (const button of document.querySelectorAll(".leave-button")) {
     button.addEventListener("click", leaveRoom);
   }
+  const soundToggle = $("sound-toggle");
+  const showSound = () => soundToggle.setAttribute("aria-pressed", String(!sound.muted));
+  soundToggle.addEventListener("click", () => {
+    sound.muted = !sound.muted;
+    session.muted = sound.muted;
+    showSound();
+    // Switching sound on is heard.
+    sound.play("place");
+  });
+  showSound();
+  for (const gesture of ["click", "keydown"]) document.addEventListener(gesture, () => sound.wake());
 
   const code = new URLSearchParams(location.search).get("room")?.toUpperCase();
   const room = code && ROOM_CODE.test(code) ? code : null;

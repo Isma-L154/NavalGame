@@ -45,9 +45,11 @@ Six cues, each under 1.5 seconds:
   - `muted`: a plain boolean the owner of the board sets.
   - `play(name)`: plays a cue. It never throws and never blocks the game:
     - muted, or an unknown name: nothing happens;
-    - the audio context is created on the first cue played, not at page load;
+    - the audio context is created on the first cue or gesture, not at page load;
     - a browser without Web Audio stays silent, and creation is not retried;
     - browsers keep a context suspended until the page is used. A cue asked for while suspended asks the context to resume and plays only if that happens within 500 ms. A later resume must not release a burst of old cues.
+
+  - `wake()`: called on every click and key press. Browsers start audio only from a user gesture, while most cues answer a message from the server; without it, a player who reloads into a battle on Safari would hear nothing. It creates the context when sound is on and resumes it when it is not running.
 
 ### 3.2 The preference
 
@@ -66,7 +68,7 @@ A second button in the top bar of the game page, before the theme toggle: label 
 
 - It shares the theme toggle's look. The shared rules move from `.theme-toggle` to `.topbar-toggle`.
 - The icon is a flat speaker. On: two bars beside it. Off: a cross beside it. The state is a shape, not a colour.
-- Under 420px the label is visually hidden, as the theme label is; the accessible name stays.
+- The top bar is sticky, so the brand and both toggles must share one row at every width. Up to 560px the toggles show only their icons (the accessible names stay) and the brand takes its phone size; up to 380px the bar tightens its gaps and the brand shrinks once more. Both toggles stay at least 44px square.
 
 ### 3.5 Server and protocol
 
@@ -83,9 +85,11 @@ No exposed surface changes. Web Audio synthesis makes no request, so the CSP nee
   - muted and unknown cues create no context and start nothing;
   - a suspended context is asked to resume; the cue plays when that is quick and is dropped when it is late;
   - a browser without Web Audio does not throw and is asked only once;
+  - waking resumes a suspended context, does nothing while muted, and ignores a refusal;
   - every cue is well formed: positive lengths, gains in (0, 1], finished within 1.5 s.
 - **E2E:**
   - the toggle is on by default, flips, and is remembered across a reload;
   - placing a ship and a shot (for both players) start audio sources; nothing starts while muted; no console or CSP errors;
-  - every cue rendered through an `OfflineAudioContext` is audible and does not clip (peak between 0.1 and 0.95).
+  - every cue rendered through an `OfflineAudioContext` is audible and does not clip (peak between 0.1 and 0.95);
+  - the brand and both toggles share one row of the top bar from 320px to 768px.
 - What no test covers: how the cues sound. That is judged by ear.

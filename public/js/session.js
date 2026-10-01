@@ -33,6 +33,13 @@ export const session = {
   set flag(value) {
     write(localStorage, "naval.flag", value);
   },
+  /** Whether the player switched the sound off. */
+  get muted() {
+    return read(localStorage, "naval.muted") === "1";
+  },
+  set muted(value) {
+    write(localStorage, "naval.muted", value ? "1" : null);
+  },
   /** Seat tokens live in sessionStorage: per tab, gone when the tab closes. */
   token(code) {
     return read(sessionStorage, `naval.token.${code}`) ?? tokens.get(code) ?? null;

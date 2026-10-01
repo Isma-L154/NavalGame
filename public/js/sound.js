@@ -109,6 +109,16 @@ export class SoundBoard {
     );
   }
 
+  /**
+   * Call on every user gesture. Browsers start audio only from one, and most cues answer a
+   * message from the server instead; Safari also suspends the context when the page is hidden.
+   */
+  wake() {
+    if (this.muted) return;
+    const context = this.#open();
+    if (context && context.state !== "running") context.resume().catch(() => {});
+  }
+
   #open() {
     if (this.#context === null) {
       try {

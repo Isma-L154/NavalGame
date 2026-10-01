@@ -155,7 +155,8 @@ Expected: the first two fail (no Sound button); the third passes or shows which 
   - `PlacementView` gets `onPlace: () => sound.play("place")`;
   - `case "shot"`: `sound.play(message.result)` after `battle.recordShot`;
   - in `onState`: when `previous?.phase === "playing"` and `state.phase === "finished"`, play `victory` or `defeat` by `state.winner === state.seat`;
-  - in `init`: the toggle click flips `sound.muted`, stores it in `session.muted`, sets `aria-pressed` and plays `place`; `aria-pressed` is set once at start.
+  - in `init`: the toggle click flips `sound.muted`, stores it in `session.muted`, sets `aria-pressed` and plays `place`; `aria-pressed` is set once at start;
+  - in `init`: every `click` and `keydown` on the document calls `sound.wake()` (added to `SoundBoard` with its unit tests: it creates the context when sound is on and resumes it when it is not running), because browsers start audio only from a gesture and most cues answer a server message.
 - `index.html`: the button before the theme toggle, and `<link rel="modulepreload" href="/js/sound.js">`:
 
 ```html
@@ -179,6 +180,7 @@ Expected: the first two fail (no Sound button); the third passes or shows which 
 }
 ```
 
+- `styles.css`, top bar on one row at every width (it is sticky): up to 560px hide the toggle labels and use the phone-size brand; up to 380px tighten the bar's gaps and padding and shrink the brand once more. `e2e/responsive.spec.js` checks the row from 320px to 768px.
 - `terms.html`: the class rename on its theme toggle.
 - `CLAUDE.md`, UI/UX: sound is synthesised in `js/sound.js`, has no audio files, and never carries information alone.
 

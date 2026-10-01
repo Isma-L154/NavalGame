@@ -153,6 +153,36 @@ test("a refused resume is ignored", async () => {
   assert.equal(context.started.length, 0);
 });
 
+test("waking the board from a gesture starts a suspended context, so later cues play at once", () => {
+  const context = new FakeContext({ state: "suspended" });
+  const { board } = boardOn(context);
+  board.wake();
+  assert.equal(context.resumes, 1);
+  assert.equal(context.started.length, 0);
+  context.state = "running";
+  board.wake();
+  assert.equal(context.resumes, 1);
+  board.play("hit");
+  assert.equal(context.started.length, CUES.get("hit").length);
+});
+
+test("waking a muted board creates no audio context", () => {
+  const { board, created } = boardOn(new FakeContext({ state: "suspended" }), { muted: true });
+  board.wake();
+  assert.equal(created.count, 0);
+});
+
+test("waking ignores a refused resume and a browser without Web Audio", async () => {
+  const refused = new FakeContext({ state: "suspended", resumed: Promise.reject(new Error("not allowed")) });
+  boardOn(refused).board.wake();
+  await settled();
+  new SoundBoard({
+    createContext: () => {
+      throw new ReferenceError("AudioContext is not defined");
+    },
+  }).wake();
+});
+
 test("a browser without Web Audio stays silent and is asked once", () => {
   let asked = 0;
   const board = new SoundBoard({
