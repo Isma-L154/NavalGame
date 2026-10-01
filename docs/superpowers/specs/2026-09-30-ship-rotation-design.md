@@ -26,7 +26,9 @@ The pivot is one of the ship's cells. It keeps its place in the ship through the
 | How the player turns the ship | Pivot |
 |---|---|
 | Click or tap on the selected ship | The cell clicked |
-| `R` or the Rotate button | The grid's focused cell when it is on the ship, otherwise the ship's middle cell |
+| `R` or the Rotate button | The grid cell last focused or clicked when it is on the ship, otherwise the ship's middle cell |
+
+The grid remembers the clicked cell itself, because Safari does not focus a button on click.
 
 The middle cell of a ship of length `n` is cell `floor((n - 1) / 2)`, counting from 0.
 

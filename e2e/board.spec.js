@@ -85,6 +85,18 @@ test("R and Rotate turn the selected ship about the focused cell", async ({ brow
   await expect(cell(ana, PLACEMENT, "D2")).toHaveAttribute("aria-label", "D2, water");
 });
 
+test("Rotate turns about the cell last chosen even when the browser did not focus it", async ({ browser }, testInfo) => {
+  const { ana } = await placementScreen(browser, testInfo);
+  await cell(ana, PLACEMENT, "E1").click();
+  // Safari does not focus a button on click: a click event alone stands in for it.
+  await cell(ana, PLACEMENT, "E3").dispatchEvent("click");
+  await expect(cell(ana, PLACEMENT, "E3")).toHaveAttribute("aria-label", "E3, Carrier, selected");
+  await ana.locator("#rotate").click();
+  await expect(cell(ana, PLACEMENT, "C3")).toHaveAttribute("aria-label", "C3, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "G3")).toHaveAttribute("aria-label", "G3, Carrier, selected");
+  await expect(cell(ana, PLACEMENT, "E1")).toHaveAttribute("aria-label", "E1, water");
+});
+
 test("ships are not redrawn when an update leaves the fleet as it was", async ({ browser }, testInfo) => {
   const { ana, bo } = await placementScreen(browser, testInfo);
   await cell(ana, PLACEMENT, "A1").click();
