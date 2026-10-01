@@ -27,8 +27,9 @@ export class PlacementView {
   #noteAbout = null;
   #dragShown = null;
 
-  constructor({ onReady, onChooseFlag }) {
+  constructor({ onReady, onChooseFlag, onPlace }) {
     this.onReady = onReady;
+    this.onPlace = onPlace;
     this.flagPicker = new FlagPicker($("placement-flag"), {
       name: "placement-flag",
       onChange: (flag) => {
@@ -173,6 +174,7 @@ export class PlacementView {
       : (SHIPS.find((ship) => !this.#draft.has(ship.kind))?.kind ?? null);
     this.grid.clearPreview();
     this.#render();
+    this.onPlace();
     return true;
   }
 
@@ -202,6 +204,7 @@ export class PlacementView {
     const turned = this.#selected === null ? null : this.#draft.rotate(this.#selected, pivot);
     if (turned) {
       this.#render();
+      this.onPlace();
       if (turned.moved) {
         $("placement-status").textContent = `${shipByKind(this.#selected).name} turned and moved to fit.`;
       }
@@ -269,6 +272,7 @@ export class PlacementView {
     this.#draft.randomize();
     this.#selected = null;
     this.#render();
+    this.onPlace();
   }
 
   #clear() {

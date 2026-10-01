@@ -287,7 +287,7 @@ kbd {
   margin-left: auto;
 }
 
-.theme-toggle {
+.topbar-toggle {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -308,20 +308,26 @@ kbd {
  * (a mouse, or a trackpad on a tablet, which `hover: hover` would miss).
  */
 @media (any-hover: hover) {
-  .theme-toggle:hover {
+  .topbar-toggle:hover {
     background: var(--yellow);
     color: var(--on-signal);
   }
 }
 
-.theme-toggle-icon {
+.topbar-toggle-icon {
   width: 18px;
   height: 18px;
 }
 
 /* In dark mode the icon flips, so the control shows the state it is in. */
-.theme-toggle[aria-pressed="true"] .theme-toggle-icon {
+#theme-toggle[aria-pressed="true"] .topbar-toggle-icon {
   transform: rotate(180deg);
+}
+
+/* The speaker shows bars while sound is on and a cross while it is off. */
+#sound-toggle[aria-pressed="true"] .sound-icon-off,
+#sound-toggle[aria-pressed="false"] .sound-icon-on {
+  display: none;
 }
 
 .connection-status {
@@ -1504,7 +1510,7 @@ a.button {
 
 @media (any-hover: hover) {
   .button:not(.button-ghost):hover:not(:disabled),
-  .theme-toggle:hover {
+  .topbar-toggle:hover {
     border-color: var(--on-signal);
   }
 }
@@ -1526,8 +1532,13 @@ a.button {
 }
 
 /* Layout */
-@media (max-width: 420px) {
-  .flag {
+
+/*
+ * The top bar is sticky, so the brand and both toggles must share one row at every width:
+ * the brand shrinks and the toggles lose their labels on a phone, and tighten on a small one.
+ */
+@media (max-width: 560px) {
+  .flag-hoist .flag {
     width: 18px;
     height: 12px;
   }
@@ -1537,7 +1548,7 @@ a.button {
   }
 
   /* The pressed state and the icon carry the meaning; keep the name for assistive tech. */
-  .theme-toggle-label {
+  .topbar-toggle-label {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -1545,9 +1556,37 @@ a.button {
     clip-path: inset(50%);
     white-space: nowrap;
   }
+}
+
+@media (max-width: 420px) {
+  .flag {
+    width: 18px;
+    height: 12px;
+  }
 
   #lobby-code {
     gap: var(--space-1);
+  }
+}
+
+@media (max-width: 380px) {
+  .topbar {
+    gap: var(--space-2);
+    padding-inline: var(--space-3);
+  }
+
+  .topbar-actions,
+  .brand {
+    gap: var(--space-2);
+  }
+
+  .flag-hoist .flag {
+    width: 15px;
+    height: 10px;
+  }
+
+  .wordmark {
+    font-size: 1.2rem;
   }
 }
 

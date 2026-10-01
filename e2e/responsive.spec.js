@@ -80,6 +80,22 @@ test("a tap on a touch screen leaves no hover highlight behind", async ({ browse
   expect(background).not.toBe("rgb(244, 194, 13)");
 });
 
+test("the brand and both toggles share one row of the top bar at every width", async ({ browser }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "sets its own viewport");
+  const page = await newPlayer(browser, testInfo);
+  await page.goto("/");
+  await page.evaluate(() => document.fonts.ready);
+  for (const width of [320, 360, 380, 381, 420, 421, 560, 561, 768]) {
+    await page.setViewportSize({ width, height: 800 });
+    const tops = await page.evaluate(() =>
+      [".brand", "#sound-toggle", "#theme-toggle"].map((selector) => {
+        const box = document.querySelector(selector).getBoundingClientRect();
+        return box.top + box.height / 2;
+      }));
+    expect(Math.max(...tops) - Math.min(...tops), `at ${width}px`).toBeLessThan(4);
+  }
+});
+
 test("on a phone on its side the top bar scrolls away with the page", async ({ browser }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "sets its own viewport");
   const page = await newPlayer(browser, testInfo, { viewport: { width: 844, height: 390 } });
