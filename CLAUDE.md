@@ -6,7 +6,7 @@ The approved design lives in `docs/superpowers/specs/2026-09-27-naval-game-desig
 
 ## Stack
 
-- **Language:** Python 3.14 (the version the Cloudflare Workers Pyodide runtime ships; it reports 3.14.2 at `compatibility_date` 2026-09-27. Never raise it past what the runtime supports). Frontend is plain HTML/CSS and minimal vanilla JavaScript: no framework, no build step.
+- **Language:** Python 3.14 (the version the Cloudflare Workers Pyodide runtime ships; it reports 3.14.2 at the `compatibility_date` in `wrangler.toml`. Never raise it past what the runtime supports). Frontend is plain HTML/CSS and minimal vanilla JavaScript: no framework, no build step.
 - **Runtime:** Cloudflare Python Workers + Durable Objects (one `GameRoom` Durable Object per room, WebSocket Hibernation API).
 - **Package manager:** `uv` (Python), `npm` only for Wrangler and Playwright.
 - **Database:** none. Room state lives in each Durable Object's own storage.
