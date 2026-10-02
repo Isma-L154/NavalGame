@@ -33,24 +33,17 @@ function svgEl(tag, attrs) {
   return node;
 }
 
-/** A decorative ship silhouette; its cells carry the accessible name. */
-export function shipArt(kind, orientation = "horizontal") {
-  const units = shipByKind(kind).length * 10;
-  const vertical = orientation === "vertical";
+/** A decorative ship silhouette for the dock; the button around it carries the name. */
+export function shipArt(kind) {
   const svg = svgEl("svg", {
     class: "ship-art",
-    viewBox: vertical ? `0 0 10 ${units}` : `0 0 ${units} 10`,
+    viewBox: `0 0 ${shipByKind(kind).length * 10} 10`,
     "aria-hidden": "true",
     focusable: "false",
   });
-  // Vertical ships are the same drawing turned a quarter, bow down.
-  const group = svgEl("g", vertical ? { transform: "translate(10 0) rotate(90)" } : {});
   const art = ART[kind];
-  group.append(svgEl("path", { class: "ship-hull", d: art.hull }));
-  if (art.stripe) {
-    group.append(svgEl("path", { class: "ship-stripe", d: art.stripe }));
-  }
-  for (const d of art.deck) group.append(svgEl("path", { class: "ship-deck", d }));
-  svg.append(group);
+  svg.append(svgEl("path", { class: "ship-hull", d: art.hull }));
+  if (art.stripe) svg.append(svgEl("path", { class: "ship-stripe", d: art.stripe }));
+  for (const d of art.deck) svg.append(svgEl("path", { class: "ship-deck", d }));
   return svg;
 }

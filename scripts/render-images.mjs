@@ -1,4 +1,4 @@
-// Renders the committed images from design/: node scripts/render-og-image.mjs
+// Renders the committed images from design/: node scripts/render-images.mjs
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

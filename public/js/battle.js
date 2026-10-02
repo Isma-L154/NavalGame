@@ -34,13 +34,14 @@ export class BattleView {
   update(state) {
     this.#state = state;
     this.#pendingShot = false;
+    const ownSunk = ownSunkKinds(state);
     this.#renderTarget(state);
-    this.#renderOwn(state);
+    this.#renderOwn(state, ownSunk);
     this.#renderBanner(state);
     renderFlag($("enemy-flag"), state.players[1 - state.seat]);
     renderFlag($("own-flag"), state.players[state.seat]);
     renderFleetList($("enemy-fleet"), new Set(state.opponent_sunk.map((ship) => ship.kind)));
-    renderFleetList($("own-fleet"), ownSunkKinds(state));
+    renderFleetList($("own-fleet"), ownSunk);
     this.#renderResult(state);
     // Highlight a shot only in the render that follows it.
     this.#lastShot = null;
@@ -109,14 +110,13 @@ export class BattleView {
     }
   }
 
-  #renderOwn(state) {
-    this.ownGrid.setShips(state.own_fleet ?? []);
-    const fresh = this.#freshCells(false, state.own_fleet ?? []);
-    const ships = cellsByName(state.own_fleet ?? []);
+  #renderOwn(state, sunkKinds) {
+    const fleet = state.own_fleet ?? [];
+    this.ownGrid.setShips(fleet);
+    const fresh = this.#freshCells(false, fleet);
+    const ships = cellsByName(fleet);
     const shots = new Map(state.shots_received.map((s) => [cellKey(s.row, s.col), s.result]));
-    const sunkCells = cellsByName(
-      (state.own_fleet ?? []).filter((p) => ownSunkKinds(state).has(p.kind)),
-    );
+    const sunkCells = cellsByName(fleet.filter((placement) => sunkKinds.has(placement.kind)));
     for (let row = 0; row < BOARD_SIZE; row += 1) {
       for (let col = 0; col < BOARD_SIZE; col += 1) {
         const key = cellKey(row, col);
