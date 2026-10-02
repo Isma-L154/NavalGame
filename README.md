@@ -85,7 +85,7 @@ On Windows, with the repository on a drive other than `C:`, see the note in [`CL
 
 ### Images
 
-The banner above (`docs/brand/readme-banner.png`), the share card (`public/og-image.png`) and the home-screen icon (`public/apple-touch-icon.png`) are rendered from the sources in `design/` and committed. After changing a source, run `node scripts/render-og-image.mjs`.
+The banner above (`docs/brand/readme-banner.png`), the share card (`public/og-image.png`) and the home-screen icon (`public/apple-touch-icon.png`) are rendered from the sources in `design/` and committed. After changing a source, run `node scripts/render-images.mjs`.
 
 The banner draws its table with the site's own stylesheet and board code, so it shows the game as it is; re-render it when the board changes.
 

@@ -11,7 +11,7 @@ Five open issues, shipped as five PRs in this order: **#37** (share card), **#38
 
 - `index.html` and `terms.html` get `og:type` (`website`), `og:site_name`, `og:title`, `og:description` (equal to the meta description), `og:image` (absolute URL), `og:image:width`/`height`/`alt`, `og:locale` (`en_US`), `twitter:card` (`summary_large_image`) and `twitter:image:alt`. X falls back to the `og:` values for title, description and image, so those are not repeated.
 - `og:url` equals the canonical URL on `/terms`, but the game page has **none**: invite links are `/?room=CODE`, and scrapers that honour `og:url` would send them to the bare home page.
-- `public/og-image.png` (1200×630) is rendered from a committed source, `design/og-image.html`, by `scripts/render-og-image.mjs` (Playwright, already a dev dependency). The PNG is committed, so there is no build step at deploy time.
+- `public/og-image.png` (1200×630) is rendered from a committed source, `design/og-image.html`, by `scripts/render-images.mjs` (Playwright, already a dev dependency). The PNG is committed, so there is no build step at deploy time.
 - `public/apple-touch-icon.png` (180×180): iOS home-screen icon and some share previews.
 - **Search Console verification is not code.** A `google-site-verification` meta tag needs a token from the owner's Google account. The better route is a *Domain* property verified by a DNS TXT record in the Cloudflare zone, which also covers every subdomain. This is recorded as an owner action. No placeholder token is committed.
 - JSON-LD structured data is **out**: a browser game is not eligible for any rich result, and it would be the only inline `<script>`.
