@@ -1,5 +1,8 @@
 import { expect } from "@playwright/test";
 
+/** The accessible name of the grid on the placement screen. */
+export const PLACEMENT = "Your waters. Place your fleet";
+
 // Ships in list order, each placed horizontally at column A of rows A-E.
 export const FLEET_ROWS = ["A", "B", "C", "D", "E"];
 export const FLEET_CELLS = [
@@ -70,6 +73,12 @@ export async function joinRoom(page, nickname, code, { flag } = {}) {
   await page.getByRole("button", { name: "Join room" }).click();
 }
 
+/** The middle of an element in viewport pixels, where the mouse presses it. */
+export async function centerOf(locator) {
+  const box = await locator.boundingBox();
+  return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+}
+
 /** Waits for the battle; returns [first shooter, the other player]. */
 export async function battleOrder(ana, bo) {
   await expect(ana.locator("#turn-banner")).toBeVisible();
@@ -80,7 +89,7 @@ export async function battleOrder(ana, bo) {
 export async function placeRowFleet(page) {
   await expect(page.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
   for (const row of FLEET_ROWS) {
-    await cell(page, "Your waters. Place your fleet", `${row}1`).click();
+    await cell(page, PLACEMENT, `${row}1`).click();
   }
   await page.getByRole("button", { name: "Ready" }).click();
 }

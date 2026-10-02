@@ -1,7 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { FLEET_ROWS, battleOrder, cell, createRoom, joinRoom, newPlayer, watchConsole } from "./helpers.js";
-
-const PLACEMENT = "Your waters. Place your fleet";
+import { FLEET_ROWS, PLACEMENT, battleOrder, cell, createRoom, joinRoom, newPlayer, watchConsole } from "./helpers.js";
 
 /** Counts every audio source the page starts, in `window.soundStarts`. */
 async function countSounds(page) {

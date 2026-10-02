@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
 import {
+  PLACEMENT,
   battleOrder,
   cell,
+  centerOf,
   createRoom,
   joinRoom,
   newPlayer,
@@ -9,8 +11,6 @@ import {
   placeRowFleet,
   watchConsole,
 } from "./helpers.js";
-
-const PLACEMENT = "Your waters. Place your fleet";
 
 /** A game against the CPU, on the placement screen: one browser is enough. */
 async function placementVsCpu(browser, testInfo, options = {}) {
@@ -78,11 +78,6 @@ const viewOf = (page, gridId) =>
     turn: node.style.getPropertyValue("--turn"),
     tilt: node.style.getPropertyValue("--tilt"),
   }));
-
-async function centerOf(locator) {
-  const box = await locator.boundingBox();
-  return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
-}
 
 /** A mouse drag that starts on `from` and moves by (dx, dy). */
 async function dragBy(page, from, dx, dy) {

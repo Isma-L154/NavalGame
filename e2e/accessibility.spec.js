@@ -1,6 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { battleOrder, createRoom, joinRoom, newPlayer } from "./helpers.js";
+import { PLACEMENT, battleOrder, createRoom, joinRoom, newPlayer } from "./helpers.js";
 
 async function expectNoViolations(page) {
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
@@ -37,7 +37,7 @@ test("a whole turn can be played with the keyboard only", async ({ browser }, te
   await expect(ana.getByRole("heading", { name: "Deploy your fleet" })).toBeVisible();
 
   // Place every ship with arrows + Enter: the next ship is selected automatically.
-  const grid = ana.getByRole("grid", { name: "Your waters. Place your fleet" });
+  const grid = ana.getByRole("grid", { name: PLACEMENT });
   await grid.getByRole("button", { name: /^A1,/ }).focus();
   for (let ship = 0; ship < 5; ship += 1) {
     await ana.keyboard.press("Enter");

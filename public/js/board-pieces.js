@@ -1,9 +1,8 @@
 import { el } from "./dom.js";
-import { shipByKind, shipCells } from "./fleet.js";
+import { cellKey, shipByKind, shipCells } from "./fleet.js";
 import { SHIP_BEAM, SHIP_INSET, peakAt, shipModel } from "./ship-models.js";
 import { prism } from "./solid.js";
 
-const keyOf = (row, col) => row * 10 + col;
 // A peg is a red block with a cross on top, this wide and tall, in cells.
 const PEG_SIDE = 0.36;
 const PEG_HEIGHT = 0.13;
@@ -43,7 +42,7 @@ export class BoardPieces {
    * (animated when the sinking shot is the newest), taking its pegs with it.
    */
   markCell(row, col, { hit, sunk, isNew }) {
-    const at = keyOf(row, col);
+    const at = cellKey(row, col);
     const entry = this.#ships.get(at);
     if (entry) {
       entry.ship.classList.toggle("is-sunk", sunk);
@@ -108,7 +107,7 @@ export class BoardPieces {
       `translate(${col + SHIP_INSET}em, ${row + SHIP_INSET}em)${turned ? " rotateZ(90deg)" : ""}`,
     );
     const entry = { ship, model, parts, placement };
-    for (const [r, c] of shipCells(placement)) this.#ships.set(keyOf(r, c), entry);
+    for (const [r, c] of shipCells(placement)) this.#ships.set(cellKey(r, c), entry);
     return ship;
   }
 }

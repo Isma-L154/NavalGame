@@ -1,7 +1,16 @@
 import { expect, test } from "@playwright/test";
-import { FLEET_ROWS, battleOrder, cell, createRoom, joinRoom, newPlayer, placeRowFleet, watchConsole } from "./helpers.js";
-
-const PLACEMENT = "Your waters. Place your fleet";
+import {
+  FLEET_ROWS,
+  PLACEMENT,
+  battleOrder,
+  cell,
+  centerOf,
+  createRoom,
+  joinRoom,
+  newPlayer,
+  placeRowFleet,
+  watchConsole,
+} from "./helpers.js";
 
 async function placementScreen(browser, testInfo, options = {}) {
   const ana = await newPlayer(browser, testInfo, options);
@@ -13,11 +22,6 @@ async function placementScreen(browser, testInfo, options = {}) {
 }
 
 const ship = (page, kind) => page.locator(`#placement-grid .ship[data-kind="${kind}"]`);
-
-async function centerOf(locator) {
-  const box = await locator.boundingBox();
-  return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
-}
 
 async function drag(page, from, to) {
   await page.mouse.move(from.x, from.y);
