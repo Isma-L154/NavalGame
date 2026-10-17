@@ -5,7 +5,8 @@ Issue #76. An address that matches no page used to fall through to the Worker, w
 ## Decision
 
 - `public/404.html`, served by Workers Static Assets with `not_found_handling = "404-page"`. Every path outside `/api/*` that matches no asset gets this page with a `404` status, straight from the assets layer: the Worker is not invoked.
-- `/api/*` keeps `run_worker_first`, so API clients still get the JSON `not_found` error.
+- `/api` and `/api/*` keep `run_worker_first`, so API clients still get the JSON `not_found` error.
+- Known edges, accepted: `/404` is the page itself and answers `200` (it is `noindex`), and a non-GET request to an unknown path gets the assets layer's `405`.
 - The page has `noindex` and is not in the sitemap.
 
 ## Content
