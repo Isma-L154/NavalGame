@@ -4,12 +4,12 @@
   "type": "module",
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
-    "@playwright/test": "1.63.0",
-    "wrangler": "4.142.0"
+    "@playwright/test": "1.64.0",
+    "wrangler": "4.149.0"
   },
   "allowScripts": {
-    "esbuild@0.28.1": true,
-    "workerd@1.20260918.1": true
+    "esbuild@0.28.2": true,
+    "workerd@1.20261006.1": true
   },
   "overrides": {
     "miniflare": {
