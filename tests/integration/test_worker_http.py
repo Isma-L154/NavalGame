@@ -40,6 +40,15 @@ def test_unknown_api_path_is_404() -> None:
     assert headers["X-Content-Type-Options"] == "nosniff"
 
 
+def test_unknown_page_is_the_custom_404_page() -> None:
+    status, headers, body = _get("/no-such-page")
+    assert status == 404
+    assert headers["Content-Type"].startswith("text/html")
+    assert b"Off the chart" in body
+    assert headers["X-Content-Type-Options"] == "nosniff"
+    assert "Content-Security-Policy" in headers
+
+
 def test_index_page_has_security_headers() -> None:
     status, headers, body = _get("/")
     assert status == 200
