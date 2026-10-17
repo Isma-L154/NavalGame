@@ -33,11 +33,21 @@ def test_health_endpoint() -> None:
     assert "Content-Security-Policy-Report-Only" not in headers
 
 
-def test_unknown_api_path_is_404() -> None:
-    status, headers, body = _get("/api/does-not-exist")
+@pytest.mark.parametrize("path", ["/api/does-not-exist", "/api"])
+def test_unknown_api_path_is_404(path: str) -> None:
+    status, headers, body = _get(path)
     assert status == 404
     assert json.loads(body) == {"error": "not_found"}
     assert headers["X-Content-Type-Options"] == "nosniff"
+
+
+def test_unknown_page_is_the_custom_404_page() -> None:
+    status, headers, body = _get("/no-such-page")
+    assert status == 404
+    assert headers["Content-Type"].startswith("text/html")
+    assert b"Off the chart" in body
+    assert headers["X-Content-Type-Options"] == "nosniff"
+    assert "Content-Security-Policy" in headers
 
 
 def test_index_page_has_security_headers() -> None:
