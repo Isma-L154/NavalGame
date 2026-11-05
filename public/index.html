@@ -26,6 +26,27 @@
     <link rel="preload" href="/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
     <script src="/js/theme-init.js"></script>
     <link rel="stylesheet" href="/styles.css">
+    <!-- A data block is never executed, so script-src does not apply to it. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "NavalGame",
+        "description": "Two-player online naval battle. Create a room, share the link and sink the enemy fleet, or play against the CPU.",
+        "url": "https://naval.cloudils.com/",
+        "image": "https://naval.cloudils.com/og-image.png",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires a modern web browser with JavaScript enabled.",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
     <!-- Fetch the whole module graph in parallel instead of import by import. -->
     <link rel="modulepreload" href="/js/api.js">
     <link rel="modulepreload" href="/js/battle.js">
@@ -116,23 +137,32 @@
           </form>
           <button id="leave-invite" class="button button-ghost" type="button" hidden>Start a new room instead</button>
         </div>
-        <details class="rules">
-          <summary>How to play</summary>
-          <ol>
-            <li>Each player hides five ships on a 10 × 10 grid: carrier (5), battleship (4), cruiser (3), submarine (3) and destroyer (2).</li>
-            <li>Ships go horizontally or vertically and cannot overlap.</li>
-            <li>Players take turns firing one shot at a cell of the enemy grid. You learn whether it was a miss, a hit, or sank a ship.</li>
-            <li>The first to sink the whole enemy fleet wins. If a player leaves or stays disconnected for two minutes, the other wins.</li>
-            <li>No one to play with? Play vs CPU: the computer places its own fleet and fires back like a person would.</li>
-          </ol>
-        </details>
+        <section class="rules" aria-labelledby="rules-title">
+          <div class="rules-block">
+            <h2 id="rules-title">How to play</h2>
+            <ol>
+              <li>Each player hides five ships on a 10 × 10 grid: carrier (5), battleship (4), cruiser (3), submarine (3) and destroyer (2).</li>
+              <li>Ships go horizontally or vertically and cannot overlap.</li>
+              <li>Players take turns firing one shot at a cell of the enemy grid. You learn whether it was a miss, a hit, or sank a ship.</li>
+              <li>The first to sink the whole enemy fleet wins. If a player leaves or stays disconnected for two minutes, the other wins.</li>
+            </ol>
+          </div>
+          <div class="rules-block">
+            <h2>Play online with a friend</h2>
+            <p>Choose a nickname and create a room. You get a six-character room code and an invite link: send either one to a friend. They open the link, or type the code under Join room, and you both deploy your fleets. There is no sign-up and nothing to install; the game runs in the browser on a phone, a tablet or a computer.</p>
+          </div>
+          <div class="rules-block">
+            <h2>Play against the CPU</h2>
+            <p>No one to play with? Choose Play vs CPU. The computer places its own fleet and fires back like a person would: random shots until it hits, then it closes in until that ship goes down.</p>
+          </div>
+        </section>
       </section>
 
       <!-- Lobby -->
       <section id="screen-lobby" class="screen" aria-labelledby="lobby-title" hidden>
         <div class="lobby">
           <p class="kicker">Room open</p>
-          <h1 id="lobby-title">Waiting for an opponent</h1>
+          <h2 id="lobby-title" class="screen-title">Waiting for an opponent</h2>
           <p>Share the code or the link. The game starts as soon as someone joins.</p>
           <p class="room-code"><span class="visually-hidden">Room code: </span><span id="lobby-code"></span></p>
           <div class="lobby-actions">
@@ -151,7 +181,7 @@
       <section id="screen-placement" class="screen" aria-labelledby="placement-title" hidden>
         <div class="screen-header">
           <p class="kicker">Step 1 of 2</p>
-          <h1 id="placement-title">Deploy your fleet</h1>
+          <h2 id="placement-title" class="screen-title">Deploy your fleet</h2>
           <p id="placement-opponent" class="muted"></p>
         </div>
         <div class="placement-layout">
@@ -162,7 +192,7 @@
           <div class="panel placement-panel">
             <div id="placement-flag"></div>
             <p id="placement-flag-note" class="field-hint" role="status"></p>
-            <h2 class="panel-title">Ships</h2>
+            <h3 class="panel-title">Ships</h3>
             <ul id="ship-list" class="ship-list"></ul>
             <p class="field-hint">Drag a ship onto the grid, or select it and choose a cell. Select a placed ship to move it; select it again, press <kbd>R</kbd> or use Rotate to turn it about that cell. <kbd>Shift</kbd> + arrow keys move it one cell.</p>
             <div class="placement-actions">
@@ -179,10 +209,10 @@
 
       <!-- Battle and result share one screen: the result replaces the turn banner. -->
       <section id="screen-battle" class="screen" aria-labelledby="battle-title" hidden>
-        <h1 id="battle-title" class="visually-hidden">Battle</h1>
+        <h2 id="battle-title" class="visually-hidden">Battle</h2>
         <div id="turn-banner" class="turn-banner" role="status" aria-live="polite"></div>
         <div id="result-panel" class="result-panel" hidden>
-          <h2 id="result-title"></h2>
+          <h3 id="result-title"></h3>
           <p id="result-detail"></p>
           <div class="result-actions">
             <button id="rematch" class="button button-primary" type="button">Rematch</button>
@@ -192,12 +222,12 @@
         </div>
         <div class="battle-layout">
           <div class="board-column">
-            <div class="board-heading"><span id="enemy-flag" class="board-flag"></span><h2 class="board-title">Enemy waters</h2></div>
+            <div class="board-heading"><span id="enemy-flag" class="board-flag"></span><h3 class="board-title">Enemy waters</h3></div>
             <div id="target-grid"></div>
             <ul id="enemy-fleet" class="fleet-status" aria-label="Enemy fleet"></ul>
           </div>
           <div class="board-column">
-            <div class="board-heading"><span id="own-flag" class="board-flag"></span><h2 class="board-title">Your fleet</h2></div>
+            <div class="board-heading"><span id="own-flag" class="board-flag"></span><h3 class="board-title">Your fleet</h3></div>
             <div id="own-grid"></div>
             <ul id="own-fleet" class="fleet-status" aria-label="Your fleet"></ul>
           </div>
@@ -210,7 +240,7 @@
           <span class="legend-item board-hint">Drag a board to turn it · double-click off the grid to reset</span>
         </div>
         <div class="panel log-panel">
-          <h2 class="panel-title">Shot log</h2>
+          <h3 class="panel-title">Shot log</h3>
           <ol id="shot-log" class="shot-log" aria-live="polite"></ol>
           <button class="button button-ghost leave-button" type="button">Leave room</button>
         </div>
@@ -218,7 +248,7 @@
     </main>
 
     <footer class="footer">
-      <p>NavalGame · <a href="/terms">Terms and conditions</a> · Contact: <a href="mailto:info@cloudils.com">info@cloudils.com</a></p>
+      <p>NavalGame · <a href="/terms">Terms and conditions</a> · Contact: <a href="mailto:info@cloudils.com">info@cloudils.com</a> · More from <a href="https://cloudils.com/">cloudils.com</a></p>
     </footer>
   </body>
 </html>
