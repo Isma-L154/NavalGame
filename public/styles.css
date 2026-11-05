@@ -153,7 +153,8 @@ main {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-family: var(--font-display);
   font-weight: 800;
   line-height: 0.95;
@@ -161,7 +162,9 @@ h2 {
   margin: 0 0 var(--space-4);
 }
 
-h1 {
+/* Only the home title is an h1; the other screen titles are h2 at the same size. */
+h1,
+.screen-title {
   font-size: clamp(2.5rem, 7vw, 4.5rem);
 }
 
@@ -539,41 +542,25 @@ input[aria-invalid="true"] {
 }
 
 .rules {
-  border-top: var(--rule);
-  padding-top: var(--space-2);
+  display: grid;
+  gap: var(--space-6);
   max-width: 44rem;
 }
 
-.rules summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  list-style: none;
-  min-height: 44px;
-  cursor: pointer;
-  font-family: var(--font-display);
-  font-weight: 800;
+.rules-block {
+  border-top: var(--rule);
+  padding-top: var(--space-3);
+}
+
+.rules h2 {
   font-size: 1.3rem;
   text-transform: uppercase;
-}
-
-/* A flex summary loses the native disclosure triangle, so draw an explicit marker. */
-.rules summary::-webkit-details-marker {
-  display: none;
-}
-
-.rules summary::after {
-  content: "+";
-  font-size: 1.8rem;
-  line-height: 1;
-}
-
-.rules[open] summary::after {
-  content: "−";
+  margin-bottom: var(--space-3);
 }
 
 .rules ol {
   padding-left: 1.4rem;
+  margin: 0;
 }
 
 .rules li {
@@ -1385,7 +1372,7 @@ a.button {
   border: var(--rule);
 }
 
-.result-panel h2 {
+.result-panel h3 {
   font-size: clamp(3rem, 12vw, 6rem);
   text-transform: uppercase;
   margin-bottom: var(--space-2);
